@@ -111,7 +111,7 @@ public class TutorialCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        TutorialCrawler crawler = new TutorialCrawler("/home/liuhl/data/wb");
+        TutorialCrawler crawler = new TutorialCrawler("../data/wb");
         crawler.setThreads(50);
 //        crawler.addSeed("http://www.chinadaily.com.cn/");
         crawler.addSeed("http://www.chinadaily.com.cn/business/2014-08/20/content_18456605.htm");
