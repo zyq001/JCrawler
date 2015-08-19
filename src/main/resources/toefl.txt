@@ -1,0 +1,4961 @@
+﻿particle n.微粒,极小量
+predator n.掠夺者,食肉动物
+biological a.生物(学)的
+theater n.戏院,剧场
+glacial a.冰川(期)的,非常冷的
+migration n.移居,迁移
+stimulus n.促进(因素),刺激(物)
+artisan n.工匠,技工
+meteorite n.陨石, 流星
+volcanic a.火山的,猛烈的
+vegetation n.植物,草木
+dinosaur n.恐龙
+facial a.脸部的,面部的
+cultural a.文化的,教养的
+whig n.辉格党
+cretaceous n./a.白垩纪(的)
+terrestrial a.陆地的
+groundwater n.地下水
+ecosystem n.生态系统
+introductory a.引导的,介绍的
+helium n.氦
+mar n.污点,瑕疵.vt.破坏.
+dutch n.荷兰人.a.荷兰的
+galaxy n.银河,星系
+democrat n.民主主义者,美国民主党人
+aquifer n.含水土层,蓄水层
+crater n.弹坑
+aggression n.进攻,侵略
+pheromone n.<生化>信息素
+diversity n.多样性,差异
+geologist n.地质学者
+eighteenth num.第十八,十八分之一
+stratum n.地层,阶层
+fungus n.真菌,真菌类植物
+fuller n.漂洗工
+ritual n.仪式,典礼
+technological a.科技的
+fiber n.光纤
+geological a.地质学的
+nutrient n.营养品.a.营养的
+pastoralist n.田园诗的作者,牧民
+leatherback n.棱龟(大海龟之一种)
+tension n.紧张,拉力.vt.使拉紧,使绷紧
+cambrian n.威尔斯人
+climatic a.气候上的
+cue n.暗示,提示
+ceramic a.陶器的.n.陶瓷制品
+lichen n.青苔,苔藓
+habitat n.栖息地,住处
+bur n.刺果
+california n.加利福尼亚,加州
+stud vt.镶嵌,点缀
+geometric a.几何(学)的
+mexico n.墨西哥(拉丁美洲国家)
+rome n.罗马
+factual a.事实的,实际的
+philadelphia n.费城(美国宾西法尼亚州东南部港市)
+permanent a.永久的,持久的
+warmer n.使热的人,温热装置
+paleolithic a.旧石器时代的
+machinery n.机械,机器
+ecologist n.生态学者
+timberline n.树带界线
+adaptation n.  适应, 改编, 改写本
+petroleum n.石油
+vapor n.水蒸气
+comet n.彗星
+creation n.创造,创作物
+maya n.玛雅人,玛雅语
+depict v.描述,描写
+fantasy n.幻想
+ecological a.生态学的
+acorn n.橡树果,橡子
+industrialization n.工业化,产业化
+prehistoric a.史前的
+hunter n.猎人
+obsidian n.[矿]黑曜石
+migratory a.迁移的,流浪的
+nestling n.尚未离巢的小鸟,婴孩
+sculptor n.雕刻家
+parasite n.寄生虫
+alder n.[植]桤木
+pullman n.卧车,普式火车
+rocky a.岩石的,稳固的
+desertification n.荒漠化,沙漠化
+analyze vt.分析,分解
+surge n./v.(波涛)汹涌,涌起
+ogallala n.奥加拉拉(美国地名)
+sophisticate a.诡辩的,久经世故的
+archaeological a.考古学的
+debris n.碎片,残骸
+texture n.质地,(材料等的)结构
+archaeologist n.考古学家
+perspective n.视角,观点,远景
+cetacean n.鲸类动物
+plankton n.浮游生物
+neanderthal ad.穴居人的
+guild n.行会,协会
+nile n.尼罗河
+decoration n.装饰(品)
+asteroid n.小行星
+chimpanzee n.黑猩猩
+projection n.发射
+pastoralism n.田园主义,牧歌体
+geologic a.地质的
+pleistocene n./a.[地]更新世(的)(一段时期)
+snowfall n.降雪,降雪量
+netherlands n.荷兰[国家]
+pollutant n.污染物质
+elite n.精英,精华
+seawater n.海水
+chicago n.芝加哥
+boston n.波士顿
+opportunist n.机会主义者,投机取巧者
+reflective a.反射的,反映的,沉思的
+accumulation n.积聚,堆积物
+alaska n.阿拉斯加州(美国州名)
+millennium n.太平盛世,一千年
+favorable a.赞成的,有利的
+kinetoscope n.  活动电影放映机
+defense n.国防部,防卫
+virus n.病毒
+myth n.神话
+arid a.干旱的,贫瘠的
+erode v.侵蚀,腐蚀
+portray v.描绘
+glaciation n.冻结成冰,冰河作用
+stencil n.模版,蜡纸.vt.用蜡纸印刷
+distinctive a.有区别的,独特的
+toxic a.有毒的,中毒的
+gull n.海鸥.v.欺骗
+herbivore n.草食动物
+tornado n.龙卷风
+temperate a.温和的,适度的,有节制的
+isotope n.同位素
+parlor n.客厅,会客室
+navigate v.航行,航海
+evolutionary a.进化的,发展的,演变的
+variability n.可变性
+highland n.高地,丘陵地带
+motif n.主题,主旨
+challenger n.挑战者
+beaver n.海狸(毛皮)
+physiological a.生理(学)的
+encode vt.把...编码
+pueblo n.印第安人村庄
+pebble n.小圆石,小鹅卵石
+sumerian n.闪族人[语]
+gazelle n.瞪羚,小羚羊
+columbia n.哥伦比亚
+statistic n.统计数值
+evaporation n.蒸发
+archaeology n.考古学
+dweller n.居住者,居民
+seasonal a.季节的,周期性的
+regional a.整个地区的,地域性地
+sandstone n.沙岩
+modem n.[计]调制解调器
+originally ad.最初,原先
+salinity n.盐分,盐度
+dynasty n.朝代,王朝
+livestock n.家畜
+algae n.水藻
+lowland n.低地
+vertebrate n.脊椎动物
+sixteenth num.第十六,十六分之一
+anthropologist n.人类学家
+terrain n.地形
+wildebeest n.羚羊(其中一种)
+hormone n.荷尔蒙,激素
+pellet n.小球
+mesozoic n./a.中生代(的)
+denmark n.丹麦
+gar n.雀鳝属鱼, 雀鳝
+functional a.功能的
+cultivation n.培养,教养
+colonize vt.拓殖,殖民
+flipper n.鳍状肢
+peninsula n.半岛
+droplet n.小滴
+paleontologist n.古生物学者
+apprentice n.学徒.v.当学徒
+grandma n.奶奶
+fossilization n.化石作用
+hind a.后边的,后面的
+ice-free a.不冻的
+fern n.蕨类植物
+aurora n.黎明的女神,极光
+skull n.头脑,头骨
+scandinavian n.斯堪的纳维亚人[语]
+long-term a.长期的
+investigator n.调查人
+canopy n.天篷,遮篷
+reservoir n.水库,蓄水池
+potash n.碳酸钾,苛性钾
+exhibitor n.展出者,显示者
+shale n.页岩,泥板岩
+maker n.制造者
+perceive v.察觉,感知
+hyper a.亢奋的,高度紧张的
+warren n.养兔场,大杂院
+vent n.出口.v.排出,发泄
+investor n.投资者
+linguistic a.语言(学)上的
+wagon n.四轮马车,货车
+rite n.仪式,典礼
+hawaii n.夏威夷
+celebrity n.名声,名人
+calcium n.钙
+proxy n.代理人
+neolithic a.新石器时代的
+spore n.孢子
+texas n.德克萨斯州(美国州名)
+runoff n.径流量,流出
+watercolor n.水彩颜料,水彩画(法)
+mantle n.斗蓬.v.披风,覆盖
+crossbill n.交喙鸟
+emergence n.浮现,露出
+hominid n.原始人类
+kittiwake n.三趾鸥
+sanctuary n.避难所
+theatrical a.戏剧性的
+laborer n.劳动者
+aluminum n.铝
+dramatically ad.戏剧地,引人注目地
+dependence n.依靠,信任
+centimeter n.厘米
+colonization n.殖民地化,殖民
+invertebrate a./n.无脊椎的,无骨气的人
+symbiotic a.共生的
+tennessee n.田纳西州
+eruption n.爆发,火山灰
+engraving n.雕刻术,雕版
+costume n.装束,服装
+nouveau a.新近到达的,最近产生的
+gland n.腺
+glaze vi.变呆滞.vt.上釉.n.釉(料)
+martian n./a.火星人(的)
+mercantile a.贸易的,商业的
+fossilize v.成化石,陈腐
+countercurrent n.逆流,反向电流
+potter n.陶工,制陶工人
+aesthetic a.美学的,审美的
+neighborhood n.附近,邻近
+excavate v.挖掘,开凿
+reclamation n.开垦,改造
+aboriginal a.土著的,原来的
+automatically ad.自动地,机械地
+mississippi n.  密西西比河,密西西比州(美国州名)
+recharge vt.再充电,再进攻,恢复精力
+motivation n.动机
+gene n.[遗传]因子,[遗传]基因
+penetrate v.穿透,渗透,看穿
+engrave v.雕刻,使铭记
+graham a.全麦(面粉)的
+turnpike n.收费公路
+expressive a.表达的,意味深长的
+secrete vt.隐藏,隐匿
+astronomer n.天文学家
+erie n.伊利(人)
+inhibit vt.阻止妨碍抑制
+yucatan n.尤卡坦半岛
+alkali n.碱.a.碱性的
+sedimentary a.沉积的,沉淀性的
+symbolic a.象征的,符号的
+conserve vt.保存,保藏
+harvard n.哈佛大学(美国)
+himalaya n.喜马拉雅山
+present-day a.当前的,当代的
+precipitation n.仓促
+lewis n.[机] 吊楔,起重爪
+oceanic a.海洋的
+publisher n.出版者,发行人
+boom n.繁荣.v.发隆隆声,兴隆
+outflow n.流出(物)
+ohio n.  俄亥俄州(美国州名)
+southwestern a.西南的, 来自西南的
+infantile a.幼稚的，幼儿的
+crucial a.  至关紧要的
+amnesia n.  健忘症
+nutritional a.营养的,滋养的
+verbal a.口头的
+freshwater n.  淡水
+crustal a. 地壳的
+carbohydrate n.碳水化合物,醣类
+sociologist n.  社会学家
+indo-european n. 印欧语系, 说印欧语的人
+seafloor n.  海底
+script n.  手稿, 手迹
+partially ad.  部分地
+intrigue v.激起兴趣,耍阴谋 n.阴谋，密谋
+artwork n.艺术品,美术品
+kiln n.窑,炉
+awareness n.  知道, 晓得
+indium n.[化]铟
+imprint v.  留下烙印
+pennsylvania n.  宾夕法尼亚州（美国州名）
+iridium n.  [化]铱
+mobility n.  活动性, 灵活性
+footprint n.足迹
+unpredictable a.不可预知的
+collector n.收藏家, 征收者
+cooperation n.合作, 协作
+enzyme n.[生化]酶
+retrieve v.恢复,挽回,取回
+silt n.淤泥.v.(使)淤塞
+surveyor n. 测量员, 检查员
+nutrition n.营养, 营养学
+larva n.幼虫
+genetic a.遗传的, 起源的
+accumulator n.蓄电池,积聚者
+rainwater n. 雨水
+satire n.  讽刺(文学)
+massachusetts n. 马萨诸塞(美国州名)
+realism n.现实主义
+lava n.熔岩, 火山岩
+deco n. 装饰派艺术
+descriptive a.描述的, 叙述的
+ruminant n./a.反刍动物(的), 沉思的
+stoneware n.  瓷器
+barb n.鱼钩.vt.装倒钩于
+forage n.  草料
+nitinol n.[冶]镍钛诺(镍和钛的非磁性合金)
+chick n.小鸡
+potentially ad.  潜在地
+precisely  ad.正好
+egalitarian a.平等主义的
+plover n.千鸟
+shelve v.搁置
+warbler n.鸣鸟
+specialization n.  特殊化, 专门化
+twig n.  嫩枝
+workweek n.  一星期工作时间
+extensively ad.广泛地，彻底地
+clement a.仁慈的，温和的
+nutritious a. 有营养的, 滋养的
+eka-aluminum n. 类铝
+mold n.  模子vt.浇铸, 塑造
+mammoth n.猛犸,长毛象.a.庞大的
+tellurium n.  碲
+hopewell n. 霍普韦尔
+fauna n.  动物群
+indicator n.指示器
+steamboat n.汽船
+archaeopteryx n.  始祖鸟(古代生物)
+disclaimer n. 放弃, 弃权
+carbonate n.碳酸盐
+southeastern a.东南方的
+insulation n.  绝缘
+missouri n. 密苏里州(美国州名)
+seep v. 渗出
+naturalist n.自然主义者
+sloth n.懒惰
+perceptual a. 感性的,知觉的
+proterozoic n./a.原生代(的)
+falcon n.猎鹰
+orchid n. 兰花
+semiarid a.半干旱的
+renaissance n. 文艺复兴(时期)
+sibling n.  兄弟姐妹
+kestrel n.(一种)鹰
+cognitive a.认知的，认识能力的
+animation n.兴奋,活跃
+sahara n.  撒哈拉沙漠
+molt vi./n.脱毛,换毛
+columbian a.美国的, 美洲的,哥伦布的
+crystalline a.水晶(般)的,透明的
+speculation n.思索, 做投机买卖
+scandinavia n.斯堪的纳维亚（北欧地名）
+continually ad.不断地，频繁地
+calcite n.方解石
+southward a.向南 a.向南的
+proponent n.支持者，拥护者
+partnership n.合伙(关系)
+gender n.性别,(语法中的)性
+ichthyosaur n.  鱼龙
+niche n.壁龛,合适的职务(环境、位置等)
+primate n.灵长类(动物)
+tribal a.部落的,种族的
+storytelling n.说书, 讲故事
+stationary a.固定的,静止不动的
+snowflake n.  雪花
+pterosaur n.翼龙
+realist n.现实主义者
+populate v. 构成人口, 居住于
+porous a.多孔渗水的
+harbor n.海港
+long-distance a.长途的,长距离的
+tract n.传单,小册子,大片(土地或森林)
+equatorial a.(近)赤道的
+tiredness n. 疲劳,疲倦
+iodine n.  碘, 碘酒
+hypothalamus n.[解剖]视丘下部
+songbird n.鸣禽,鸣鸟
+interplay n.相互影响
+topi n.  遮阳帽,[动]转角牛羚
+ceremonial n.仪式.a.正式的
+icebox n.  冷藏库
+roost v./ n.栖息鸟巢
+nestle v.依偎,（舒适地）安顿
+tactic n. 策略, 战略
+contaminate vt. 弄脏, 污染
+carver n.雕刻匠
+kohoutek n. [天]科胡特克彗星
+immune a.免疫的
+gill n.鳃,及耳[液量单位]
+entrepreneur n.企业家, 主办人
+feat n.功绩，伟业
+meaningful a.意味深长的
+agrarian a.有关土地的, 耕地的
+canoes n.独木舟
+starling n.欧掠鸟
+additive a. 附加的.n.添加剂
+odor n.气味
+three-dimensional a.三维的, 立体的
+exchanger n. 交换器, 换热器
+psychodynamic a.精神动力的
+lighthouse n.灯塔
+palm n.手掌,掌状物
+innovative a.创新的, 革新的
+underlie vt.位于...之下, 成为...的基础
+relic n.遗物, 废墟
+gallium n.  镓
+life-forms n. 生物
+eggshell n.  蛋壳, 易碎的东西
+invader n.  侵略者
+pigment n.天然色素,颜料
+silversmith n.  银器匠
+biome n.  (生态)生物群系
+hispanic a.西班牙的
+reformer n.改革家, 改革运动者
+mississippian a.密西西比河的 n.密西西比州人
+convex a.凸出的
+magma n.岩浆, 糊剂
+saturate vt.使湿透,饱和
+well-being n.幸福,健康
+inclusion n.包含
+cadmium n.[化]镉
+dominance n.支配,优势
+horticulture n.  园艺
+cone n.圆锥体；
+lifestyle n.生活方式
+dispersal n.散布,传播,分散
+residential a.住宅的, 居住的
+indiana n.印地安那州
+tectonic a.构造的, 建筑的
+firn n. 粒雪, 积雪
+adulthood n.成人期
+consciously ad. 有意识地, 自觉地
+supernatural a./n.超自然(的), 神奇(的)
+nomadism n.游牧,流浪
+catastrophe n.大灾难
+selenium n.[化]硒
+bantu n.班图人, 班图语
+geothermal a.地热的
+restoration n. 恢复, 归还
+eddy n.旋转,漩涡
+telecommuting n. 远程联机,  远程办公
+metabolism n.新陈代谢
+repress v.抑制，镇压
+fir n.  [植]冷杉
+short-lived a.短命的, 短暂的
+superorganism n.[生]超个体(指群居昆虫等的群体)
+harlem n.(纽约的）黑人住宅区
+orleans n.奥尔良[法国]
+controversial a.有争议的,引起争论的
+geographic a.地理(学)的
+peepshow n.西洋镜
+anemone n.  [植]银莲花, [动]海葵
+handedness n.  用右手或左手的习惯
+billfish n.长嘴鱼,尖嘴鱼
+plow v.耕, 犁
+figurine n.  小雕像
+polygon n.[数]多角形,多边形
+hypothesize v. 假设,猜测
+depletion n.损耗
+ammonia n.[化]氨, 氨水
+beringia n.白令海和楚可奇海海域
+sedimentation n.沉淀,沉降
+rectangular a.长方形的，矩形的
+asphalt n.沥青
+evergreen n.常绿树.a.常绿的
+lizard n.  [动]蜥蜴
+parental a.父母的
+illumination n. 阐明, 启发
+advertiser n.登广告者,广告客户
+persian n.波斯人[语]
+neonate n.初生婴儿
+caterpillar n.  毛虫
+vulnerable a.易受伤的，脆弱的
+effectively ad.有效地
+euphrates n.  幼发拉底河
+gypsum n.石膏,
+meltwater n.冰雪融化成的水
+sector n.  部分, 部门
+trillion num.万亿
+isolation n.隔离，孤立
+frontality n.正面描绘
+tasmania n.  塔斯马尼亚岛, 塔斯马尼亚州(澳大利亚州名)
+burgess n.(英国)市民，镇民
+manganese n〈化〉锰
+igneous a.(指岩石)火成的, 火的
+zealand n. 西兰岛(丹麦最大的岛)
+buck n.(一)美元；雄鹿(兔)
+metropolis n.首都,大城市
+botanical a.植物(学)的
+lomas n.洛马斯(阿根廷东部的一城镇)
+confederacy n.联盟,邦联
+fertilize vt.使肥沃；使多产
+raft n.木排(筏),救生圈 v.用筏子渡河
+offshore a./ad.离岸的,近海的
+hierarchy n.等级制度
+interlock v.互锁
+illinois n.  伊利诺斯州(美国州名)
+sieve n 筛,滤网.v.  筛, 过滤
+alpine a.高山的, 阿尔卑斯山的
+monumental a.纪念碑的,不朽的
+payment n.付款, 报酬, 偿还
+don n.先生,阁下
+compaction n. 压紧,紧束之状态
+adaptive a.适合的, 适应的
+census n.  人口普查
+seattle n.  西雅图
+spectacular a.引人入胜的, 壮观的
+mathematician n.数学家
+naturalistic a.自然的, 自然主义的
+cenozoic n. 新生代,新生代之岩层 a.新生界的
+parallel n.相似处；平行线.a.平行的,类似的
+drastically ad.大幅度地, 彻底地
+totally ad.完全地, 整全地
+fulfill vt.履行,实现
+narrative n.故事,叙述.a.叙述的
+wilderness n. 荒野
+woodcut n.  木刻
+delta n.  三角州
+putrefy v.(使)化脓, (使)腐烂
+peculiar a.奇怪的, 特殊的, 独特的
+deplete vt.  耗尽, 使衰竭
+toddler n.  初学走路的孩子
+amsterdam n.  阿姆斯特丹(荷兰首都)
+reproductive a.生殖的,再生的,复制的
+abigail n.  (贵妇人的贴身)使女
+small-scale a. 小比例的,小规模的
+educational a.教育(上)的
+zigzag n.  z字形, 锯齿形
+argon n.  [化]氩
+genetically ad. 遗传(基因)方面
+robin n.知更鸟
+psychologist n.  心理学者
+marseille n. 马赛(法国港口城市)
+diver n.  潜水者
+worksheet n.工作记录表
+seabed n. 海底, 海床
+angiosperm n.被子植物
+circadian a.昼夜节律的,生理节奏的
+seaway n.  海上航道
+oversea a.外国的, 海外的
+moth n.  蛾, 蛀虫
+zoologist n.  动物学家
+decomposition n.分解, 腐烂
+caledonian  n./a.古苏格兰人(的), 苏格兰人（的）
+wetland n.  潮湿的土壤, 沼泽地
+coma n.  昏迷
+fabric n.结构, 织物, 构造
+cooler n.  冷却器
+advent n.出现，到来
+chondrite n. 球粒状陨石
+digestive a. 消化的
+embryo n.胚胎
+allende n.  阿连德(在墨西哥, 西经 100o01' 北纬 25o20')
+notably ad.显著地；著名地
+nonetheless ad. 虽然如此,但是
+hinterland n.  内地, 穷乡僻壤
+mechanize v.  机械化
+finch n. 雀类
+oregon n.  俄勒冈州(美国州名)
+steppe n.  特指西伯利亚一带没有树木的大草原
+patch n.补丁 vt.补,修补
+presidency n.  任期
+fin n.  鳍, 鱼翅
+subtractive a. 减去的,负的
+mandan n. 曼丹人, 曼丹语
+territorial a.领土的
+predominate v.占优势, 支配
+chiefly ad. 首要,主要地
+craftspeople n.工匠; 手艺人
+single-celled a.单细胞的
+unskilled a.不熟练的,拙劣的
+progressively ad.  日益增多地
+high-speed a.高速的
+graphic a. 绘画似的, 图解的
+termite n.白蚁
+inability n. 无能, 无力
+reindeer n.  驯鹿
+slush n.  烂泥 v.  溅湿
+repression n.  镇压, 抑制
+voyager n.航行者, 航海者
+phonograph n.留声机, 电唱机
+eurasia n.  欧亚大陆
+cobalt n.  [化]钴
+wale n.条痕
+concur v.  同时发生
+uncommon a.不凡的, 难得的
+simplification n.  简化
+chemically ad. 用化学, 以化学方法
+fluke n.侥幸，偶然的机会
+intricate a. 复杂的,难懂的
+norway n.  挪威(北欧国家)
+bombard vt. 炮轰；轰击
+backbone n.脊梁骨；支柱
+potassium n.   钾
+cascade n.小瀑布
+reconstruction n.  重建, 改造
+silicate n.硅酸盐
+journeyman n.熟练工人
+long-lasting a. 持续时间长的
+chondrule n.陨石球粒
+accessible a.可得到的,易接近的
+bacterial a.细菌的
+homo n. 人, 同性恋者
+incubation n.孵化, 熟虑
+northeastern a.东北方的, 在东北的
+waterway n.  水路, 排水沟
+excavation n.  挖掘, 发掘
+mutualism n.互助论,互利共生
+capillary n./a.毛细管；毛状的
+behavioral a.行为的
+intact a.完好无缺的, 未经触碰的
+tentacle n.(动物)触角
+fertility n.肥沃, 多产
+stagecoach n.公共马车
+locally ad.在本地, 地方性地, 局部地
+adjustment n.调整, 调节
+figurative a.比喻的，借喻的
+inscription n.  题字, 碑铭
+appalachian a. 阿帕拉契山脉的
+markedly ad.显著地,明显地
+effectiveness n.  效力
+overcast v. 遮盖,变暗.n. 覆盖, 阴天
+remarkably ad.非凡地；显著地
+cheep n.  吱吱的叫声 v.  吱吱地叫
+flora n.  [罗神]花神
+pollinator n.  授花粉器
+efficiently ad.有效地；能胜任地
+medieval a.中世纪的
+jewelry n.  珠宝
+differently ad.不同地，有差别地
+putt vt.短打,把球轻轻打进洞
+reshape vt. 改造, 再成形
+metabolic a.新陈代谢的
+methane n.甲烷,沼气
+fundamentally ad.从根本上, 基本地
+unprecedented a.空前的, 前所未有的
+identity n.一致, 身份, 特征
+cohesive a.粘着的
+forerunner n.  先驱(者)
+alertness n.  警戒, 机敏
+recurrence n.  复发, 重现
+predatory a.掠夺的,捕食生物的
+moraine n. 冰碛
+jurassic a. 侏罗纪的
+literacy n.有文化,有教养
+prosper vi.兴旺，繁荣
+traditionally ad.传统上, 照惯例
+analogous a. 类似的
+cavendish n.(一种压成饼状的)板烟, 烟草饼
+exogenous a.外生的,外界产生的
+informative a. 提供消息的, 情报的
+ooze n.软泥 v.渗出
+educator n.  教育家
+radically ad. 根本地, 完全地
+choreographer n.  舞蹈指导
+environmentalist n.  环境保护论者, 环境论者, 环境论信奉者
+endogenous a.内生的, 内成的
+horseshoe n.  马蹄铁
+specifically ad.特别地；明确地，具体地
+susceptible a.易受外界影响的,易受感染的
+envision v.想象；预想
+upside n.  上边,上部
+adept a.熟练的, 老练的 n.老手, 擅长者
+notation n.  符号
+capsize v.  (特指船)倾覆
+elicit vt.  得出, 引出, 抽出, 引起
+financier n.  财政家, 金融家
+simultaneously ad.同时地
+rodent n.啮齿类动物
+seafarer n.  船员, 航海家
+uneven a.不平坦的,不均匀的
+repudiate v.  批判
+faunal a.动物区系的
+nighttime n.  夜间
+pry v.  探查
+simulation n.  仿真, 假装
+karst n.  石灰岩地区常见的地形
+interstellar a.星际的
+gibraltar n.   直布罗陀(海峡)
+refill v.再装满,再充填
+caravan n.旅行队,商队, 大篷车
+microorganism n.微生物
+inequality n.不平等, 不平均
+intervention n.  干涉
+immobile a.不动的, 静止的
+entity n.  实体
+stabilize v.  稳定
+predominantly ad.主要地, 占优势地
+assistance n.  协助, 援助, 补助,
+persistent a.持久稳固的
+mound n.土墩，沙土堆
+sect n.宗派, 教派
+vaudeville n.  歌舞杂耍
+uncertainty n.  无常, 不确定
+carnivore n.  食肉动物
+theorize v.  建立理论, 理论化
+tundra n.  苔原, 冻土地带
+localize v.集中,局部化
+dependable a.可靠的, 可信赖的
+anomaly n.  不规则, 异常的人或物
+gravitational a.重力的, 引力作用的
+abundantly ad.大量地, 丰富地
+intensify v.加强,强化
+cuneiform a./n. 楔形的,楔形文字(的)
+gamma n.100万分之1克, 微克
+nebula n.星云
+parasitic a.寄生的, 由寄生虫引起的
+documentation n.  文件
+lithosphere n.  [地]岩石圈
+richness n.富饶；富裕
+sulfate n.硫酸盐
+steamship n.  汽船, 轮船
+lithospheric a. 岩石圈的; 陆界的
+meager n.  兆
+unchanging a.不变的
+reconstruct v.  重建, 改造
+conventionally ad. 照惯例
+judgment n.  判断
+georgia n.  (美)乔治亚州
+prolific a.多产的；多子嗣的
+millimeter n.  毫米
+antiquity n.古代
+adobe n.泥砖，土坯
+utilitarian a.功利的 n.功利主义者
+thoroughly ad.  十分地, 彻底地
+stunt n.特技；噱头 v.阻碍正常成长
+accomplishment n.  成就, 完成
+cannonball n.  炮弹
+transitional a.变迁的, 过渡期的
+amplification n.  扩大
+subsurface a. 地下的, 表面下的n. 地表下岩石
+semiskilled a.半熟练的
+mackerel n.  鲭
+midwest n.  中西部
+mutoscope n.  (早期的)电影放映机
+ethnic a.人种的, 种族的
+cottonwood n.  [植]三叶杨
+theorist n.  理论家
+resilience n.弹性，弹力
+mutually ad.互相地, 互助
+neon n.  [化]氖
+bladder n.  膀胱, 气泡
+wed v. 娶, 嫁, 结婚
+advancement n.  前进, 进步
+respiration n.  呼吸, 呼吸作用
+transit n.运输，载运
+corona n.  冠壮物
+therapy n.  治疗
+speculative a. 推测的, 思索的,投机的
+impressionist n.  印象主义者
+incentive a.刺激的, 鼓励的 n.动机
+silica n.[化]硅石
+hunter-gatherer n.  捕猎者-采集者
+rudimentary a.基本的,初步的,未充分发展的
+involvement n.连累, 包含
+otter n.  水獭, 水獭皮
+deciduous a.每年落叶的, 非永久性的
+large-scale a.  大规模的
+broadside n.(船)舷侧
+tethys n.古地中海,  特提斯海
+decipher vt.译解
+broadway n.& a.百老汇大街(的)
+unfamiliar a.不熟悉的
+raven n.  大乌鸦
+commuter n. 通勤者, 每日往返上班者
+movable a.活动的，变动的
+easter n.  [宗](耶稣)复活节
+tidal a.潮汐的, 定时涨落的
+eusocial a. (昆虫)完全社会性的
+oliver n.  脚踏铁槌
+ideology n.  意识形态
+solitary a.孤独的
+intensively ad. 加强地, 集中地
+reheat vt.  再热
+financially ad. 财政上(金融上)
+diversification n.  变化, 多样化
+sedentary a. 久坐的,固定不动的
+outwork n.外包活
+eohippus n.  <古生>始祖马
+nutritionally ad. 在营养上, 营养方面
+mythical a.神话的, 虚构的
+handcraft n.  手工, 手艺
+porosity n.  多孔性
+backup n.  后援, 支持
+understory n.林下叶层
+shaman n.  萨满教的道士, 僧人或巫师
+stylize vt. 使风格化, 仿效 ... 的风格
+autonomous a.自治的
+dandelion n.  蒲公英
+substantially ad.大体上；本质上
+internally ad. 内部地, 国内地
+poorly a.不舒服的  ad.贫穷地
+popularly ad.大众地, 通俗地
+devoid a.全无的, 缺乏的
+guinea n. 几内亚
+landform n.  地形, 地貌
+pinpoint vt.确定,精确地定位.a.十分精确的
+rancher n.大牧场主, 大牧场工人
+mosaic n.镶嵌细工，马赛克
+maturation n.  化脓, 成熟
+recruitment n.  征募新兵, 补充
+preschooler n.  (美)学龄前儿童
+loft n.  阁楼
+exotic a. 外来的
+practitioner n.从业者, 开业者
+photosynthesis n.  光合作用
+diffuse v.散播,传播
+flagellum n.[动]鞭毛
+phytoremediation n.植物除污, 植物治理法
+chlorosis n.  萎黄病, 变色病
+piecework n.  计件工作
+polynesian n. 波利尼西亚人, 波利尼西亚语
+garrison n.守备队, 驻地
+crevice n.裂缝
+scavenger n.清道夫,食腐动物
+antibiotic n.抗生素
+legume n.  豆类, 豆荚
+cohesion n.  结合, 凝聚
+stave n.桶材；窄板  v.敲破
+fungal a.真菌的
+synthesize v.  综合, 合成
+magnetosphere n.  磁气圈
+chisel n.  凿子 v.  砍凿
+bloodhound n.  一种大侦探犬
+rental n.租金额
+informal a.不正式的
+tannin n.  [化]丹宁酸
+woody a.多树木的,木质的
+prehistory n.史前时代, 史前学
+centralize v.集聚, 集中
+consistently ad.一致地；始终如一地
+cajun n.  移居美国路易斯安纳州的法人后裔
+intrinsically ad. 内在地, 固有地
+geologically ad. 地质学上
+gratify vt.  使满足
+ledge n.岩架,岩石突出部
+cowboy n.牧童；牛仔
+maritime a.海上的, 海事的
+vastly ad.巨大地；广阔地
+shellfish n.  贝, 甲壳类动物
+dy n.  [化]镝(=dysprosium)
+agriculturalist n.农学家
+adorn v.  装饰
+pakistan n.  巴基斯坦(南亚国家)
+rhetorical a.带修辞色彩的
+inferential a.推理的, 推论的
+partial a.部分的,局部的
+audio a.音频的,声音的
+planetarium n.天文馆
+aristocratic a.贵族政治的,贵族的
+strand vt.使搁浅
+conductance n.电导, 导率
+rainforest n.  雨林
+endocrine n.  内分泌
+hemlock n.铁杉,毒芹
+fine-grained a.有细密纹理的, 细颗粒的
+reasonably ad.有理地；合理地
+commensalism n.  共栖
+parasitism n.  寄生状态, 寄生病
+modernize v.  使现代化
+boredom n.  厌倦
+low-quality n.劣等，低质量的
+coverage n.  覆盖
+feminist n.  男女平等主义者
+warrior n.勇士，武士
+outgoing a.外向的
+baltic a波罗的海的, 波罗的语的
+nest-building n.筑巢
+recruit vt.招募,吸收.n.新成员, 新兵
+hereditary a.世袭的,遗传的
+counterpart n.职务相当的人,副本
+strut n.高视阔步.v.昂首阔步地走
+prowl v.  巡游
+consensus n.一致，同意
+ethic n.道德规范
+individualistic a.个人主义的
+stylistic a.风格上的,文体上
+eka n.  准(第一)
+exaggeration n.夸张
+softwood n.  软木材
+arsenic n.[化]砷, 砒霜
+slate n.板岩,石板
+reptilian n.爬行类动物
+overirrigation n.过量灌溉
+conclusive a. 决定性的,结论性的
+honeybee n.  蜜蜂
+satiric a.讽刺的,挖苦的
+spruce n.  云杉
+diffusion n.传播，散布
+differentiate v.区分 ,区别
+simulate vt. 模拟, 模仿
+fetus n.  胎儿
+feeder n.  饲养员
+reminder n.提醒物；暗示
+foodstuff n.  食品, 粮食
+informant n.  通知者, 告密者
+allocate vt.  分派, 分配
+cedar n.  雪松
+slab n.厚板，平板
+coexist vi.  共存
+moose n.  [动] 驼鹿
+cod abbr.  货到付款 (cash on delivery) n.鳕鱼
+migrant n.移居者, 候鸟
+frontal n.  前沿
+hexagonal a.六角形的,六边的
+sizable a.相当大的
+mineralization n. 矿化作用,成矿作用
+krypton n.  [化] 氪
+chlorophyll n.  [生化]叶绿素
+xenon n.氙(惰性气体的一种,元素符号xe)
+penicillin n.[微]青霉素（一种抗菌素，音译名为盘尼西林）
+homestead n.家宅，宅基
+prestigious a.享有声望的
+frustration n. 挫败, 挫折
+imitative a.仿制的,模仿的
+incubate vt.  孵卵
+hectare n.  公顷（等于1万平方米）
+creator n.创建者, 创作者
+linsey-woolsey n.棉毛织品, 亚麻毛织品
+infrastructure n.下部构造,基础下部组织
+novelist n.(长篇)小说家
+peruvian n./a.秘鲁人(的)
+osprey n.  白色的羽毛, 鱼鹰
+evaluation n.  估价, 评价
+huckleberry n.  越橘类
+elk n. 麋鹿
+darken v.(使)变暗
+historically ad.历史上地
+disorient vt.  使失去方向感, 使迷惑
+anthocyanin n.  [植]花青素, [化]花色醣苔
+acidic a.酸的,酸性的
+fingerboard n. 键盘
+watercraft n.  船只
+buildup n.集结, 增长
+varnish n.清漆；光泽.vt.涂清漆，使光亮
+cop n.  警官, 巡警
+symbiosis n.[生]共生(现象),合作关系
+presidential a. 总统的
+gut n.内脏
+organizational a.组织的
+abruptly ad.突然地；粗鲁地
+administrative a.管理的，行政的
+hypothetical a.假说的，臆说的
+pastoral a.田园生活的，宁静的
+interglacial a.间冰期的
+bias n. 偏见vt.使存偏见
+detractor n.诽谤者
+timescale n. 时标, 时间量程
+far-reaching a.深远的
+left-hand a. 左手的,左边的
+middle-class a.中产阶级的
+sailfish n. 旗鱼
+marlin n. 枪鱼
+swordfish n. 旗鱼
+renewal n.更新, 恢复
+eurasian a.  欧亚的, 欧亚人的
+buoyant a.有浮力的, 轻快的
+slick a.圆滑的；精巧的
+kinship n.  血族关系
+domestication n.  驯养, 教化
+blur v.弄脏.n.污点, 模糊
+replenish v.  补充
+tutelage n.  监护
+freudian n./a,佛洛伊德学说(的)
+pent-up a.幽闭的,被压抑的
+blubber n.鲸脂,哭号v.哭号
+basalt n.玄武岩
+predation n.掠食
+boule n.  人造宝石，议会
+trance n./v.恍惚；出神
+vigorously ad.精力旺盛地；健壮地
+underlies v.位于 ... 之下, 成为 ... 的基础
+telecommunication n.电信，远程通信
+recur vi.再发生，重现
+reset v.  重新安排
+constructive a. 建设性的,构造上的
+habituation n.  适应
+permanence n.  永久, 持久
+tine n. (尖)齿, 叉
+briefly ad.简短地；简略地
+precipitate vt.促成；使沉淀 n.沉淀物
+norwegian a.  挪威的 n.  挪威人, 挪威语
+joiner n.  工匠
+patronage n.赞助；光顾(买东西)
+carman n. 车夫,司机
+incise vt. 切入, 切割
+mexican n./a.墨西哥(的)， 墨西哥人(的)
+crumple v.(使)皱，扭曲；(使)崩溃
+developmental a.发展的, 进化的
+saline a.含盐的；咸的
+minimal a.最小的, 最小限度的
+newborn n.  婴儿
+opposition n.  反对,相反
+chapbook n.  畅销故事书
+manhattan n.  曼哈顿岛(美国纽约一区)
+devastate vt.  毁坏
+holland n.  荷兰
+arcade n.拱廊
+navigational a. 导航的, 航行的
+deterioration n.  变坏, 退化
+taxes n.   赋税,  税收
+meticulously ad.仔细地,谨慎地
+configuration n.构造, 结构
+unaided a.未受协助的, 独立的
+concave a.凹的 n.凹(面)
+beak n.  鸟嘴, 喙
+legendary a.闻名的；传说的
+congressional a.会议的；国(议)会的
+abstraction n.  提取
+eel n. 鳗鱼
+camouflage v./n.  伪装
+adverse a.不利的，有害的
+cylindrical a.圆柱形的
+stimulation n.激励,刺激
+built-in a.嵌入的,内装的
+close-up n.   特写镜头,  细致的观察
+collaboration n.合作，协作
+waterpower n. 水力(水力发电)
+pollen n.  花粉
+firmly ad.坚固地，稳定地
+defensive n./a.防御(的)
+symbolize v.象征
+brea n. 布雷亚(美国加州地名)
+exocrine a.[医]外分泌的
+overlie v.躺在...上面
+participation n.参加，参与
+detectable a.可发现的,可察觉的
+toolmaker n.精密工具制造者
+printmaking n.  版画复制(术)
+populous a.人口稠密的
+wallpaper n.墙纸
+igloo n.  圆顶建筑
+formalize vt.  使正式, 形式化
+geographer n.  地理学者
+continuity n.连续性, 连贯性
+meteoric a. 流星的,大气的
+recipient n.接受者，接收者
+michigan n.  密歇根州(美国州名)
+vie v.竞争
+exceptionally ad.格外地, 特别地
+fieldstone n. 散石,大卵石
+imperial a.帝国的，帝王的
+defenseless a.无防备的
+lumiere n. 彩色照相术
+accompaniment n.  陪伴物, 伴奏
+repetitive a.重复的,反复的
+mule n.骡子,十分固执的人
+prone a.易于…的，很可能…的
+individualism n.个人主义, 利己主义
+krill n.[动]磷虾(单复同)
+unevenly ad. 不平坦地, 不均衡地
+drapery n.布业，布匹
+nick n.小伤口，刻痕
+ute n. 犹特人(美洲印第安人的一种), 犹特语
+headquarter v.将...之总部设在
+radiocarbon n.放射性炭
+afield ad.远离着(家乡), 去远处
+relocate v.  重新部署
+enormously ad.极度,大量
+saltwater a.盐水的, 海产的
+deglaciation n. 冰消作用
+glen n.峡谷, 溪谷
+pangaea n. 泛古陆,  泛大陆
+lys n.   [化]赖氨酸
+sac n.〈生〉囊,液囊
+midcontinent n.  大陆中部
+mainstay n.支柱;骨干
+connecticut n. (美国）康涅狄格
+brilliance n.光辉，辉煌
+oklahoma n.  俄克拉荷马州
+rhinoceros n.  [动]犀牛
+externally ad. 外部地, 外面地
+plumb v.（用铅垂）测量,探测
+trout n.鲑鱼
+permian n./a.[地]二叠纪(的)
+superintendent n.主管人，监管人
+foraminifera n.  有孔虫类
+domain n.领地,范围
+agitate v.  搅动,煽动
+farce n.闹剧；荒唐可笑
+aborigine n.  土著居民
+attest v.  证明
+aggressiveness n. 进取精神, 侵犯
+privately ad.秘密，一个人
+lawlike a.似法律的
+oppositely ad. 相反地, 相对地
+anecdotal a.轶事的,趣闻的
+right-hand a.右手的，右边的
+synchronization n. 同步化
+biographer n.  传记作者
+creativity n.  创造(力)
+joint-stock a.合资的, 股份组织的
+curriculum n.  课程
+anglo n. 盎格鲁, 英裔美国人
+revival n. 复兴, 复活
+hampshire n.  汉普郡(英国南部之一郡)
+instinctive a. 本能的,直觉的
+signaler n.  信号员
+turbulence n.骚乱, 动荡
+paradigm n.  范例
+penchant n. 喜好(倾向)
+sinkhole n.  污水池
+neptune n.  [天]海王星
+cyanide n.  [化]氰化物
+gin n.杜松烧酒  v.开始
+flax n.  亚麻
+timer n.计时员, 定时器
+supplant v.排挤，取代
+harpsichord n.  大键琴
+long-range a. 远程的, 长期的
+revitalize v.  新生
+clan n.氏族,部落
+fictional a.虚构的,小说的
+heterogeneous a.  异种的, 异质的
+protrude v.  突出
+recrystallize v. ( 使) 再结晶
+warp v.弯曲,歪曲
+nevada n.  内华达州(美国西部内陆州)
+monetary a.货币的, 金融的
+legislature n.立法机关
+baboon n.  [动]狒狒
+overgraze vt.  使过度放牧
+embed vt.使插入, 嵌入
+blowhole n. 喷水孔, 通风孔
+imagist n./a. 意像派者(的)
+receptor n.  接受器
+magenta n./a.红紫色(的)
+valse v.  轻轻地走.n. 华尔兹
+discoverer n.  发现者
+conifer n.  [植]松类, 针叶树
+botanist n.  植物学家
+narrator n.  讲述者
+critically ad. 批评性地, 危急地
+inca n. 印加人(古代秘鲁土著人)
+variously ad.不同地, 各种各样地
+incursion n.侵犯，入侵
+decode vt.  解码, 译解
+toll n.过路(桥)费
+subside vi.下沉,平静
+socially ad.社交上；社会上
+inventory n.详细目录, 存货(清单)
+chapel n. 小教堂
+tenement n.公寓
+daguerreotype n.(早期)银板照相
+staple vt.订 a.主要的
+fatty a. 脂肪的
+disrupt vt.使中断，扰乱
+rend v.撕裂，猛拉
+maser n.  微波激射器
+spinal a.脊椎骨.n.脊髓麻醉
+generic a.种类的，类属的
+resin n.  树脂 vt.  涂树脂于
+carving n.雕刻(品)
+distrust n./vt.不信任，怀疑
+self-governing a.自治的
+smother v.  窒息
+high-pressure a.高压的
+cavern n.洞穴，大山洞
+minuscule n./a.草写小字(的)
+envelop vt.包封, 遮盖
+dormant a.冬眠的
+coppersmith n.  铜匠
+intrinsic a.内在的, 固有的
+portability n.  可携带, 轻便
+extermination n.  消灭, 根绝
+suburbanization n. 市郊化
+succulent a.多汁的
+micron n.  微米,百万分之一米
+publicize v.宣传
+spout vt.喷出
+catastrophic a.悲惨的, 灾难的
+sensory a.知觉的, 感觉的
+fodder n.  饲料, 草料
+photoflash n. （照相）闪光灯
+substantiated vt.证实, 实体化
+cramp n.痉挛.vt.限制，束缚
+reversal n. 翻转, 倒转, 反转
+psychologically ad. 精神上地, 心理上地
+virtuosity n.  艺术鉴别力
+leafy a.叶状的；叶茂的
+perishable a. 容易腐烂的
+retract v.缩回, 撤销
+israel n.  [地名] 以色列
+retrieval n.取回，补偿
+domelike a. 穹顶状的
+savannah n.  (南美)大草原
+navigator n.航海家
+elliot n.  埃利奥特(男子名)
+perry n. 梨子酒
+arthropod n./a.节肢动物(的)
+airflow n.  气流
+momentum n.  动力, 势头
+spearhead v.充当先锋
+industrialism n.产业主义,工业制度
+environmentally ad.在环境方面地
+gem n.宝石, 珍宝
+detract v.  转移
+swirl n./v.旋转，漩涡
+bluefin n.  金枪鱼
+potent a.强有力的,有效的
+sociobiology n.  生物社会学
+ideological a.  意识形态的
+providence n.深谋远虑，远见
+catharsis n.宣泄，净化
+contradictory a.相矛盾的
+chloride n.  [化]氯化物
+archaic a. 古代的, 陈旧的
+aristocrat n.  贵族
+spine n.脊柱
+lade v.装载,装货
+magnesium n.  [化]镁
+engulf vt.吞没
+frigid a. 寒冷的
+grandiose a.宏伟的,堂皇的
+despondent a. 失望的, 沮丧的
+identifiable a.可辨认的
+cellular a.细胞组成的，多孔的
+universality n.  普遍性, 一般性
+impressionism n. 印象派, 印象主义
+symbolism n.象征主义
+unreliable a. 不可靠的
+hardness n.硬度
+aerodynamic a.空气动力学的
+alp n.  高山
+dual a.双的, 二重的
+craftsmanship n. 技术
+affinity n.密切关系,类同
+diagonal n./a.对角线(的)
+nontraditional a.非传统的
+disprove v.反驳,证明...为误
+skeptical a.怀疑的
+appropriately ad.适当地
+emotionally ad. 感情上地, 冲动地
+freshly ad.新近，刚才
+unbelievable a.难以置信的
+woodworker n.  木工
+babylonian n. 巴比伦人(的), 巴比伦语（的）
+urbanization n.  都市化
+sulfur n.[化] 硫磺
+volatile a.动荡不定的,反复无常的
+densely ad.浓密地
+biography n.  传记
+inscribe vt.题写
+intercity a.城市间的
+erratic a.古怪的，飘忽不定的
+overly ad.过度地, 极度地
+uplift vt.提高；振奋(精神)
+workday n.  工作日
+officially ad.职务上, 正式
+thunderstorm n.雷暴雨
+deception n.  欺骗, 诡计
+typify v.  代表
+astronomical a.天文学的, 巨大的
+self-sufficiency n. 自给自足
+peregrine n.游隼 a.外来的,移住的
+optimal a.最理想的
+tapestry n.  挂毯
+mechanization n.机械化
+influx n.  流入
+sculptural a.雕刻的
+landmass n.  大陆
+ornamentation n.装饰
+self-sufficient a. 自给自足的
+shiny a.发光的；磨光的
+glassmaker n.  玻璃工人
+spectacularly ad. 壮观地, 令人吃惊地
+nss n.  卫星导航系统(供氮系统)
+unclear a. 不清楚的
+unimportant a.不重要的
+ubiquitous a. 到处存在的
+demise n.死亡,让位
+conspicuous a.显著的, 显眼的
+barter v.交易
+nomadic a. 游牧的, 流浪的
+merge v.结合,合并
+texture n.质地；(材料等的)结构
+seashore n.  海岸, 海滨
+nonhuman a.非人类的
+fairground n.游乐场, 集市
+naturalism n.  自然主义
+stance n.站姿，立场
+contraction n.收缩
+biotic a.有关生命的,生物的
+maturity n.成熟,(票据)到期
+granular a. 由小粒而成的,粒状的
+preindustrial a. 未工业化的, 工业化前的
+thaw n. 融化,解冻
+quarry n.  采石场.vt.挖出
+ethology n.动物行动学, 人种学
+amendment n.  改善, 改正
+forager n.强征(粮食)者
+impend v.迫近，逼近
+glasslike a.玻璃状的
+translucent a.半透明的
+topsoil n.表层土
+interrelationship n.相互关系
+buffer n.  缓冲器
+outsider n.外行, 局外人
+aragonite n.  [矿]霰石, 文石
+modern-day a.当代的, 当前的
+unaltered a.未被改变的
+directional a.方向的
+holding n.保持，固定
+treeless a. 没有树木的
+noticeably ad.显著地，显然
+eradicate v.  根除
+caste n.印度的世袭阶级
+gosling n.小鹅，年轻无知的人
+formally ad.  正式地, 形式上
+antecedent a.先行的.n.祖先
+long-standing a.长期存在的
+disloyalty n.不忠实
+nystatin n.[微]制霉菌素
+prodigious a. 巨大的, 惊人的
+mural a.墙壁的  n.壁画
+gatherer n.  收集者, 收集器
+shoemaking n.制鞋
+electrically ad.用电力;有关电地
+sprawl vi.伸开
+petal n.  花瓣
+technologically ad.  科技地
+proportionately ad.相称地, 成比例地
+germanium n.  锗
+sparse a.稀少的, 稀疏的
+mass-produce a. 大批生产的
+statuary n.  雕象
+hypha n.  [植]菌丝
+farsighted a.有先见之明的, 远视的
+fatten v.养肥；使肥沃
+expanse n.广阔；宽阔的区域
+pram n.  婴儿车
+sanskrit n./ a.  梵语(的)
+orbital a.  轨道的
+hyksos n.希克索斯王朝(古埃及王朝之一)
+arduous a. 费力的, 辛勤的
+boulder n. 大石头
+niche n.适当的位置,小生态坏境
+bathhouse n.  公共浴室, 澡堂,
+dilute vt.稀释，冲淡
+imbalance n.不平衡,不均衡
+ionize v.使离子化 ,电离
+immigration n.移民入境
+necessitate v.使 ... 成为必需,迫使
+hollywood n.  好莱坞
+demographic a.人口统计学的
+accidentally a.意外的,偶然(发生)的
+duct n.管道, 导管 .vt.用导管输送
+mediate v.调停, 斡旋
+bloodstream n.  血流
+reelection n.  再选, 改选
+midair n.  半空中
+crocodile n.  鳄鱼, 鳄鱼皮
+calve v.生小牛, (使)冰山崩解
+integration n.  综合
+usefulness n.  有用, 有效性
+olfactory a.嗅觉的
+cranial a.头盖(形)的
+prerequisite n.  先决条件
+occupational a. 职业的
+updraft n.上升气流
+deliberation n.仔细考虑；商量
+flagpole n.  旗杆
+invoke vt.恳求
+hypersensitive a.过份敏感的
+unavoidable a.不可避免的
+upcoming a.即将来临的
+lug vt.(用力)拖拉
+broadly ad.  宽广地, 广泛
+twain n.两, 双, 二
+pathogen n.  [微生物]病菌, 病原体
+memorable a.难忘的,重大的
+auditory a.耳的, 听觉的
+avant a.先锋的,激进的
+tertiary a.第三的, 第三位的
+inuit n.   因纽特人,  因纽特语
+alga n.藻类,海藻
+feldspar n.  [矿]长石
+drought-resistant a. 抗旱的
+romanticism n.  浪漫精神, 浪漫主义
+needlework n.  刺绣, 缝纫
+short-term a.  短期的
+imposition n.  强迫接受
+caribou n.  北美产驯鹿(=rangifer)
+lifelong a.终生的
+motionless a.不动的, 静止的
+renewable a.可更新的, 可再生的
+differentiate v.  区别, 区分
+onset n.开始；攻击
+connective a.连合的, 连接的
+meaningless a.无意义的
+capitalist a.资本主义的 n.资本家
+cenotes n.天然井
+mesquite n.豆科灌木
+actively ad.活跃地, 积极地
+seedling n.幼苗
+constrict v.  压缩
+electromagnetic a.电磁的
+virginian n.  弗吉尼亚州的人
+dryness n. 干燥
+locale n.现场, 场所
+rodeo n.马术竞技表演会, 将牛、马驱集在一起
+mussel n.  [动]贻贝, 蚌类
+cyan n.  蓝绿色, 青色
+clam n. 蛤
+usher vt.引，领，陪同
+fusion n.熔化,融合
+mismatch n./v.配错, 不相匹配
+extol v.  赞美
+chaos n.混乱，紊乱
+prizefight n.  职业拳击赛
+inactivity n. 不活动, 迟钝
+unprotected a.无保护的, 未做防护措施的
+spawn vi.产卵.n.卵
+lobe n.耳垂，(肺，肝等的)叶
+plummet n.  铅锤 vi.垂直落下
+biologically ad. 生物学地
+firearm n.火器,枪炮
+communal a.公共的，集体的
+boost v.  推进
+linguist n.  语言学家
+cortex n. 外皮, （大脑）皮层
+objectively ad.客观地
+chilly a.寒冷的
+artifact n.  人造物品
+curator n.管理者
+tally n.记分  vi.符合
+expertise n.专门知识(或技能等)，专长
+originator n.创始人, 发起人
+pacifier n.调停者，和解人
+indus n. 印度河（印度西北部的河流）
+asymmetrical a.不对称的,不均匀的
+quantifiable a.可以计量的, 可量化的
+pul n.  普尔(阿富汗辅币单位)
+humanness n. 为人,人性
+pinniped a.鳍足类的
+companionship n.友谊
+archaeocyte n.原始(生殖)细胞
+incidental a.偶然的；附带的
+intruder n.  入侵者
+ornate a.华丽的, 装饰的
+intentionally ad.有意地,故意地
+impractical a.不切实际的,不实用的
+rhetoric n.雄辩言辞,修辞学
+clump n.(树，草)丛.v.使成一丛
+immaturity n. 不成熟
+understandable a.可理解的,能够懂的
+overcrowd vt. 过度拥挤
+opportunistic a.机会主义的, 投机取巧的
+brine n.  盐水
+naive a.天真的
+jade n.玉，翡翠
+lapis n.[化]天青石(常用于化学中的矿物命名)
+breakthrough n.  突破
+compositional a.合成的,组成的
+ideologically ad. 意识形态上地, 思想上地
+interpersonal a.人与人之间的, 人际关系的
+afghanistan n.  阿富汗(西南亚国家)
+lazuli n. 天青石
+electronically ad.电子地, 通过电子手段
+sewage n.污水, 污物
+authorize v.  批准
+imagery n.意象, 肖像
+refreeze vt. 再结冰, 重新冻结
+hydrologic a. 水文的
+dietary a.饮食的.n.规定的食物
+hydropower n.  水力发出的电力
+granule n.小粒，微粒
+recreational a.娱乐的, 消遣的
+insecure a.不安全的,不稳固的
+dealing n.  行为, 交易
+circumvent vt.绕行,设法避开
+chunk n.大块,相当大的部分（数量）
+achondrite n.  不含球粒陨石
+asset n.资产
+navigable a.可航行的,可操纵的
+multiplicity n.  多样性
+laissez-faire n.(自由)放任主义
+figuratively ad.比喻地
+undermine v.  破坏
+greener n. 生手
+entrepreneurial a.   企业家的,  企业性质的
+foliage n.树叶,植物
+self-assertion n.   坚持己见,  自信
+maximize vt.取...最大值, 最佳化
+bushman n. 丛林居民
+marshy a. 沼泽般的,湿软的
+manifestation n.  显示, 表现
+porcupine n.[动]豪猪
+percussion n.  碰撞, 打击乐器
+plausible a.似真实合理的
+crisscross v. 交叉, 来回移动.n. 十字形
+blink v./n.眨眼, 闪烁
+rift n. 裂口.v. 裂开
+myriad a.无数的 n.无数
+three-toed n.  三趾啄木鸟
+clavichord n.  翼琴(钢琴的前身)
+trilobite n.  [古生]三叶虫
+converter n.  转炉
+sierra n.  [地]齿状山脊, [鱼]马鲛
+legitimate a.合法的
+horse-drawn a. 马拉的
+octopus n.  章鱼
+temporal a.现世的, 暂时的
+unpredictability n. 不可预测性
+minimalist n.  最低限要求者
+magical a. 魔术的, 神奇的
+storefront n.  店头, 店面
+makeshift a.临时的.n.临时替代物
+plight n.困境
+cactus n.  [植]仙人掌
+labor-saving a.  节省劳力的
+improvise v.即兴创作
+showman n. 戏剧制作人, 玩杂耍的
+alaskan n.  阿拉斯加人 a. 阿拉斯加的
+constrain vt.强迫, 限制
+exploitation n.  开发, 开采
+immeasurably ad.无法计量地, 无限地
+perpetuate vt.使永存, 使不朽
+afterlife n.来世, 后来的岁月
+bask vi.晒太阳
+shoemaker n.鞋匠
+prairies n.   大草原
+handicraft n. 手工艺(品)
+logically ad.符合逻辑地, 逻辑上地
+airstream n.气流
+unsafe a.  不安全的
+flashbulb n.  [摄]闪光灯泡
+bovine a.(似)牛的，迟钝的
+icicle n. 冰柱
+unbroken a. 不间断的
+funnel n.  漏斗,烟囱
+fastidious a. 过分讲究的, 挑剔的
+overshadow v.  遮蔽, 使...失色
+inhospitable a.不好客的,不适于居住的
+artistically ad. 艺术地, 在艺术上
+pigmentation n.  染色
+quincy n.   昆西(美国伊利诺斯州西部一城市)
+rumen n.  瘤胃(反刍动物的第一胃)
+aristocracy n.贵族（政治）
+impair v.损害,削弱
+broadleaf n.阔叶烟草,阔叶树
+bluish a.带蓝色的
+autobiographical a.自传的
+parisian n./a.巴黎(人)(的)
+halfway a.中途的. ad.半路地
+corruption n.腐化；贪污
+postwar a.  战后的
+brant n.  黑雁
+obsession n.  迷住, 困扰
+scurry vi.疾行
+subtropical a.  亚热带的
+vancouver n.  温哥华（城市名)
+megawatt n.  兆瓦特
+arboreal a.树木的
+multicellular a. 多细胞的
+slop v.溢出, 溅溢
+spontaneously ad. 自发地
+limner n. 素描者
+elective a.选举的,随意选择的
+repertoire n.全部节目
+swimmer n.  游泳者
+protectionist n.保护贸易论(者)
+husbandry n.管理
+fortification n. 防御工事
+vascular a.血管的,  脉管的
+built-up a.组合的
+glassy a.象玻璃的
+unavailable a.难以获得的
+sulfuric a.[化] 硫磺的,含硫的
+latest a.  最近的
+redefine v.重新定义
+low-lying a.地势低洼的
+instinctively ad.本能地
+clearer a.  更清楚的
+matrix n.  矩阵
+huddle n./v.拥挤,挤作一团
+epitome n.  摘要
+subspecies n.  [生]亚种
+dropstone n.  滴石
+respondent n.应答者, 被告
+portrayal n.  描画, 描写
+hexagon n.  六角形, 六边形
+poetic a.  诗歌的
+undisturbed a.未受干扰的
+ascent n.  上升,提高
+talbot n.  [动]塔尔博特提猎狗
+query n./v.质问,疑问
+evoke vt. 唤起, 引起
+amass v.积累，积聚
+causal a.原因的
+metalworker n.  金工工人
+sinuous a.蜿蜒的
+floral a.花的,像花的
+incongruous a.不协调的,不一致的
+adventurer n.  冒险家
+personalize vt.个人化, 私人化
+herbaceous a.草本植物的
+sap n.树液  vt.耗尽
+primordial a.原始的,最初的
+oversee vt.监督，监管
+deity n.  神, 神性
+phosphorus n.  磷
+unearned a.不劳而获的
+burrow n.洞穴.v.挖地洞
+infrequent a.不频发的,不常见的
+acclaim n./v.喝采, 欢呼
+peg n.小钉.v.钉，固定
+yarn n.纱线.v.讲故事
+plasma n.血浆
+originality n.独创性
+ford n.浅滩 v.  徒涉
+mortise n.榫眼  v.用榫接合
+microbial a. 微生物的,  由细菌引起的
+ironwork n.铁制品
+unearth v.  掘出
+microbiologist n. 微生物学家
+situate v.位于，坐落在
+mallet n.  槌棒
+guncotton n.  [军]强棉药
+fathom n.  长度单位(6英尺)
+pantomime n. 哑剧
+alligator n.  产于美洲的鳄鱼
+continuum n.  连续统一体
+fairy-tale a.童话式的
+adversely ad. 不利地,逆向地
+indirectly ad.  间接地
+domesticate vt.  驯养, 教化
+philosophical a.哲学的, 达观的
+aesthetically ad.有审美能力地
+anthropology n.  人类学
+functionalism n.  功能主义, 机能心理学
+continuation n.继续(部分)；续篇
+hydrodynamic a.水力的
+shoreline n.  海岸线
+sedge n.  [植]莎草
+disproportionate a.不成比例的
+lament n.悲伤v.哀悼
+ancestral a.  祖先的
+eligible a.有资格的, 合适的
+best-known a.最有名的
+estuary n.  河口, 江口
+seismic a.[地]地震的
+withdrawal n.  收回, 撤退
+ember n.  灰烬, 余烬
+sorghum n.  [植]高粱属的植物
+paleoecologist n.古生态学家
+fan-shaped a.扇形的
+primal a.最初的
+regulatory a.管理的, 控制的
+isotopic a. 同位素的,合痕的
+macdonald n.  麦当劳快餐店
+locomotion n.  运动, 移动
+persuasively ad.有说服力的
+livable a. 适于居住的
+dime n.  <美> 一角硬币
+outlying a.远离中心的，偏僻的
+ethological n.行为性的,  行为学的
+disruption n.分裂
+subsistence n.  生存, 生活, 留存
+impetus n.推动力, 促进
+grower n.种植者，栽培者
+sophistication n. 老练, 精明
+instructive a.有益的, 教育性的
+mundane a.平凡的, 世俗的
+raindrop n.  雨滴, 雨点
+sunflower n.  [植]向日葵
+doorway n.  门口
+instigate v.  鼓动
+gateway n.入口；通道
+rigorously ad. 严格地
+onrushing a. 猛冲的
+tricycle n.  三轮车
+hydrological a.水文学的
+high-velocity n.   高速
+constitutional a.法治的；体质的
+orogeny n.  [地] 山岳之形成
+administrator n.管理人,行政官
+temporarily ad.  临时
+befit vt. 适合
+compost n.  混合肥料
+collaborator n.  合作者
+high-tech n.  高科技
+residency n. 居住, 住所
+cosmopolitan a.全球的,四海为家的 n.世界主义者
+collaborative a.合作的, 协作的
+refrigerate v.  使冷冻, 使冷藏
+clergy n. 圣职者, 牧师
+brewster n.  酿造者
+lithograph n. 石版画, 平版印刷
+yew n.紫杉, 紫杉木
+wholesale n.批发.a.大规模的
+adrift a./ad.漂流的,漫无目的
+mystical a.神秘的
+coerce vt.强制
+eccentricity n.反常，怪癖
+distasteful a.味道差的,反感的
+durability n.  经久, 耐久力
+stark a.荒凉的；严酷的.ad.完全
+revere v.尊敬,敬畏
+uniquely adv独特地, 唯一地
+birch n.  桦树, 白桦
+adaptability n.  适应性
+caledonian n./a.  苏格兰人(的)
+prohibitive a. 禁止的, 抑制的
+prospector n.  探勘者, 采矿者
+auditorium n.  听众席,观众席,
+rote n.  死记硬背
+skepticism n.  怀疑论
+economist n.  经济学者
+commandment n.  戒律
+delineate v.  描绘
+rugged a.高低不平的, 崎岖的
+referent n.  指示物
+inadequacy n.  不充分
+gypsy n./a.吉普赛人(的),吉普赛语（的）
+outwash n.  [地质]冰水沉积
+crumble v.弄碎,崩溃
+knap vt.敲击
+basaltic a.玄武岩的
+carbonic a.(含)碳的
+lengthy a. 冗长的
+intersect v.贯穿, 交叉
+yale n.  耶鲁
+redwood n. [植]红杉
+connoisseur n. 鉴赏家
+seriousness n.  严肃, 认真
+preferentially a.优先的, 优待的
+acquisition n. 获得(物)
+sterile a.贫脊的,不结果的
+preschool a.未满学龄的n.  幼儿园
+smelt v.熔解，熔炼
+streambed n.  河床
+successional a.接连著的, 连续性的
+drake n.  公鸭, 蜉蝣类
+salinization n. 盐渍化
+shrinkage n.  收缩
+detachment n.冷漠, 脱离
+gully n.小峡谷, 排水沟
+inconclusive a.非决定性的,不确定的
+innovator n.  改革者, 革新者
+pulverization n.  弄成粉, 粉碎
+homemaking n.  家政
+necessitate vt.使成为必要，需要
+intestine a.内部的,国内的
+tavern n.  酒馆, 客栈
+uncompetitive a.非竞争性的
+tenfold a.十倍的 ad.成十倍
+desiccation n.  干燥
+shin n. 胫骨
+mandarin n.官话,普通话
+guilde n. 行会, 协会
+iroquois n.易洛魁族人
+ectotherm n.[动] 冷血动物,变温动物
+vas n.  血管, 脉管
+aqueduct n.  沟渠,导水管
+triple n.  三倍数, 三个一组
+ravage n./v.毁坏
+befriend vt.待人如友,帮助
+adaptable a. 能适应的,适应性强的
+converge vi.聚合, 集中
+phosphorescence n.  磷光
+supervisor n.管理人；监督人
+expanse n.广阔；宽阔的区域
+portugal n.  葡萄牙(欧洲西南部国家)
+invisibly ad. 看不见地, 看不出地
+visibility n.  可见度
+levy vt.征收(税等) n.征税
+rye n.  裸麦
+unpopular a.不流行的, 不受欢迎的
+holocene n./a.[地]全新世(的)
+titanium n.  [化]钛
+tang v.  有浓味 n.  特殊气味
+antagonism n.  对抗(状态), 对抗性
+rehabilitation n.  复原
+dramatize v. 编写剧本
+leisurely a.从容地，慢慢地
+minneapolis n.明尼苏达[美国州名]
+ontario n.安大略湖[北美洲]
+delft n.  代夫特(荷兰城市)陶器
+unobtainable a.无法得到的,难获得的
+utterly ad.完全地,绝对地
+reddish a. 微红的
+rejection n.  拒绝
+outweigh v.  在重量(或价值等)上超过
+chariot n.  战车
+communicative a.健谈的,交流的
+instrumentalist n.  乐器演奏家
+loom n.织布机 vi.迫近
+platelet n.  [解] 血小板
+accrete v. 共生, 附着, 增加
+bubbly a.  多泡的
+metalwork n.  金属制品
+bulldozer n.  推土机
+politically ad.政治上地
+alchemist n.  炼金术士
+reelect vt.  重选, 改选
+ensue vi.接着发生，接踵而来
+tapeworm n.  [动]绦虫
+languish vi.憔悴, 凋萎
+mythology n.  神话
+lateness n.  迟, 晚
+amid prep.  在...中
+mythological a.神话(学)的
+newcomer n.新来的人；移民
+gravitas n. 庄严(举止)
+foresightedness n. 先见之明
+prerecord vt.  事先录音
+half-day n.半天工作(或学习)日
+dispense vt.  分发, 分配
+inedible a.不能吃的，不宜食用的
+lure v.  引诱
+swiftly ad.  很快地, 即刻
+risky a.  危险的
+gibbon n.  长臂猿
+raccoon n.  <美>[动]浣熊
+peep  n./vi.窥视, 偷看
+arousal n.  觉醒, 激励
+neurotransmitter n.  [生化]神经传递素
+avalanche n.雪崩
+skyrocket n. 冲天火箭（烟火）
+ibex n.  野生山羊
+cessation n.  停止
+eccentric a.古怪的.n.怪人
+sentimental a.感伤的；多愁善感的
+iridescent a.闪光的，现晕光的
+eocene n./a. 始新世(的)
+bowel n.  肠
+snowdrift n.雪堆
+cleaner n.  清洁工人, 清洁器
+accordion n.手风琴
+manure n.  肥料
+clover n.  [植]三叶草
+sanitation n.卫生(设施)
+entertainer n.  款待者, 表演娱乐节目的人
+violently ad.  猛烈地, 激烈地
+masonry n.  石工术, 石匠职业
+flexibility n.灵活性, 弹性
+obstruct vt.阻塞，堵塞
+mediocre a.平庸的
+tributary a./n.支流(的)，进贡(的)
+choosy a.好挑剔的
+distinguishable a.可区别的, 可辨别的
+commute v.通勤, 折换.n.乘车上下班
+absenteeism n.  旷课, 旷工
+pointillist n. 点彩派画家
+crudely ad. 粗糙地, 粗鲁地
+epistle n. 书信
+endotherms n. 温血动物, 恒温动物
+disseminate vt.散布，传播
+berg n.冰山
+corpus n.资料, 文集
+unchangeable a.不变的,不能改变的
+gel n.  凝胶体 v.  成冻胶
+illusory a.虚幻的
+sparsely ad.  稀疏地
+methyl n.  甲基, 木精
+worshipper n.礼拜者
+watercourses n.  水流, 河道
+receptacle n.  容器
+motorcycle n.  摩托车, 机车
+chemurgy n.  [化]农业化工,实用化学
+imitator n.  模仿者
+edifice n.  大厦, 大建筑物
+wary a.  机警的
+surmise v.  猜测
+life-size a. 与实物大小一样的
+disdain n. 轻蔑 v. 蔑视
+anti n.  反对者 a.  反对的
+continuator n.  继续者
+grid n.  格子, 栅格
+predispose v.(使)易罹患, (使)预先偏向于
+aviator n.  飞行员
+preposterous a.  荒谬的, 可笑的
+subtlety n. 微妙, 精明
+streetcar n.  路面电车
+oscillate v.  振荡
+aptly ad.  适当地,适宜地
+underfoot ad.在脚下面, 踩着地
+developer n.  开发者
+gourd n.  葫芦
+pane n.窗格玻璃；长方块
+undisputed a.无可置辩的
+maneuver n.策略[ pl.]演习 v.(巧妙)控制；用策略
+predictability n. 可预见性
+celsius a.  摄氏的
+revitalization n.  新生 复兴
+redbud n.  紫荆属植物
+bullrush n.芦苇
+speculator n.  投机者
+homesteader n.  农场所有权人, 自耕农
+nodule n.  节结
+skillfully ad.  巧妙地,技术好地
+competence n.  能力
+dormancy n.  休眠
+supposedly ad.推测地, 大概
+basketry n. 篓编织品
+eukaryotic a.  真核状态的
+emulsion n.  乳状液
+condensation n.  浓缩
+rebound n. /v. 回弹
+handmade a.  手工的
+iceland n.  冰岛(欧洲岛名,在大西洋北部,近北极圈)
+incandescent a.  遇热发光的, 白炽的
+implicitly ad. 含蓄地,  暗中地
+fanciful a.想像的, 奇怪的
+deprecate v. 抨击, 反对
+infusion n.  灌输
+worsen v. 恶化
+portraitist n.  肖像画家
+rhythmical a.  节奏的, 合拍的
+exploratory a. 勘探的, 探索的
+coconut n.  椰子
+infancy n.  幼年
+visualize vt.想象，设想
+credence n.  信任
+encase vt.  装入, 包住
+bemoan vt.  哀叹
+maroon n.  栗色 a.  栗色的
+legally ad.  法律上, 合法地
+immunity n.  免疫性
+tariff n.  关税
+asthenosphere n.  岩流圈
+periphery n.  外围
+supercontinent n.  [地]超大陆
+discrete a.  不连续的, 离散的
+hieroglyphic n.  象形文字
+condenser n.  冷凝器, 电容器
+bilingual a.能说两种语言的
+streptomycin n.  链霉素
+innermost a.  最里面的, 内心的
+jellyfish n.  水母
+stagnant a.停滞的；萧条的
+afar ad.  遥远地
+epic n.  史诗, 伟大事迹
+circumscribe vt.在…周围画线；限制
+inactive a.不活动的, 怠惰的
+alkaloid n.  [化]生物碱
+televise v.  广播, 播映
+stump n.树桩;残余部分.vi.笨重地走,使为难
+reciprocate v.   互换,  交换
+labellum n.  （兰花的） 唇瓣
+fishery n.  渔业, 水产业
+necrosis n.  坏死
+stag n.  牡鹿. vi.  不带女伴参加晚会
+encroach vi. 侵占,侵犯
+syllable n. 音节
+sequoia n.  [植] 美洲杉
+humor n.  幽默, 诙谐
+tempera n.  蛋彩画
+dogwood n.  山茱萸
+switzerland n.  瑞士(欧洲中部国家)
+plank n.厚木板(条)
+notoriously ad. 臭名昭著地, 众所周知地
+plutonic a.  火成岩的
+aggravate vt.  使恶化, 加重
+neutralize v.  压制
+condor n.  [动]秃鹰, 秃鹫
+sprout v.  萌芽 n.  苗芽
+corpse n.  尸体
+attainment n.  达到
+progression n.  行进, 级数
+oceanographer n.  海洋学者, 海洋研究者
+legitimately ad. 正当地, 合理地
+estuarine a.入海的, 在入海口形成的
+waterfront n.  水边地码头区, 滨水地区
+carboniferous n. 石炭层
+believable a.可信的
+regularize vt.  使有规则, 使有秩序
+skeletal a.  骨骼的, 梗概的
+landmark n.  (航海)陆标, 地界标
+hinder v.  阻碍, 打扰
+serpentine a.  蜿蜒的
+bog n.  沼泽
+tentatively ad.  试验性地,犹豫不决地
+regeneration n.  再生, 重建
+contour n.  轮廓
+kiwi n.  [鸟]几维(一种新西兰产的无翼鸟)
+hummingbird n.  蜂雀
+hydroponic a.  溶液培养的
+currier n. 制革匠
+semitic n. /a. 闪族人(语) (的)
+randomly ad.  随便地,任意地
+intergalactic a.银河间的, 星际间的
+diffuses v.  扩散,弥漫
+synonymous a.  同义的
+discoloration n.  变色, 污点
+laborious a.  艰苦的, 费劲的
+backdrop n.  背景幕, 背景
+refractory a.  难控制的,耐火的
+soilless a.  不用泥土(培植)的
+nebular a. [天]星云的
+someday ad.  有朝一日
+journalism n.新闻业；新闻工作
+complementary a.补充的, 补足的
+nectar n.[希神] 神酒, 任何美味的饮料, 花蜜
+usa abbr.美国(美利坚合众国)
+adornment n.装饰, 装饰品
+imperative n.命令,祈使语气.a.命令的,强制的
+lesley n.莱斯利（女子名）
+ppm abbr. 百万分率，百万分之…（parts per million）
+purification n.净化
+assortment n.分类,混合物
+astound vt.使惊骇, 使大吃一惊
+one-quarter a.四分之一的
+id abbr. 身份 (identification, identity).n.遗传素质
+germinate v.发芽,使生长
+nitric a.[化]氮的, 含氮的
+viscosity n.粘质, 粘性
+intrude v.侵入,强挤入
+dating n.约会.v. 约会
+incomprehensible a.费解的,不可思议的
+evidently ad.显然,清楚地
+theropod a.兽性的，野兽般的
+precarious a.危险的,不确定的
+wispy a.纤细的, 脆弱的
+artificially ad.人工地,不自然地
+exempt v.免除.a.被免除的
+vacancy n.空白, 空缺
+rehabilitate vt.修复, 改造
+intoxication n.陶醉,中毒
+auger n.螺丝钻.vt.用钻子钻洞于
+longtime a.(已持续)长时间的.ad.长久地
+validate vt. [律]使有效, 使生效
+sulfide n. <美>[化]硫化物
+sensibility n.敏感性,识别力
+ether n.天空醚, 大气
+tenon n.[木工]榫.vt.接榫, 造榫
+whittle v.切, 削.n.屠刀
+supersede v.代替, 取代
+dehydrate v.(使)脱水
+amino a.氨基的.n. [化学] 氨基
+subjective a.主观的, 个人的
+fertilization n.肥沃, 施肥, 授精
+celestial a.天上的.n.神仙
+petrifaction n.石化, 化石
+regolith n.[地质]风化层, 土被
+marrow n.精华, 活力
+ptarmigan n.松鸡类
+hydroxyapatite n.[矿]羟磷灰石
+percolate n.滤过之液体,滤液.v.过滤
+stun vt.使晕倒,打晕.n.打昏,惊倒
+mudflats n.泥滩
+mineralize v.使矿物化,采集矿物
+calcareous a.钙质的,石灰质的
+eyebrow n.眉毛
+bedcover n.被面
+vaguely ad.含糊地, 暧昧地
+hundredfold a.百倍的.n.百倍, 百重
+agriculturally ad.农业上
+pinhead n.针头, 小东西
+immersion n.沉浸,专心
+founding a.创办的.n.资金
+scuba n.水中呼吸器
+sunlit a.被日光照射了的, 阳光照射的
+collectible a.可收集的, 可代收的
+shade-tolerant a.耐阴的
+orchestral a.管弦乐的,管弦乐队的
+landslide n.[地]山崩, 滑坡
+counteract vt.抵消, 中和, 阻碍
+stature n.身高,(精神、道德等的)高度
+relaxation n.松弛, 放宽
+remediation n.补习,补救
+unincorporated n.未联合的,未合并的
+profile n.侧面,轮廓
+spurge n.[植]大戟
+calotype n.光力照像法
+molasses n.<美>糖蜜
+needlefish n.[动] 颌针鱼(一种长嘴便鳞之海鱼)
+discriminate v.歧视,区别待遇
+fireball n.火球, 大流星
+improvisation n.即席创作
+meteor n.流星, 大气现象
+comprehensible a.可理解的
+etch v.蚀刻
+hale a.强壮的.v.硬拖
+ingoing a.进入的.n.进入,迁就
+realistically ad.现实地,逼真地
+artistry n.艺术之性质
+knowledgeable a.知识渊博的, 有见识的
+recede v.后退
+organically ad.器官上地, 有机地
+unintentionally ad.无意地,非故意地
+geomagnetic a. 地磁的,地磁气的
+magnetize v.使磁化, 吸引
+recess n.(墙壁等的)凹进处.v.使凹进,休假
+bonito n.鲣
+hatchling n.人工孵化的鱼苗或小鸟
+vocal a.声音的,有声的.n.元音
+elongate v.拉长, (使)伸长.a.伸长的
+linoleum n.油布, 油毯
+armor n.装甲.vt.为…装甲
+customarily ad.通常,习惯上
+franklin n.小地主, 乡绅
+morally ad.道德上
+inconspicuous a.不显眼的,不引人注意的
+utterance n.意见, 说话, 发表
+treasury n.财政部, 国库
+heartbeat n.心跳
+unify vt.统一,使成一体
+scat vi.  迅速走开.n.爵士音乐中无意义的音节的演唱
+unexplored a.[地质] 未勘查过的
+upland n.丘陵地, 高地.a.高地的,山地的
+friendliness n.友谊,友善
+wingspan n.[空]翼展
+flicker n./v.闪烁,摇曳
+anvil n.[解]砧骨
+proximity n.接近, 亲近
+excellence n.优秀, 卓越
+loggerhead n.傻子,铁球棒
+pertain vi.适合, 属于
+demonstration n.示范, 实证
+dike n.堤防.vt.筑堤提防
+ineffective a.无效的, (指人)工作效率低的
+rooftop n.屋顶.a.屋顶上的
+interplanetary a.太阳系内的,行星间的
+caput n.头, 首
+receptiveness n. 感受性,接受能力
+high-energy a.高能量,高能率
+animate v.鼓舞.a.生气勃勃的
+militaristic a.军国主义的
+acreage n.英亩数, 面积
+impersonation n.扮演
+reabsorb vi.再吸附,重吸收
+overturn n.倾覆, 破灭.v.推翻, 颠倒
+squarely ad.方形地, 直角地
+henderson n.亨德森（姓氏）
+rawhide n.生牛皮.vt.用生牛皮鞭抽打.a.生牛皮的
+nonagricultural a.非农业的
+dale n.宽谷, 溪谷
+devastation n.毁坏,荒废
+fletcher n.<古>造箭者,弗莱彻
+paradoxically ad.相矛盾地,似非而是地
+credible a.可信的,可靠的
+flute n.长笛.v.吹长笛,刻槽
+inequality n.不等式,不均等,不平衡
+pedagogy n.教学, 教授
+trait n.显著的特点, 特性
+autonomy n.自治
+exuberant a.繁茂的,生气勃勃的
+cast-iron n.[材] 铸铁，生铁，锻铁
+reaper n.收割者, 收割机
+self-image n.自身形象
+bellow v.怒吼, 咆哮
+unreal a.不真实的, 虚幻的
+child-oriented a.以孩子为导向的
+receptive a.善于接受的,能容纳的
+unplanned a.意外的,在计划外的
+longevity n.长命, 寿命
+nomad n.游牧部落的人,流浪者.a.游牧的
+mongolia n.蒙古
+clarity n.清楚,透明
+sexually ad.性别地,两性之间地
+lifeway n.生活方式, 生活
+facade n.正面
+torrid a.晒热的,热情的
+neuron n.[解]神经细胞,神经元
+eukaryote n.〈生〉真核细胞
+commensal a.共餐的.n.共食伙伴, 共生物
+inadvertently ad.非故意地,不注意地
+roadbed n.路基
+encompass vt.包围,环绕
+outnumber vt.数目超过, 比...多
+metabolize v.产生代谢变化
+administer v.管理, 给予, 执行
+diversify vt.使多样化, 作多样性的投资
+neurospora n.  [微]脉孢菌
+subsidy n.补助金,津贴
+yellowstone n.黄石国家公园, 黄石河
+paucity n.极小量
+make-up n.化妆品,（美）补考
+burin n.冰凿,雕刻刀
+walrus n.[动]海象, 海象胡须
+incubator n.培养的器具, 孵卵器
+poorhouse n.救济院
+subsidize vt.资助,津贴
+excitation n.  刺激,兴奋, 激动
+amniotic a.[昆] 羊膜的
+porpoise n.[动]海豚, 小鲸
+spew v.喷涌,呕吐
+emanate vi.散发,发出
+noxious a.有害的
+shun vt.避开,避免
+individually ad.个别地,单独地
+aggregation n.集合,集合体
+erectus a. [拉丁语]直立的
+sleepiness n.想睡,瞌睡
+oneness n.单一,  统一
+excrete vt.排泄, 分泌
+infection n.传染病, 影响,
+piling n.打桩, 打桩工程
+analyst n.分析家, 分解者
+regulator n.调整者,调整器
+toolmaking n.工具(或刀具)制造,机床维修
+morphology n.[生物]形态学, [语法]词法
+hiccup n.打嗝.v.打嗝
+platypus n.[动]鸭嘴兽
+halite n.[化]岩盐
+subsist v.生存, 存在, 供养
+high-resolution n.高分辨,[光] 高分辨率
+meteorologist n.气象学者
+undeveloped a.不发达的, 未开发的
+conestoga n.一种大篷马车
+unexpectedly ad.出乎意料地,意外地
+abrupt a.突然的,陡峭的,生硬的
+nowcasting n.预告
+readership n.读者的身分, 读者人数
+individuality n.个性,(通常用复数)个人的嗜好
+squander v.浪费.n.浪费
+mesopotamian n.美索不达米亚（两河流域）
+birdlike a.敏捷轻快的,似鸟的
+somerset n.翻筋斗.vi.翻筋斗
+dampen v.使潮湿,沮丧
+textural a.组织的,结构的
+derrick n.起重机, (钻井)井口上的铁架塔
+phoenix n.凤凰,完人
+impersonal a.客观的,没有人情味的
+secular a.长期的,世俗的
+onward a.向前的.ad.向前,在前面
+expend vt.花费,消耗,支出
+coal-fired a.烧煤的
+commitment n.委托事项,许诺
+pluto n.冥王星, 阴间之神
+chicopee n.奇科皮（美国马萨诸塞州西南部城市）
+patchy a.补丁的, 不调和的
+clinical a.临床的,诊所的
+verbalize v.用语言描述,累赘
+cellulose n.纤维素,（植物的）细胞膜质
+patricia n.帕特丽夏（女子名）
+yam n.山药, 洋芋
+sharper n.磨具,(赌博中的)骗子
+candlelight n.烛火,黄昏
+allocation n.分配,安置
+vantage n.优势,有利情况
+flowerbed n.花床,花圃
+debatable a.成问题的,未决定的
+petrochemical a.石化的.n.石化产品
+life-form n.生命形态
+objectify vt.使客观化,具体化
+alternatively ad.做为选择,二者择一地
+intelligible a.可理解的,明了的
+vacate v.腾出, 空出,离(职),退(位)
+subtropic a.亚热带的,副热带的
+scenic a.舞台的, 景色优美的.n.风景照片
+comic n.滑稽演员.a.滑稽的, 喜剧的
+tusk n.长牙.vt.以牙刺戳
+meaty a.肉的,多肉的
+resilient n.帕特森（美国一座城市）
+indigestible a.不吸收的,难理解的
+subtitle n.说明对白的字幕.vt.给…加字幕
+prolifically a.丰富地,多产地
+rigidity n.刻板,严格
+soar vi.高飞,昂扬.n.高涨程度
+dismantle v.拆除
+working-class n.工人阶级,劳动阶级
+riverbank n.河堤, 河岸
+landslip n.[地]山崩,塌方
+ephemeral a.朝生暮死的, 短暂的
+low-intensity a.低强度的
+monotonous a.单调的,无抑扬顿挫的
+aquatic a. 水的,水生的.n.水生动物
+unionization n.联合, 结合
+aboveground a.在地面上的.ad.地面上地
+encroachment n.侵蚀, 侵犯
+semicircular a.半圆的
+snout n.猪嘴,鼻子
+weightlessness n.无重状态
+suggestive a.提示的,暗示的
+rougher n.粗切机,粗选槽
+peat n.泥煤, 泥炭块
+mystique n.神秘性,奥秘
+lengthwise a.纵长的.ad.纵长地
+victorian a.维多利亚女王时代的
+human-related a.与人类相关的
+chile n.智利
+hander n.支持器,夹头
+alpha n.希腊字母的第一个字母
+pumped-storage n.抽水蓄能
+dart n.标枪, 镖.v.投掷
+prevalence n.流行,普遍
+west-side a.西面的,西方的
+sleeper n.睡眠,枕木
+colonizer n.殖民者,殖民地开拓者, 移民
+welland n.韦兰（加拿大东南部港口城市）
+unmatched a.无与伦比的,不相配的
+nutritive a.营养的.n.营养物
+inception n.起初, 获得学位
+shade-grown a.避光生长的
+morris n.  莫理斯舞(英国传统民间舞蹈)
+nonfiction n.非小说的散文文学
+brilliantly ad.辉煌地,灿烂地
+flexibly ad.易曲地, 柔软地
+sandal n.凉鞋, 檀香
+cumulative a.累积的
+rigor n.严格,精确
+grotto n.洞穴,人工洞室
+prostrate a.降伏的,俯卧的.vt.使屈服
+protector n.保护者
+bode v.预示
+hump n.驼峰,峰丘.v. (使)隆起
+indecipherable a.无法解释的,难辨认的
+substantiate vt.使实体化,证实
+peru n.秘鲁
+diva n.歌剧中的首席女主角
+nonstop a.不断的,直达的.ad.不休息地
+bifocal a.双焦点的
+cougar n.[动]美洲狮(尤指felis concolor)
+smear v.涂污,弄脏.n.油迹, 涂片
+ocher n.黄土, 赭土
+high-quality a.高品质的
+obliterate vt.涂去, 删除, 使湮没
+aspiration n.热望, 渴望
+conceivable a.可能的,想得到的
+internationally ad.国际性地, 在国际间
+greenish a.呈绿色的
+succinct a.简洁的, 紧身的
+short-range a.短距离的,短期的
+midway n.中途,半路.a.中途的.ad.在中途
+unsung a.未唱的,未赞颂的
+fungicide n.杀真菌剂
+popularize v.普及
+changeable a.可改变的,无常的
+responsive a.响应的,应答的
+decision-making n.决策.a.决策的
+concise a.简明的,简练的
+figural a.借喻的,比喻的
+determinant a.决定性的.n.决定因素
+overtax vt.课税过重, 使负担过度
+custodial a.保管的,保管人的.n.[宗]圣物保管容器
+academician n.院士, 大学生
+cole n.油菜, 小菜
+impressionistic a.印象派的,给人深刻印象的
+fortuitously ad.偶然地,意外地
+thriller n.使人毛骨悚然的东西, 使人毛骨悚然的小说
+plentifully ad.丰富地,富裕地
+monopolize vt.独占, 垄断
+breadbasket n.<俚>胃, 腹
+annihilate v.消灭,湮灭
+hypothesize v.假设,假定
+sectional a.可组合的,部分的
+routinely ad.例行公事地
+predicament n.困境,窘状
+divergence n.分歧
+oceanography n.海洋学
+outbuilding n.[建]外屋, (指车库, 谷仓等)
+forbes n.福布斯（美国著名财经杂志）
+grama n.美国西部产的一种牧草
+rhyolite n.[地]流纹岩
+comparably ad.同等地,可比较地
+transmitter n.转送者,传导物,发射机
+coarse-grained a.粗纹理的,粗颗粒的
+exponential n.指数.a.指数的, 幂数的
+gesso n.(雕刻、绘画用的)石膏, 石膏粉
+capitalism n.资本主义
+deference n.顺从, 尊重
+cumbersome a.笨重的,累赘的
+weft n.[纺]织物,信号旗
+dire a.可怕的,极端的
+pendant n.垂饰, 下垂物
+basketmaking n.篮子编织
+generalist n.多面手,通才
+kennel n.狗窝.v.置于狗窝,关进狗窝
+postmaster n.邮局局长
+interestingly ad.有趣地
+perfume n.芳香,香水.v.使发香,洒香水于
+concomitant a.伴随的.n.伴随物
+rigidly ad.坚硬地, 严格地
+renounce v.宣布放弃,断绝关系
+observatory a.天文台,气象台
+forward-looking a.有远见的, 向前看的
+urbanism n.都市生活,都市化
+refrigeration n.冷藏, 致冷
+harshly ad.严厉地, 苛刻地
+chitin n.壳质, 角素
+jules n.朱尔斯（男子名）
+triassic a.[地]三叠纪的.n.三叠纪
+adjunct n.附件, 助手.a.附属的
+glasswork n.玻璃制品.v.制成玻璃状的
+sate vt.使心满意足
+flier n.飞行者,快车,宣传单
+deplorable a.可叹的,凄惨的
+loneliness n.孤独, 寂寞
+interchangeable a.可互换的,可交换的
+bizarre a.奇异的(指态度,容貌,款式等)
+definitive a.最后的,确定的
+puncture n.小孔.v.刺破
+glandular a.腺的,腺状的
+glycoside n.[化]配醣, 配糖类
+interactive a.交互式的,相互作用的
+preform vt.预先形成.n.粗加工的成品
+unusable a.不能用的,与众不同的
+inducible a.可诱导的,可导致的
+sepal n.萼片
+snippet n.小片, 片断
+glycoprotein n.[化]糖蛋白类, 醣蛋白
+cardiac n.强心剂.a.心脏的, (胃的)贲门的
+glial a.神经胶质的
+autonomic a.自治的, 自律的
+preoccupation n.全神贯注,当务之急
+coyote n.一种产于北美大草原的小狼, 山狗
+endowment n.捐赠,天资,捐款
+puddle n.水坑, 泥潭.v.搅浊,搅泥泞
+proboscis n.鼻子,[昆] 喙
+crimson a.深红色的.v.变深红色.n.深红色
+exhaustion n.耗尽枯竭,疲惫,竭尽
+anthropological a.人类学的,人类学上的
+counter-clockwise a.逆时针的
+structurally ad.在结构上
+polyphony n.复调音乐, 多音
+cornet n.圆锥形纸袋, 短号
+maize n.玉米, 黄色.a.玉米色的
+chivalry n.骑士精神, 骑士制度
+unadorned a.朴素的,未装饰的
+hotelkeeper n.旅馆经营者
+paraphrase v.解释.n.释义
+unselfish a.无私的,慷慨的
+disco n.迪斯科舞厅
+nonself n.(有机体的)异物
+ragtime n. 拉格泰姆音乐.a.使人发笑的
+high-tensile a.高强度的
+unrestricted a.自由的,无限制的
+quasar n.恒星状球体, 类星体
+concertina n.类似风琴的六角形的乐器
+quill n.羽茎,大翎毛.vt.刺穿
+bolster n.垫子.vt.支持
+exhale v.呼气,发出
+angstrom n.[物理]埃(长度单位)
+microscopy n.显微镜检查,显微镜使用
+narcotic n.麻醉药,镇静剂.a.麻醉的
+narcosis n.昏迷状态, 麻醉
+embolism n.加闰日, 栓塞
+rupture v.破裂,裂开.n.破裂, 决裂
+abrasion n.磨损
+proportionally ad.成比例地,相称地
+virgo n.室女宫,室女(星)座
+freighter n.货船,承运人
+thinly ad.稀疏地,瘦
+andromeda n.埃塞俄比亚的公主, 仙女座
+yardstick n.<美> 码尺, 准绳
+exalt v.晋升
+monoxide n.一氧化物
+ingot n.[冶]锭铁, 工业纯铁
+premature a.未成熟的,早熟的
+grievance n.委屈, 冤情, 不平
+conjectural a.推测的,好推测的
+notch n.槽口,刻痕.vt.刻凹痕
+oystercatcher n.〈动〉蛎鹬
+shorebird n.岸禽类鸟,沙禽
+photogrammetry n.照相测量法
+mandible n.下颚, 下颚骨
+attire n.服装.v.打扮
+unravel v.拆开,拆开
+glassmaking n. 玻璃(或玻璃器皿等)制造(术)
+katherine n.凯瑟琳（女子名）
+malleability n.有延展性, 柔韧性
+deft a.敏捷熟练的, 灵巧的
+robust a.精力充沛的
+baedeker n.旅行指南, 入门手册
+microfossil n.微体化石,微化石
+entomb vt.埋葬, 成为...的坟墓
+burgher n.公民, 市民
+puffin n.[鸟]角嘴海雀
+insoluble a.不能溶解的, 不能解决的
+unemployed a.失业的, 未被利用的
+immobility n.牢固,不动
+hydrographic a.水道测量数的,水道学的
+portraiture n.肖像画法
+talented a.有才能的
+filmmaker n.电影摄制者
+understate v.打着折扣说,有意轻描淡写
+narrate v.叙述,作解说
+consort v.结交,符合.n.配偶
+gannet n.塘鹅
+underwing n.后翅, 后翅色彩瑰丽的蛾
+exorbitant a.（要价等）过高的,（性格等）过分的
+gondwanaland n.[地]冈瓦纳大陆
+herring n.青鱼, 鲱
+earner n.赚钱的人
+angular a.[生物] 有角的,生硬的,笨拙的
+wren n.[动] 鹪鹩
+kinglet n.<贬>懦弱的国王,小国君主
+uniformity n.一致,均匀
+priestess n.女祭司, (基督教会以外的)神职人员
+neoclassical a.新古典主义的
+thousandfold ad.千倍地.a.千倍的
+enjoyment n.享乐, 快乐
+forester n.林务官, 森林人
+spoilage n.  损坏
+nonthreatening a.非胁迫的
+solder n.焊料.v.焊接
+harshness n.粗糙的事物, 严肃, 刺耳
+collagen n.胶原质
+sumptuous a.奢侈的,华丽的
+synchrotron n.同步加速器
+familiarity n.熟悉,通晓,精通
+government-subsidized a.政府资助的
+stringent a.严厉的,迫切的
+cabinetmaker n.家具师,细工木匠
+supervisory a.监督的
+resentment n.怨恨,愤恨
+purposely ad.故意地,蓄意地
+irresponsibly ad.不负责任地,不可靠地
+grapple v.格斗,抓住.n.格斗
+revealingly ad.启发人地,袒胸露肩地
+rearrange vt.再排列,重新整理
+self-disciplined a.有自我约束力的,能律己的
+armory n.兵工厂,军械库
+courtship n.求爱, 求爱时期
+sleek a.圆滑的,使…光滑
+corselet n.盔甲,胸衣
+keel n.龙骨(船的脊骨),平底船.v.装以龙骨,倾覆
+secrecy n.秘密,保密
+lira n.里拉（意大利货币单位）
+livelihood n.生计,谋生
+impediment n.妨碍,口吃, 障碍物
+nurture n.养育,教育.vt.养育,给与营养物
+silhouette n.侧面影象,轮廓.v.使…照出影子来
+misinterpret vt.曲解
+marketable a.市场的,可销售的
+mudstone n.[地]泥岩
+carcass n.(屠宰后)畜体
+meteoritic a.陨星的,陨石的
+offshoot n.分支, 支流
+inborn a.天生的,生来的
+stereotypical a.老一套的,陈规的
+manipulation n.处理,操纵
+lifelike a.栩栩如生的,逼真的
+bipedal a.两足动物的,两足的
+antiquate a.旧式的,过时的
+chondritic a.球粒状陨石的
+replicate v.复制.a.复制的
+weldon n.韦尔登（男子名）
+stonework n.石雕工艺, 做石工的场所
+unanswered a.未答复的,无反应的
+aggregate n.合计.v.聚集, 集合
+mantel n.壁炉架
+desalination n.减少盐分, 脱盐作用
+reappear vi.再出现
+carton n.硬纸盒, 纸板箱
+wan a.苍白的,病态的.v.(使)变苍白
+elegance n.高雅,典雅
+duchenne n.杜氏营养不良症
+reopen v.重开,再开始
+immutable a.不变的,不可变的
+pave v.铺,安排
+permeability n.渗透性
+consolidation n.巩固, 合并
+waterfowl n.水鸟, 水禽
+efficacious a.有效的,灵验的
+permeable a.有浸透性的, 能透过的
+fanwise ad./.a.呈扇形展开的
+riverbed n.河床
+expertly ad.熟练地
+stipulate v.规定, 保证
+sandbar n.沙洲
+contingent a.可能发生的, 附随的.n.偶然的事情
+congenial a.意气相投的,性格相似的
+faucet n.龙头, (连接管子的)插口
+alienate v.疏远
+well-regulated a.井然有序的,管理好的
+implicit a.暗示的,盲从的
+preponderance n.优势,占优势
+imperfect a.有缺点的,未完成的.n.未完成体
+homeotherm n.<主美>恒温动物
+drape n.窗帘.v.使褶皱
+practicality n.实用性,实际
+pictorial a.图示的.n.画报
+bland a.温和的,乏味的.v.变得乏味
+unschooled a.天生的,未受学校教育的
+burgeon n.嫩芽.v.萌芽
+ashcan n.垃圾桶, 深水炸弹
+literalness n.文字的,表面意义上的
+flyspeck n.污点,小斑.v.弄脏
+rennin n.高血压蛋白原酶
+hormonal a.荷尔蒙的,激素的
+angiotensin n.[医]血管紧缩素
+deprivation n.剥夺
+aldosterone n.[生化]醛甾酮,醛固酮
+self-taught a.自学
+mandate n.(书面)命令,训令.vt.委任统治
+mammalian n.哺乳动物.a.哺乳动物的
+unfairly ad.不公平地,不正当地
+irrelevant a.不相干的,不切题的
+burdensome a.繁重的,难以承担的
+confederate n.同盟者,同盟国.a.同盟的.v.(使)联盟, 联合
+convict vt.证明...有罪.n.罪犯
+authorization n.授权,认可
+gymnastic a.体操的,体育的.n.训练课程
+peacetime n.和平时期.a.和平时期的
+readjust v.重新调整,再调整
+pre-modern a.前近代
+rivalry n.竞争,竞赛,敌对
+steam-powered a.蒸汽动力的
+well-preserved a.妥善保管的
+nobility n.高贵,贵族
+ponderous a.笨重的,沉闷的
+thresher n.打谷者, 打谷机, [鱼]长尾鲨
+cohesion-tension a.凝聚力的
+enactment n.设定,制定
+seafood n.海产食品, 海味
+besiege vt.围困,围攻
+unsubstantiated a.未经证实的,无事实根据的
+self-binding a.自我束缚的
+unaware a.不知道的, 没觉察到的
+semimolten a.半熔的
+incinerate v.把...烧成灰,烧弃
+topographical a.地志的,地形学的
+canyon n.<美>峡谷, 溪谷
+falconer n.以鹰狩猎者,养鹰者
+lien n.留置权,抵押品所产生的利息
+starfish n.  海星
+dismember vt.肢解,割断手足
+twenty-odd a.二十多个
+unquestionably ad.无可非议地,确凿地
+phylum n. (生物分类学上的)门, 语群
+spinet n.古时的小型竖琴, 小型立式钢琴
+supremacy n.地位最高的人,至高,霸权
+rumor n.流言,谣言.vt.谣传, 传闻
+mandan n.曼丹人,其语言.a.曼丹人的
+passageway n.过道,出入口
+gothic n.哥特式.a.哥特式的,野蛮的
+bluff n.断崖,诈骗.a.绝壁的.v.诈骗
+versatility n.多功能性
+tonal a.音调的
+inconvenient a.不便的,打扰的
+contributor n.贡献者,捐助者
+overcultivation n.耕种过度
+saguaro n.仙人掌之一种
+transcend vt.超越, 胜过
+taproot n.[植]主根, 直根
+firing n.开火, 生火.v.开火,烧制
+distributor n.发行人,经销商
+heed n.注意,留意.v.注意,留意
+seminar n.研究会,讨论发表会
+flavor n.情味, 风味.vt. 加味于
+adequacy n.  适当, 足够
+uninteresting a.无趣味的，乏味的
+minstrel n.  吟游诗人(或歌手)
+irreversible a. 不可逆的,不能取消的
+ling n.  鳕鱼, 石南之一种
+phosphate n.  磷酸盐
+apiece ad.  每个, 每人, 各
+walker n.  徒步者, 参加竞走者
+deteriorate v.  (使)恶化
+taut a.  (绳子)拉紧的,紧张的.vt. 使纠缠
+stretcher n.  担架, 延伸器
+hoof n.  蹄 v.  踢
+discolor v.  使脱色, (使)变色,(使)退色
+foreleg n.  前肢(指四肢或多肢动物的)前脚
+buckskin n.  鹿皮裤, 鹿皮
+fortify vt. 增强(体力,结构等).vi.  筑防御工事
+suspender n.  吊裤带, 悬挂物, 吊杆, 袜吊
+buckle n.  带扣 v.  扣住, 变弯曲
+chafe v.  (将皮肤等)擦热, 使恼火
+tourniquet n.  止血带, 压脉器
+bandanna n.  大手帕
+vestigial a. 退化的,发育不全的
+harem n.  （伊斯兰教教徒之）闺房, 为一个雄性动物所控制的许多雌性动物
+nonfunctional a.不运行的
+land-dwelling a.陆生的
+everest n.  珠穆朗玛峰(世界最高峰)
+computer-assisted a.计算机辅助
+monroe n.  门罗(m.)
+flesh-eating a.食肉的
+concede vt.  勉强, 承认, 退让 vi.  让步
+jawbone n.  颚骨, 下颚骨, 信用 v.  赊买
+selective a.  选择的, 选择性的
+iraq n.  伊拉克共和国
+grande a. 重大的，显要的
+facelift n. 整容手术（除去面部皱纹）
+donation n.  捐赠品, 捐款, 贡献
+massif n.  山丘
+atlas n.  地图, 地图集
+sterilize vt.  杀菌, 消毒, 使成不毛
+reenter n.  重进入, 再加入.v.重返
+rapport n.  和谐, 亲善
+gripe n.  紧握, 柄.v.握紧
+socialization n.  社会化, 社会主义化
+eyewitness n.  目击者, 见证人
+conglomerate v.  聚结.n.企业集团
+entail vt.  使必需, 使蒙受.n.  [建]限定继承权
+railhead n.  铺设中的铁路末端, 终点
+preferential a. 优先的；选择的
+cerebral a.  脑的, 大脑的
+kenya n.  肯尼亚
+cleanly ad.  干净地, 清洁地
+quina n.  [植]金鸡纳树皮, 奎宁
+unresolved a.  未解决的，未决定的
+non-western a.非西方的
+exhilarate vt.  使高兴, 使愉快
+choreography n.  舞蹈术, 舞台舞蹈
+teem v.  大量出现
+premiere v.  初次公演.n.  初次的演出 .a. 杰出的
+screening n.  放映.v.遮蔽,筛选
+exemplary a. 典范的,惩戒性的
+austrian n.  奥地利人 .a.  奥地利的, 奥地利人的
+watershed n.  分水岭
+periodization n.  (历史等的)时期(或时代)划分
+homemaker n.  主妇
+chronicle n.  编年史 .vt.  编入编年史
+substrate n.（土地）底层,基础
+sustenance n.  食物, 生计, (受)支持
+charitable a. 慈善事业的,慷慨的,仁慈的
+tremendously ad. 非常地,可怕地,惊人地
+perceptive a. 感知的,知觉的
+legacy n.  遗赠(物), 遗产
+painstaking n. 辛苦 .a.  辛苦的, 辛勤的
+unsure a.  没有自信的, 不确定的
+loess n.  黄土
+ill-equipped a. 装备不良的
+reflectivity n.  反射率
+dishabituate vt. 使戒除(或放弃)习惯,使不习惯
+roughness n.  粗糙, 未加工, 粗糙程度
+responsiveness n. 响应能力,有同情心
+electro n.  电镀物品, 电版
+neutrality n.  中立, 中性
+alkaline a. 碱性的，碱的
+ballad n.  民歌, 流行歌曲
+ratify vt.  批准, 认可
+conflate vt.  合并
+cardboard n.  纸板
+catechism n.  问答教学法, 问答集
+convection n.  传送, 对流
+counterbalance vt.  使平均, 弥补 .n.  平衡量, 平衡力
+creditor n.  债权人
+regionalization n.  分成地区, 按地区安排
+cany a. 藤的,状似手杖的
+telescopic a. 望远镜的,[眼科] 远视的
+crayfish n.  小龙虾
+geophysical a. 地球物理学的
+synchronize v.  同步
+fluffy a.  绒毛似的, 蓬松的
+militarily ad.  以武力, 以军事行动
+enforcer n. 实施者,强制执行者
+ostracize vt.  (古希腊)贝壳放逐法, 放逐, 排斥
+extracurricular a.  课外的, 业余的
+chronobiology n.  [生]时间生物学, 生物钟学
+songwriter n.  歌曲作家，歌曲作者
+spotlight n.  聚光灯
+earth-based a.  地面的
+inducement n. 诱因, 刺激物
+vogue n.、a.  流行（的）, 时髦（的）
+overgeneralize vt. 太笼统地概括
+keplerian a. 开普勒理论的,开普勒定律的
+grinder n.  磨工, 研磨者
+galilean a.  伽利略的, 加利利的（位于巴基斯坦北部）
+align v.  排列，使结盟
+diffusely ad. 广泛地,扩散地
+caucasian n.  高加索人 .a.  高加索的, 白种人的
+korean n.  韩国人, 韩国语 a. 朝鲜人的, 朝鲜语的
+crescent n.  新月, 月牙
+dodge v. /n. 避开, 躲避
+gospel n.  〈圣经·新约〉福音书
+ductless a.  无导管的
+garland n.  花环 vt.  戴花环
+recreate v.  (使)得到休养, (使)得到娱乐
+uncritical a. 无批判力的,不加批判的
+resonator n.  共鸣器
+jewett n. 朱厄特（姓氏）
+chaotic a.  混乱的, 无秩序的
+fen n.  沼泽, 沼池
+pretension n.  借口, 要求, 自负
+remuneration n.  报酬
+expressiveness n.  表现, 表示
+scant a.  缺乏的,不足的 v. 节省,减少
+pancreatic a. 胰的,胰腺的
+pancreas n.  [解]胰腺
+celebratory a. 快乐的
+digestion n.  消化力, 领悟
+endocrinology n.  内分泌学
+intestinal a. 肠的
+secretin n.  分泌素
+hamlin n. 哈姆林（姓氏）
+crustacean a.  甲壳类的 .n. 甲壳纲动物
+consultant n.  顾问, 商议者, 咨询者
+lobster n.  龙虾
+bliss n.  福佑, 天赐的福 .v.狂喜
+empress n.  皇后, 女皇帝, 皇太后, 极有权力的女人
+pomegranate n.  [植]石榴
+spatter v.  溅污 n.  滴落
+refurbish vt.  再磨光, 刷新
+mottle vt. 使有斑点 n.  杂色, 斑点
+idealization n.  理想化, 理想化的事物
+fidelity n.  忠实, 诚实, 忠诚, 保真度, (收音机, 录音设备等的)逼真度, 保真度, 重现精度
+appreciably ad.  略微, 有一点
+immensely ad. 极大地,无限地
+interdependent a. 相互依赖的,互助的
+understandably ad.  可理解地
+emblem n.  象征, 徽章 .vt.  用象征表示
+lyrical a.  抒情诗调的, 充满感情的
+yuan n.  元(中国货币单位)
+victimize vt.  使牺牲,使受害
+uppermost a./ad. 至上的，最高的
+cheater n.  骗子, 欺诈者, 背叛者
+siliceous a. 硅酸的；硅土的
+ape n.  猿
+suburban a.  郊外的, 偏远的
+edible a.  可食用的
+discontent n.  不满. a.不满的. vt.使不满
+tressed a. 有一绺绺长发的
+bongo n.  非洲产大羚羊, 一种用手指敲的小鼓
+recital n.  朗诵, 背诵, 独奏会
+out-of-date a.过时的,过期的
+woodwind n.  木管乐器
+unsuccessful a. 不成功的,失败的
+seeker n.  搜索者, 探求者
+unfavorably ad. 不利地,不适宜地
+chronological a. 按年代顺序排列的
+pylon n.  塔门, 路标塔
+decease n.  死亡 .vi.死
+cult n.  祭仪, 礼拜式
+dilemma n.  进退两难的局面, 困难的选择
+militant a.  好战的. n.好斗者
+federalist n. 联邦党,联邦制拥护者
+biographical a. 传记的,传记体的
+sonar n.  声纳, 声波定位仪
+perennial a.  终年的, 长期的
+infiltration n.  渗透
+breakage n.  破坏, 破损, 破损量
+apace ad.  快速地, 急速地
+herbicide n.  除草剂
+compactness n.  紧密, 简洁
+springboard n.  跳板. vi.利用跳板
+genu n.  膝
+localization n.  地方化, 局限, 定位
+airborne a.  空运的, 空气传播的
+rarity n.  稀有
+fend v.  保护, 供养
+beneficiary n.  受惠者, 受益人
+cross-hatching a.垂直交叉的
+genotype n.  基因型
+good-quality a. 良好品质的
+affordable a. 负担得起的
+myxoma n.  [医]粘液瘤
+importation n.  进口, 输入品
+intaglio n.  凹雕, 阴雕. vt. 凹雕
+elaboration n.  苦心经营, 详尽的细节
+congenital a. 先天的,天生的,天赋的
+blockage n.  封锁, 妨碍
+photodissociation n.  [物][化]光离解,光解 (作用)
+survivor n.  生还者, 残存物
+uninhabited a. 无人居住的,杳无人迹的
+aphid n.  [动]蚜虫
+miami n.  迈阿密(美国佛罗里州达东南部港市)
+paralyze vt.  使瘫痪, 使麻痹
+articulate a.  有关节的, 发音清晰的 v.  用关节连接, 接合
+airway n.  空中航线, 通风孔
+outgassing n. 除气 v. 除气 a. 释气的
+overrun n.  泛滥成灾 v.  超过, 泛滥
+netherland n. 荷兰
+incorrectly ad. 错误地,不适当地
+athens n.  雅典(希腊首都)
+tollgate n.  征收通行税的关卡, 关门
+bravely ad.  勇敢地
+tellurium n.  碲(两性金属元素,  符号te)
+impressively a. 令人难忘地,  令人印象深刻地
+overkill n.过度的杀伤威力.v.超量杀伤
+athenian n. /a.雅典(人)(的)
+milligram n.  毫克
+supplier n.  供应者, 补充者
+closeness n.  紧闭, 狭窄
+stately a.  庄严的, 堂皇的
+infinitesimally ad.  极小地
+viability n.  生存能力
+lyric n.  抒情诗, 歌词
+uranus n.  天王星
+keelboat n.  一种河船
+manageable a. 易处理的，易管理的
+metaphor n. 隐喻, 暗喻
+disaffection n.  不满
+requisition n.正式请求；征用
+reprint v.  再版
+entwine v.  (使)缠住, (使)盘绕
+impermeable a.  不能渗透的
+condenses v.   浓缩,  压缩
+looseness n.  松开, 解除
+governmental a.  政府的
+auction n.／ vt.拍卖
+successively ad. 一个接一个地
+romanize v.  古罗马化, 用罗马字书写
+permeate v. 弥漫, 渗透
+teacup n.  茶杯
+allay vt.  减轻, 减少
+characterization n.  描述, 人物之创造
+earthen a.  土制的, 陶制的
+insistence n.  坚持, 坚决主张
+whence ad.从何处；从那里
+nonporous a.无细孔的
+turnover n.翻转,营业额
+southernmost a. 最南的
+landless a.无土地的，无陆地的
+enhancement n.  增进, 增加
+memorize v.记住, 记忆
+indeterminate a.不确定的, 含混的
+unbalance v.使失衡,使精神紊乱n.失衡
+conclusively ad. 最后地, 确定地
+fortuitous a.偶然的, 幸运的
+hieroglyph n.  象形文字, 图画文字
+admirable a.令人钦佩的,令人赞赏的
+democratization n.  民主化
+upheaval n.  剧变
+inflection n.  变形
+radiometric a. 辐射测量的,  辐射度的
+balkan n./a.  巴尔干半岛(的)
+thwart vt.阻挠
+hieratic a.  僧侣的, 僧侣用的
+fibrous a.  含纤维的, 纤维性的
+pedagogic a.  教师的, 教育学的, 教授法的
+floe n.  大浮冰, 浮殡冰块
+bony a.  多骨的, 瘦骨嶙峋的
+synonym n.  同义字
+conductivity n.  传导性, 传导率
+physiology n.  生理学
+miocene a.  中新世的, 中新统的
+eletricity n.  电, 电学
+depiction n.  描写, 叙述
+groom vt.刷洗 n.新郎；马夫
+prickly a.  多刺的
+recurrent a.   再发生的, 周期性的
+monoid n.  独异点
+affront v.侮辱，冒犯
+harper n.  弹竖琴者, 竖琴师
+discernible a.可辨别的
+maine n.  缅因州(美国东北角的州)
+fad n.  时尚, 一时流行的狂热
+catchment n.排水,集水
+underscore vt.画底线
+tambourine n.  小手鼓
+fluidity n.  流动性,变移性
+ongoing a.  正在进行的
+unhindered a.无阻的, 不受阻碍的
+almanac n.  历书, 年鉴
+breathtaking a. 令人赞叹的,  壮观的
+coniferous a.松类的,  结球果的
+loyalist n.  忠诚的人, 反对独立者
+incoming a.  引入的
+unpredictably ad.  不可预见地,  不能预料地
+scraping v./n.刮，擦
+reorganize v.改组, 整顿
+turkic n.  土耳其语(的), 土耳其语系者(的)
+immature a.  不成熟的, 未完全发展的
+momentarily ad.  暂时地, 立刻地
+overconfident a. 自负的, 过于自信的
+expansionist n./a.  扩张主义(的)
+crowbar n.  撬棍, 铁橇
+interdependence n.  互相依赖
+lifeway n.  生活(方式)
+inappropriate a. 不适当的, 不合宜的
+residue n.残渣, 剩余物
+enterprising a.  有事业心的, 有进取心的
+moisten vt.  弄湿 vi.  变潮湿
+medicinal a. 药物的，治疗的
+tribespeople [复]n.部落(或宗族等)成员
+unattractive a.无魅力的, 无吸引力的
+crucible n.  坩锅, 严酷的考验
+misty a.有薄雾的
+unbreakable a.不易破碎的, 牢不可破的
+intermittently ad. 间歇地
+flotation n.  浮选
+healthful a.  有益健康的
+hydration n.水合作用
+leafcutter n.[昆]南美切叶蚁
+zagros n.扎格罗斯山脉[伊朗西南部]
+segregate v.  隔离
+unconsciously ad.无意识地；不觉察地
+forebear n.  祖先, 祖宗
+topography n.  地形学
+clergyman n.  牧师, 教士
+perm v. /n.电烫（头发）
+haiti n.  海地
+disintegrate v.分裂成小片，瓦解
+moody a. 易怒的, 情绪化的
+awesome a.可怕的, 表示敬畏的
+kink n. 结 v. 纠结,纽绞
+hydroelectric a.  水力电气的
+favorably ad. 赞同地, 亲切地
+preferably ad.更好地,宁愿
+encase v.把...装入箱中,包起
+driveway n.  车道
+hermit n.  隐士, 隐居者
+pathway n.  路, 径
+guideline n.  方针
+lvory n.  象牙
+deluge n.  洪水, 豪雨
+deep-sea a.深海的, 远洋的
+minutely a.每分钟的,持续的
+landlocked a.陆地包围的, 内陆水域的
+rape n./v.掠夺, 强奸
+monolithic n.  单片电路, 单块集成电路
+cohesiveness n. 粘合, 凝聚性
+peculiarly ad.   古怪地,  特有地
+oceanographic a.  海洋学的
+congestion n.  拥塞, 充血
+engender v.  造成
+workplace n.   工作场所
+meticulous a.一丝不苟的, 缜密的
+impermanence n.  暂时, 无常
+impenetrable a.  不能穿过的, 不可理喻的
+expendable n.  消耗品, 可牺牲的
+high-powered a.  马力大的, 精力充沛的
+undeniable a. 不可否认的, 无可辩驳的
+incur v.  招致
+land-based a.  以地面为基地的
+backbreaking a.非常辛苦的,极累人的
+commercialize v.  使商业化
+landsman n.  同胞,同乡
+albedo n.  [天文](星体)反照率
+verbalizable a.  可用言辞表达的
+incompatibility n.  不两立, 不相容
+gist n.  要点, 要旨
+doll n.  洋娃娃, 玩偶
+forefront n.  最前部, 最前线
+classicism n.  古典主义,古典风格
+foresight n.  远见, 深谋远虑
+infertile a.  贫瘠的, 不能生育的
+horticultural a.   园艺的
+parcel n. 包裹 vt.  打包, 捆扎
+hospitalize vt.  就医,  使住院
+scanty a.  缺乏的,不足的
+verbally ad.  用言辞地, 口头地
+juicy a.多汁(液)的
+physiologically ad. 生理上, 在生理学上
+chipmunk n.  [动] 花栗鼠
+jay n.松鸡；鸟
+stereotype n.老套，固定模式
+necessitate v.  成为必要
+circumstantially ad.  因情形地,  附随地
+repute n.  名誉, 名声 v.  认为
+grizzly a.灰(白)色的
+americanism a. 美国所创, 美国风俗, 美国精神
+implicate vt. 含意, 暗示
+shortwave n.  短波
+processor n.加工业者；处理机
+fleshy a.肉的, 多肉的
+fallout n.  辐射微尘, 原子尘, 附带结果
+pluralism n.  复数, 兼职
+alumnus n.  男毕业生, 男校友
+heritage n.  遗产, 继承权
+tenet n.  原则
+logger n.  樵夫, 圆木装车机
+geochemical a.  地球化学的
+cloudlike a.云雾状的
+aide n.助手, 副官
+vegetative a.  植物生长的,植物人状态的
+quickest a.   最快的
+overgrow v.  长满
+enlargement n.  放大
+idiomatic a. 地道的 成语的
+chromosphere n.  色球
+nonproductive a.  非生产性的
+caliber n.  口径, 才干
+photosphere n.  光球
+millet n.  [植]稷, 粟
+intimacy n.  亲密, 隐私
+coalescence n.  合并, 接合
+tantamount a.同等的,相当于
+preen v.整理羽毛，(人)打扮修饰
+marvelously ad.  奇迹般地,奇异地
+cavalry n.  骑兵
+unacceptable a.不能接受的, 不受欢迎的
+unprofitable a.  没有利润的, 无益的
+fray n.吵架.v.磨破，恼火
+reradiate vt.   再辐射(转播)
+tinge n.(清淡的)色调 vt.给…着色
+fanners n. 电风扇,通风机
+attractiveness n.   魅力,  吸引力
+unparalleled a.  无比的, 空前的
+contamination n.污染, 污染物
+dyestuff n.  染料
+disadvantageous a.  不利的
+southerner n.  南方人, 居住在南方的人
+drab a.  土褐色的, 单调的
+resourcefulness n.  足智多谋
+micronesian n./a.  密克罗尼西亚人(的)
+outrigger n.(承力外伸)支架
+ere pron./conj.在….之前
+usable a.[亦作useable] 可用的, 合用的
+anew ad.  重新, 再
+ironically ad.具有讽刺意味地；嘲讽地
+genre n.  类型, 流派
+visually ad.  在视觉上地, 真实地
+primacy n.  首位
+sago n.  西米, 西米椰子
+breadfruit n.  面包果树
+taro n.  芋头
+sugarcane n.  [植]甘蔗
+predetermine v.  预先确定
+hazardous a.  危险的, 冒险的
+unsuspected a. 未知的, 未被怀疑的
+nitrate n.  [化]硝酸盐, 硝酸钾
+exportation n.  出口
+extremity n.极度，绝境
+converse vi.交谈 n.反面说法 a.相反的
+grounding n.基础训练, 染色的底色, [电]接地
+spillage n.  溢出, 溢出量
+redesign v./n.重新设计
+citizenry n.  公民成市民(集合称)
+scenario n.剧情说明书，剧本
+wad n. 填料 vt. 填塞
+smelter n.熔炉, 熔炼工
+crook v.使弯曲
+pennycress n.  [植]菥蓂
+hydroponically n. 水耕法,  水栽培
+petiole n.  叶柄, 柄部
+conveniently ad.方便地；合宜地
+paramount a.  极为重要的
+shoshone n.美国休休尼族印第安人;休休尼语
+oxfordshire n.牛津郡[英国]
+isle n. ( 小)岛
+gaslit a. 以煤气灯照明的
+londoner n.  伦敦人
+microbe n.  微生物, 细菌
+tepee n.  美国印第安人的圆锥形帐篷
+pawnee n. 波尼族人(语)
+experimenter n.  实验者
+inter vt.  埋葬
+inanimate a.无生命的
+commentary n.  注释, 解说词
+handsomely ad. 漂亮地,慷慨地
+outcrop n.  露出地面的岩层
+parish n.  教区
+nucleic a.核的
+pavement n.  人行道, 公路
+avid a.  渴望的
+timescale n.  时标,  时间量程
+totality n.全部，总数
+emigration n.  移民出境, 侨居
+patriarch n.  家长, 族长, 创办人
+grandeur n.  庄严, 伟大
+detritus n.  碎石
+abound v.   富于,  充满
+lipid n. 脂质, 油脂
+smoky a.  冒烟的, 烟状的
+confer v.  授予, 协商
+primeval a.  原始的, 早期的
+viral a.  滤过性毒菌的
+subtraction n.  减少
+concentric a.  同中心的, 同轴的
+iconography n.  肖像学, 肖像画法
+mite n.  微小的东西,
+innate a.  先天的, 天生的
+indigenous a. 本地的, 天生的
+remnant n.  残余, 剩余
+toehold n.（攀岩时的）立足点,（发展的）起点
+eon n.  永世, 无数的年代
+planetary a.  行星的
+cuspidor n.  痰盂
+activist n.  激进主义分子, 行动主义分子
+hue n.色彩，色调
+weakly a./ad.  虚弱地, 软弱地
+doorknob n.  门把手
+incessant a.   不断的,  无尽的
+tieback n.  牵索,  拉条
+afloat a./ad.飘浮的, 传播的
+mistrust n./v.不信任, 猜疑
+interviewer n.  会见者
+affectional a.  情感上的,  爱情的
+southerly a.向南方的 ad.  在南方
+covering n.  遮盖物
+shopper n.  购物者
+correspondingly ad.相应地
+varicolored a.  杂色的,  多色的
+psychoanalyst n.  心理分析学者
+stagecraft n.编剧才能,演出技术
+lifeblood n.  生命必须的血液, 活力的源泉
+autobiography n.  自传
+bedpan n.  便盆, 睡床用脚炉
+streak n.条纹vi.疾驶 vt.加条纹
+duet n.  二重奏
+sentimentalized v.  流于感伤,  变多愁善感
+rentable a.  可出租的
+voluminous a.  卷数多的,大量的
+stint v.  紧缩,节省
+wand n.魔杖；[乐]指挥棒
+cud n.  反刍的食物
+inhibition n.  禁止, 阻止
+chomp v.大声地咀嚼, 反复咀嚼
+civic a.  市的, 市民的
+inconsistency n.  矛盾
+perceivable a.可知觉的
+posit v.  安置
+incompletely ad.不完全地
+subjugate v.使屈服，征服
+lamina n.  薄板, 薄层
+uniformitarianism n.  [地质]均变论
+contributory a.  贡献的, 捐助的
+ration n.定额, 定量
+exponent n.阐述者,倡导者
+intellectually ad. 理智地, 与智力(或思维)有关地
+concoct vt.编造；调制
+leaning n.  倾斜, 倾向
+seclusion n.  隔离
+vulnerability n.  弱点, 攻击
+candid a.率直的, 坦诚的
+puritan n.  清教徒 a.  清教徒的
+regurgitate v.  反刍,（液体）回流
+ruminate v.  反刍, 沉思
+milkweed n.  乳草属植物
+divergent a. 分歧的,分开的, 偏离的
+unproven a.  未经证明的, 未经检验的
+permafrost n.  [地]永久冻结带
+stocky a.  矮壮的, 健壮结实的
+convergence n.  集中, 收敛
+conceivably ad. 可想到地, 想象中
+venice n.  威尼斯(意大利港市)
+tiffany n.  纱的一种
+uproot vt.  连根拔起, 根除
+unnatural a.  不自然的, 反常的
+powerfully ad. 非常地,强有力地
+nursing n.  看护, 养育
+enamel n.  珐琅, 瓷釉
+gossamer n.蛛丝，薄纱  a.轻而薄的
+unnecessarily ad. 不必要地,  徒然
+monogamous n.  一夫一妻的, 单配的
+unwieldy a.笨重的，笨拙的
+coloration n.  染色, 着色
+butler n.  仆役长, 男管家
+caribbean n.  加勒比海
+anatomy n.  剖析, 解剖学
+flop vi.猛落，惨败
+genuinely ad.   真正地,  由衷地
+flint n.  打火石, 燧石
+vicissitude n.  变迁兴衰
+suitably ad.  合适地, 适宜地
+colorless a.  无色的, 无趣味的
+cider n.  苹果酒
+bard n.  吟游诗人
+presage n.  预兆 v.  预示
+flatboat n.  (浅水)平底船
+peal n.钟声  v.(使)鸣响
+mow v.割(草)
+professionalism n.职业水准或特性, 职业化
+monochrome n.  单色 单色的
+incessantly ad.不间断地
+damper n.风阀, 减音器
+lightweight n.  轻量级选手, 不能胜任者
+polychrome a.  彩饰的 n.  多彩艺术品
+coriander n.  [植]胡荽
+tedium n.  厌烦, 沉闷
+foothill n.  山麓小丘, 丘陵地带
+momentous a.重要的, 重大的
+chateau n.  城堡
+provincialism n.  地方风尚
+husk n.外壳；v.剥壳,削皮
+emigrant n.  移居外国者, 移民
+quitter n.  轻易停止的人, 懦夫
+unsettle v.  不安
+feasibility n.  可行性, 可能性
+unending a.不断的, 不断重复的
+eradication n.  连根拔除, 根除
+disapproval n.  不赞成
+upriver a.  上游的 ad.  在上游
+reorient v. 重定 ... 的方向(或方位)
+portend v.  预示
+neatness n.  整洁, 干净
+nonnative n.  非本地的,  非本地人
+chug n.轧轧响声.v.发出轧轧声.
+intercommunity n.  共同性, 共有
+townspeople n.  市民, 镇民
+utopian a.乌托邦式的，梦想的
+intensely ad.激烈地；热切地
+biogeochemical a.  生物地球化学的
+loder n.[计]装填器
+homespun n.  手织物
+unwelcome a.  不受欢迎的, 讨厌的
+avoidable a.  可避免的
+predetermined a.  预订的
+unselective a.非选择性的
+sensitively ad.  易感知地,  神经过敏地
+authenticity n.  确实性, 真实性
+discredit v.怀疑  n.丧失名誉
+superorganisms n. [生]超个体(指群居昆虫等的群体)
+exclusion n.  排除, 除外
+floodplain n. 泛洪平原, 漫滩
+preservative n.  防腐剂
+sill n.基石(岩床底面)
+insightful a.  有深刻见解的, 富有洞察力的
+misdeed n.  罪行, 犯罪
+salmonberry n. 美洲大树莓
+optimization n.  最佳化, 最优化
+snugly ad.  舒适温暖地, 整洁地
+dripstone n. 滴水石
+counterexample n.  反例
+dapple n. 斑纹, 斑点.v. (使）有斑纹
+multifaceted a. 多层面的
+alluvial a.  冲积的, 淤积的
+welt n. 鞭痕, 贴边vt. 贴边于
+rootless a.  无根的, 无根据的
+fecund a.  生殖力旺盛的, 多产的
+proliferation n.  增殖, 分芽繁殖
+loam n. 肥土
+petticoat n.  衬裙, 裙子
+stratify vt.  (使)成层
+basketwork n.  编织物
+commercialization n.   商品化
+acidity n.  酸度, 酸性, [医]酸过多, 胃酸过多
+intently ad.  专心地, 集中地
+diligence n.  勤奋
+separable a.可分离的, 可分的
+thimble n.顶针；嵌环
+cyclic a. 循环的,周期性的
+buyer n.  买主, 顾客
+lop v.剪去, 砍掉
+harmfully ad. 伤害地,有害地
+boxlike a.  象箱子一样的
+amazingly ad. 惊奇地, 惊人地
+pinhole n.  针孔, 小孔
+admittedly ad. 不可否认的, 公认地
+maternal a.  母亲的, 母系的
+wintertime n.  冬, 冬季
+pliable a.柔顺的
+anthropologically  ad.人类学上
+cobble n.  圆石,鹅卵石.v.修补
+literate a.有读写能力的；有文化修养的
+totemism n.对图腾的信仰, 图腾制度
+enigmatic a.  谜的, 莫明其妙的
+allusion n.  提及, 暗示
+proclivity n.  倾向
+awkwardly ad.  笨拙地, 无技巧地
+contention n.  争夺, 争论
+recount v.  叙述
+escutcheon n.  有花纹的盾, 锁眼盖, 孔罩
+horticulturalist n.   园艺家
+reunion n.  团圆, 重聚
+alphabetically ad.按字母表顺序地
+carelessly ad.粗心地；疏忽地
+supermodel n.  超级名模
+brusquely ad.唐突地, 粗率地
+stubble n.短须, 麦茬
+flout vt./n. 轻视, 嘲笑
+chihuahua n.  吉娃娃(一种产于墨西哥的狗)
+morphological a.形态学的
+reactive a.反应的, 反作用的
+philippine a.  菲律宾的, 菲律宾人的
+geothermally a.  地热的
+inflow n.  流入, 流入物
+subfreezing a. 低于冰点的
+anthropomorphism n.拟人论,拟人观
+slot n.狭缝；空位
+confinement n. 限制, 禁闭
+centrally ad.  在中心, 在中央
+adversity n. 灾祸, 逆境
+imaginative a.富有想象力的
+incapacitated vt.使不能
+onslaught n.  冲击
+industrialist n.  工业家, 实业家,
+soloist n.  独奏者, 独唱者
+interstitial a.  空隙的, 裂缝的,
+intertidal n./a.潮间带(的)
+distill v. 蒸馏, 滴下, 吸取
+pony n.矮种马，小马
+intertwine v.(使)纠缠,(使)缠绕
+morale n.  士气, 民心
+buddy n.<美口>密友, 伙伴
+pristine a.  质朴的
+sludge n.  软泥, 淤泥
+hallmark n.  特点
+beau n.花花公子
+vibrato n.颤音, 振动
+blackbird n.  山鸟类
+rhythmic a.  节奏的, 合拍的
+waling n. 横撑
+lacuna n.  空白, 空隙
+enigma n.  谜, 难以理解的事物
+tendon n.  [解]腱
+fiddler n.  拉提琴的人,游手好闲的人
+mortise n.榫眼  v.用榫接合
+carnival n.  狂欢节, 饮宴狂欢
+assemblage n. 集合, 集会
+dedication n.  贡献, 奉献
+qualitatively ad.  质量上
+redwing n.  [动](欧洲产的)红翼鸫
+vigilance n.  警戒, 警惕
+adventurous a.冒险的；惊险的
+telltale a.泄密的
+ordinance n.法令，条例
+tether n.  范围
+syrup n.  糖浆, 果汁
+gild v.  镀金
+ductile a. 易延展的, 易教导的
+anonymous a.无名的；匿名的
+sewerage n.  排水设备, 污水
+dissolution n.  分解, 解散
+urbanity n.  有礼貌, 文雅
+avoidance n.  避免
+permineralization n.完全矿化
+amenable a.顺从的；对…负有责任(义务)的
+binge n.  狂闹, 狂欢
+quicksand n.  流沙, 敏捷
+modernization n.  现代化
+malleable a.  有延展性的, 可锻的
+einkorn n.  单粒小麦
+unanticipated a. 不曾预料到的
+pistachio n.  [植]阿月浑子树
+dredge n.  挖泥机 v.  挖掘,
+propriety n.  适当
+glassware n.  玻璃器具类
+affluent a.  丰富的, 富裕的
+singleton n.  一个, 独身
+nationalistic a.  国家主义的
+soothe v.缓和, 安慰
+deteriorates v.恶化，变坏
+stabilization n.  稳定性
+aspire vi.  热望, 立志
+joinery n. 木工职业
+windswept a.  风刮的, 被风吹扫的
+swiftness n.迅速，敏捷
+seabird n.  海鸟(如海鸥)
+reykjavik n.  雷克雅末(冰岛首都)
+polarize v.  (使)偏振, (使)极化
+degas vt.  除去瓦斯
+utah n.  犹他州(略作ut.,ut)
+trickle v.滴流
+admiral n.  海军上将, 舰队司令
+slat n.板条v.打击
+hydrosphere n.  水圈, 水气
+geyser n.天然热喷泉
+stabilizer n.  稳定器, 安定装置
+exoskeleton n.  [动] 外骨骼
+dimply a.  有酒窝的, 有凹处的
+clamor n.喧闹
+reluctantly a.不情愿地；勉强地
+overbalance v.  失去平衡
+carbonization n.  碳化(物)
+marshland n.  沼泽地
+viscera n.  内脏,内部的东西
+lethal a.  致命的 n.  致死因子
+superbly ad.  雄伟地, 壮丽地
+oxygen-deficient a.缺氧的
+shipwright n.造船者
+ghostly a.  可怕的
+thrift n.  节俭
+conservatism n.  保守主义
+leaky a.  漏的
+blacken v.  使变黑, 诽谤
+fiercely ad.  猛烈地, 厉害地
+faultfinding n.  找茬,挑剔
+steadfastly ad.踏实地, 不变地
+untold a.未说过的,未透露的
+intolerant a. 不宽容的, 偏狭的
+venue n.  审判地, 集合地
+encapsulate v.装入胶囊，压缩
+evanescent a.  迅速消失的, 短暂的
+archipelago n.  群岛, 多岛海
+usefully ad. 有用地
+encyclopedia n.  百科全书
+multivolume a.  多卷的
+supportive a.  支持的
+anathema n.  诅咒
+patty n.  小馅饼,
+workmanship n.  手艺, 技艺
+untraditional a. 非传统的,不符合传统的
+modernist n.  现代主义者, 现代人
+bergere n.围手椅
+mainstream n.  主流
+photojournalism n.  摄影新闻工作
+regionalist n. 地方主义者, 地方主义作家
+reportedly ad.  据传说, 据传闻
+reachable a.  可达成的, 可获得的
+paradox n.  似非而是的论点, 自相矛盾的话
+stratosphere n.平流层, 高层次
+americana n.  有关美国的文物, 史料
+desirability n.  愿望, 希求
+inflexibly ad. 不弯曲地, 不屈地
+implausible a.难信的, 似乎不合情理的
+convincingly ad. 令人信服地, 有说服力地
+unwillingness n.  不愿意, 不情愿
+generically ad. 属类地, 属类上
+stronghold n.  要塞, 据点
+drench v.  湿透
+industrially ad.  企业[工业]地
+vitality n.  活力, 生命力
+restatement n.  再声明, 重述
+constituency n.  (选区的)选民,  支持者
+eclectic a.折衷的.n.折衷主义者
+preparedness n.  有准备, 已准备
+eyeball n.  眼球, 眼珠子
+persuasive n.  说服者a.善说服的
+seedy a.多种子的, 结籽的
+thoughtfully ad.  思虑地, 仔细地
+unbiased a.公正的
+plethora n.  过剩,过量
+openly ad.  不隐瞒地, 公然地
+conditioner n.  调节者, 调节装置
+dung n.粪 vt.施粪肥于
+substantive a.独立存在的，直接的
+replenishment n.  补给, 补充
+fanner n.  通风机
+globally ad. 世界上, 全世界
+invigorate v.  鼓舞
+civet n.  [动物]麝猫
+setup n.装备, 安装,计划
+untrue a.  不真实的, 不正确的
+dolphin n.  海豚
+rephrase vt.  改述
+overproduction n.  生产过剩
+moat n.  护城河, 城壕
+replica n.  复制品
+aridity n.  干旱, 乏味
+purge vt.清洗(除) n.清洗
+therapist n.  临床医学家
+attacker n.  攻击者
+regrettable a. 可惜的, 遗憾的
+schist n.  [地]片岩
+thai n.  泰国人, 泰国语
+rime n.  结晶, v.  使蒙霜
+regionalist n.  地方主义者
+loyally ad.  忠诚
+artiste n.  技艺家
+symbolically ad.  象征(性)地
+misinterprete v.误解
+controllable a.可管理的, 可控制的
+categorically ad.断然地, 明确地
+outwit vt.  瞒骗, 以智取胜
+intelligently ad.聪明地；理智地
+problematic a.  问题的, 有疑问的
+restlessness n. 辗转不安, 烦躁不安
+uncarved a. 没雕刻的
+macaque n.  短尾猿
+fallacy n.  谬误, 谬论
+vitascope n.  老式放映机
+unfocused a.未聚焦的,无焦点的
+anyplace ad.  任何地方
+stealthy a.  鬼鬼祟祟的, 秘密的
+beng n. 大麻
+douse vt.熄灭；浸，洒
+silvery a.含银的,银色光泽的
+healer n.  医治者, 治病术士
+diviner n.  占卜者, 占卦的人
+panhandle n.狭长地带 v.乞讨
+belter n. 非常好, 出色的例子
+foe n. 敌人,危害物
+terylene n.  涤纶
+humorously ad. 幽默地, 滑稽地
+crease n.折缝，皱褶 v.(使)起皱
+rayon n. 人造丝, 人造纤维
+indigo n.  靛, 靛青
+woad n.  [植]菘蓝
+needlelike a. 针状的
+mote n.  尘埃, 微粒
+salal n.  [植](产于北美洲太平洋沿岸的)沙龙白珠树
+abnormality n.  变态 畸形
+hugely ad.  巨大地, 非常地
+acetate n.  [化]醋酸盐
+micronutrient n.  [生]微量营养素
+turmeric n.  [植]姜黄, 姜黄根, 姜黄根粉末
+saffron n.  [植]藏红花
+overprint vt./ n.  套印, 印戳
+religiously ad.虔诚地, 笃信地
+storyteller n.  说故事的人, 作家
+ritualize vt.  使仪式化, 奉行仪式主义
+teller n.  讲话的人, 告诉的人
+abruptness n.唐突,粗鲁
+pantomimic a. 哑剧的
+slider n.  滑雪者, 滑冰者
+subglacial a.冰川下的
+cute a.  可爱的, 聪明的
+rhythmically ad.  有节奏地
+cleverness n. 聪明, 机灵
+bombardment n.  炮击, 轰击
+lounger n.  漫步的人, 懒人
+northward ad.  向北.a.向北的
+dugout n.防空洞, 独木舟
+moccasin n.  鹿皮鞋, 软拖鞋
+chronologically a. 按年代的
+activate v.激活, 使活动
+episodic a.插曲式的,短暂的
+fiord n.  (尤指挪威的)海湾, 峡湾
+esteem n.／ vt.尊重，敬重
+colosseum n.  罗马圆形大剧场(建于公元80年,耗时5年,至今大部分尚存)
+holder n.  持有者, 占有者
+achievable a. 做得成的, 可完成的
+fixation n.固定, 注视
+uncooperative a.不合作的, 不配合的
+hub n.中心,轮轴
+meteoroid n.  流星体
+threadlike a.  线状的
+pulp n.酱；果肉；纸浆
+sod n.  草地
+clench vt.捏紧；紧紧握住
+supplementation n.  增补,补充
+disrepute n.  坏名声
+syndrome n.  综合病症
+herein ad.在此处, 此中
+sugarlike a.类糖的(糖似的)
+survivability n. 残存性
+theological a.神学(上)的
+dorsal a.  背的, 脊的
+irritability n.  过敏性, 兴奋性
+neurilemmal a. 神经膜的, 神经鞘的
+neuroglia n.  [解]神经胶(质)
+concurrent a.一致的；同时的
+stratification n.分层, 成层法
+microcosm n.  微观世界
+unsureness n.  不确定, 缺乏自信
+belie v.  掩饰
+hesitant a. 迟疑的, 犹豫不定的
+sewer n.排水沟，下水道
+recrystallize v.  ( 使) 再结晶
+anytime ad.  任何时候, 无论何时
+intuitive a.有直觉力的，直觉到的
+undernutrition n.  营养不良
+hohokam a. 霍霍坎文化的
+irresponsible a.  不负责任的, 不可靠的
+health-crisis n.健康危机
+retrospect n.  回顾
+chronic a.  慢性的, 延续很长的
+flatfish n.  比目鱼
+attic n.阁楼
+sundial n.日昝仪, 日规
+butte n.  孤立的丘
+low-cost a.  价格便宜的, 廉价的
+uneducated a.没受教育的；文盲的
+securely ad.安全地；无疑地
+uncorrupt ad.不腐败的;廉洁的
+landscapist n.  风景画家
+complimentary a.称赞的；免费的
+incorporation n.合并；组建公司
+sobriquet n.  假名, 绰号
+socialize v.  使社会化, 使社会主义化
+rename vt.  重新命名, 改名
+awaken v.  唤醒, 醒来
+afflict vt.  使痛苦, 折磨
+governance n.  统治, 管理
+methodically ad. 有条不紊地, 有方法地
+feverishly ad. 兴奋地, 发热地
+antifungal a.  抗真菌的, 杀真菌的
+flashy a.  浮华的
+dimly ad.  微暗, 朦胧
+earthward ad.  向地球, 向地面
+overwhelmingly ad. 压倒性地, 不可抵抗地
+stressful a. 紧张的, 压力重的
+exertion n. 努力, 发挥,运用
+deformity n.  残缺, 畸形
+disruptive a.  使破裂的, 分裂性的
+girder n.  梁
+bustle v.  匆匆忙忙
+unforeseen a.无法预料的
+conversational a.会话的, 对话的
+abbreviate v.  缩写, 简化
+adviser n.  顾问,
+clarification n.  澄清, 净化
+speechwriter n.  演讲稿撰写人
+televisual a. 电视的
+electrify vt.  使充电, 使通电
+legislative a.立法的, 立法机关的
+melodic a.  有旋律的,调子美妙的
+predictably ad. 可预言地, 不出所料地
+climatically ad. 气候上, 风土上
+lethargic a.昏睡的
+fluke n.侥幸，偶然的机会
+blowhole n. 喷水孔, 通风孔
+pathology n.  病理学
+helper n.  帮忙者, 助手
+programme n.程序, 编程
+curvature n.  弯曲, 曲率
+endpoint n. 端点
+vocational a.职业的，业务的
+datebase n.数据库, 资料库
+shyness n.  羞怯, 胆怯
+lethargy n.  无生气
+hostility n.  敌意, 不友善
+credential n.  外交使节所递的国书, 信任状
+disorientation n. 迷失方向, 迷惑
+additionally ad.另外, 同时
+uninterrupted a.  不停的, 连续的
+bureaucratization n. 官化
+dissension n.  意见不同, 纠纷
+embryonic a.胚胎的，萌芽期的
+breakup n.破裂, 崩溃
+bylaw n. 附则, 法规
+republish vt.  再版, 重新发表
+publicly ad.  公然地, 舆论上
+distantly a.疏远的, 遥远的
+oily a.  油的, 油滑的
+categorize v.  加以类别, 分类
+severity n.  严肃, 严格
+definitively ad. 决定性地, 最后地
+lineage n.  血统, 世系
+pique n.生气, 愤怒
+newscast n.  <美>新闻广播
+fateful a.重大的；不幸的
+antipathy n.  憎恶, 反感
+hurtle v.  急飞
+glisten v.  闪光
+predate v.  提早日期, 居先
+finnish a.  芬兰的
+cenote n.天然井
+empathy n.移情作用, 共鸣
+hardwood n.  硬木, 阔叶树
+sash n.腰带，肩带
+foment vt.  [医]热敷
+pretentious a.自命不凡的，自负的
+heredity n.  遗传, 形质遗传
+yean v. 生产, 生育
+dining n.  吃饭
+amenity n.  宜人, 礼仪
+changeover n.转换, 大变更
+meander vi.蜿蜒而行
+skylight n.  天窗
+palatable a.味美的
+contender n.竞争者
+invariable n./a. 不变的, 永恒的
+depreciation n.  贬值, 减价
+unspecified a. 未详细说明的
+helplessness n.无能为力
+retentive a.有记忆力的
+amplifier n.扩音器, 放大器
+unfailingly ad. 无穷尽地, 可靠地
+bulge n./v.膨胀，鼓起
+undiscovered a.未被发现的
+helplessly ad.无能为力地
+optometrist n.  验光师, 视力测定者
+merciless a.残忍的；无情的
+strenuous a.奋发的, 费力的, 积极的
+passion n.激情，热情
+emancipate vt.释放, 解放
+protagonist n.提倡者，支持者
+leo n.[天]狮子座，狮子宫
+grimly ad.  严格地,冷酷地
+apportion v.  分配
+commentator n. 评论员, 解说员
+earning n.  所得,收入
+bankruptcy n.  破产
+subjugation n.  镇压, 平息
+uncontrollably a.无法管束的, 控制不住的
+consortium n.财团, 联合, 合伙
+preventive a.  预防性的
+supplementary a.增补的，补充的
+multidirectional a. 多方向的
+booklet n.  小册子
+curio n.  古董, 古玩
+chandler n.  杂货零售商
+speck n.  斑点
+encircle vt.  环绕, 围绕
+surmount vt.克服；置于…顶上
+californian n.  加利福尼亚州人 a.  加州的
+reaumur n./a. 列氏温度计(的)
+mycology n.  [植]真菌学
+glean v.  拾落穗, 收集
+nevus n.  [医]痣
+watcher n. 监票员, 看守人
+ostrich n.  鸵鸟
+faintly ad.  微弱地, 朦胧地
+dazzlingly ad.  灿烂地, 耀眼地
+tint n.  色彩
+varve n.[地质]纹泥
+server n.  服务器
+benign a.仁慈的, 温和的, 良性的
+feathery a.生有羽毛的,柔软如羽毛的
+churn v.  搅拌, 搅动
+awhile ad.  片刻, 一会儿
+proudly ad.  骄傲地
+oilskin n.  油布, 防水布
+unnoticed a.不被注意的, 被忽视的
+thunderous a.打雷的, 雷鸣般的
+faraway a.遥远的
+ploy n.花招，手段
+squeak n.吱吱声.v.吱吱叫
+crouch vi.  蜷缩, 蹲伏
+regain vt.收回；恢复
+heroism n.  英雄品质, 英雄主义
+inconspicuously ad. 难以觉察地, 不显著地
+matron n.主妇；护士长
+suspension n.暂停, 中止
+stratagem n.  战略, 计谋
+vole n.田鼠
+mimic vt.模仿, 模拟
+unmanageable a.难处理的, 难控制的
+rivet n.铆钉  v.固定
+hairy a.毛发的，多毛的
+flyway n.  候鸟迁徙所经的路径
+nozzle n.  管口, 喷嘴
+bonanza n.走运，发财
+overburden vt.  装载过多, 负担过多
+lavish a.无节制的；浪费的 vt.慷慨给予，挥霍
+bravery n.  勇敢
+creek n.  小溪, 小河,
+waster n.  挥霍者, 废品
+stamford n.斯坦福德[美国康涅狄格州西南部城市]
+trapper n.捕兽者, 捕捉器
+romantically ad. 浪漫地, 空想地
+prosecute v.起(公)诉，告发
+sonic a.  音速的
+enthusiast n.  热心家, 狂热者
+gingham n.条纹棉布
+shoeshine n.  鞋油, 擦皮鞋
+politely ad.有礼貌地
+modestly ad.  谨慎地, 适当地
+confluence n.  汇合
+crunch vi./n.嘎吱嘎吱地响(声)
+juggle v./n.玩杂耍
+mormon n.  摩门教徒, 一夫多妻主义者
+atheist n.  无神论者
+gallop n. /v.疾驰, 飞奔
+trestle n.架柱, 支架
+ravine n.  沟壑, 峡谷
+spidery a.  蜘蛛(网)一般的, 细长足的
+wildcatter n.  投机份子
+onlooker n.  旁观者
+folly n.  愚蠢, 荒唐事
+trespasser n. 侵入者, 侵犯者
+waxes n.蜡，蜂蜡 vt.给…上蜡
+refiner n.  精炼者, 精炼机
+richly ad.  富裕地, 丰富地
+remodel vt.  重新塑造, 改造
+kier n. 漂煮锅
+seepage n.  渗流, 渗出的量
+ponytail n.  马尾辫(一种发型)
+disuse n./v.废弃, 废止
+adequately ad.  充分地
+facsimile n.  摹写, 传真
+unproductive a.不生产的, 徒劳的
+methodical a.有条理的，井然的
+unnoticeable a. 不引人注意的(
+termination n.  终止
+irreparable a.无法修复的，不能挽回的
+birthright n.  生来就有的权利, 长子继承权
+negotiation n.  商议, 谈判
+fruitless a.  不结果实的
+conscription n.  征召
+aloof a.冷漠的
+delectable a.  使人愉快的
+intermittent a.间歇的，断断续续的
+hatchery n.  孵卵所
+doggedly ad.  固执地, 顽强地
+depot n.贮藏所, 仓库
+minnesota n.  明尼苏达州(美国州名)
+erupt vt.  喷出 vi.  爆发
+phonetic a. 语音的,语音学的
+chic a.别致的, 时髦的
+slapstick n.  闹剧, 趣剧
+hairdo n. 发型
+maraca n.  [音]沙球
+beater n.  搅拌器
+craze n.  狂热
+synthesizer n.  综合者, [电子]合成器
+blip n.（在雷达屏幕显示出的）物体光点, 尖音信号
+indiscernible a.看不清的
+lopsided a.倾向一方的, 不平衡的
+hippopotamus n.  河马
+tapir n.  [动]貘
+horsefly n.  马蝇
+nonelectronic a. 非电子的
+vestige n.痕迹
+reverently ad. 恭敬地, 虔诚地
+homeless a. 无家的, 无家可归的
+mystify v.  迷惑
+mesmerize v.  施催眠术
+undifferentiated a. 无差别的, 一致的
+gravitation n.  地心吸力, 引力作用
+sled n.(小)雪撬
+swampy a. 沼泽的，似沼泽的
+pickaxe n.鹤嘴锄, 手镐
+taint v.  感染 n.  污点
+pestilential a. 引起瘟疫的, 有害的
+miasmic a. 毒气的, 瘴气的
+onstage a.台上的,舞台表演区的
+holm n.(河，湖中的)小岛
+anymore ad.  不再, 再也不
+trainload n.  装载量, 列车载重
+ziggurat n.  古代亚述及巴比伦之金字形神塔(顶上有神殿)
+shapeless a.  不成形的, 无定形的
+troupe n.  剧团
+postmodern a. 后现代主义的
+expressionless a.无表情的
+foghorn n.[航海]雾角,尖而响的声音
+majestic a.雄伟的，壮丽的
+viennese n./a. 维也纳人（语）(的)
+commissioner n.  委员, 专员
+plum n.  [植] 李子, 洋李
+stilt n.  高跷, 支柱
+stele n.  石碑,  匾额
+chronology n.  年代学, 年表
+overt a.  明显的, 公然的
+colorfully a. 华美的, 富有色彩的
+eminence n.  出众, 显赫
+beacon n.信号灯，闪光灯
+stubbornness n.  倔强, 顽强
+prearrange v.  预先安排
+softball n.  垒球运动, 垒球
+shakespeare n.  莎士比亚(1564-1616,英国剧作家,诗人)
+cither n.  齐特拉琴(古希腊一种类似竖琴的古乐器)
+modernistic a. 现代的, 现代主义的
+wick n.  蜡烛心, 灯芯
+corp n.  公司
+sturdiness n.  强健, 雄壮, 坚固
+wicker n.  柳条 a.  柳条制的
+austere a.简朴的, 严厉的
+astrological a. 占星的, 占星术的
+mirage n.  海市蜃楼,幻想
+repertory n.  仓库
+nearness n.  靠近, 接近
+pavlova n.  奶油水果蛋白饼
+schoolroom n.  教室
+grandparents n. 外祖父母, 祖父母
+fruitfulness n. 多产, 肥沃
+ignition n.  点火, 点燃
+midwestern a. 美国中西部的
+interject vt.  插嘴, 突然插入
+lightness n.  轻盈, 灵活
+idyllic a.  田园短诗的, 牧歌的
+resonance n.共鸣,  反响
+allegory n.  寓言
+pretense n.借口,伪装，自吹
+gratuitous a.无缘无故的；免费的
+liveliness n.  活泼
+stench n.  恶臭, 臭气
+slime n.  粘土, 粘液
+tern n.  三个一组, [鸟]燕鸥
+starlike a.  星形的, 星般闪烁的
+slimy a.黏滑的, 卑劣的
+storeroom n.  储藏室, 库房
+oakland n. 奥克兰(美国加利福尼亚州西部城市)
+allude vi.暗指，提及
+sunburst n.  从云隙射下的阳光
+lordly a.高贵的；高傲的
+rebellious a.反抗的，难控制的
+disciple n.  信徒, 弟子
+tadpole n.  [动]蝌蚪
+propensity n.  倾向
+wildflower n.  野花
+stifle v. 窒息, 抑制
+debut n.首次演出，初次露面
+sufficiency n.充足；充裕
+foray v./n.突袭，偷袭
+lacquer n.漆, 漆器
+gobi n.  戈壁
+academically ad. 学业上
+summarization n.  摘要, 概要
+haphazardly ad. 不规则地, 随意地
+geometrically ad. 成几何级数(图形)地
+solidly ad.  坚硬地, 稳固地
+embroider v.刺绣，修饰
+drugstore n. 药房, 杂货店
+speckle n.小斑点  vt.点缀
+gentlemanly a.绅士派头的
+override vt.不顾，否决
+citadel n.  根据地, 大本营
+fresher n.  大学一年级新生, 新鲜人
+outcry n.  大声疾呼
+postgraduate n. 研究生
+endear vt.  使亲密
+participator n.参加者
+trespass n./v.侵犯，擅自进入
+darn v.缝补，补缀
+irony n.  反话, 讽刺
+cheerless a.  不快活的
+sovereignty n.  君主, 主权
+renunciation n.放弃，抛弃
+calvinist n.  加尔文教徒(见calvin)
+sociability n.  好交际,善于交际
+frivolity n.  轻薄,轻浮
+womanhood n.  女人,女人气质
+patriarchal a.家长的, 族长的
+disinterest n.无兴趣, 不关心
+luce n.  一种成鱼
+writhe vi.翻滚，扭动
+ventilation n.  通风, 流通空气
+babble v.说蠢话，牙牙学语
+belle n.  美女
+fragility n.  脆弱, 虚弱
+innocence n.  清白
+nonconformity n.  不信奉国教
+cardinal  a.  主要的, 最重要的
+fervor n.  热情, 热烈
+rosy a.  蔷薇色的, 玫瑰红色的
+telecommuter n. 远程工作者
+seduce vt.勾引；引诱
+programmer n.  程序师, 程序规划员
+paycheck n. 薪水支票, 工资
+accountant n.  会计(员), 会计师
+solitude n.  孤独
+chary a.小心的，审慎的
+farmhand n.  农业工人，农场工人
+tardiness n.  缓慢
+harvester n.  收割机
+reliant a.信赖的, 依靠的
+facet n.小平面, 方面, 刻面
+transpose vt. 调换, 颠倒顺序
+culturally ad. 人文地, 文化地
+iconographic a. 肖像的, 图像材料的
+earnestness n. 坚定, 认真
+folkloric a. 民间传说的, 民俗的
+vibrant a.震动的；明亮的
+coherence n.  一致
+reprieve n./ v.缓刑，暂时解救
+malfunction n.  故障
+eloquent a. 雄辩的, 有口才的
+introspective a.反省的
+etching n.  蚀刻版画
+gouache n.  树胶水彩画
+frisky a.  活泼的, 欢闹的
+yelp n.咆哮
+barrelful n.  一桶之量, 大量
+unwell a.  不舒服的
+chaotically ad. 浑沌地
+fearsome a.  可怕的
+scour vt.四处搜索；洗涤
+philology n.  语言学, 文献学
+unobservable a. 不可见的
+sluggishly a.缓慢的, 懒惰的
+balsam n.  香液
+weightily ad.  沉重地, 重要地
+zoology n.  动物学, 生态
+replant v.  再植, 改种
+nonessential a.  非本质的
+sensational a.轰动的, 耸人听闻的
+filmy a.  薄膜的, 朦胧的
+pearly a.  珍珠似的
+nationally ad.全国性地, 在全国范围内
+listless a.  倦怠的, 冷漠的
+aloft ad.  在高处, 在上
+hacienda n.  庄园
+vaguest a.含糊的，不明确的
+furnishing n. 供给(装备)
+oversight n. 疏忽,  看管
+stinger n.  刺激者, 讽刺者
+inundate v.  淹没
+luster n.  光彩, 光泽
+housewares n.  家用器皿
+drainpipe n.  排水管
+trash n.垃圾, 废物
+clayware n.  黏土制品
+weedy a.杂草多的
+mermaid n.美人鱼
+hart n.  雄赤鹿
+chant n.  圣歌
+plaza n.广场，集市
+slay v.杀死，宰杀
+falsely a.  虚伪地,  错误地
+emergent a.  紧急的
+landownership n.  土地所有
+metaphysical a.  形而上学的, 纯粹哲学的
+joyous a.  快乐的, 高兴的
+forceful a.有力的, 强烈的
+reluctance n.  不愿, 勉强
+epithet n.  绰号, 称号
+collapsible a.可折叠的;可拆卸的
+scruffy a.肮脏的，不洁的
+derisive a.嘲笑的
+messy a. 肮脏的, 凌乱的
+fragmentary a.  由碎片组成的
+oxidizable a. 可氧化的
+difluoride n. 二氟化物
+zirconium n.  锆
+publicity n.  公开
+relict n.残遗物
+effortlessly ad.毫不费力地, 轻易地
+defensible a.可防御的
+idealistic a.理想主义的, 空想的
+blister n.  水泡
+statuette n.  小雕像
+featureless a. 无特色的, 平凡的
+creed n.  信条
+scraggly a.  零乱的, 锯齿状的
+slapdash a.  匆促的
+shrubby a.灌木的
+brutal a.  残忍的, 兽性的
+impinge v.  撞击
+scrubbiness a.褴褛的,灌木丛生的
+flavin n.  [化]黄素, 四羟酮醇
+mountainside n.  山腹, 山腰
+avalanche n./v.雪崩
+sunbaked a. 晒干的
+testimony n.  证词, 宣言
+alumina n.  [化]氧化铝(亦称矾土)
+hairlike a.  毛一般的, 细微的
+coating n.  被覆, 衣料
+wee a.  很少的, 微小的
+rationalism n.  理性主义, 唯理论
+willful a.  任性的, 故意的
+worthiness n.  价值,值得
+moralistic a.狭隘道德观的, 说教的
+conscientious a.认真的，勤勤恳恳的
+syntax n. 语法, 句法
+loudness n.  大声, 喧闹
+playful a.爱玩耍的；幽默的
+discontinuity n.不连续, 中断
+prosaic a.单调乏味的,平淡的
+shroud n. 裹尸布, 寿衣.vt.  用裹尸布裹, 遮蔽
+landholder n.  地主, 土地拥有者
+workable a.可经营的, 可使用的
+moralism n. 道德主义, 说教
+dune n.沙丘
+monarchy n.  君主政体, 君主国
+nationalism n.  民族主义, 国家主义
+flowerpot n.  花盆, 花钵
+resale n.  再贩卖, 转售
+dubious a.  可疑的, 不确定的
+centralization n.  集中, 中央集权化
+profusion n.  丰富
+seacoast n.海滨
+lush a. 茂盛的, 丰富的
+champagne n.  香槟酒
+pesky a.讨厌的，烦人的
+overtone n.寓意；眩外音；暗示
+purposefully ad. 有目的地, 蓄意地
+dislodge v.  驱逐
+lint n.绷带用麻布
+shortness n.  短缺
+domestically ad.家庭式地,国内地
+behaviorist n. 行为主义者, 行为科学家
+foil n.  箔, 金属薄片
+newsworthy a.  有报导价值的
+imminent a.逼近的, 即将发生的
+proficiently ad. 熟练地
+locomotor a.  运动的
+wirephoto n.  有线传真
+attractively ad.有吸引力地，诱人地
+comminute v.  使成粉末,粉碎
+indebted a.受惠的, 负债的
+cache v.贮藏，隐藏  n.藏物处
+germination n.  萌芽, 发生
+unseen a.  未见过的
+cognition n.  认识
+forelimb n.  前肢
+limy a.含石灰的, 石灰似的
+lithographic a. 石版印刷的, 石版的
+lagoon n.  泻湖 礁湖
+numeral n.  数字
+eloquently ad. 雄辩地, 有口才地
+extravagantly ad. 挥霍无度地
+crest n.浪尖, 冠
+centrality n.  中心, 中央
+insatiable a.不知足的, 贪求无厌的
+prospective a.  预期的
+obstruction n.  阻塞, 妨碍
+procure v.  获得, 取得
+putrefaction n.  腐败, 腐败物
+pasteurization n.  加热杀菌法, 巴斯德杀菌法
+summertime n. 夏季
+meltdown n.  彻底垮台
+chlorate n.  [化]氯酸盐
+intersection n. 交集, 交叉点
+stepper n.行走的人或动物, 跳舞者
+supposition n.  假定, 想象
+smoothness n. 平坦， 光滑
+vertically ad.  垂直地
+dichotomy n.  两分, 二分法
+clipper n.  大剪刀, 快速帆船修剪者
+acoustical a. 听觉的, 声学的
+kitchenware n.  厨房用具
+intimidate v.  胁迫
+serviceable a. 有用地，耐用的
+chalky a.  白垩的
+yorkshire n.  约克郡,约克夏(英国英格兰原郡名)
+renowned a. 有名的, 有声誉的
+kinfolk n.  亲属
+nonliving a. 无生命的, 非活体的
+impervious a.不透的；不受影响的
+deceptive a.骗人的，造成假象的
+wok n. 锅，炒菜锅
+self-expression n.  自我表现
+appraisal n.估计, 评估
+lone a.孤独的，寂寞的
+dissenter n.持异议者
+enure vt.使习惯于.vi.变得更有利
+conformity n.  一致, 符合
+unanimity n.  全体一致
+pedagogical a.教学(法)的
+hopper n.  单足跳者
+scientifically ad. 科学地, 系统地
+modus n.  方法, 形式
+laborsaving a.节省劳力的;省力气的
+spontaneity n.  自发性
+paperback n.  平装本, 纸面本
+topical a.有关时事的
+ratchet n.棘轮, 棘齿
+humiliate v.  羞辱, 使丢脸
+conduction n.  传导
+indefinitely ad.不确定地
+unused a.不用的；未消耗的
+ala n. (昆虫的)翼, 翅
+terrifyingly ad. 恐怖地
+kinsman n.  男性亲戚, 同族者
+norman n./a.法国诺曼第人(的)
+chaste a.  贞洁的, 朴素的
+sully v.  玷污
+mouldy a.  发霉的, 腐朽的, 旧式的
+hygiene n.  卫生, 卫生学
+slothful a.偷懒的
+forefather n.  祖先, 祖宗
+soundly ad.完全地, 健全地
+torpor n.麻木,不活泼
+lull vt.缓和 n.暂时的平息
+lash n./ v.鞭打
+cementation n.  粘固
+trumpeter n.  喇叭手, 号兵
+breathless a.  无声息的, 喘不过气来的
+convene v.  召集, 集合
+wingless a.无翼的, 没有翅膀的
+sweaty a.  出汗的, 吃力的
+brawl vi.争吵, 怒骂
+useable a. 可用的, 有效的
+clockmaker n.  制造或修理钟表者
+linkage n.  联接
+multifunctional a.多功能的
+vigor n.  精力, 活力
+parliament n.  国会, 议会
+oust vt.  剥夺,取代,罢免
+chapbook n.  小本的诗歌集或故事书
+sage a.智慧的  n.智者
+rejoin v.再结合, 再加入
+debtor n.  债务人
+penal a.  刑事的
+wrapper n.  包装材料,包装纸
+outright a.  直率的, 彻底的 ad.  直率地, 彻底地
+orphanage n.  孤儿院, 孤儿身份
+authentic a. 可信的,真正的
+florist n.  种花人
+fragrance n.  芬芳, 香气
+daddy n.  爸爸
+eventual a.  最后的, 结局的
+agonize v.  使极度痛苦, 折磨
+oft ad.  常常, 再三
+horde n.  游牧部落
+primer n.  初级读本,原始物
+revert v.  回复
+copyright n.  版权, 著作权
+dutchman n.  荷兰人
+salesperson n.  售货员
+pelt n.  投掷, 毛皮 v.  剥...的皮, 投掷
+lowa n.  爱荷华州(美国中西部的一州)
+pella n. 斗篷
+goldsmith n.  金匠
+woodblock n.  木板 〈印〉木版
+image-bearing a. 形象的
+upwind a.  逆风的 ad.  逆风地
+volatility n.  挥发性
+nostalgic a.  乡愁的, 怀旧的
+pike n.  长枪, 梭子鱼 vt.  用矛刺穿
+seaboard n.  海岸, 沿海地方 a. 海滨的
+corrosive a.  腐蚀的, 蚀坏的 n.  腐蚀物
+rut n.  定例, 惯例 v.  在...形成车辙
+tenuous a.  纤细的,稀薄的
+guarantor n.  [律]保证人
+omnipotent a.  全能的, 无所不能的
+overland a. /ad.经过陆地的, 陆上的
+interstate a.  州际的
+carnation n.  荷兰石竹, 康乃馨, 粉红色
+sty n.  猪栏 v.  住在猪圈里, 关入猪栏
+undecided a.  未定的, (天气等)不稳定的
+oasis n.  (沙漠中)绿洲,舒适的地方
+irregularly ad. 不规则地,不整齐地
+gregarious a. 社交的,群居的
+pervasive a.  普遍的,深入的
+uninhabitable a. 不适宜居住的
+venom n.  (蛇的)毒液, 恶意 vt.  放毒, 使恶毒
+placental a.  胎盘的 n.  有胎盘哺乳动物
+spiny a.  多剌的, 剌状的
+anteater n.  [动]食蚁动物
+vagary n.  奇特行为, 奇想
+modulation n.  调制
+acoustic a.  有关声音的, 声学的
+marsupial n.  有袋动物 a.  有袋动物的
+dwindle v.  缩小
+outpouring n.  倾泄, 流出, 流露
+oxygen-free a. 无氧的,不需要氧气的
+beluga n.  (欧洲)白色大鳇鱼, 白鲸
+insensitivity n. 感觉迟钝,不灵敏性
+anaerobic a. 厌氧的,厌气的
+enrichment n.  发财致富, 丰富, 肥沃
+coincidence n.  一致,  同时发生或同时存在(尤指偶然)的事
+fine-quality a. 优良品质的
+printmaker n.  版画复制匠
+lithography n.  平版印刷术
+rationale n.  基本原理
+serigraphy n.  绢印, 绢网印艺术
+profit-making a. 盈利的
+chimp n.  (非洲)黑猩猩
+waterworks n. 自来水厂,供水系统
+lieu n.  场所
+self-protection a. 自卫的
+parkway n.  公园道路, 驾车专用道路
+serene a.  平静的 n.宁静
+boulevard n.  <美>林荫大道
+omission n.  冗长,疏漏
+implementation n.  执行
+multipurpose a.  多种用途的, 多目标的
+restful a.  宁静的
+preexist v.  先前存在
+incipient a. 初期的,初始的
+metamorphic a. 变质的,变性的
+sidewalk n.  人行道
+salt-rich a. 富含盐的
+libelous a. 诽谤的,损害名誉的
+broker n.  掮客, 经纪人
+washingtonian n. /a. (美国)华盛顿市(或州)人
+mass-circulation a. 大批量发行的
+sensationalism n.  追求轰动效应, 感觉论
+aromatic a.  芬芳的
+unmistakable a. 明显的,不会弄错的
+weird a.  怪异的, 超自然的, 不可思议的
+pollinate vt.  对...授粉
+runway n.  飞机跑道, 斜坡跑道, 河道
+irresistible a. 不可抵抗的,不能压制的
+rampant a.  猖獗的, 蔓生的
+crossbreed n.  [生物]杂种 v.  异种交配
+intrusion n.  闯入, 侵扰
+inactivate vt.  使不活泼, 阻止活动
+pollination n.  授粉
+recognizable a. 可辨认的,可认识的
+unwillingly ad. 不情愿地,勉强地
+impartially ad. 公平地,无私地
+retrain v.  重新教育, 再教育
+irrationally ad. 无理性地,不合理地
+boon n.  恩惠, 福利
+unavoidably ad. 不可避免地,不得已地
+layman n.  外行
+racetrack n.  (主要用于赛马, 赛狗的)跑道
+inoffensive a. 不触犯人的,无害的
+boomer n. 生育高峰中出生的人
+cynthia n.  月亮女神, 月亮
+struggler n. 奋斗者,斗争者
+honorable a. 光荣的,高贵的
+impregnate vt.  使怀孕, 使受精 a.  怀孕的, 充满的
+enthusiastically ad. 热心地,满腔热情地
+consecutive a. 连贯的,连续不断的
+needy a.  贫困的, 缺乏生活必需品的
+bequest n.  遗产, 遗赠
+childless a.  无儿女的
+cuticle n.  表皮,角质层
+spiky a.  大钉似的, 尖刻的
+waxy a.  象蜡的,苍白的, 柔软的,
+unpalatable a. 味道差的,难吃的
+epidermis n.  [生]表皮, 上皮
+immobilize vt.  固定不动
+deterrent n.  威慑 a. 遏制的
+infest vt.  骚扰,大批滋生
+rancho n.  大牧场(或大农场)工人住的棚屋
+breach n.  破坏, 裂口 vt.  打破, 突破
+left-hander n. 用左手的人
+crayon n.  有色粉笔, 蜡笔
+unwary a.  粗心的, 不警惕的
+sapiens a. （拉）现代人的
+left-sided a. 左侧的
+mastodon n.  [古生]乳齿象, 庞然大物
+preeminent a.  卓越的
+ingeniously ad. 贤明地,有才能地
+daunt vt.  沮丧
+monochromatic a. 单色的
+educable a.  可教育的, 可培养的
+scam n.  诡计 v. 诓骗
+astute a.  机敏的, 狡猾的
+emboss vt.  饰以浮饰, 使浮雕出来
+embellish v.  修饰
+unread a.  没有人看的, 无学问的
+reinterpretation n. 重新解释
+postdate vt.  填迟...的日期 n.  事后日期
+mania n.  [医]颠狂, 狂躁, 癖好, 狂热
+stash v. 存放 n.  隐藏处
+speedy a.  快的, 迅速的
+prepay vt.  预付
+loathsome a.  讨厌的
+counterfeit n.赝品  a.伪造的 v.  伪造
+sender n.  寄件人,发送人
+affix vt.  使附于, 粘贴 n.  [语]词缀
+self-educated a. 自学的
+obsess vt.  迷住, 使困扰
+demolish vt.  毁坏, 推翻, 粉碎
+glaciate vt.  使结冰, 以冰(或冰河)覆盖
+ambience n.  周围环境, 气氛
+cab n.  出租汽车
+frenzy n.  狂暴, 狂怒 vt.使发狂
+melodrama n.  情节剧
+cincinnati n. 辛辛那提（美国俄亥俄州西南部城市）
+trove n.  被发现的东西, 收藏的东西
+acronym n.  只取首字母的缩写词
+labyrinth n.  迷路, 迷宫, 难解的事物
+rubble n.  碎石
+rainer n. 人工降雨装置,喷灌装置
+yesteryear n.  去年 ad.  过去不久的岁月
+horse-powered a. 马力
+well-organized a. 组织有序的
+lore n.  学问,（动物的）眼光知识
+mortar n.  灰泥,迫击炮 vt. 用灰泥结合
+incongruity n.  不调和的, 不适宜的
+tableland n.  高原
+fullness n.  满, 丰富, 成熟
+recoil n.  畏缩, 弹回 vi.  退却, 畏缩
+musicologist n.  音乐学者
+forte n.  长处
+percussive a. 冲击的,叩诊的
+multistory a. 多层的,有多层楼的
+hammerhead n.  锤头 a.  锤头状的, 鲁钝的
+induct v.  感应,引导
+rain-forest n.热带雨林
+most-distinctive a. 最有特色的
+coincident a. 一致的,符合的
+assort v.  分类配全
+forgiveness n.  宽恕, 宽仁之心
+oat n.  [植]燕麦, 麦片粥
+differentiating a. 微分的
+symphonic a.  交响乐的, 和声的
+violinist n.  小提琴演奏者, 小提琴家
+cellist n.  大提琴演奏家
+upsurge n.  高潮 vi.涌起
+phenomenal a. 现象的,显著的
+midocean n. 海洋中央
+iron-rich n. 变形
+omnibus n.  公共汽车, 精选集 a.  综合性的
+accessibility n.  易接近, 可到达的
+unoccupied a. 空闲的,未占领的
+catalyze vt.  催化, 刺激, 促进
+suite n.  (一批)随员, (一套)家具, 组
+scavenge v.  打扫, 以(腐肉)为食
+subdivision n.  细分, 一部
+juvenile a.  青少年的 n.  青少年, 少年读物
+treetop n.  树稍
+ancestry n.  祖先(集合称), 血统
+virginal a.  处女的, 无瑕的
+dulcimer n.  [乐] 洋琴
+unpublished a. 未公开出版的,未发表过的
+twine n.  合股线 v. 织, (使)缠绕
+jumble v.  混杂, 搞乱 n.  混乱
+bituminous a. 沥青的,含沥青的
+toil n.  苦工, 圈套 v. 费力地做
+insurmountable a. 不能克服的,不能超越的
+instantaneously ad. 即刻,突如其来地
+prohibitively ad. 禁止地,过分地
+unprocessed a. 未被加工的
+uncooked a. 未煮过的
+forecaster n.  预报员
+untouched a.  未触及的, 未改变的
+mennonite n.  门诺派教徒
+humility n.  谦卑
+torrential a. 猛烈的,汹涌的
+advantageously ad. 有利地,方便地
+merchandis n. 商品,货物 v. 买卖
+proboscidean a.  长鼻类的 n. 长鼻目动物
+ill-conceived a. 构想拙劣的
+premium n.  额外费用, 奖金, 奖赏
+precursor n.  先驱
+economize v.  节省, 有效地利用
+haven n.  港口, 避难所
+tranquillity n. 宁静
+competitiveness n. 竞争力,好竞争
+atomization n.  分离成原子, 雾化
+custodian n.  管理人
+stagnate v.  (使)淤塞, (使)停滞, (使)沉滞, (使)变萧条
+civility n.  礼貌, 端庄
+unbridgeable a. 不能架桥的,不能逾越的
+determinedly ad. 决然地,断然地
+abandonment n.  放弃
+mimetic a. 模仿的,拟态的
+fictive a.  虚构的, 想象上的
+shudder n. 震动 vi.战栗, 发抖
+insanity n.  精神错乱, 疯狂, 愚顽
+pinon n.  矮松, 矮松果
+juniper n.  [植]刺柏属丛木或树木
+eke vt.  补充, 增加
+hem n.  边,缘 v.  给...缝边
+briny a.  盐水的, 咸的, 海水的
+midlatitude n. 中间纬度
+regenerate v.  使新生, 重建 a.  新生的, 更新的
+eviscerate v.  取出内脏, 除去精华
+sparingly ad.  节俭地, 保守地
+squirt v.  喷出
+sanction n.  支持, 制裁 vt. 支持, 鼓励
+antagonistic a. 敌对的,对抗性的
+buggy a.  多虫的 n. 童车
+infrequently ad. 罕见地, 稀少的
+quiescent a.  静止的
+inanity n.  空虚, 愚蠢
+romancer n.传奇小说作家, 讲虚构故事的人
+strikingly ad.  醒目地, 引人侧目地
+akin a.同类的
+voracious a.狼吞虎咽的, 贪婪的
+gourmet n.  美食家
+supremely ad. 无上地, 崇高地
+complacence n. 自满
+pleasantly ad.令人愉快地；舒适地
+supervision n.  监督, 管理
+humanist n.  人道主义者, 人文主义者
+cannibalism n.同类相食
+satirist n.  讽刺作家
+distend v.  (使)扩大, (使)扩张
+balmy a.芳香的, 温和的
+compo n.组合物,混合涂料
+pressurize vt.  增压, 密封
+freshness n. 新鲜, 精神饱满
+wearer n.  穿用者, 佩带者
+dimensional a.  维度的, 空间的, 尺寸的
+dependably ad.  可信任地
+reexamine v.  复试
+sanctimonious a. 伪装虔诚的, 道貌岸然的
+frenetic a.  发狂的, 狂热的
+distinctively ad/ 区别地, 特殊地
+prod v.  刺
+irreverence a.  不尊敬的
+briskness n.  敏捷, 活泼
+ethically ad. 伦理(学)上
+juxtaposition n.  毗邻, 并置
+platitudinous a.平凡的,  陈腐的
+moralize v.  教化 ,说教
+platitude n.  陈词滥调
+irreverent a.  不敬的,  无礼的
+megalopolis n.  巨大都市, 人口稠密地带
+conurbation n.  有卫星城的大都市
+elusive a.  难懂的, 难捉摸的
+scowl n. 愁容, 皱眉 v. 皱眉
+subterranean a.  地下的
+pharmacy n.  药房, 药剂学
+gyration n.  旋回, 回转
+miraculous a. 奇迹的,不可思议的
+grainy a.  粒状的, 木纹状的
+vagueness n.  暧昧, 含糊
+urbanize vt.  使都市化, 使文雅
+quaint a.  离奇有趣的, 奇怪的
+counterclockwise n./a.反时针方向(的)
+entanglement n.  纠缠
+diagonally ad. 斜对地,  对角地
+rustproof a. 不锈的, 抗锈的
+galvanize v.  通电流于, 电镀
+matrilinear a.  母系的
+underworld n.  黑社会
+crimp v.起皱, 卷曲, 抑制
+serrate a.  锯齿状的
+well-defined a.  定义明确的, 明确的
+convivial a.  好交际的, 愉快而随和的
+foreshadow v.  预示
+plaint n.  [诗]悲叹, 抱怨
+waterborne ad.  水上的,  水运的
+amazement n.  惊愕, 惊异
+urgency n.  紧急, 紧急的事
+unpromising a.  没有希望的(结果未必良好的)
+deter v.  阻止
+bluntly ad.  坦率地, 率直地
+overcharge v.  讨价过高,夸张,过度充电
+subclass n.  [生]亚纲, 子集
+stagecoach n.  驿马车, 公共马车
+steamboat n.  轮船, 汽艇
+simplistic a.过分简单化的
+teapot n.  茶壶
+rationally ad. 理性地
+prominence n.  突出, 显著
+importer n.  输入者, 进口商
+foundry n.铸造, 铸造场
+systematize v.  系统化
+singly ad.  单独地, 个别地
+gloss n.光泽，注解
+refinement n.  精致, 文雅
+earthworm n.  蚯蚓
+lateral n.  侧部, 支线 a.侧面的
+intimately ad. 密切地,  亲密地
+nostril n.  鼻孔
+bis ad.  二度, 二回
+uniqueness n. 唯一性, 独特性
+deferential a. 恭敬的, 顺从的
+shaper n.  造形者, 塑造者
+genial a.  亲切的
+avocational n. 娱乐,  消遣
+occupancy n.  占有
+mildly ad.  温和地, 适度地
+ethnographic a.民族志学的,  人种志学的
+wearability n. 耐磨性, 磨损性
+masthead n.  桅顶, 报头
+gazette n.  报纸, 政府的公报
+disc n.  圆盘, 唱片
+spheroidal a. 球状的
+flattish a.  有点平凡的, 稍平的
+businesswoman n.  妇女实业家
+expo n.  博览会, 展览会
+signer n. 签名人, (用手势) 示意者
+silurian a.  〈地〉志留纪的
+explosively ad.  爆发地, 引起爆炸地
+lastly ad.  最后, 终于
+culminate v.  达到顶点
+frill n.皱边
+facilitation n.  简易化, 助长
+provocative a.  煽动的 n.  刺激物
+megafossil n.大化石
+cryptic a.  秘密的, 含义模糊的
+genesis n.  起源
+conspiracy n.  共谋, 阴谋
+jobber n.  临时工, 批发商
+wholesaler n.  批发商
+sweatshop n.  血汗工厂(指工人劳动条件差,工作时间长,工资低的工场或工厂)
+retailer n.  零售商人
+orthopteran n.  直翅类的昆虫
+heyday n.全盛时期
+sideline n.  副业, 边界线
+modicum n.  少量, 一点点
+decorator n.  油漆工
+wonderfully ad.令人惊讶地；奇妙地
+unimaginable a.  不能想象的, 想象不到的
+ruthlessly ad.  冷酷地, 残忍地
+unknowing a.  没查觉的, 无知的
+scruple n./v. 踌躇, 犹豫
+equitable a.  公平的, 公正的
+laurasia n.  [地质] 劳亚古大陆
+innkeeper n.  旅馆主人
+peddler n.  小贩, 传播者
+educationally ad. 教育的, 有关教育的
+constellation n.  [天]星群, 星座
+working n.  工作
+grandparent n.  祖父或祖母, 祖父母
+contractor n.  订约人, 承包人
+cubism n.  立体派
+woodcarving n.  木雕, 木刻
+prodigy n.  惊人的事物, 天才
+nonconformist a.  不信奉英国国教的 n.  非国教徒
+fascination n.  魔力,  魅力, 迷恋
+profitability n.  收益性, 利益率
+renter n.  租贷人
+claimant n.要求者,申请者, 原告
+sadden v.  悲哀
+skeletally a.  骨骼的, 梗概的
+muscularly a.   肌肉的
+tinplate n.  镀锡铁皮, 马口铁
+starch n.  淀粉
+packer n.  包装工人, 打包机
+negate vt.  否定, 打消
+creeper n.  爬行者
+bluebird n.  北美产的蓝知更鸟
+lark n.  云雀, 百灵鸟
+communally ad.共同地, 社区地
+sociably ad.  和蔼可亲地
+obsolete a.已废弃的, 过时的
+rarefy v.  稀薄
+crossbones n.  交叉腿骨的图形
+figurehead n.  装饰船头的雕像, 破浪神
+snipe n.  [鸟]鹬
+intricately ad.  杂乱地,  复杂地
+icon n.  图标, 肖像
+antelope n.  羚羊
+interferometer n.  干涉计
+proprietorship n.  所有权
+aie n.急性包涵(体)脑炎
+imbibe v.  吸收
+agility n.  敏捷, 活泼
+delightful a. 令人愉快的,  可喜的
+overheat v.使过热， 变得过热
+rehydrate v.  [化] 再水化, 再水合
+efficacy n.  功效, 效验
+dilution n.  稀释
+festive a.  庆祝的, 喜庆的
+bust n.  半身像, 胸像
+equestrian a.  骑马的 n.  骑手
+urn n.  瓮, 缸
+timidity n.  胆怯
+stonemason n. 石匠
+biter n.  咬人的动物, 骗子
+plainspoken a.  老实说的,直言的
+grit n.  粗砂 v.  研磨
+aero a.  航空的,  飞行的
+cheapen v.  减价, 跌价
+thorny a.多刺的, 痛苦的
+inchworm n.  [昆] 尺蠖
+escalator n. 电动扶梯
+smite v.  重击
+indifference n.  不关心
+eyelid n.  眼皮, 眼睑
+comfortably ad.舒适地
+hatchet n.  短柄斧
+axe n.  斧, (经费的)大削减
+ambidextrous a.十分灵巧的
+attributable a. 可归因于 ... 的
+predominance n.  优势
+petrify v.  石化,吓呆
+ferromagnetic a.铁磁的
+occupant n.  占有者, 居住者
+inflexible a.  不可弯曲的, 僵硬的
+lotus n.  [植] 莲(花).a.贪图安乐的
+inexplicable a.无法解释的，难理解的
+therapeutic a.  治疗的, 治疗学的 n.治疗剂, 治疗学家
+restrictive a.  限制性的
+ail vi.生病，使苦恼
+unbind vt.  解开, 解放
+grecian a.  希腊的, 希腊式的 n.  希腊学家
+defender n.  防卫者, 拥护者
+volcanism n.  火山作用
+subduction n.[地]潜没(指地壳的板块沉到另一板块之下)
+electrocardiogram n.  .[医]心电图
+electroencephalogram n.  [医]脑电图
+blackout n.  灯火管制，断电
+jolt v./ n.(使)颠簸；震动
+bandleader n.  伴舞乐队的指挥
+ballroom n.  舞厅, 跳舞场
+memorandum n.  备忘录, 便笺
+pepper n.  胡椒粉
+accusation n.  谴责, [律]指控
+obligate vt.  使负义务 a.  有责任的
+forbearance n.自制，忍耐
+maverick a.标新立异的；持不同意见的
+commemorate vt.  纪念
+blower n.  吹制工, 送风机
+decor n.  舞台装饰
+fresco n. 壁画 vt.  作壁画于
+rook n.白嘴鸦；赌棍  vt.骗
+equilateral a.  等边的 n.  等边形
+romanticize v.  浪漫化, 传奇化
+misconception n.  误解
+tessellation n.棋盘形嵌石饰
+cate n. 佳肴, 美食
+officeholder n.官员,公务员
+pentagon n.五角形, 五边形
+corset n.束腹, 妇女的胸衣.vt.严格控制
+sheepskin n.羊皮(革,纸), 毕业证书
+denomination n.面额,名称,教派
+breech n.臀部,后膛.vt. 给…穿上裤子
+mitigate v.减轻,缓和
+feud n.不和,争执.vi.长期争斗
+ted vt.翻晒.n.泰德
+venturesome a.危险的,冒险的
+knuckle n.指节, 关节.v.开始工作
+familiarization n.亲密, 熟悉, 精通
+bulldoze v.威吓, 欺负
+mason n.泥瓦匠.vt. 用砖瓦砌成
+woodlot n.植林地(尤指附属林场地)
+profoundly ad.深深地, 衷心地
+hone n.磨（刀）石vt.用磨刀石磨
+tele n.电视
+uncounted a.无数的,没有数过的
+profiteer n.奸商.vi.牟取暴利
+arsenal n.兵工厂, 军械库
+ordnance n.军火
+tycoon n.企业界大亨, 将军
+stickpin n.领带夹(指插于领带上的装饰别针)
+flamboyant a.辉耀的,艳丽的
+rumble v.隆隆声,低沉地说.n. 隆隆声, 吵嚷声
+gunfire n.炮火
+ameliorate v.改善, 改进
+easy-access a.便于接近,易于检修
+heartbreak n.心碎；伤心事
+northerner n.北国人, 北方人
+tingle v.造成麻刺的感觉,使感刺痛
+achingly ad.极其,非常痛地
+dishonest a.不诚实的
+roadway n.车行道, 路面
+promoter n.促进者, 助长者
+hydra n.[希神]九头怪蛇, 难以根除之祸害, [动]水螅
+coelenterate n.[动]腔肠动物.a.腔肠动物的
+plantlike a.似植物的
+homeownership n.房主
+traction n.牵引,牵引力
+dictaphone n.录音电话机（商标名称） [商标名] 录音机
+succinctly ad.简洁地, 简便地
+codify v.把…编成法典, 编纂
+airy a.通风的, 轻快的
+reconstitute vt.重新组成, 重新设立
+overexploitation n.(对资源等的)过度开采,(对工人等的)过度剥削
+designation n.指示, 指定, 名称
+entrench v.以壕沟防护,保护
+thousandth a.第一千的, 千分之一的
+woodworking n.木工艺, 木工行业.a. 干木工活的
+demolition n.毁坏, 毁坏之遗迹
+magnification n.扩大, 放大倍率
+sawyer n.锯木匠, 漂流水中的树木
+wavy a.波状的,不稳的
+cooper n.制桶工人.v.制桶
+forestall vt.之前, 先...(用先发制人的方法)预防, 阻止
+melange n.混合物, 杂录
+waterside n./.a. 水边(的),湖畔(的)
+irrational a.无理性的, 失去理性的.n.无理数
+improbable a.不大可能的, 不像会发生的, 似不可信的
+kiosk n.亭子
+cordwainer n.鞋匠
+sear a.烤焦的, 枯萎的.v.  烤焦,变干枯
+negligibly ad.可忽略不计地, 微不足道地, 极小地
+abut v.邻接, 毗邻
+annex n.附件.vt. 并吞, 附加
+proliferate vi.繁殖,使 ... 激增, 使 ... 扩散
+spank vt. 鞭策...前进.vi.轻快的移动.n. 拍击
+peart a.有精神的, 快活的
+indonesia n.印尼(东南亚岛国)
+thailand n.泰国
+biodiversity n.生物多样性
+newberry n. 纽伯里
+keenly ad.敏锐地, 强烈地, 热心地
+captivate vt.迷住, 迷惑
+philanthropist n.慈善家,博爱的人
+purplish a.略带紫色的
+venerable a.值得尊敬的, 庄严的
+sargeant n.萨金特
+gentility n.文雅, 出身高贵, 有教养
+plasticity n.可塑性, 塑性
+adolescent a.青春期的.n.青少年
+regimentation n.管辖,严格控制
+rarer a.稀罕的,  珍贵的
+jibe v.嘲笑, 与...一致, 使转向
+knead vt.揉(面等)成团, 按摩
+nonchalant a.若无其事的, 不关心的, 冷淡的
+humanlike a.似人类的
+boron n.  [化]硼
+topographically ad.  地形地
+mandatory a.命令的, 托管的
+scholarly a.学者气质的, 学者风度的
+offering n.提供, 奉献物
+chlorine n.[化]氯
+bromine n.[化]溴
+gush v.涌出,滔滔不绝.n.迸发
+kea n.食肉鹦鹉
+hillbilly n.山地内部的贫农,乡下人
+pont n.(南非的)缆拉渡船
+resettle v.(使)重新定居,再坐下来
+pivotal a.重要的, 轴的
+untimely a./ad.不适时的, 不合时宜的.
+pointe n.（芭蕾舞中的）足尖舞
+woodcutting a.木雕的.n.  伐木, 木刻
+circulatory a.循环的, 循环系统的
+variance n.不一致, 变化,
+affiliate v.使隶属于.n.附属机构
+unquestioning a.无条件的, 不犹豫的
+primatology n.灵长类动物学
+demerit n.缺点,过失
+inferiority n.自卑, 次等
+tyrannical a.暴虐的, 压制的, 残暴的
+potentiality n.(用复数)潜能,可能性
+applicability n.适用性, 适应性
+enlightenment n.启迪, 教化
+glossy a.平滑的, 有光泽的
+relevance n.中肯, 适当
+wanderer n.流浪者, 徘徊者, 迷路的动物
+rebirth n.复活, 新生
+unfertilized a.未施肥的,  未受精的
+untreated a.未经处理的, 未经治疗的
+folklore n.民间传说, 民俗学
+fumigate vt.熏制, 以烟熏消毒
+unverified a.未经证实的,  未经核对的
+uncontested a.无争论的, 无异议的
+nutritionist n.营养学家
+dismal a.阴沉的, 凄凉的n. 沼泽
+roe n.鱼卵,獐鹿
+unrecognizable a.未被承认的, 无法识别的
+directive n.指示.a.指导的
+unreachable a.不能到达的,  不能得到的
+slowness n.缓慢, 迟钝
+herculean a.极困难的,需要大力气的
+colossal a.巨大的,  <口>异常的
+imprisonment n.关押,监禁
+wold n.无树木的山地, 荒野
+abalone n.[动]鲍鱼(软体动物)
+mime n.哑剧.v.做哑剧表演
+sun-dried a.太阳晒干的
+dram n.  液量特兰(药衡系统中的容量单位),  少量
+retool v.将机械重新整备, 重组
+urchin n.顽童, [动物]刺猥, [动物]海胆
+relational a.有关系的, 亲属的
+demobilize vt.使复员, 使退伍, 遣散
+palimpsest n.重写本
+hermetic a.密封的, 与外界隔绝的
+lust n.繁殖力, 强烈的性欲.vi.强烈欲望
+posthumously ad.在死后
+outfit n.  用具, 全套装配, vt.  配备, 装备
+maw n.动物的胃,口部
+bryn n.布琳
+consistency n.坚固性, 浓度, 一致性
+sentimentalism n.感情主义, 沉于情感
+philosophic a.哲学的, 哲学家的
+trilogy n.三部剧, 三部曲
+diction n.措辞, 用语, 言语
+stylish a.时髦的, 漂亮的, 流行的
+arena n.竞技场, 舞台
+storehouses n.仓库,  储藏所,  宝藏
+uncharted a.地图上没标明的,未知的
+hanker vi.渴望, 追求
+rattlesnake n.<美>[动]响尾蛇
+glamorous a.富有魅力的, 迷人的
+garb n.服装.v. 装扮
+collarless a.无领的,无马轭(或颈圈)的
+cowhand n.<美>(牧场的)牧牛工
+taxonomy n.分类法, 分类学
+narrower a.有限的, 精密的.n.海峡
+evenness n.平均, 平等, 平坦
+poikilotherm n.[动]变温动物,冷血动物
+depositor n.寄托者, 存款人
+lyrically ad.抒情地,  狂热地
+theatrically ad.戏剧化地
+splinter n.尖片, 碎片.vt.分裂
+tonnage n.登记吨位, 排水量
+seagoing a.适于远航的,出海的
+mainsheet n.  主桅帆操纵索
+oblivious a.没注意到, 健忘的
+coaming n.舱口栏板, 边材
+lad n.少年, 青年男子
+choppy a.（海等）波浪起伏的, (指风)不断改变方向的
+illustrator n.插图画家,说明者
+ectothermic n.变温动物
+poikilothermic a.[动]变温的, 冷血动物的
+locomote vi.移动, 行动
+inadequately ad.不够地,  不够好
+onetime a.从前的,  一度的.ad.从前
+citation n.引用,表扬
+comical a.好笑的, 滑稽的
+mollusk n.[动]软体动物
+rediscover vt.重新发现
+eminent a.著名的,  卓越的
+bleak a.寒冷的,荒凉的, 黯淡的
+sequester vt.使隐退, 扣押, 没收
+metazoan n./a.[动]后生动物(的)
+abreast ad.并肩地, 并排地
+serum n.浆液, 血清
+adrenaline n.肾上腺素(使激动兴奋等)
+milieu n.周围, 环境
+compensatory a.赔偿的, 补偿的
+unconventional a.非传统的, 不合惯例的
+gibe v.嘲笑,讥笑.n.嘲笑
+proprietor n.所有者, 经营者
+lintel n.[建]楣, 过梁
+untapped a.塞子未开的, 未使用的
+mysteriously ad.神秘地,  故弄玄虚地
+corral n.畜栏.vt.关进畜栏
+playwright n.剧作家
+cuban n.古巴人.a.古巴(人)的
+char vt.烧焦.n.碳
+tavernkeeper n.小餐馆老板
+upgrade n.升级, 上升.vt.使升级, 提升.ad.往上
+slavish a.奴隶的, 盲从的, 专横的
+emotive a.感情的, 引起强烈感情的
+physic n.医术.vt.治愈
+synapsis n.[生]染色体结合, 突触
+unsophisticated a.不谙世故的, 不复杂的
+unspoiled a.未损坏的, 未宠坏的
+arthritis n.关节炎
+whim n.一时的兴致, 奇想
+hospitable a.好客的, 宜人的
+carnivorous a.食肉的, 肉食性的
+depredation n.掠夺, 破坏痕迹
+nostalgia n.乡愁, 怀旧之情
+stewpot n.双把炖锅
+adolescence n.青春期
+toronto n.多伦多（加拿大）
+narrowly ad.勉强地, 精细地
+spar n. 争论,园材(如桅,桁等)
+dough n.生面团
+flair n.才能, 本领
+esoteric a. 秘传的,  神秘的,  难懂的
+potion n.一服, 一剂
+laboriously ad. 艰难地,  辛勤地
+elixir n.炼金药, 不老长寿药
+inextricably ad.分不开地, 无法摆脱地
+imprecise a.不精确的
+quaker n.教友派信徒, 贵格会会员
+alternately ad.交替地,轮流地
+thermodynamic a.热力学的, 使用热动力的
+uncrumple vt.去掉…的皱纹,使回复到平整状态
+untwist v.拆开(搓合的绳,线等), 解开
+selfless a.无私的
+fanatical a.狂热的, 入迷的
+coax vt.巧妙地（耐心地）处理,哄
+flue n.烟道, 暖气管
+pivot n.枢轴.vi.在枢轴上转动
+coordination n.协调
