@@ -65,27 +65,29 @@
             <version>2.0.81782</version>
         </dependency>
     </dependencies>
-    <plugins>
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.1.1</version>
-            <executions>
-                <execution>
-                    <phase>test</phase>
-                    <goals>
-                        <goal>java</goal>
-                    </goals>
-                    <configuration>
-                        <mainClass>com.youdao.dict.crawl.TutorialCrawler</mainClass>
-<!--                        <arguments>
-                            <argument>arg0</argument>
-                            <argument>arg1</argument>
-                        </arguments>
--->
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.youdao.dict.crawl.TutorialCrawler</mainClass>
+                            <!--                        <arguments>
+                                                        <argument>arg0</argument>
+                                                        <argument>arg1</argument>
+                                                    </arguments>
+                            -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
