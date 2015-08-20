@@ -64,7 +64,7 @@ public class ChinaDailyExtractor {
 //        }
 //        contentStr = contentElements.text();
         LeveDis leveDis = LeveDis.getInstance(LeveDis.p);
-        String tags = leveDis.tag(contentStr, 10);
+        String tags = leveDis.tag(contentStr, 5);
         p.setLabel(tags);
         int level = leveDis.compFileLevel(leveDis.compLevel(contentStr));
         p.setLevel(String.valueOf(level));
@@ -83,9 +83,9 @@ public class ChinaDailyExtractor {
             img.attr("style", "width:100%;");
             long id = new OImageUploader().deal(imageUrl);
             URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-            img.attr("src", newUrl.toString() + "&w=300");
+            img.attr("src", newUrl.toString());
             if (mainImage == null) {
-                mainImage = newUrl.toString() + "&w=300";
+                mainImage = newUrl.toString();
             }
         }
         if (mainImage == null) {
