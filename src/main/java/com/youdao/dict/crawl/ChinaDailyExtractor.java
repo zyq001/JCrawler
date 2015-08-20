@@ -28,7 +28,7 @@ public class ChinaDailyExtractor {
         String url = page.getUrl();
         Document doc = page.getDoc();
         JsoupUtils.makeAbs(doc, url);
-        SoupLang soupLang = new SoupLang(ClassLoader.getSystemResourceAsStream("DictRule.xml"));
+        SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getSystemResourceAsStream("DictRule.xml"));
 //        SoupLang soupLang = new SoupLang(ClassLoader.getSystemResourceAsStream("DictRulePhone.xml"));
         Context context = soupLang.extract(doc);
         ParserPage p = new ParserPage();

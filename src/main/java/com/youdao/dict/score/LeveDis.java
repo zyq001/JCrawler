@@ -42,8 +42,8 @@ public class LeveDis {
 
     private HashSet<String> ielts = new HashSet<String>();
 
-//    public static String p = "/global/exec/zhanghui/data";
-    public static String p = "/home/disk/codespace/homework/MyCrawl/src/main/resources";
+    public static String p = "/global/exec/zhanghui/data";
+//    public static String p = "/home/disk/codespace/homework/MyCrawl/src/main/resources";
 
     public static LeveDis getInstance(String path) {
         if (instance == null) {
