@@ -3,13 +3,11 @@ package com.youdao.dict.crawl;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
 import com.youdao.dict.bean.ParserPage;
-import com.youdao.dict.contentextractor.ContentExtractor;
 import com.youdao.dict.score.LeveDis;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -22,13 +20,14 @@ import java.util.regex.Pattern;
  * Created by liuhl on 15-8-17.
  */
 public class ChinaDailyExtractor {
-    public static long MINSIZE = 1024;
+    public static long MINSIZE = 512;
 
     public static ParserPage extractor(Page page) throws Exception {
         String url = page.getUrl();
         Document doc = page.getDoc();
         JsoupUtils.makeAbs(doc, url);
-        SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getSystemResourceAsStream("DictRule.xml"));
+        SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("DictRule.xml"));
+
 //        SoupLang soupLang = new SoupLang(ClassLoader.getSystemResourceAsStream("DictRulePhone.xml"));
         Context context = soupLang.extract(doc);
         ParserPage p = new ParserPage();
