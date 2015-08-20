@@ -16,7 +16,7 @@ public class DBClient {
 
     public static long insert(ParserPage p) {
 
-        String sql = "insert into parser_page2 (title, type, label, level, style, host, url, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into parser_page (title, type, label, level, style, host, url, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?)";
         Connection conn = DBConnUtil.getConn();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -48,7 +48,7 @@ public class DBClient {
 
     public static List<ParserPage> getList() {
         List<ParserPage> list = new ArrayList<ParserPage>();
-        String sql = "select * from parser_page2";
+        String sql = "select * from parser_page";
         Connection conn = DBConnUtil.getConn();
         PreparedStatement ps = null;
         ResultSet rs = null;
