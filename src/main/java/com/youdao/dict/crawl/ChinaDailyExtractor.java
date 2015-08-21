@@ -33,8 +33,10 @@ public class ChinaDailyExtractor {
         ParserPage p = new ParserPage();
         String type = (String) context.output.get("type");
         String type0 = (String) context.output.get("type0");
-        if (type0 != null && !"".equals(type0.trim()))
-            type = type + "," + type0;
+        if (type0 != null && !"".equals(type0.trim())) {
+            type0 = type0.replaceAll("/", "");
+            type = type + "," + type0.trim();
+        }
         if (type == null || "".equals(type.trim())) return null;
         p.setType(type.trim());//TODO
         String title = (String) context.output.get("title");
