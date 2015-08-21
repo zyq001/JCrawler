@@ -1,5 +1,6 @@
 package com.youdao.dict;
 
+import com.sun.jna.platform.win32.Sspi;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.DBClient;
 
@@ -24,7 +25,7 @@ public class FixTime {
                     String time = array[4] + "-" + array[5];
                     DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                     Date date = format1.parse(time);
-                    p.setTime(String.valueOf(date.getTime()));
+                    p.setTime(String.valueOf(time));
                     DBClient.updateTime(p);
                 } catch (ParseException e) {
                     count++;
