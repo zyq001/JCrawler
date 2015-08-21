@@ -78,4 +78,70 @@ public class DBClient {
         return list;
     }
 
+
+    public static boolean updateTime(ParserPage p) {
+        boolean flag=true;
+        Connection conn=null;
+        PreparedStatement ps=null;
+        String sql="update parser_page set time=? where id=?";
+        conn= DBConnUtil.getConn();
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setString(1, p.getTime());
+            ps.setLong(2, p.getId());
+            int i= ps.executeUpdate();
+            if(i==0){
+                flag=false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            DBConnUtil.closeAll(null, ps, conn);
+        }
+        return flag;
+    }
+
+    public static boolean update(ParserPage p) {
+        boolean flag=true;
+        Connection conn=null;
+        PreparedStatement ps=null;
+        String sql="update parser_page set content=? where id=?";
+        conn= DBConnUtil.getConn();
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setString(1, p.getContent());
+            ps.setLong(2, p.getId());
+            int i= ps.executeUpdate();
+            if(i==0){
+                flag=false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            DBConnUtil.closeAll(null, ps, conn);
+        }
+        return flag;
+    }
+
+    public static boolean remove(ParserPage p) {
+        boolean flag=true;
+        Connection conn=null;
+        PreparedStatement ps=null;
+        String sql="delete from parser_page where id=?";
+        conn= DBConnUtil.getConn();
+        try {
+            ps=conn.prepareStatement(sql);
+            ps.setLong(1, p.getId());
+            int i=ps.executeUpdate();
+            if(i==0){
+                flag=false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            DBConnUtil.closeAll(null, ps, conn);
+        }
+
+        return flag;
+    }
 }
