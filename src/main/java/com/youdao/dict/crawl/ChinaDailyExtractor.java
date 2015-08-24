@@ -31,6 +31,7 @@ public class ChinaDailyExtractor extends BaseExtractor {
         try {
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("DictRule.xml"));
             context = soupLang.extract(doc);
+            content = (Element) context.output.get("content");
             return true;
         } catch (Exception e) {
             return false;

@@ -113,7 +113,7 @@ public class ChinaDailyCrawler extends DeepCrawler {
         ChinaDailyCrawler crawler = new ChinaDailyCrawler("../data/wb");
         crawler.setThreads(50);
 //        crawler.addSeed("http://www.chinadaily.com.cn/");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/2014-08/20/content_18456605.htm");
+        crawler.addSeed("http://www.chinadaily.com.cn/kindle/2015-08/11/content_21559792.htm");
         crawler.setResumable(false);
 
 
