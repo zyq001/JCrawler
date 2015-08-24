@@ -53,8 +53,19 @@ public class WashingtonCrawler extends DeepCrawler {
     public WashingtonCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://www.chinadaily.com.cn/.*");
-        regexRule.addRule("-.*jpg.*");
+        regexRule.addRule("https://www.washingtonpost.com/entertainment/.*");
+        regexRule.addRule("https://www.washingtonpost.com/lifestyle/.*");
+        regexRule.addRule("https://www.washingtonpost.com/technology/.*");
+        regexRule.addRule("https://www.washingtonpost.com/business/.*");
+        regexRule.addRule("https://www.washingtonpost.com/world/.*");
+        regexRule.addRule("https://www.washingtonpost.com/national/.*");
+        regexRule.addRule("https://www.washingtonpost.com/sports/.*");
+        regexRule.addRule("https://www.washingtonpost.com/local/.*");
+        regexRule.addRule("-https://www.washingtonpost.com/politics/.*");
+        regexRule.addRule("-https://www.washingtonpost.com/opinions/.*");
+        regexRule.addRule("-https://www.washingtonpost.com/posttv/.*");
+        regexRule.addRule("-https://www.washingtonpost.com/cars/.*");
+        regexRule.addRule("-https://www.washingtonpost.com/opinions/.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
          JDBCHelper.getJdbcTemplate("mysql1")来获取这个对象。
@@ -78,7 +89,7 @@ public class WashingtonCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new ChinaDailyExtractor(page);
+            BaseExtractor extractor = new WashingtonExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
@@ -111,10 +122,9 @@ public class WashingtonCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        WashingtonCrawler crawler = new WashingtonCrawler("../data/wb");
+        WashingtonCrawler crawler = new WashingtonCrawler("../data/washington");
         crawler.setThreads(50);
-//        crawler.addSeed("http://www.chinadaily.com.cn/");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/2014-08/20/content_18456605.htm");
+        crawler.addSeed("https://www.washingtonpost.com/regional/");
         crawler.setResumable(false);
 
 

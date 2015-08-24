@@ -77,7 +77,9 @@ public class BaseExtractor {
                 img.removeAttr("height");
                 img.removeAttr("HEIGHT");
                 img.attr("style", "width:100%;");
-                long id = new OImageUploader().deal(imageUrl);
+                OImageUploader uploader = new OImageUploader();
+                uploader.setProxy("proxy.corp.youdao.com", "3456");
+                long id = uploader.deal(imageUrl);
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 img.attr("src", newUrl.toString());
                 if (mainImage == null) {
@@ -86,10 +88,13 @@ public class BaseExtractor {
             }
             if (mainImage != null) {
                 p.setMainimage(mainImage);
+                log.info("*****extractorAndUploadImg  success*****");
                 return true;
             }
+            log.info("*****extractorAndUploadImg  failed*****");
             return false;
         } catch (Exception e) {
+            log.info("*****extractorAndUploadImg  failed*****");
             return false;
         }
     }
@@ -103,12 +108,14 @@ public class BaseExtractor {
         contentHtml = contentHtml.replaceAll("<(?!img|br|p|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
         p.setContent(contentHtml);
+        log.info("*****extractorContent  success*****");
         return true;
     }
 
     public boolean extractorTags() {
         log.info("*****extractorTags*****");
         if (content == null) {
+            log.info("*****extractorTags  failed*****");
             return false;
         }
         try {
@@ -118,8 +125,10 @@ public class BaseExtractor {
             p.setLabel(tags);
             int level = leveDis.compFileLevel(leveDis.compLevel(contentStr));
             p.setLevel(String.valueOf(level));
+            log.info("*****extractorTags  success*****");
             return true;
         } catch (Exception e) {
+            log.info("*****extractorTags  failed*****");
             return false;
         }
     }

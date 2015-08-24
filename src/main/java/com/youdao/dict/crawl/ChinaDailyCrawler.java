@@ -66,8 +66,13 @@ public class ChinaDailyCrawler extends DeepCrawler {
 
         try {
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+                    "root", "tiger", 5, 30);
+/*
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                     "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
                     "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+*/
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -112,8 +117,8 @@ public class ChinaDailyCrawler extends DeepCrawler {
         */
         ChinaDailyCrawler crawler = new ChinaDailyCrawler("../data/wb");
         crawler.setThreads(50);
-//        crawler.addSeed("http://www.chinadaily.com.cn/");
-        crawler.addSeed("http://www.chinadaily.com.cn/kindle/2015-08/11/content_21559792.htm");
+        crawler.addSeed("http://www.chinadaily.com.cn/");
+//        crawler.addSeed("http://www.chinadaily.com.cn/kindle/2015-08/11/content_21559792.htm");
         crawler.setResumable(false);
 
 

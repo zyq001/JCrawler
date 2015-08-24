@@ -14,17 +14,17 @@ public class LeveDis {
     public static final Logger LOG =
             LogFormatter.getLogger(LeveDis.class);
 
-    public static final String HS_FILE = "highschool.txt";
+    public static final String HS_FILE = "vocPath/highschool.txt";
 
-    public static final String CET4_FILE = "cet4.txt";
+    public static final String CET4_FILE = "vocPath/cet4.txt";
 
-    public static final String CET6_FILE = "cet6.txt";
+    public static final String CET6_FILE = "vocPath/cet6.txt";
 
-    public static final String TEM4_FILE = "toefl.txt";
+    public static final String TEM4_FILE = "vocPath/toefl.txt";
 
-    public static final String TEM8_FILE = "gre.txt";
+    public static final String TEM8_FILE = "vocPath/gre.txt";
 
-    public static final String IELTS_FILE = "ielts.txt";
+    public static final String IELTS_FILE = "vocPath/ielts.txt";
 
     private String vocPath = null;
 
@@ -42,7 +42,8 @@ public class LeveDis {
 
     private HashSet<String> ielts = new HashSet<String>();
 
-    public static String p = "/global/exec/zhanghui/data";
+    public static String p = "";
+//    public static String p = "/global/exec/zhanghui/data";
 //    public static String p = "/home/disk/codespace/homework/MyCrawl/src/main/resources";
 
     public static LeveDis getInstance(String path) {
@@ -137,12 +138,12 @@ public class LeveDis {
         String tem4Path = vocPath + "/" + TEM4_FILE;
         String tem8Path = vocPath + "/" + TEM8_FILE;
 
-        if (!loadVoc(hsPath, hsVoc)
-                || !loadVoc(cet4Path, cet4Voc)
-                || !loadVoc(cet6Path, cet6Voc)
-                || !loadVoc1(itelsPath, ielts)
-                || !loadVoc(tem4Path, tem4Voc)
-                || !loadVoc(tem8Path, tem8Voc)) {
+        if (!loadVoc(HS_FILE, hsVoc)
+                || !loadVoc(CET4_FILE, cet4Voc)
+                || !loadVoc(CET6_FILE, cet6Voc)
+                || !loadVoc1(IELTS_FILE, ielts)
+                || !loadVoc(TEM4_FILE, tem4Voc)
+                || !loadVoc(TEM8_FILE, tem8Voc)) {
             LOG.warning("[LevelWordDiscriminator] some loadVoc error...");
         }
     }
@@ -154,8 +155,8 @@ public class LeveDis {
         }
 
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    new FileInputStream(path), "UTF-8"));
+            InputStream is = LeveDis.class.getClassLoader().getResourceAsStream(path);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -189,8 +190,8 @@ public class LeveDis {
         }
 
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    new FileInputStream(path), "UTF-8"));
+            InputStream is = LeveDis.class.getClassLoader().getResourceAsStream(path);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 
             String line;
             while ((line = br.readLine()) != null) {
@@ -237,8 +238,10 @@ public class LeveDis {
 
     public String tag(String text, int tagnum) {
         try {
-            BufferedReader in = null;
-            in = new BufferedReader(new FileReader(p + "/stop_words_eng.txt"));
+            String path = "vocPath/stop_words_eng.txt";
+            InputStream is = LeveDis.class.getClassLoader().getResourceAsStream(path);
+            BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+
             String rout = "";
             String buf;
             Set<String> stopWords = new HashSet<String>();

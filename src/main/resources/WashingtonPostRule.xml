@@ -1,0 +1,18 @@
+<docs>
+    <doc>
+        <element selector="h1[itemprop=headline]">
+            <text name="title"/>
+        </element>
+
+        <element selector="div[class=headline-kicker]">
+            <text name="type"/>
+        </element>
+
+        <element name="time" selector="span[class=pb-timestamp]">
+        </element>
+
+        <element name="content" selector="article[itemprop=articleBody]">
+        </element>
+
+    </doc>
+</docs>
