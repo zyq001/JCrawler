@@ -28,7 +28,7 @@ public class LeveDis {
 
     private String vocPath = null;
 
-    private static LeveDis instance = null;
+    private static LeveDis instance = new LeveDis("");
 
     private HashSet<String> hsVoc = new HashSet<String>();
 
@@ -47,9 +47,6 @@ public class LeveDis {
 //    public static String p = "/home/disk/codespace/homework/MyCrawl/src/main/resources";
 
     public static LeveDis getInstance(String path) {
-        if (instance == null) {
-            instance = new LeveDis(path);
-        }
         return instance;
     }
 
@@ -130,13 +127,6 @@ public class LeveDis {
     }
 
     LeveDis(String path) {
-        vocPath = path;
-        String hsPath = vocPath + "/" + HS_FILE;
-        String cet4Path = vocPath + "/" + CET4_FILE;
-        String cet6Path = vocPath + "/" + CET6_FILE;
-        String itelsPath = vocPath + "/" + IELTS_FILE;
-        String tem4Path = vocPath + "/" + TEM4_FILE;
-        String tem8Path = vocPath + "/" + TEM8_FILE;
 
         if (!loadVoc(HS_FILE, hsVoc)
                 || !loadVoc(CET4_FILE, cet4Voc)
@@ -174,6 +164,7 @@ public class LeveDis {
                 }
             }
             br.close();
+            is.close();
         } catch (Exception e) {
             e.printStackTrace();
             LOG.warning("[LevelWordDiscriminator] loadVoc error...");
@@ -215,6 +206,7 @@ public class LeveDis {
                 }
             }
             br.close();
+            is.close();
         } catch (Exception e) {
             e.printStackTrace();
             LOG.warning("[LevelWordDiscriminator] loadVoc error...");
@@ -249,6 +241,7 @@ public class LeveDis {
                 stopWords.add(buf.toLowerCase().trim());
             }
             in.close();
+            is.close();
             Summary te = new Summary();
 
             Map<String, Integer> wordFrequencies = te.segStr(text);

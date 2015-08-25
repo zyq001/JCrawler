@@ -53,14 +53,15 @@ public class WashingtonCrawler extends DeepCrawler {
     public WashingtonCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("https://www.washingtonpost.com/entertainment/.*");
+/*        regexRule.addRule("https://www.washingtonpost.com/entertainment/.*");
         regexRule.addRule("https://www.washingtonpost.com/lifestyle/.*");
         regexRule.addRule("https://www.washingtonpost.com/technology/.*");
         regexRule.addRule("https://www.washingtonpost.com/business/.*");
         regexRule.addRule("https://www.washingtonpost.com/world/.*");
         regexRule.addRule("https://www.washingtonpost.com/national/.*");
         regexRule.addRule("https://www.washingtonpost.com/sports/.*");
-        regexRule.addRule("https://www.washingtonpost.com/local/.*");
+        regexRule.addRule("https://www.washingtonpost.com/local/.*");*/
+        regexRule.addRule("https://www.washingtonpost.com/.*");
         regexRule.addRule("-https://www.washingtonpost.com/politics/.*");
         regexRule.addRule("-https://www.washingtonpost.com/opinions/.*");
         regexRule.addRule("-https://www.washingtonpost.com/posttv/.*");
@@ -78,8 +79,11 @@ public class WashingtonCrawler extends DeepCrawler {
 
         try {
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+                    "root", "tiger", 5, 30);
+/*            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                     "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);*/
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -125,13 +129,14 @@ public class WashingtonCrawler extends DeepCrawler {
         WashingtonCrawler crawler = new WashingtonCrawler("../data/washington");
         crawler.setThreads(50);
         crawler.addSeed("https://www.washingtonpost.com/regional/");
+//        crawler.addSeed("https://www.washingtonpost.com/world/us-servicemen-become-french-knights/2015/08/24/c4654613-f872-48ad-ba81-bb4bf414dd88_story.html?tid=pm_pop_b");
         crawler.setResumable(false);
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
-        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+//        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
 
@@ -144,7 +149,7 @@ public class WashingtonCrawler extends DeepCrawler {
         /*设置是否断点爬取*/
         crawler.setResumable(false);
 
-        crawler.start(500);
+        crawler.start(5000);
     }
 
 }

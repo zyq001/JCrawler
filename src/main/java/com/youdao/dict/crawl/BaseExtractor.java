@@ -63,7 +63,7 @@ public class BaseExtractor {
     }
 
     public boolean extractorAndUploadImg() {
-        log.info("*****extractorAndUploadImg*****");
+        log.debug("*****extractorAndUploadImg*****");
         if (content == null || p == null) {
             return false;
         }
@@ -78,7 +78,7 @@ public class BaseExtractor {
                 img.removeAttr("HEIGHT");
                 img.attr("style", "width:100%;");
                 OImageUploader uploader = new OImageUploader();
-                uploader.setProxy("proxy.corp.youdao.com", "3456");
+//                uploader.setProxy("proxy.corp.youdao.com", "3456");
                 long id = uploader.deal(imageUrl);
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 img.attr("src", newUrl.toString());
@@ -88,19 +88,19 @@ public class BaseExtractor {
             }
             if (mainImage != null) {
                 p.setMainimage(mainImage);
-                log.info("*****extractorAndUploadImg  success*****");
+                log.debug("*****extractorAndUploadImg  success*****");
                 return true;
             }
-            log.info("*****extractorAndUploadImg  failed*****");
+            log.info("*****extractorAndUploadImg  failed***** url:" + url);
             return false;
         } catch (Exception e) {
-            log.info("*****extractorAndUploadImg  failed*****");
+            log.info("*****extractorAndUploadImg  failed***** url:" + url);
             return false;
         }
     }
 
     public boolean extractorContent() {
-        log.info("*****extractorContent*****");
+        log.debug("*****extractorContent*****");
         if (content == null || p == null || content.text().length() < MINSIZE) {
             return false;
         }
@@ -108,27 +108,27 @@ public class BaseExtractor {
         contentHtml = contentHtml.replaceAll("<(?!img|br|p|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
         p.setContent(contentHtml);
-        log.info("*****extractorContent  success*****");
+        log.debug("*****extractorContent  success*****");
         return true;
     }
 
     public boolean extractorTags() {
-        log.info("*****extractorTags*****");
+        log.debug("*****extractorTags*****");
         if (content == null) {
-            log.info("*****extractorTags  failed*****");
+            log.info("*****extractorTags  failed***** url:" + url);
             return false;
         }
         try {
             String contentStr = content.text();
-            LeveDis leveDis = LeveDis.getInstance(LeveDis.p);
+            LeveDis leveDis = LeveDis.getInstance("");
             String tags = leveDis.tag(contentStr, 5);
             p.setLabel(tags);
             int level = leveDis.compFileLevel(leveDis.compLevel(contentStr));
             p.setLevel(String.valueOf(level));
-            log.info("*****extractorTags  success*****");
+            log.debug("*****extractorTags  success*****");
             return true;
         } catch (Exception e) {
-            log.info("*****extractorTags  failed*****");
+            log.info("*****extractorTags  failed***** url:" + url);
             return false;
         }
     }

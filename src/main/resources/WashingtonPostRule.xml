@@ -11,7 +11,7 @@
         <element name="time" selector="span[class=pb-timestamp]">
         </element>
 
-        <element name="content" selector="article[itemprop=articleBody]">
+        <element name="content" selector="div[id=article-body]">
         </element>
 
     </doc>
