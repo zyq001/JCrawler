@@ -253,6 +253,9 @@ public class LeveDis {
                     rout += ",";
                 }
             }
+            if (!rout.contains(",")) {
+                return rout;
+            }
             return rout.substring(0, rout.lastIndexOf(","));
         } catch (Exception e) {
             e.printStackTrace();
