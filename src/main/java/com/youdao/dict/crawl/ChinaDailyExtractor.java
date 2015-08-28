@@ -4,6 +4,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
+import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -14,6 +15,7 @@ import java.util.LinkedList;
 /**
  * Created by liuhl on 15-8-17.
  */
+@CommonsLog
 public class ChinaDailyExtractor extends BaseExtractor {
     private Context context;
 
@@ -26,24 +28,32 @@ public class ChinaDailyExtractor extends BaseExtractor {
     }
 
     public boolean init() {
+        log.debug("*****init*****");
         try {
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("ChinaDailyRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
+            log.debug("*****init  success*****");
             return true;
         } catch (Exception e) {
+            log.info("*****init  failed***** url:" + url);
             return false;
         }
     }
 
     public boolean extractorTitle() {
+        log.debug("*****extractorTitle*****");
         String title = (String) context.output.get("title");
-        if (title == null || "".equals(title.trim())) return false;
+        if (title == null || "".equals(title.trim())){
+            log.info("*****extractorTitle  failed***** url:" + url);
+            return false;
+        }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
         if (title.contains("-"))
             p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
         else
             p.setTitle(title.trim());
+        log.debug("*****extractorTitle  success*****");
         return true;
     }
 
@@ -54,17 +64,24 @@ public class ChinaDailyExtractor extends BaseExtractor {
             type0 = type0.replaceAll("/", "");
             type = type + "," + type0.trim();
         }
-        if (type == null || "".equals(type.trim()))
+        if (type == null || "".equals(type.trim())){
+            log.info("*****extractorTitle  failed***** url:" + url);
             return false;
+        }
         p.setType(type.trim());//TODO
+        log.debug("*****extractorTitle  success*****");
         return true;
     }
 
     public boolean extractorTime() {
+        log.debug("*****extractorTime*****");
         String time = (String) context.output.get("time");
-        if (time == null || "".equals(time.trim()))
+        if (time == null || "".equals(time.trim())){
+            log.info("*****extractorTime  failed***** url:" + url);
             return false;
+        }
         p.setTime(time.trim());
+        log.debug("*****extractorTime  success*****");
         return true;
     }
 
@@ -84,6 +101,7 @@ public class ChinaDailyExtractor extends BaseExtractor {
     }
 
     public void mergePage(ParserPage p) {
+        log.debug("*****mergePage*****");
         Elements div = doc.select("div[id=div_currpage]").select("a");
         LinkedList<String> list = new LinkedList<String>();
         for (Element a : div) {
@@ -100,6 +118,6 @@ public class ChinaDailyExtractor extends BaseExtractor {
             p.setContent(p.getContent() + extractor.getParserPage().getContent());
             //TODO parser
         }
-
+        log.info("*****mergePage end*****");
     }
 }
