@@ -1,21 +1,15 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
-import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
 import com.youdao.dict.bean.ParserPage;
-import com.youdao.dict.score.LeveDis;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
-import com.youdao.dict.util.OImageConfig;
-import com.youdao.dict.util.OImageUploader;
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.net.URL;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -27,9 +21,13 @@ public class ChinaDailyExtractor extends BaseExtractor {
         super(page);
     }
 
+    public ChinaDailyExtractor(String url) {
+        super(url);
+    }
+
     public boolean init() {
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("DictRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("ChinaDailyRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
             return true;
@@ -70,4 +68,38 @@ public class ChinaDailyExtractor extends BaseExtractor {
         return true;
     }
 
+    public boolean isPaging() {
+        Elements div = doc.select("div[id=div_currpage]");
+        if (div == null) {
+            return false;
+        }
+        Elements a = div.select("a");
+        if (a == null || a.size() == 0) {
+            return false;
+        }
+/*        if (url.equals(a.get(0).attr("href"))) {
+            return false;
+        }*/
+        return true;
+    }
+
+    public void mergePage(ParserPage p) {
+        Elements div = doc.select("div[id=div_currpage]").select("a");
+        LinkedList<String> list = new LinkedList<String>();
+        for (Element a : div) {
+            String url = a.attr("href");
+            if (!list.contains(url)) {
+                list.add(url);
+            }
+        }
+        for (String url : list) {
+            ChinaDailyExtractor extractor = new ChinaDailyExtractor(url);
+            extractor.init();
+            extractor.extractorAndUploadImg();
+            extractor.extractorContent(true);
+            p.setContent(p.getContent() + extractor.getParserPage().getContent());
+            //TODO parser
+        }
+
+    }
 }

@@ -1,0 +1,16 @@
+<docs>
+    <doc>
+        <element name="title" selector="meta[name=hdl]">
+        </element>
+
+        <element name="type" selector="meta[name=news_keywords]">
+        </element>
+
+        <element name="time" selector="span[name=ptime]">
+        </element>
+
+        <element name="content" selector="div[id=story-body]">
+        </element>
+
+    </doc>
+</docs>

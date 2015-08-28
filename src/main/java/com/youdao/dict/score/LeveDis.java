@@ -248,12 +248,12 @@ public class LeveDis {
             Set<String> mostFrequentWords = te.getMostFrequentWords(tagnum, wordFrequencies).keySet();
 
             for (String s : mostFrequentWords) {
-                if (!stopWords.contains(s)) {
+                if (!"".equals(s.trim()) && !stopWords.contains(s)) {
                     rout += s;
                     rout += ",";
                 }
             }
-            return rout;
+            return rout.substring(0, rout.lastIndexOf(","));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,15 +4,15 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.score.LeveDis;
-import com.youdao.dict.souplang.Context;
-import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,6 +42,19 @@ public class BaseExtractor {
         p.setUrl(url);
     }
 
+    public BaseExtractor(String url) {
+        try {
+            this.doc = Jsoup.connect(url).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.url = url;
+        JsoupUtils.makeAbs(doc, url);
+        p.setHost(getHost(url));
+        p.setUrl(url);
+    }
+
+
     public boolean extractor() {
         return init() && extractorTitle() && extractorType() && extractorTime() && extractorAndUploadImg() && extractorContent() && extractorTags();
     }
@@ -62,11 +75,18 @@ public class BaseExtractor {
         return false;
     }
 
+    public boolean isPaging() {return false;}
+
     public boolean extractorAndUploadImg() {
+        return extractorAndUploadImg("", "");
+    }
+
+    public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
         if (content == null || p == null) {
             return false;
         }
+       /* if (host.equals(port)) return true;*/
         try {
             Elements imgs = content.select("img");
             String mainImage = null;
@@ -78,7 +98,8 @@ public class BaseExtractor {
                 img.removeAttr("HEIGHT");
                 img.attr("style", "width:100%;");
                 OImageUploader uploader = new OImageUploader();
-//                uploader.setProxy("proxy.corp.youdao.com", "3456");
+                if (!"".equals(host) && !"".equals(port))
+                    uploader.setProxy(host, port);
                 long id = uploader.deal(imageUrl);
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 img.attr("src", newUrl.toString());
@@ -100,17 +121,26 @@ public class BaseExtractor {
     }
 
     public boolean extractorContent() {
+        return extractorContent(false);
+    }
+
+    public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
-        if (content == null || p == null || content.text().length() < MINSIZE) {
+        if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
             return false;
         }
         String contentHtml = content.html();
         contentHtml = contentHtml.replaceAll("<(?!img|br|p|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
         p.setContent(contentHtml);
+        if (!paging && isPaging()) {
+            mergePage(p);
+        }
         log.debug("*****extractorContent  success*****");
         return true;
     }
+
+    public void mergePage(ParserPage p) {}
 
     public boolean extractorTags() {
         log.debug("*****extractorTags*****");

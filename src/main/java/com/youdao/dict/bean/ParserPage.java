@@ -23,7 +23,6 @@ public class ParserPage implements IWritable, Serializable {
     private long id = 0;
 
     @Getter
-    @Setter
     private String title = "";
 
     @Getter
@@ -69,6 +68,13 @@ public class ParserPage implements IWritable, Serializable {
     @Getter
     @Setter
     private int endtime = 100;
+
+    public void setTitle(String title) {
+        title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
+        title = title.replaceAll("<.*?.>", "");//去除所有标签
+        title = title.replaceAll("\\[[^\\]]+\\]", "");//去除[asd]
+        this.title = title;
+    }
 
     @Override
     public void writeFields(DataOutput out) throws IOException {
@@ -151,6 +157,7 @@ public class ParserPage implements IWritable, Serializable {
     public boolean valid(Map<String, String> map) {
         return map.get("title") != null && map.get("content") != null && map.get("mainimage") != null;
     }
+
     public boolean valid() {
         return StringUtils.isEmpty(title);
     }

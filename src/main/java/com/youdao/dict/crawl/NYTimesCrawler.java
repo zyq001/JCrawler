@@ -44,13 +44,13 @@ import java.net.Proxy;
  *
  * @author hu
  */
-public class WashingtonCrawler extends DeepCrawler {
+public class NYTimesCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public WashingtonCrawler(String crawlPath) {
+    public NYTimesCrawler(String crawlPath) {
         super(crawlPath);
 
 /*        regexRule.addRule("https://www.washingtonpost.com/entertainment/.*");
@@ -61,12 +61,12 @@ public class WashingtonCrawler extends DeepCrawler {
         regexRule.addRule("https://www.washingtonpost.com/national/.*");
         regexRule.addRule("https://www.washingtonpost.com/sports/.*");
         regexRule.addRule("https://www.washingtonpost.com/local/.*");*/
-        regexRule.addRule("https://www.washingtonpost.com/.*");
-        regexRule.addRule("-https://www.washingtonpost.com/politics/.*");
+        regexRule.addRule(".*.nytimes.com/.*");
+/*        regexRule.addRule("-https://www.washingtonpost.com/politics/.*");
         regexRule.addRule("-https://www.washingtonpost.com/opinions/.*");
         regexRule.addRule("-https://www.washingtonpost.com/posttv/.*");
         regexRule.addRule("-https://www.washingtonpost.com/cars/.*");
-        regexRule.addRule("-https://www.washingtonpost.com/opinions/.*");
+        regexRule.addRule("-https://www.washingtonpost.com/opinions/.*");*/
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
          JDBCHelper.getJdbcTemplate("mysql1")来获取这个对象。
@@ -78,7 +78,7 @@ public class WashingtonCrawler extends DeepCrawler {
          */
 
         try {
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("nytimes",
                     "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
                     "root", "tiger", 5, 30);
 /*            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
@@ -93,10 +93,10 @@ public class WashingtonCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new WashingtonExtractor(page);
+            BaseExtractor extractor = new NYTimesExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                int updates = jdbcTemplate.update("insert into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
                         p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
@@ -126,17 +126,17 @@ public class WashingtonCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        WashingtonCrawler crawler = new WashingtonCrawler("../data/washington");
+        NYTimesCrawler crawler = new NYTimesCrawler("../data/nytimes");
         crawler.setThreads(50);
-        crawler.addSeed("https://www.washingtonpost.com/regional/");
-//        crawler.addSeed("https://www.washingtonpost.com/world/us-servicemen-become-french-knights/2015/08/24/c4654613-f872-48ad-ba81-bb4bf414dd88_story.html?tid=pm_pop_b");
+//        crawler.addSeed("http://www.nytimes.com/");
+        crawler.addSeed("http://www.nytimes.com/2015/08/26/business/dealbook/daily-stock-market-activity.html");
         crawler.setResumable(false);
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
-//        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
 
@@ -147,7 +147,7 @@ public class WashingtonCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(true);
+        crawler.setResumable(false);
 
         crawler.start(5000);
     }

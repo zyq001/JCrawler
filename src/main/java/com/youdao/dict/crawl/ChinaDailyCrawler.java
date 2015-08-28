@@ -85,7 +85,7 @@ public class ChinaDailyCrawler extends DeepCrawler {
             BaseExtractor extractor = new ChinaDailyExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert into parser_page2 (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                int updates = jdbcTemplate.update("insert ignore into parser_page2 (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
                         p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
@@ -117,8 +117,8 @@ public class ChinaDailyCrawler extends DeepCrawler {
         */
         ChinaDailyCrawler crawler = new ChinaDailyCrawler("../data/wb");
         crawler.setThreads(50);
-        crawler.addSeed("http://www.chinadaily.com.cn/");
-//        crawler.addSeed("http://www.chinadaily.com.cn/kindle/2015-08/11/content_21559792.htm");
+//        crawler.addSeed("http://www.chinadaily.com.cn/");
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/2015-08/27/content_21727190.htm");
         crawler.setResumable(false);
 
 
@@ -136,7 +136,7 @@ public class ChinaDailyCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(false);
+        crawler.setResumable(true);
 
         crawler.start(500);
     }

@@ -8,7 +8,6 @@ import org.jsoup.nodes.Element;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,17 +15,17 @@ import java.util.Date;
  * Created by liuhl on 15-8-17.
  */
 @CommonsLog
-public class WashingtonExtractor extends BaseExtractor {
+public class NYTimesExtractor extends BaseExtractor {
     private Context context;
 
-    public WashingtonExtractor(Page page) {
+    public NYTimesExtractor(Page page) {
         super(page);
     }
 
     public boolean init() {
         log.debug("*****init*****");
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("WashingtonPostRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("NYTimesRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
             log.debug("*****init  success*****");
@@ -39,12 +38,17 @@ public class WashingtonExtractor extends BaseExtractor {
 
     public boolean extractorTitle() {
         log.debug("*****extractorTitle*****");
-
-        String title = (String) context.output.get("title");
+        Element titleElement = (Element) context.output.get("title");
+        if (titleElement == null) {
+            log.info("*****extractorTitle  failed***** url:" + url);
+            return false;
+        }
+        String title = titleElement.attr("content");
         if (title == null || "".equals(title.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
             return false;
         }
+        title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
         p.setTitle(title.trim());
         log.debug("*****extractorTitle  success*****");
         return true;
@@ -52,7 +56,12 @@ public class WashingtonExtractor extends BaseExtractor {
 
     public boolean extractorType() {
         log.debug("*****extractorType*****");
-        String type = (String) context.output.get("type");
+        Element typeElement = (Element) context.output.get("type");
+        if (typeElement == null) {
+            log.info("*****extractorTitle  failed***** url:" + url);
+            return false;
+        }
+        String type = typeElement.attr("content");
         String type0 = url.substring(url.indexOf(".com/") + 5);
         type0 = type0.substring(0, type0.indexOf("/"));
         if (type0 != null && !"".equals(type0.trim())) {
@@ -90,4 +99,7 @@ public class WashingtonExtractor extends BaseExtractor {
         return true;
     }
 
+    public boolean extractorAndUploadImg() {
+        return extractorAndUploadImg("proxy.corp.youdao.com", "3456");
+    }
 }
