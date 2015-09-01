@@ -1,0 +1,34 @@
+<docs>
+    <doc>
+
+        <element selector="title">
+            <text name="title" group="1"/>
+        </element>
+<!--        <element name="title" selector="meta[name=title]">
+        </element>-->
+
+        <element name="type0" selector="meta[name=section]">
+        </element>
+
+        <element name="type" selector="meta[property=og:type]">
+        </element>
+        <element name="type" selector="meta[property=vr:type]">
+        </element>
+
+        <element name="keywords" selector="meta[name=keywords]">
+        </element>
+
+        <element name="time" selector="meta[name=DC.date.issued]">
+        </element>
+        <element name="time" selector="meta[name=lastmod]">
+        </element>
+
+        <element name="mainimage" selector="meta[name=og:image]">
+        </element>
+
+        <element name="content" selector="div[id=storytext]">
+        </element>
+        <element name="content" selector="section[id=body-text]">
+        </element>
+    </doc>
+</docs>
