@@ -21,7 +21,6 @@ public class FixCNNContent {
     public static int size = 0;
 
 
-
     public static void main(String[] args) {
 
         list = DBClient.getList();
@@ -44,7 +43,7 @@ class ThreadTest implements Runnable {
 
     @Override
     public synchronized void run() {
-        for (int i = FixCNNContent.index.getAndIncrement(); i < FixCNNContent.size; FixCNNContent.index.getAndIncrement()) {
+        for (int i = FixCNNContent.index.getAndIncrement(); i < FixCNNContent.size; i = FixCNNContent.index.getAndIncrement()) {
             ParserPage p = FixCNNContent.list.get(i);
             String url = p.getUrl();
             try {
