@@ -26,7 +26,6 @@ public class BaseExtractor {
     public ParserPage p = new ParserPage();
     String url;
     Document doc;
-    Page page;
     Element content;
 
     public ParserPage getParserPage() {
@@ -34,7 +33,6 @@ public class BaseExtractor {
     }
 
     public BaseExtractor(Page page) {
-        this.page = page;
         url = page.getUrl();
         doc = page.getDoc();
         JsoupUtils.makeAbs(doc, url);
@@ -130,6 +128,7 @@ public class BaseExtractor {
             return false;
         }
         String contentHtml = content.html();
+        contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("<(?!img|br|p|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
         p.setContent(contentHtml);

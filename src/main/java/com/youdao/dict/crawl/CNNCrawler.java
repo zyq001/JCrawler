@@ -51,8 +51,12 @@ public class CNNCrawler extends DeepCrawler {
     public CNNCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule(".*cnn.*");
+        regexRule.addRule(".*cnn.com.*");
         regexRule.addRule("-http://us.cnn.com/video.*");
+        regexRule.addRule("-http://arabic.cnn.com.*");
+        regexRule.addRule("-http://ac360.blogs.cnn.com.*");
+        regexRule.addRule("-http://archives.cnn.com/TRANSCRIPTS.*");
+        regexRule.addRule("-http://cnnmoney.trulia.com.*");
 
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -65,14 +69,14 @@ public class CNNCrawler extends DeepCrawler {
          */
 
         try {
-/*
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                     "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
                     "root", "tiger", 5, 30);
-*/
+/*
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                     "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
                     "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+*/
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -115,10 +119,10 @@ public class CNNCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        CNNCrawler crawler = new CNNCrawler("../data/cnn3");
+        CNNCrawler crawler = new CNNCrawler("../data/cnn");
         crawler.setThreads(50);
-        crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
-//        crawler.addSeed("http://us.cnn.com/2015/08/26/opinions/potarazu-drug-price-hikes/index.html");
+//        crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
+        crawler.addSeed("http://edition.cnn.com/2015/08/31/opinions/hauser-sex-education/");
         crawler.setResumable(false);
 
 
@@ -136,7 +140,7 @@ public class CNNCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(true);
+        crawler.setResumable(false);
 
         crawler.start(5000);
     }

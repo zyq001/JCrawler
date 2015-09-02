@@ -26,6 +26,10 @@ public class CNNExtractor extends BaseExtractor {
         super(page);
     }
 
+    public CNNExtractor(String url) {
+        super(url);
+    }
+
     public boolean init() {
         log.debug("*****init*****");
         try {
@@ -104,6 +108,10 @@ public class CNNExtractor extends BaseExtractor {
         return true;
     }
 
+//    public boolean extractorAndUploadImg() {
+//        return extractorAndUploadImg("proxy.corp.youdao.com", "7890");
+//    }
+
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
         if (content == null || p == null) {
@@ -115,8 +123,8 @@ public class CNNExtractor extends BaseExtractor {
             String mainImage = null;
             for (Element img : imgs) {
                 String imageUrl = img.attr("src");
-                if ("".equals(imageUrl)) {
-                    imageUrl = img.attr("data-src-small");
+                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
+                    continue;
                 }
                 img.removeAttr("width");
                 img.removeAttr("WIDTH");

@@ -48,7 +48,7 @@ public class DBClient {
 
     public static List<ParserPage> getList() {
         List<ParserPage> list = new ArrayList<ParserPage>();
-        String sql = "select * from parser_page";
+        String sql = "select * from parser_page where host like '%cnn.com%'";
         Connection conn = DBConnUtil.getConn();
         PreparedStatement ps = null;
         ResultSet rs = null;
