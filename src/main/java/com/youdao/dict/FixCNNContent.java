@@ -32,10 +32,15 @@ public class FixCNNContent {
         int count = 0;
         for (ParserPage p : list) {
             String url = p.getUrl();
-            if (fix(url)) {
-                System.out.println("fix success..........");
-            } else
+            try {
+                if (fix(url)) {
+                    System.out.println("fix success.........." + url);
+                } else
+                    System.out.println("fix failed:" + url);
+            } catch (Exception e) {
                 System.out.println("fix failed:" + url);
+            }
+
         }
     }
 }

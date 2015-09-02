@@ -88,8 +88,9 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
+                            <!--
                             <mainClass>com.youdao.dict.crawl.ChinaDailyCrawler</mainClass>
-                            <!--                        <arguments>
+                                                  <arguments>
                                                         <argument>arg0</argument>
                                                         <argument>arg1</argument>
                                                     </arguments>
