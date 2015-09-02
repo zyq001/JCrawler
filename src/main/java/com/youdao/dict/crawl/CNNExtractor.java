@@ -124,6 +124,7 @@ public class CNNExtractor extends BaseExtractor {
             for (Element img : imgs) {
                 String imageUrl = img.attr("src");
                 if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
+                    img.remove();
                     continue;
                 }
                 img.removeAttr("width");
@@ -135,6 +136,7 @@ public class CNNExtractor extends BaseExtractor {
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);
                 long id = uploader.deal(imageUrl);
+//                long id = 0;
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 img.attr("src", newUrl.toString());
                 if (mainImage == null) {
