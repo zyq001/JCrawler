@@ -121,8 +121,8 @@ public class CNNCrawler extends DeepCrawler {
         */
         CNNCrawler crawler = new CNNCrawler("../data/cnn");
         crawler.setThreads(50);
-//        crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
-        crawler.addSeed("http://us.cnn.com/2015/02/23/opinion/zelizer-millennials-politics/index.html");
+        crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
+//        crawler.addSeed("http://us.cnn.com/2015/08/07/us/death-row-stories-ruben-cantu/index.html");
         crawler.setResumable(false);
 
 
