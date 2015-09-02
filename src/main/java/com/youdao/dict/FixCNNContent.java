@@ -44,16 +44,16 @@ class ThreadTest implements Runnable {
 
     @Override
     public synchronized void run() {
-        for (int i = FixCNNContent.index.getAndIncrement(); i < 100; FixCNNContent.index.getAndIncrement()) {
+        for (int i = FixCNNContent.index.getAndIncrement(); i < FixCNNContent.size; FixCNNContent.index.getAndIncrement()) {
             ParserPage p = FixCNNContent.list.get(i);
             String url = p.getUrl();
             try {
                 if (fix(url)) {
-                    System.out.println(FixCNNContent.index.get() + "fix success: id:" + p.getId() + " url:" + url);
+                    System.out.println(i + "/tfix success: id:" + p.getId() + " url:" + url);
                 } else
-                    System.out.println(FixCNNContent.index.get() + "fix failed:" + url);
+                    System.out.println(i + "/tfix failed:" + url);
             } catch (Exception e) {
-                System.out.println(FixCNNContent.index.get() + "fix failed:" + url);
+                System.out.println(i + "/tfix failed:" + url);
             }
         }
     }
