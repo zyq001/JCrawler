@@ -20,9 +20,19 @@ public class FixCNNContent {
     public static AtomicInteger index = new AtomicInteger(0);
     public static int size = 0;
 
+    public static boolean fix(String url) {
+        CNNExtractor extractor = new CNNExtractor(url);
+        if (extractor.extractor()) {
+            ParserPage parserPage = extractor.getParserPage();
+            DBClient.update(parserPage);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static void main(String[] args) {
-
+//        FixCNNContent.fix("http://us.cnn.com/2015/08/07/us/death-row-stories-ruben-cantu/index.html");
         list = DBClient.getList();
         size = list.size();
         Runnable r = new ThreadTest();
@@ -47,20 +57,22 @@ class ThreadTest implements Runnable {
             ParserPage p = FixCNNContent.list.get(i);
             String url = p.getUrl();
             try {
-                if (fix(url)) {
-                    System.out.println(i + "/tfix success: id:" + p.getId() + " url:" + url);
+                if (fix(p)) {
+                    System.out.println(i + "fix success: id:" + p.getId() + " url:" + url);
                 } else
-                    System.out.println(i + "/tfix failed:" + url);
+                    System.out.println(i + "fix failed:" + url);
             } catch (Exception e) {
-                System.out.println(i + "/tfix failed:" + url);
+                System.out.println(i + "fix failed:" + url);
             }
         }
     }
 
-    public static boolean fix(String url) {
+    public static boolean fix(ParserPage p) {
+        String url = p.getUrl();
         CNNExtractor extractor = new CNNExtractor(url);
         if (extractor.extractor()) {
             ParserPage parserPage = extractor.getParserPage();
+            parserPage.setId(p.getId());
             DBClient.update(parserPage);
             return true;
         } else {
