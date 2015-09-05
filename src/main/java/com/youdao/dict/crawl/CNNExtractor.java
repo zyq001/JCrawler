@@ -135,8 +135,8 @@ public class CNNExtractor extends BaseExtractor {
                 OImageUploader uploader = new OImageUploader();
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);
-//                long id = uploader.deal(imageUrl);
-                long id = 0;
+                long id = uploader.deal(imageUrl);
+//                long id = 0;
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 img.attr("src", newUrl.toString());
                 if (mainImage == null) {
