@@ -117,8 +117,9 @@ public class ChinaDailyCrawler extends DeepCrawler {
         */
         ChinaDailyCrawler crawler = new ChinaDailyCrawler("../data/wb");
         crawler.setThreads(50);
-        crawler.addSeed("http://www.chinadaily.com.cn/");
-//        crawler.addSeed("http://www.chinadaily.com.cn/sports/2015-08/27/content_21727190.htm");
+//        crawler.addSeed("http://www.chinadaily.com.cn/");
+        crawler.addSeed("http://www.chinadaily.com.cn/china/2015-09/09/content_21827325.htm");
+//        crawler.addSeed("http://www.chinadaily.com.cn/sports/2015-09/08/content_21819814.htm");
         crawler.setResumable(false);
 
 
@@ -136,7 +137,7 @@ public class ChinaDailyCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(true);
+        crawler.setResumable(false);
 
         crawler.start(500);
     }

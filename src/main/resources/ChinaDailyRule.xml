@@ -50,17 +50,17 @@
         </element>
 
 
-        <!--q business  china     -->
-        <element selector="div[class=w980 greyTxt9 titleTxt22 pt20 pb10]">
-            <text name="type"/>
-        </element>
+
         <!--q business  sports china     -->
         <element selector="div[class=w980 greyTxt9 titleTxt22 pt20 pb10]">
             <element selector="a[target=_top]">
                 <text name="type"/>
             </element>
         </element>
-
+        <!--q business  china     -->
+        <element selector="div[class=w980 greyTxt9 titleTxt22 pt20 pb10]">
+            <text name="type"/>
+        </element>
         <!--q fashion-->
         <element selector="span[class= Txt10]">
             <element selector="a[target=_top]" index="1">
