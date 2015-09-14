@@ -24,12 +24,20 @@
         <element name="content" selector="div[id=Content]">
         </element>
 
-        <!--*************************type0***********************-->
+        <!--*************************type***********************-->
 
         <element selector="title">
             <text name="type" regex="Updated: (.*)"/>
         </element>
 
+        <!--q world-->
+        <element selector="a[class=greyTxt9]">
+            <text name="type"/>
+        </element>
+        <!--q opinion-->
+        <element selector="a[class=titleTxt22]">
+            <text name="type"/>
+        </element>
         <!--q culture -->
         <element selector="div[class=w980 titleTxt26 redTxt pt20 pb10]">
             <element selector="a[target=_top]">
@@ -42,27 +50,24 @@
         </element>
 
 
+        <!--q business  china     -->
+        <element selector="div[class=w980 greyTxt9 titleTxt22 pt20 pb10]">
+            <text name="type"/>
+        </element>
         <!--q business  sports china     -->
         <element selector="div[class=w980 greyTxt9 titleTxt22 pt20 pb10]">
             <element selector="a[target=_top]">
                 <text name="type"/>
             </element>
         </element>
-        <!--q world-->
-        <element selector="a[class=greyTxt9]">
-            <text name="type"/>
-        </element>
-        <!--q opinion-->
-        <element selector="a[class=titleTxt22]">
-            <text name="type"/>
-        </element>
+
         <!--q fashion-->
         <element selector="span[class= Txt10]">
             <element selector="a[target=_top]" index="1">
                 <text name="type"/>
             </element>
         </element>
-        <!--*************************type***********************-->
+        <!--*************************label***********************-->
         <!--q fashion-->
         <element selector="span[class= Txt10]">
             <element selector="a[target=_top]" index="2">
@@ -83,7 +88,7 @@
         <element selector="a[class=titleTxt26]">
             <text name="label"/>
         </element>
-        <!--*************************type***********************-->
+        <!--*************************label***********************-->
         <!--*************************keywords***********************-->
         <element name="keywords" selector="meta[name=keywords]">
         </element>

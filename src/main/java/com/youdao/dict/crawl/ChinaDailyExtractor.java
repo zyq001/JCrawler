@@ -65,6 +65,7 @@ public class ChinaDailyExtractor extends BaseExtractor {
             log.info("*****extractorTitle  failed***** url:" + url);
             return false;
         }
+        type = type.replace("/", "");
         p.setType(type.trim());//TODO
 
         String label = (String) context.output.get("label");
