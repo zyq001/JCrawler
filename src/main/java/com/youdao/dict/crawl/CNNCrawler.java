@@ -89,7 +89,7 @@ public class CNNCrawler extends DeepCrawler {
             BaseExtractor extractor = new CNNExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                int updates = jdbcTemplate.update("insert ignore into parser_page_cnn (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
                         p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),"www.cnn.com",p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");

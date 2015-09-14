@@ -7,6 +7,7 @@ import org.apache.xmlrpc.client.XmlRpcCommonsTransportFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -69,14 +70,15 @@ public class OImageUploader {
         BufferedImage sourceImg = ImageIO.read(inStream);
         width = sourceImg.getWidth();
         height = sourceImg.getHeight();
-        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        int len = 0;
-        while( (len = inStream.read(buffer)) !=-1 ){
-            outStream.write(buffer, 0, len);
-        }
-        data = outStream.toByteArray();//图片的二进制数据
-        inStream.close();
+        data = ((DataBufferByte) sourceImg.getData().getDataBuffer()).getData();
+//        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+//        byte[] buffer = new byte[1024];
+//        int len = 0;
+//        while( (len = inStream.read(buffer)) !=-1 ){
+//            outStream.write(buffer, 0, len);
+//        }
+//        data = outStream.toByteArray();//图片的二进制数据
+//        inStream.close();
 //        return (readlen == shouldlen); //true;
         return true;
     }

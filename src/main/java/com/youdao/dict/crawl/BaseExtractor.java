@@ -100,10 +100,10 @@ public class BaseExtractor {
             return false;
         }
        /* if (host.equals(port)) return true;*/
+        String mainImage = null;
+        int width = 0;
         try {
             Elements imgs = content.select("img");
-            String mainImage = null;
-            int width = 0;
             for (Element img : imgs) {
                 String imageUrl = img.attr("src");
                 img.removeAttr("width");
@@ -123,17 +123,17 @@ public class BaseExtractor {
                 }
             }
 
-            p.setMainimage(mainImage);
-            if (width == 0) {
-                p.setStyle("no-image");
-            } else if (width > 300) {
-                p.setStyle("large-image");
-            } else {
-                p.setStyle("mini-image");
-            }
 
         } catch (Exception e) {
             p.setStyle("no-image");
+        }
+        p.setMainimage(mainImage);
+        if (width == 0) {
+            p.setStyle("no-image");
+        } else if (width > 300) {
+            p.setStyle("large-image");
+        } else {
+            p.setStyle("mini-image");
         }
         return true;
     }
