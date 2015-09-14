@@ -6,10 +6,10 @@
     <!--一个doc对应一个网页,url表示网页的正则。
         如果有多个doc的url，和网页的url匹配，程序会执行多次(所有对应的doc)。
         所以尽量保证一个网页之能匹配到一个doc。
-        
+
         多个doc的设计，是为了爬虫统一管理配置设定的。很多爬虫要多多种不同类型的页面做抽取，抽取
         的代码很难统一管理。利用SoupLang这种脚本，可以将所有的抽取业务写道一个
-        
+
     -->
     <doc>
 
@@ -19,43 +19,75 @@
         <!--抽取正文-->
         <!--这里如果将name="content"放到element中，name的输出是一个jsoup的Element元素，
             插入到数据库中时，会以Element元素源码的形式插入-->
-<!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
-        </element>-->
+        <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
+                </element>-->
         <element name="content" selector="div[id=Content]">
         </element>
 
+        <!--*************************type0***********************-->
+
         <element selector="title">
-            <text name="type0" regex="Updated: (.*)"/>
+            <text name="type" regex="Updated: (.*)"/>
         </element>
-        <!--culture -->
+
+        <!--q culture -->
         <element selector="div[class=w980 titleTxt26 redTxt pt20 pb10]">
             <element selector="a[target=_top]">
-                <text name="type0"/>
-            </element>
-        </element>
-
-        <element selector="div[class=w980 greyTxt9 titleTxt22 pt20 pb10]">
-            <element selector="a[target=_top]">
-                <text name="type0"/>
-            </element>
-        </element>
-
-        <element selector="a[class=greyTxt9]">
-            <text name="type0"/>
-        </element>
-
-        <!--lifstyle/fashion-->
-        <element selector="b[class=redTxt2]">
-            <element selector="a[target=_blank]">
                 <text name="type"/>
             </element>
         </element>
+        <!--q lifestyle -->
+        <element selector="div[class=w980 titleTxt26 redTxt2 pt20 pb10]">
+            <text name="type"/>
+        </element>
+
+
+        <!--q business  sports china     -->
+        <element selector="div[class=w980 greyTxt9 titleTxt22 pt20 pb10]">
+            <element selector="a[target=_top]">
+                <text name="type"/>
+            </element>
+        </element>
+        <!--q world-->
+        <element selector="a[class=greyTxt9]">
+            <text name="type"/>
+        </element>
+        <!--q opinion-->
+        <element selector="a[class=titleTxt22]">
+            <text name="type"/>
+        </element>
+        <!--q fashion-->
+        <element selector="span[class= Txt10]">
+            <element selector="a[target=_top]" index="1">
+                <text name="type"/>
+            </element>
+        </element>
+        <!--*************************type***********************-->
+        <!--q fashion-->
+        <element selector="span[class= Txt10]">
+            <element selector="a[target=_top]" index="2">
+                <text name="label"/>
+            </element>
+        </element>
+        <!--lifstyle/fashion-->
+        <element selector="b[class=redTxt2]">
+            <element selector="a[target=_blank]">
+                <text name="label"/>
+            </element>
+        </element>
+        <!--q -->
         <element selector="span[class=titleTxt22]">
-            <text name="type"/>
+            <text name="label"/>
         </element>
+        <!--q sports opinion-->
         <element selector="a[class=titleTxt26]">
-            <text name="type"/>
+            <text name="label"/>
         </element>
+        <!--*************************type***********************-->
+        <!--*************************keywords***********************-->
+        <element name="keywords" selector="meta[name=keywords]">
+        </element>
+        <!--*************************keywords***********************-->
 
         <element selector="span[class=greyTxt6 block mb15]">
             <text name="time" regex="Updated: (.*)"/>

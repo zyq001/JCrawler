@@ -4,10 +4,6 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.crawl.CNNExtractor;
 import com.youdao.dict.util.DBClient;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 

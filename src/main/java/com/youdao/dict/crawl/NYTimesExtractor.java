@@ -16,7 +16,6 @@ import java.util.Date;
  */
 @CommonsLog
 public class NYTimesExtractor extends BaseExtractor {
-    private Context context;
 
     public NYTimesExtractor(Page page) {
         super(page);

@@ -9,6 +9,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -17,7 +20,6 @@ import java.util.LinkedList;
  */
 @CommonsLog
 public class ChinaDailyExtractor extends BaseExtractor {
-    private Context context;
 
     public ChinaDailyExtractor(Page page) {
         super(page);
@@ -44,7 +46,7 @@ public class ChinaDailyExtractor extends BaseExtractor {
     public boolean extractorTitle() {
         log.debug("*****extractorTitle*****");
         String title = (String) context.output.get("title");
-        if (title == null || "".equals(title.trim())){
+        if (title == null || "".equals(title.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
             return false;
         }
@@ -59,16 +61,14 @@ public class ChinaDailyExtractor extends BaseExtractor {
 
     public boolean extractorType() {
         String type = (String) context.output.get("type");
-        String type0 = (String) context.output.get("type0");
-        if (type0 != null && !"".equals(type0.trim())) {
-            type0 = type0.replaceAll("/", "");
-            type = type + "," + type0.trim();
-        }
-        if (type == null || "".equals(type.trim())){
+        if (type == null || "".equals(type.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
             return false;
         }
         p.setType(type.trim());//TODO
+
+        String label = (String) context.output.get("label");
+        p.setLabel(label.trim());
         log.debug("*****extractorTitle  success*****");
         return true;
     }
@@ -76,8 +76,20 @@ public class ChinaDailyExtractor extends BaseExtractor {
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
         String time = (String) context.output.get("time");
-        if (time == null || "".equals(time.trim())){
+        if (time == null || "".equals(time.trim())) {
             log.info("*****extractorTime  failed***** url:" + url);
+            return false;
+        }
+//2015-09-12 08:25
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        Date date;
+        try {
+            date = format.parse(time.trim());
+        } catch (ParseException e) {
+            return false;
+        }
+        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+            log.debug("*****extractorTime  out of date*****");
             return false;
         }
         p.setTime(time.trim());

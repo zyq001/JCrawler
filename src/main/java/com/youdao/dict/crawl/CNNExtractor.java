@@ -99,11 +99,13 @@ public class CNNExtractor extends BaseExtractor {
         try {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
             Date date = format.parse(time);
+            if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+                return false;
+            }
             p.setTime(new Timestamp(date.getTime()).toString());
             log.debug("*****extractorTime  success*****");
         } catch (Exception e) {
             log.info("*****extractorTime  failed***** url:" + url);
-            e.printStackTrace();
         }
         return true;
     }

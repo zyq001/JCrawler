@@ -4,6 +4,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.score.LeveDis;
+import com.youdao.dict.souplang.Context;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
@@ -22,6 +23,8 @@ import java.util.regex.Pattern;
  */
 @CommonsLog
 public class BaseExtractor {
+    Context context;
+    String keywords;
     public static long MINSIZE = 512;
     public ParserPage p = new ParserPage();
     String url;
@@ -54,7 +57,7 @@ public class BaseExtractor {
 
 
     public boolean extractor() {
-        return init() && extractorTitle() && extractorType() && extractorTime() && extractorAndUploadImg() && extractorContent() && extractorTags();
+        return init() && extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorContent() && extractorTags(keywords, p.getLabel());
     }
 
     public boolean init() {
@@ -73,7 +76,19 @@ public class BaseExtractor {
         return false;
     }
 
-    public boolean isPaging() {return false;}
+    public boolean extractorKeywords() {
+        log.debug("*****extractorTime*****");
+        Element keywordsElement = (Element) context.output.get("time");
+        if (keywordsElement == null)
+            return false;
+        keywords = keywordsElement.attr("content");
+        keywords = keywords.contains(",") ? "" : keywords;
+        return false;
+    }
+
+    public boolean isPaging() {
+        return false;
+    }
 
     public boolean extractorAndUploadImg() {
         return extractorAndUploadImg("", "");
@@ -88,6 +103,7 @@ public class BaseExtractor {
         try {
             Elements imgs = content.select("img");
             String mainImage = null;
+            int width = 0;
             for (Element img : imgs) {
                 String imageUrl = img.attr("src");
                 img.removeAttr("width");
@@ -102,20 +118,24 @@ public class BaseExtractor {
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 img.attr("src", newUrl.toString());
                 if (mainImage == null) {
+                    width = uploader.getWidth();
                     mainImage = newUrl.toString();
                 }
             }
-            if (mainImage != null) {
-                p.setMainimage(mainImage);
-                log.debug("*****extractorAndUploadImg  success*****");
-                return true;
+
+            p.setMainimage(mainImage);
+            if (width == 0) {
+                p.setStyle("no-image");
+            } else if (width > 300) {
+                p.setStyle("large-image");
+            } else {
+                p.setStyle("mini-image");
             }
-            log.info("*****extractorAndUploadImg  failed***** url:" + url);
-            return false;
+
         } catch (Exception e) {
-            log.info("*****extractorAndUploadImg  failed***** url:" + url);
-            return false;
+            p.setStyle("no-image");
         }
+        return true;
     }
 
     public boolean extractorContent() {
@@ -140,9 +160,10 @@ public class BaseExtractor {
         return true;
     }
 
-    public void mergePage(ParserPage p) {}
+    public void mergePage(ParserPage p) {
+    }
 
-    public boolean extractorTags() {
+    public boolean extractorTags(String... keywords) {
         log.debug("*****extractorTags*****");
         if (content == null) {
             log.info("*****extractorTags  failed***** url:" + url);
@@ -152,6 +173,16 @@ public class BaseExtractor {
             String contentStr = content.text();
             LeveDis leveDis = LeveDis.getInstance("");
             String tags = leveDis.tag(contentStr, 5);
+            for (String key : keywords) {
+                if ("".equals(key) || key == null) {
+                    continue;
+                }
+                if (!"".equals(tags) && !tags.contains(key)) {
+                    tags = key + "," + tags;
+                } else {
+                    tags = key;
+                }
+            }
             p.setLabel(tags);
             int level = leveDis.compFileLevel(leveDis.compLevel(contentStr));
             p.setLevel(String.valueOf(level));

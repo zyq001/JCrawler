@@ -1,9 +1,12 @@
 package com.youdao.dict.util;
 
+import lombok.Getter;
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 import org.apache.xmlrpc.client.XmlRpcCommonsTransportFactory;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -17,6 +20,10 @@ import java.net.URL;
 public class OImageUploader {
     public String product = "dict-consult";
     public int timeout = 1500;
+    @Getter
+    private int width;
+    @Getter
+    private int height;
 
     public OImageUploader() {
     }
@@ -59,6 +66,9 @@ public class OImageUploader {
         conn.setConnectTimeout(timeout);
         conn.connect();
         InputStream inStream = conn.getInputStream();
+        BufferedImage sourceImg = ImageIO.read(inStream);
+        width = sourceImg.getWidth();
+        height = sourceImg.getHeight();
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int len = 0;
@@ -66,17 +76,6 @@ public class OImageUploader {
             outStream.write(buffer, 0, len);
         }
         data = outStream.toByteArray();//图片的二进制数据
-//        int shouldlen = conn.getContentLength();
-//        System.err.println("url = " + img + ", shouldlen=" + shouldlen);
-//        data = new byte[shouldlen];
-//        int readlen = 0;
-//        while (true) {
-//            int l1 = inStream.read(data, readlen, shouldlen - readlen);
-//            if (l1 <= 0)
-//                break;
-//            readlen += l1;
-//        }
-        //System.err.println("DEBUG: conn.getContentLength() = "+conn.getContentLength()+", readlen = "+readlen);
         inStream.close();
 //        return (readlen == shouldlen); //true;
         return true;
