@@ -72,7 +72,7 @@ public class ChinaDailyExtractor extends BaseExtractor {
         p.setType(type.trim());//TODO
 
         String label = (String) context.output.get("label");
-        p.setLabel(label.trim());
+        p.setLabel(label);
         log.debug("*****extractorTitle  success*****");
         return true;
     }
