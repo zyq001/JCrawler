@@ -73,6 +73,8 @@ public class CNNExtractor extends BaseExtractor {
             type0 = typeElement0.attr("content");
         }
 
+
+
         if (type0 != null && !"".equals(type0.trim())) {
             type0 = type0.replaceAll("/", "");
             type = type + "," + type0.trim();
@@ -123,6 +125,7 @@ public class CNNExtractor extends BaseExtractor {
         try {
             Elements imgs = content.select("img");
             String mainImage = null;
+            int width = 0;
             for (Element img : imgs) {
                 String imageUrl = img.attr("src");
                 if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
@@ -142,20 +145,25 @@ public class CNNExtractor extends BaseExtractor {
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 img.attr("src", newUrl.toString());
                 if (mainImage == null) {
+                    width = uploader.getWidth();
                     mainImage = newUrl.toString();
                 }
             }
-            if (mainImage != null) {
-                p.setMainimage(mainImage);
-                log.debug("*****extractorAndUploadImg  success*****");
-                return true;
+
+            p.setMainimage(mainImage);
+            if (width == 0) {
+                p.setStyle("no-image");
+            } else if (width > 300) {
+                p.setStyle("large-image");
+            } else {
+                p.setStyle("mini-image");
             }
-            log.info("*****extractorAndUploadImg  failed***** url:" + url);
-            return false;
+
         } catch (Exception e) {
-            log.info("*****extractorAndUploadImg  failed***** url:" + url);
-            return false;
+            p.setStyle("no-image");
         }
+        return true;
+
     }
 
 }

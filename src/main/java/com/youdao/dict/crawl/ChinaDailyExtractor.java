@@ -69,7 +69,7 @@ public class ChinaDailyExtractor extends BaseExtractor {
             type = type.substring(0, type.indexOf("/"));
             type = type.replace("/", "");
         }
-        p.setType(type.trim());//TODO
+        p.setType(type.trim());
 
         String label = (String) context.output.get("label");
         p.setLabel(label);

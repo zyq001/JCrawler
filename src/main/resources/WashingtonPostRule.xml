@@ -5,7 +5,7 @@
         </element>
 
         <element selector="div[class=headline-kicker]">
-            <text name="type"/>
+            <text name="label"/>
         </element>
 
         <element name="time" selector="span[class=pb-timestamp]">

@@ -51,18 +51,21 @@ public class WashingtonExtractor extends BaseExtractor {
 
     public boolean extractorType() {
         log.debug("*****extractorType*****");
-        String type = (String) context.output.get("type");
-        String type0 = url.substring(url.indexOf(".com/") + 5);
-        type0 = type0.substring(0, type0.indexOf("/"));
-        if (type0 != null && !"".equals(type0.trim())) {
-            type0 = type0.replaceAll("/", "");
-            type = type + "," + type0.trim();
-        }
+
+        String type = url.substring(url.indexOf(".com/") + 5);
+        type = type.substring(0, type.indexOf("/"));
         if (type == null || "".equals(type.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
             return false;
         }
-        p.setType(type.trim());//TODO
+        if (type.contains("/")) {
+            type = type.substring(0, type.indexOf("/"));
+            type = type.replace("/", "");
+        }
+        p.setType(type.trim());
+
+        String label = (String) context.output.get("label");
+        p.setLabel(label);
         log.debug("*****extractorTitle  success*****");
         return true;
     }
