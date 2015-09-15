@@ -7,12 +7,12 @@
 <!--        <element name="title" selector="meta[name=title]">
         </element>-->
 
-        <element name="type0" selector="meta[name=section]">
+        <element name="type" selector="meta[name=section]">
         </element>
 
-        <element name="type" selector="meta[property=og:type]">
+        <element name="label" selector="meta[property=og:type]">
         </element>
-        <element name="type" selector="meta[property=vr:type]">
+        <element name="label" selector="meta[property=vr:type]">
         </element>
 
         <element name="keywords" selector="meta[name=keywords]">

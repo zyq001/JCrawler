@@ -67,25 +67,26 @@ public class CNNExtractor extends BaseExtractor {
         if (typeElement != null) {
             type = typeElement.attr("content");
         }
-        Element typeElement0 = (Element) context.output.get("type0");
-        String type0 = "";
-        if (typeElement0 != null) {
-            type0 = typeElement0.attr("content");
-        }
 
-
-
-        if (type0 != null && !"".equals(type0.trim())) {
-            type0 = type0.replaceAll("/", "");
-            type = type + "," + type0.trim();
-        }
         if (type == null || "".equals(type.trim())) {
-            log.info("*****extractorType  failed***** url:" + url);
+            log.info("*****extractorTitle  failed***** url:" + url);
             return false;
         }
-        p.setType(type.trim());//TODO
-        log.debug("*****extractorType  success*****");
+        if (type.contains("/")) {
+            type = type.substring(0, type.indexOf("/"));
+            type = type.replace("/", "");
+        }
+        p.setType(type.trim());
+
+        Element labelElement = (Element) context.output.get("label");
+        String label = "";
+        if (labelElement != null) {
+            label = labelElement.attr("content");
+        }
+        p.setLabel(label);
+        log.debug("*****extractorTitle  success*****");
         return true;
+
     }
 
     public boolean extractorTime() {
