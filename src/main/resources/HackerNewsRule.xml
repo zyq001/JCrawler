@@ -1,0 +1,6 @@
+<docs>
+    <doc url="https://news.ycombinator.com/news.*">
+        <element name="title" selector="td[class=title]">
+        </element>
+    </doc>
+</docs>
