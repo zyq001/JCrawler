@@ -147,7 +147,7 @@ public class NYTimesCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(false);
+        crawler.setResumable(true);
 
         crawler.start(5000);
     }

@@ -23,10 +23,12 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.net.RequestConfig;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
+import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.JDBCHelper;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.xml.sax.SAXException;
 
@@ -84,21 +86,32 @@ public class HackerNewsCrawler extends DeepCrawler {
     public Links visitAndGetNextLinks(Page page) {
         try {
             Context context = soupLang.extract(page.getDoc());
-            Element[] titles = (Element[]) context.output.get("title");
-            for (Element title : titles) {
-                String url = title.attr("href");
-                String value = title.data();
-                System.out.println(url + "  " + value);
-            }
-/*            BaseExtractor extractor = new ChinaDailyExtractor(page);
-            if (extractor.extractor() && jdbcTemplate != null) {
-                ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page2 (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
-                if (updates == 1) {
-                    System.out.println("mysql插入成功");
+            Element table = (Element) context.output.get("table");
+            if (table != null) {
+                Elements elements = table.select("td[class=title]");
+                for (int i = 1; i < elements.size(); i += 2) {
+                    Elements hostElement = elements.get(i).select("span[class=sitebit comhead]");
+                    Elements titleElement = elements.get(i).select("a");
+                    if (hostElement == null || titleElement == null) {
+                        continue;
+                    }
+                    String title = titleElement.text();
+                    String url = titleElement.attr("href");
+                    String host = hostElement.text();
+                    host = host.replace("(", "").replace(")", "");
+                    System.out.println(title + "," + host + "," + url);
+                    ParserPage p = new ParserPage();
+                    p.setUrl(url);
+                    p.setHost(host);
+                    p.setTitle(title);
+                    int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
+                    if (updates == 1) {
+                        System.out.println("mysql插入成功");
+                    }
                 }
-            }*/
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,7 +162,7 @@ public class HackerNewsCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(500);
+        crawler.start(50);
     }
 
 }
