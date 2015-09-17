@@ -142,7 +142,7 @@ public class CNNCrawler extends DeepCrawler {
         /*设置是否断点爬取*/
         crawler.setResumable(true);
 
-        crawler.start(5000);
+        crawler.start(7);
     }
 
 }
