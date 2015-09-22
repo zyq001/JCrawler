@@ -42,22 +42,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author hu
  */
-public class CNNCrawler extends DeepCrawler {
+public class GoogleNewsCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public CNNCrawler(String crawlPath) {
+    public GoogleNewsCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule(".*cnn.com.*");
-        regexRule.addRule("-http://us.cnn.com/video.*");
-        regexRule.addRule("-http://arabic.cnn.com.*");
-        regexRule.addRule("-http://ac360.blogs.cnn.com.*");
-        regexRule.addRule("-http://archives.cnn.com/TRANSCRIPTS.*");
-        regexRule.addRule("-http://cnnmoney.trulia.com.*");
-
+        regexRule.addRule("https://news.google.com/.*");
+        regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
          JDBCHelper.getJdbcTemplate("mysql1")来获取这个对象。
@@ -86,12 +81,11 @@ public class CNNCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-
-            BaseExtractor extractor = new CNNExtractor(page);
+            BaseExtractor extractor = new GoogleNewsExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),"www.cnn.com",p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("insert ignore into parser_page_gn (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -120,20 +114,21 @@ public class CNNCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        CNNCrawler crawler = new CNNCrawler("../data/cnn");
-        crawler.setThreads(50);
-        crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
-//        crawler.addSeed("http://us.cnn.com/2015/08/07/us/death-row-stories-ruben-cantu/index.html");
+        GoogleNewsCrawler crawler = new GoogleNewsCrawler("../data/gn");
+        crawler.setThreads(1);
+//        crawler.addSeed("https://news.google.com");
+        crawler.addSeed("https://news.google.com/");
+//        crawler.addSeed("http://www.chinadaily.com.cn/sports/2015-09/08/content_21819814.htm");
         crawler.setResumable(false);
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
-//        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
+       //c requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         /*
-blended-wrapper esc-wrapper
+
         //多代理随机
         RandomProxyGenerator proxyGenerator=new RandomProxyGenerator();
         proxyGenerator.addProxy("127.0.0.1",8080,Proxy.Type.SOCKS);
@@ -141,9 +136,10 @@ blended-wrapper esc-wrapper
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(true);
+//        crawler.setResumable(true);
+        crawler.setResumable(false);
 
-        crawler.start(7);
+        crawler.start(8);
     }
 
 }

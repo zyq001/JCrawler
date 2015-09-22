@@ -1,0 +1,10 @@
+<docs>
+    <doc>
+        <element selector="title">
+            <text name="type"/>
+        </element>
+
+        <element name="body" selector="body">
+        </element>
+    </doc>
+</docs>

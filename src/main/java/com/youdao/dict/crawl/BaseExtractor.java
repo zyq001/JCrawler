@@ -15,6 +15,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +32,8 @@ public class BaseExtractor {
     String url;
     Document doc;
     Element content;
+    List<ParserPage> parserPages = new ArrayList<ParserPage>();
+
 
     public ParserPage getParserPage() {
         return p;
@@ -206,5 +210,7 @@ public class BaseExtractor {
         }
         return host;
     }
-
+    public List<ParserPage> getParserPageList() {
+        return parserPages;
+    }
 }

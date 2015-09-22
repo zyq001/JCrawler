@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by liuhl on 15-8-5.
@@ -78,67 +80,106 @@ public class DBClient {
         return list;
     }
 
-
-    public static boolean updateTime(ParserPage p) {
-        boolean flag=true;
-        Connection conn=null;
-        PreparedStatement ps=null;
-        String sql="update parser_page set time=? where id=?";
-        conn= DBConnUtil.getConn();
+    public static Map<String, String> getChannelMapping() {
+        Map<String, String> result = new HashMap<String, String>();
+        String sql = "select type,channel from type_channel";
+        Connection conn = DBConnUtil.getConn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         try {
-            ps=conn.prepareStatement(sql);
-            ps.setString(1, p.getTime());
-            ps.setLong(2, p.getId());
-            int i= ps.executeUpdate();
-            if(i==0){
-                flag=false;
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                result.put(rs.getString("type"), rs.getString("channel"));
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        }
+        return result;
+    }
+
+    public static boolean updateTime(ParserPage p) {
+        boolean flag = true;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String sql = "update parser_page set time=? where id=?";
+        conn = DBConnUtil.getConn();
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, p.getTime());
+            ps.setLong(2, p.getId());
+            int i = ps.executeUpdate();
+            if (i == 0) {
+                flag = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBConnUtil.closeAll(null, ps, conn);
+        }
+        return flag;
+    }
+
+    public static boolean updateType(String oldType, String newType) {
+        boolean flag = true;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String sql = "update parser_page set type=? where type=?";
+        conn = DBConnUtil.getConn();
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, oldType);
+            ps.setString(1, newType);
+            int i = ps.executeUpdate();
+            if (i == 0) {
+                flag = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             DBConnUtil.closeAll(null, ps, conn);
         }
         return flag;
     }
 
     public static boolean update(ParserPage p) {
-        boolean flag=true;
-        Connection conn=null;
-        PreparedStatement ps=null;
-        String sql="update parser_page set content=? where id=?";
-        conn= DBConnUtil.getConn();
+        boolean flag = true;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String sql = "update parser_page set content=? where id=?";
+        conn = DBConnUtil.getConn();
         try {
-            ps=conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setString(1, p.getContent());
             ps.setLong(2, p.getId());
-            int i= ps.executeUpdate();
-            if(i==0){
-                flag=false;
+            int i = ps.executeUpdate();
+            if (i == 0) {
+                flag = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             DBConnUtil.closeAll(null, ps, conn);
         }
         return flag;
     }
 
     public static boolean remove(ParserPage p) {
-        boolean flag=true;
-        Connection conn=null;
-        PreparedStatement ps=null;
-        String sql="delete from parser_page where id=?";
-        conn= DBConnUtil.getConn();
+        boolean flag = true;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        String sql = "delete from parser_page where id=?";
+        conn = DBConnUtil.getConn();
         try {
-            ps=conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.setLong(1, p.getId());
-            int i=ps.executeUpdate();
-            if(i==0){
-                flag=false;
+            int i = ps.executeUpdate();
+            if (i == 0) {
+                flag = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             DBConnUtil.closeAll(null, ps, conn);
         }
 

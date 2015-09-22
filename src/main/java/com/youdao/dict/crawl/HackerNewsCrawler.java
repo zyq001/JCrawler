@@ -162,7 +162,7 @@ public class HackerNewsCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(50);
+        crawler.start(7);
     }
 
 }
