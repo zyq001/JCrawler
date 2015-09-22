@@ -26,6 +26,8 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -83,11 +85,13 @@ public class GoogleNewsCrawler extends DeepCrawler {
         try {
             BaseExtractor extractor = new GoogleNewsExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
-                ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page_gn (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
-                if (updates == 1) {
-                    System.out.println("mysql插入成功");
+                List<ParserPage> parserPages = extractor.getParserPageList();
+                for (ParserPage p : parserPages) {
+                    int updates = jdbcTemplate.update("insert ignore into parser_page_gn (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
+                    if (updates == 1) {
+                        System.out.println("mysql插入成功");
+                    }
                 }
             }
         } catch (Exception e) {
@@ -126,7 +130,7 @@ public class GoogleNewsCrawler extends DeepCrawler {
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
-       //c requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+        //c requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         /*
 
         //多代理随机
@@ -136,8 +140,8 @@ public class GoogleNewsCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-//        crawler.setResumable(true);
-        crawler.setResumable(false);
+        crawler.setResumable(true);
+//        crawler.setResumable(false);
 
         crawler.start(8);
     }
