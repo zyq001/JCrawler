@@ -1,0 +1,28 @@
+<docs>
+    <doc>
+
+<!--        <element selector="title">
+            <text name="title"/>
+        </element>-->
+        <element selector="h1[class=news_title]">
+            <text name="title"/>
+        </element>
+
+        <element selector="ul[class=breadcrumbs-top]">
+            <element selector="a">
+                <text name="type"/>
+             </element>
+        </element>
+
+        <element name="keywords" selector="meta[name=keywords]">
+        </element>
+
+        <element name="time" selector="meta[name=cXenseParse:recs:publishtime]">
+        </element>
+
+<!--        <element name="content" selector="div[class=news_detail]">
+        </element>-->
+        <element name="content" selector="div[class=text-area]">
+        </element>
+    </doc>
+</docs>
