@@ -11,6 +11,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class GoogleNewsExtractor extends BaseExtractor {
         for (Element element : elements) {
             ParserPage parserPage = extractorElement(element);
             if (parserPage != null) {
-                parserPages.add(new ParserPage());
+                parserPages.add(parserPage);
             }
         }
         return true;
@@ -100,17 +101,21 @@ public class GoogleNewsExtractor extends BaseExtractor {
                 String host = getHost(url);
                 page.setHost(host);
                 try {
-                    HttpRequest request = new HttpRequest(url);
+/*                    HttpRequest request = new HttpRequest(url);
+                    request.getRequestConfig().setTimeoutForConnect(1000);
+                    request.getRequestConfig().setTimeoutForRead(1000);
                     String html = request.getResponse().getHtmlByCharsetDetect();
-                    page.setContent(html);
+                    page.setContent(html);*/
                 } catch (Exception e) {
-                    log.info("Fail to get the target page.");
-                    e.printStackTrace();
+                    log.info("Fail to get the target page." + url);
+                    return null;
                 }
             }
         }
+        page.setTime(new Timestamp(System.currentTimeMillis()).toString());
         page.setType(p.getType());
         page.setStyle("html");
+        log.info("---success parser:" + page.getTitle() + page.getUrl());
         return page;
     }
 }

@@ -104,6 +104,7 @@ public class HackerNewsCrawler extends DeepCrawler {
                     p.setUrl(url);
                     p.setHost(host);
                     p.setTitle(title);
+                    p.setType("Technology");
                     int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
                             p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
                     if (updates == 1) {

@@ -20,12 +20,16 @@ package com.youdao.dict.crawl;
 import cn.edu.hfut.dmic.webcollector.crawler.DeepCrawler;
 import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import cn.edu.hfut.dmic.webcollector.net.HttpRequest;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
+import cn.edu.hfut.dmic.webcollector.net.RandomProxyGenerator;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.net.Proxy;
 import java.util.List;
 
 /**
@@ -87,11 +91,8 @@ public class GoogleNewsCrawler extends DeepCrawler {
             if (extractor.extractor() && jdbcTemplate != null) {
                 List<ParserPage> parserPages = extractor.getParserPageList();
                 for (ParserPage p : parserPages) {
-                    int updates = jdbcTemplate.update("insert ignore into parser_page_gn (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
-                    if (updates == 1) {
-                        System.out.println("mysql插入成功");
-                    }
+                    new Thread(new ParserThread(p, jdbcTemplate)) {
+                    }.start();
                 }
             }
         } catch (Exception e) {
@@ -118,8 +119,8 @@ public class GoogleNewsCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        GoogleNewsCrawler crawler = new GoogleNewsCrawler("../data/gn");
-        crawler.setThreads(1);
+        GoogleNewsCrawler crawler = new GoogleNewsCrawler("../data/googlenews");
+        crawler.setThreads(30);
 //        crawler.addSeed("https://news.google.com");
         crawler.addSeed("https://news.google.com/");
 //        crawler.addSeed("http://www.chinadaily.com.cn/sports/2015-09/08/content_21819814.htm");
@@ -130,14 +131,15 @@ public class GoogleNewsCrawler extends DeepCrawler {
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
-        //c requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+//        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         /*
 
-        //多代理随机
-        RandomProxyGenerator proxyGenerator=new RandomProxyGenerator();
-        proxyGenerator.addProxy("127.0.0.1",8080,Proxy.Type.SOCKS);
-        requester.setProxyGenerator(proxyGenerator);
         */
+        //多代理随机
+/*        RandomProxyGenerator proxyGenerator = new RandomProxyGenerator();
+        proxyGenerator.addProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+        proxyGenerator.addProxy("proxy.corp.youdao.com", 7890, Proxy.Type.SOCKS);
+        requester.setProxyGenerator(proxyGenerator);*/
 
         /*设置是否断点爬取*/
         crawler.setResumable(true);
@@ -146,4 +148,36 @@ public class GoogleNewsCrawler extends DeepCrawler {
         crawler.start(8);
     }
 
+}
+
+@CommonsLog
+class ParserThread implements Runnable {
+
+    ParserPage p;
+    JdbcTemplate jdbcTemplate;
+
+    public ParserThread(ParserPage p, JdbcTemplate jdbcTemplate) {
+        this.p = p;
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public void run() {
+        String url = p.getUrl();
+        try {
+            HttpRequest request = new HttpRequest(url);
+            request.getRequestConfig().setTimeoutForConnect(1000);
+            request.getRequestConfig().setTimeoutForRead(1000);
+            String html = request.getResponse().getHtmlByCharsetDetect();
+            p.setContent(html);
+        } catch (Exception e) {
+            log.info("Fail to get the target page." + url);
+            return ;
+        }
+        int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
+        if (updates == 1) {
+            System.out.println("mysql插入成功");
+        }
+    }
 }
