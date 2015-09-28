@@ -130,8 +130,6 @@ public class NYTimesCrawler extends DeepCrawler {
         crawler.setThreads(50);
 //        crawler.addSeed("http://www.nytimes.com/");
         crawler.addSeed("http://www.nytimes.com/2015/08/26/business/dealbook/daily-stock-market-activity.html");
-        crawler.setResumable(false);
-
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();

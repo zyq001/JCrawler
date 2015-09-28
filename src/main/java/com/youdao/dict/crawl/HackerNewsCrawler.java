@@ -140,8 +140,6 @@ public class HackerNewsCrawler extends DeepCrawler {
         HackerNewsCrawler crawler = new HackerNewsCrawler("../data/hn");
         crawler.setThreads(50);
         crawler.addSeed("https://news.ycombinator.com/news");
-        crawler.setResumable(false);
-
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();

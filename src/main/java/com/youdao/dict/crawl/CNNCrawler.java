@@ -124,8 +124,6 @@ public class CNNCrawler extends DeepCrawler {
         crawler.setThreads(50);
         crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
 //        crawler.addSeed("http://us.cnn.com/2015/08/07/us/death-row-stories-ruben-cantu/index.html");
-        crawler.setResumable(false);
-
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();

@@ -124,8 +124,6 @@ public class GoogleNewsCrawler extends DeepCrawler {
 //        crawler.addSeed("https://news.google.com");
         crawler.addSeed("https://news.google.com/");
 //        crawler.addSeed("http://www.chinadaily.com.cn/sports/2015-09/08/content_21819814.htm");
-        crawler.setResumable(false);
-
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();

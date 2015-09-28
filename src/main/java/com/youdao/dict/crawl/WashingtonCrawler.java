@@ -132,8 +132,6 @@ public class WashingtonCrawler extends DeepCrawler {
         crawler.setThreads(50);
         crawler.addSeed("https://www.washingtonpost.com/regional/");
 //        crawler.addSeed("https://www.washingtonpost.com/world/us-servicemen-become-french-knights/2015/08/24/c4654613-f872-48ad-ba81-bb4bf414dd88_story.html?tid=pm_pop_b");
-        crawler.setResumable(false);
-
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
