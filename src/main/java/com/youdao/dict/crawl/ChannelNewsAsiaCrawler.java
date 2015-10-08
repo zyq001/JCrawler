@@ -87,7 +87,7 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),"www.cnn.com",p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),"channelnewsasia.com",p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -117,7 +117,7 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
         ChannelNewsAsiaCrawler crawler = new ChannelNewsAsiaCrawler("../data/cna");
-        crawler.setThreads(50);
+        crawler.setThreads(10);
         crawler.addSeed("http://www.channelnewsasia.com/");
 //        crawler.addSeed("http://www.channelnewsasia.com/news/business/vw-ignored-warnings-on/2154216.html");
 
