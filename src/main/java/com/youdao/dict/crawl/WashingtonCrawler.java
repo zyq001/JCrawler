@@ -129,13 +129,15 @@ public class WashingtonCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
         WashingtonCrawler crawler = new WashingtonCrawler("../data/washington");
-        crawler.setThreads(50);
+        crawler.setThreads(10);
         crawler.addSeed("https://www.washingtonpost.com/regional/");
 //        crawler.addSeed("https://www.washingtonpost.com/world/us-servicemen-become-french-knights/2015/08/24/c4654613-f872-48ad-ba81-bb4bf414dd88_story.html?tid=pm_pop_b");
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+        requester.setCookie("JSESSIONID=259E636B04FDAD2701378E3C1CE8BFC8; de=; drawbridge_o=6; drawbridge_test=drawbridge-adb|; client_region=0; rpld1=0:netease.com|20:chn|21:11|22:beijing|23:39.912498|24:116.388802|; rpld0=1:10|2:-|; wapo_login_id=2086968DDD18F77BE050007F01004A10; wapo_secure_login_id=ADOnmPmQWbu4leve8J/12XwOtZbIHHImok+AMGmG3ctgUeeyB0CCsD7yW3pCJ1mNUVh1HJxZXg/iYkM0C9BtfgOPKNYOYK1WmE2vVsNfqoL2z4C4UQdWvjuDjslLJbVxY03dJXrJlCmXDNR0O06OmBtVMp64mejKbXS0NYkLSIdaU685AGi3jdlZt9iE54/TlEaBjrl0R//apUvWw9AIlYdF8Rdmd6bu; wapo_groups=\"games_newsletters-short-default-post_registration-long-jobs_registration-legacy attributes-personal_post_reg-onestep\"; wapo_display=aqia358|https%3A%2F%2Fwpidentity.s3.amazonaws.com%2Fassets%2Fimages%2Favatar-default.png; wpniuser=aqia358@gmail.com; wpnisecure=aee42cb86e6ee028269d59f32657355f; washingtonpost_avatar=https%3A//wpidentity.s3.amazonaws.com/assets/images/avatar-default.png; WPPREF=HP=2:VS=1; wapo_provider=\"Washington Post\"; rplsb=0; wapo_actmgmt=egem:0|v:1|edlt:1|; s_vi=[CS]v1|2AED5CAD8501193F-6000013160007AD5[CE]; s_pers=%20s_vmonthnum%3D1446307200621%2526vn%253D1%7C1446307200621%3B%20s_nr%3D1444268706844-Repeat%7C1446860706844%3B%20s_lv%3D1444268706846%7C1538876706846%3B%20s_lv_s%3DMore%2520than%25207%2520days%7C1444270506846%3B%20s_monthinvisit%3Dtrue%7C1444270506853%3B%20gvp_p5%3Dwp%2520-%2520homepage%7C1444270506857%3B%20gvp_p51%3Dwp%2520-%2520homepage%7C1444270506859%3B; s_sess=%20s_wp_ep%3Dhomepage%3B%20s._ref%3DDirect-Load%3B%20s_cc%3Dtrue%3B%20s_ppvl%3Dwp%252520-%252520homepage%252C13%252C13%252C938%252C1680%252C938%252C1680%252C1050%252C1%252CP%3B%20s_dslv%3DMore%2520than%25207%2520days%3B%20s_sq%3Dwpniwashpostcom%253D%252526pid%25253Dwp%25252520-%25252520homepage%252526pidt%25253D1%252526oid%25253Dhttps%2525253A%2525252F%2525252Fwww.washingtonpost.com%2525252Fnews%2525252Fdc-sports-bog%2525252Fwp%2525252F2015%2525252F10%2525252F07%2525252Fi-play-with-guns-caron-butlers-insid%252526ot%25253DA%3B%20s_ppv%3Dwp%252520-%252520homepage%252C15%252C15%252C938%252C1680%252C938%252C1680%252C1050%252C1%252CP%3B; WPATC=A=1:D=2:C=2:E=BAAIH:P=2:B=1:B=26:B=60:B=101:VS=3; devicetype=0; osfam=0; rplmct=1");
+
 //        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
