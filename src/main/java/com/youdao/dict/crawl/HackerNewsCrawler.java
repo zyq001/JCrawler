@@ -34,6 +34,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.net.Proxy;
 
 /**
  * WebCollector 2.x版本的tutorial
@@ -91,7 +92,7 @@ public class HackerNewsCrawler extends DeepCrawler {
                 Elements elements = table.select("td[class=title]");
                 for (int i = 1; i < elements.size(); i += 2) {
                     Elements hostElement = elements.get(i).select("span[class=sitebit comhead]");
-                    Elements titleElement = elements.get(i).select("a");
+                    Element titleElement = elements.get(i).select("a").get(0);
                     if (hostElement == null || titleElement == null) {
                         continue;
                     }
@@ -139,7 +140,7 @@ public class HackerNewsCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
         HackerNewsCrawler crawler = new HackerNewsCrawler("../data/hn");
-        crawler.setThreads(50);
+        crawler.setThreads(1);
         crawler.addSeed("https://news.ycombinator.com/news");
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
@@ -149,7 +150,7 @@ public class HackerNewsCrawler extends DeepCrawler {
         config.setTimeoutForConnect(60000);
         config.setTimeoutForRead(60000);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
-//        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         /*
 
         //多代理随机

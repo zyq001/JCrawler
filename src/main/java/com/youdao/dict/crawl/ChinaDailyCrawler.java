@@ -116,16 +116,75 @@ public class ChinaDailyCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
         ChinaDailyCrawler crawler = new ChinaDailyCrawler("../data/wb");
-        crawler.setThreads(50);
+        crawler.setThreads(1);
         crawler.addSeed("http://www.chinadaily.com.cn/");
+        crawler.addSeed("http://www.chinadaily.com.cn/index.html");
+
+        crawler.addSeed("http://www.chinadaily.com.cn/china/governmentandpolicy.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/china/society.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/china/scitech.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/china/education.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/coverstory.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/photo/china.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/china/newsmaker.html");
+
+        crawler.addSeed("http://www.chinadaily.com.cn/world/");
+        crawler.addSeed("http://www.chinadaily.com.cn/world/asia_pacific.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/world/america.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/world/latinamerica.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/world/europe.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/world/africa.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/world/middle_east.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/world/reportersjournal.html");
+
+
+        crawler.addSeed("http://www.chinadaily.com.cn/business/");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/economy.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/policyandregulation.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/chinadata/");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/companies.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/money.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/biz_industries.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/bizopinion.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/motoring/");
+        crawler.addSeed("http://www.chinadaily.com.cn/business/tech/");
+
+        crawler.addSeed("http://www.chinadaily.com.cn/life/");
+        crawler.addSeed("http://www.chinadaily.com.cn/fashion/");
+        crawler.addSeed("http://www.chinadaily.com.cn/life/health.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/food/");
+        crawler.addSeed("http://www.chinadaily.com.cn/celebrity/");
+        crawler.addSeed("http://www.chinadaily.com.cn/travel/");
+
+        crawler.addSeed("http://www.chinadaily.com.cn/culture/");
+        crawler.addSeed("http://www.chinadaily.com.cn/culture/column.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/culture/eventandfestival.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/culture/heritage.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/culture/books.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/culture/filmandtv.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/culture/musicandtheater.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/culture/art/");
+
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/");
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/stars.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/china.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/golf.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/swimming.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/tennis.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/volleyball.html");
+        crawler.addSeed("http://www.chinadaily.com.cn/sports/basketball.html");
+
+
+
+        crawler.addSeed("http://www.chinadaily.com.cn/opinion/");
+        crawler.addSeed("http://www.chinadaily.com.cn/regional/");
 //        crawler.addSeed("http://www.chinadaily.com.cn/world/2015-09/14/content_21852339.htm");
 //        crawler.addSeed("http://www.chinadaily.com.cn/sports/2015-09/08/content_21819814.htm");
-        crawler.setResumable(false);
-
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+        requester.setCookie("CNZZDATA1950488=cnzz_eid%3D739324831-1432460954-null%26ntime%3D1432460954; wdcid=44349d3f2aa96e51; vjuids=-53d395da8.14eca7eed44.0.f17be67e; CNZZDATA3473518=cnzz_eid%3D1882396923-1437965756-%26ntime%3D1440635510; pt_37a49e8b=uid=FuI4KYEfVz5xq7L4nzPd1w&nid=1&vid=r4AhSBmxisCiyeolr3V2Ow&vn=1&pvn=1&sact=1440639037916&to_flag=0&pl=t4NrgYqSK5M357L2nGEQCw*pt*1440639015734; _ga=GA1.3.1121158748.1437970841; __auc=c00a6ac114d85945f01d9c30128; CNZZDATA1975683=cnzz_eid%3D250014133-1432460541-null%26ntime%3D1440733997; CNZZDATA1254041250=2000695407-1442220871-%7C1442306691; pt_7f0a67e8=uid=6lmgYeZ3/jSObRMeK-t27A&nid=0&vid=lEKvEtZyZdd0UC264UyZnQ&vn=2&pvn=1&sact=1442306703728&to_flag=0&pl=7GB3sYS/PJDo1mY0qeu2cA*pt*1442306703728; 7NSx_98ef_saltkey=P05gN8zn; 7NSx_98ef_lastvisit=1444281282; IframeBodyHeight=256; NTVq_98ef_saltkey=j5PydYru; NTVq_98ef_lastvisit=1444282735; NTVq_98ef_atarget=1; NTVq_98ef_lastact=1444286377%09api.php%09js; 7NSx_98ef_sid=hZyDwc; __utmt=1; __utma=155578217.1121158748.1437970841.1443159326.1444285109.23; __utmb=155578217.57.10.1444285109; __utmc=155578217; __utmz=155578217.1439345650.3.2.utmcsr=travel.chinadaily.com.cn|utmccn=(referral)|utmcmd=referral|utmcct=/; CNZZDATA3089622=cnzz_eid%3D1722311508-1437912344-%26ntime%3D1444286009; wdlast=1444287704; vjlast=1437916393.1444285111.11; 7NSx_98ef_lastact=1444287477%09api.php%09chinadaily; pt_s_3bfec6ad=vt=1444287704638&cad=; pt_3bfec6ad=uid=bo87MAT/HC3hy12HDkBg1A&nid=0&vid=erwHQyFKxvwHXYc4-r6n-w&vn=28&pvn=2&sact=1444287708079&to_flag=0&pl=kkgvLoEHXsCD2gs4VJaWQg*pt*1444287704638; pt_t_3bfec6ad=?id=3bfec6ad.bo87MAT/HC3hy12HDkBg1A.erwHQyFKxvwHXYc4-r6n-w.kkgvLoEHXsCD2gs4VJaWQg.nZJ9Aj/bgfNDIKBXI5TwRQ&stat=167.132.1050.1076.1body%20div%3Aeq%288%29%20ul%3Aeq%280%29%20a%3Aeq%282%29.0.0.1595.3441.146.118&ptif=4");
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
        //c requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         /*
@@ -137,10 +196,10 @@ public class ChinaDailyCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(true);
-//        crawler.setResumable(false);
+//        crawler.setResumable(true);
+        crawler.setResumable(false);
 
-        crawler.start(8);
+        crawler.start(2);
     }
 
 }
