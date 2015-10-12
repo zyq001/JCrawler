@@ -123,6 +123,57 @@ public class CNNCrawler extends DeepCrawler {
         CNNCrawler crawler = new CNNCrawler("../data/cnn");
         crawler.setThreads(50);
         crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
+
+        crawler.addSeed("http://us.cnn.com/world");
+        crawler.addSeed("http://us.cnn.com/middle-east");
+        crawler.addSeed("http://us.cnn.com/europe");
+        crawler.addSeed("http://us.cnn.com/asia");
+        crawler.addSeed("http://us.cnn.com/americas");
+        crawler.addSeed("http://us.cnn.com/africa");
+
+        crawler.addSeed("http://us.cnn.com/politics");
+        crawler.addSeed("http://us.cnn.com/specials/politics/world-politics");
+        crawler.addSeed("http://us.cnn.com/specials/politics/national-politics");
+        crawler.addSeed("http://us.cnn.com/specials/politics/washington-politics");
+
+        crawler.addSeed("http://us.cnn.com/tech");
+        crawler.addSeed("http://money.cnn.com/technology/innovate/index.html");
+        crawler.addSeed("http://us.cnn.com/specials/space-science");
+        crawler.addSeed("http://us.cnn.com/specials/tech/cybersecurity");
+        crawler.addSeed("http://us.cnn.com/specials/tech/consumer-tech");
+
+        crawler.addSeed("http://us.cnn.com/health");
+        crawler.addSeed("http://us.cnn.com/specials/health-care");
+        crawler.addSeed("http://us.cnn.com/specials/health/living-well");
+        crawler.addSeed("http://us.cnn.com/specials/health/diet-fitness");
+
+        crawler.addSeed("http://us.cnn.com/entertainment");
+        crawler.addSeed("http://us.cnn.com/specials/showbiz/movies-music");
+        crawler.addSeed("http://us.cnn.com/specials/showbiz/tv-web");
+        crawler.addSeed("http://us.cnn.com/specials/showbiz/celebrity-watch");
+
+        crawler.addSeed("http://us.cnn.com/living");
+        crawler.addSeed("http://us.cnn.com/specials/belief");
+        crawler.addSeed("http://us.cnn.com/specials/living/relationships");
+        crawler.addSeed("http://us.cnn.com/specials/living/eatocracy");
+        crawler.addSeed("http://us.cnn.com/specials/living/cnn-parents");
+
+        crawler.addSeed("http://us.cnn.com/travel");
+        crawler.addSeed("http://us.cnn.com/specials/travel/aviation-more");
+        crawler.addSeed("http://us.cnn.com/specials/travel/sleep-eats");
+        crawler.addSeed("http://us.cnn.com/specials/travel/best-of-travel");
+        crawler.addSeed("http://us.cnn.com/style/arts");
+        crawler.addSeed("http://us.cnn.com/style/architecture");
+
+        crawler.addSeed("http://money.cnn.com/");
+        crawler.addSeed("http://money.cnn.com/luxury/");
+        crawler.addSeed("http://money.cnn.com/smallbusiness/");
+        crawler.addSeed("http://money.cnn.com/pf/");
+        crawler.addSeed("http://money.cnn.com/media/");
+        crawler.addSeed("http://money.cnn.com/technology/");
+        crawler.addSeed("http://money.cnn.com/data/markets/");
+        crawler.addSeed("http://money.cnn.com/news/");
+        crawler.addSeed("http://money.cnn.com/data/markets/");
 //        crawler.addSeed("http://us.cnn.com/2015/08/07/us/death-row-stories-ruben-cantu/index.html");
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
@@ -139,9 +190,9 @@ blended-wrapper esc-wrapper
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(true);
+        crawler.setResumable(false);
 
-        crawler.start(7);
+        crawler.start(2);
     }
 
 }
