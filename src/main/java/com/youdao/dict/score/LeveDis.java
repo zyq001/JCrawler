@@ -229,7 +229,7 @@ public class LeveDis {
     }
 
     public String tag(String text, int tagnum) {
-        try {
+/*        try {
             String path = "vocPath/stop_words_eng.txt";
             InputStream is = LeveDis.class.getClassLoader().getResourceAsStream(path);
             BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -259,7 +259,7 @@ public class LeveDis {
             return rout.substring(0, rout.lastIndexOf(","));
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return "";
     }
 

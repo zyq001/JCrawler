@@ -61,6 +61,7 @@ public class BaseExtractor {
 
 
     public boolean extractor() {
+        extractorKeywords();
         return init() && extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorContent() && extractorTags(keywords, p.getLabel());
     }
 
@@ -80,14 +81,18 @@ public class BaseExtractor {
         return false;
     }
 
-    public boolean extractorKeywords() {
-        log.debug("*****extractorTime*****");
-        Element keywordsElement = (Element) context.output.get("time");
+    public void extractorKeywords() {
+        log.debug("*****extractorKeywords*****");
+        Element keywordsElement = (Element) context.output.get("keywords");
         if (keywordsElement == null)
-            return false;
+            return;
         keywords = keywordsElement.attr("content");
-        keywords = keywords.contains(",") ? "" : keywords;
-        return false;
+        if (keywords == null || "".equals(keywords)) {
+            return;
+        }
+        if (keywords.contains(" ")) {
+            keywords = "".equals(keywords) ? "" : keywords.replaceAll(" ", ",");
+        }
     }
 
     public boolean isPaging() {
@@ -153,6 +158,7 @@ public class BaseExtractor {
         }
         String contentHtml = content.html();
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
+        contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
         contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
         contentHtml = contentHtml.replaceAll("<(?!img|br|p|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
@@ -177,14 +183,16 @@ public class BaseExtractor {
             String contentStr = content.text();
             LeveDis leveDis = LeveDis.getInstance("");
             String tags = leveDis.tag(contentStr, 5);
-            for (String key : keywords) {
-                if ("".equals(key) || key == null) {
-                    continue;
-                }
-                if (!"".equals(tags) && !tags.contains(key)) {
-                    tags = key + "," + tags;
-                } else {
-                    tags = key;
+            if (keywords != null) {
+                for (String key : keywords) {
+                    if ("".equals(key) || key == null) {
+                        continue;
+                    }
+                    if (!"".equals(tags) && !tags.contains(key)) {
+                        tags = key + "," + tags;
+                    } else {
+                        tags = key;
+                    }
                 }
             }
             p.setLabel(tags);
@@ -210,6 +218,7 @@ public class BaseExtractor {
         }
         return host;
     }
+
     public List<ParserPage> getParserPageList() {
         return parserPages;
     }
