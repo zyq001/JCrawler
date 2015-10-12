@@ -107,8 +107,8 @@ public class HackerNewsCrawler extends DeepCrawler {
                     p.setTitle(title);
                     p.setType("Technology");
                     p.setStyle("no-image");
-                    int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
+                    int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?)",
+                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getContent(), p.getVersion(), p.getMainimage());
                     if (updates == 1) {
                         System.out.println("mysql插入成功");
                     }
