@@ -61,8 +61,7 @@ public class BaseExtractor {
 
 
     public boolean extractor() {
-        extractorKeywords();
-        return init() && extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorContent() && extractorTags(keywords, p.getLabel());
+        return init() && extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorContent() && extractorKeywords() &&extractorTags(keywords, p.getLabel());
     }
 
     public boolean init() {
@@ -81,18 +80,19 @@ public class BaseExtractor {
         return false;
     }
 
-    public void extractorKeywords() {
+    public boolean extractorKeywords() {
         log.debug("*****extractorKeywords*****");
         Element keywordsElement = (Element) context.output.get("keywords");
         if (keywordsElement == null)
-            return;
+            return true;
         keywords = keywordsElement.attr("content");
         if (keywords == null || "".equals(keywords)) {
-            return;
+            return true;
         }
         if (keywords.contains(" ")) {
             keywords = "".equals(keywords) ? "" : keywords.replaceAll(" ", ",");
         }
+        return true;
     }
 
     public boolean isPaging() {
