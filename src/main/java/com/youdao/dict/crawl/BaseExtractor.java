@@ -61,7 +61,10 @@ public class BaseExtractor {
 
 
     public boolean extractor() {
-        return init() && extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorContent() && extractorKeywords() &&extractorTags(keywords, p.getLabel());
+        if (init())
+            return extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel());
+        else
+            return false;
     }
 
     public boolean init() {
@@ -89,7 +92,7 @@ public class BaseExtractor {
         if (keywords == null || "".equals(keywords)) {
             return true;
         }
-        if (keywords.contains(" ")) {
+        if (!keywords.contains(",")) {
             keywords = "".equals(keywords) ? "" : keywords.replaceAll(" ", ",");
         }
         return true;

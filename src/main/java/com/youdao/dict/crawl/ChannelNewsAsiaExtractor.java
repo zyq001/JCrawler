@@ -20,7 +20,6 @@ import java.util.Date;
  */
 @CommonsLog
 public class ChannelNewsAsiaExtractor extends BaseExtractor {
-    private Context context;
 
     public ChannelNewsAsiaExtractor(Page page) {
         super(page);
