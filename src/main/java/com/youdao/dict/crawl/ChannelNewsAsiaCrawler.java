@@ -118,21 +118,18 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
         */
         ChannelNewsAsiaCrawler crawler = new ChannelNewsAsiaCrawler("../data/cna");
         crawler.setThreads(10);
-//        crawler.addSeed("http://www.channelnewsasia.com/");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/lifestyle");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/health");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/technology");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/entertainment");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/sport");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/business");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/world");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/singapore");
-//        crawler.addSeed("http://www.channelnewsasia.com/archives/asiapacific");
+        crawler.addSeed("http://www.channelnewsasia.com/");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/lifestyle");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/health");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/technology");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/entertainment");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/sport");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/business");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/world");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/singapore");
+        crawler.addSeed("http://www.channelnewsasia.com/archives/asiapacific");
 
-
-
-
-        crawler.addSeed("http://www.channelnewsasia.com/news/asiapacific/korea-s-park-aiming-to/2188860.html");
+//        crawler.addSeed("http://www.channelnewsasia.com/news/asiapacific/korea-s-park-aiming-to/2188860.html");
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
