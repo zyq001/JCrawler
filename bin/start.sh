@@ -2,8 +2,9 @@
 source /home/liuhongliang/.bash_profile
 
 DATE=$(date +%Y%m%d)
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/..
-LOG_DIR=$DIR/../data/logs
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+LOG_DIR=$DIR/logs
+DATA_DIR=$DIR/logs
 
 start(){
 	if [ $# -ne 1 ] 
@@ -19,7 +20,7 @@ start(){
 			echo "start failed, please check the log!"
 			exit $?
 		else
-			echo $! > ${LOG_DIR}/$1.pid
+			echo $! > ${DATA_DIR}/$1.pid
 			echo "start success"
 		fi
 	fi
@@ -32,13 +33,13 @@ stop(){
 		echo "Input your service name"
 	else
 		echo "Stopping $1...."
-		SPID=$(cat ${LOG_DIR}/$1.pid)
+		SPID=$(cat ${DATA_DIR}/$1.pid)
 		kill -9 $SPID
 		if [ $? -ne 0 ]
 		then
 			echo "${1} has been gone"
 		else
-			rm -rf ${LOG_DIR}/${1}.pid
+			rm -rf ${DATA_DIR}/${1}.pid
 			echo "stop ${1} success"
 		fi
 	fi

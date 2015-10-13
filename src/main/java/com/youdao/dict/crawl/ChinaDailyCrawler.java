@@ -115,7 +115,7 @@ public class ChinaDailyCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        ChinaDailyCrawler crawler = new ChinaDailyCrawler("../data/wb");
+        ChinaDailyCrawler crawler = new ChinaDailyCrawler("/data/wb");
         crawler.setThreads(1);
         crawler.addSeed("http://www.chinadaily.com.cn/");
         crawler.addSeed("http://www.chinadaily.com.cn/index.html");
