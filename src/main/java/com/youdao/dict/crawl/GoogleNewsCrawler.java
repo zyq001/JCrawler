@@ -119,7 +119,7 @@ public class GoogleNewsCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        GoogleNewsCrawler crawler = new GoogleNewsCrawler("../data/googlenews");
+        GoogleNewsCrawler crawler = new GoogleNewsCrawler("/data/googlenews");
         crawler.setThreads(30);
 //        crawler.addSeed("https://news.google.com");
         crawler.addSeed("https://news.google.com/");

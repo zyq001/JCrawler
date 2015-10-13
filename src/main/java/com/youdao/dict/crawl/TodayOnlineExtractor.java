@@ -22,35 +22,23 @@ import java.util.PriorityQueue;
  * Created by liuhl on 15-8-17.
  */
 @CommonsLog
-public class TheguardianExtractor extends BaseExtractor {
+public class TodayOnlineExtractor extends BaseExtractor {
 
-    public TheguardianExtractor(Page page) {
+    public TodayOnlineExtractor(Page page) {
         super(page);
     }
 
-    public TheguardianExtractor(String url) {
+    public TodayOnlineExtractor(String url) {
         super(url);
     }
 
     public boolean init() {
         log.debug("*****init*****");
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TheguardianRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TodayOnlineRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
-            for(Element svg: content.select("svg")){
-                if(svg != null) svg.remove();
-            }
-            content.select("span").remove();
-            for(Element e: content.select("div")){
-                String name = e.attr("class");
-                if(name.contains("content__meta-container js-content-meta js-football-meta u-cf") ||
-                        name.equals("submeta") ){
-                    e.remove();
-                }
-            }
-            content.removeClass("content__article-body from-content-api js-article__body");
-            content.removeClass("meta__social");
+
             String isarticle = context.output.get("isarticle").toString();
             if(isarticle.contains("article")){
                 log.debug("*****init  success*****");
@@ -88,7 +76,9 @@ public class TheguardianExtractor extends BaseExtractor {
         Element elementType = (Element) context.output.get("type");
         if (elementType == null)
             return false;
-        String type = elementType.attr("content");
+        String type = elementType.select("h2").text();
+//        child(0).tagName();
+//        String type = elementType.attr("content");
         if (type == null || "".equals(type.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
             return false;
@@ -102,12 +92,12 @@ public class TheguardianExtractor extends BaseExtractor {
 
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null)
-            return false;
+            return true;
         String label = elementLabel.attr("content");
 //        String label = (String) context.output.get("label");
         if (label == null || "".equals(label.trim())) {
             log.info("*****extractorLabel  failed***** url:" + url);
-            return false;
+            return true;
         }
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
         String[] keywords = label.split(",");
@@ -198,7 +188,6 @@ public class TheguardianExtractor extends BaseExtractor {
                 img.removeAttr("WIDTH");
                 img.removeAttr("height");
                 img.removeAttr("HEIGHT");
-                img.removeAttr("srcset");
                 //                img.removeAttr("srcset");
                 img.attr("style", "width:100%;");
                 OImageUploader uploader = new OImageUploader();
@@ -252,4 +241,26 @@ public class TheguardianExtractor extends BaseExtractor {
         return true;
 
     }
+
+    public void mergePage(ParserPage p) {
+        log.debug("*****mergePage*****");
+        Elements div = doc.select("div[class=\"item-list\"]").select("li[class=\"pager-next\"]").select("a");
+//        LinkedList<String> list = new LinkedList<String>();
+//        for (Element a : div) {
+//            String url = a.attr("href");
+//            if (!list.contains(url)) {
+//                list.add(url);
+//            }
+//        }
+        String nextPage = div.attr("href");
+        if(nextPage.equals("")) return;
+        ChinaDailyExtractor extractor = new ChinaDailyExtractor(url);
+        extractor.init();
+        extractor.extractorAndUploadImg();
+        extractor.extractorContent(true);
+        p.setContent(p.getContent() + extractor.getParserPage().getContent());
+
+        log.info("*****mergePage end*****");
+    }
+
 }
