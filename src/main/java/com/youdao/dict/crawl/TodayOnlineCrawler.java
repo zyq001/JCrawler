@@ -117,12 +117,12 @@ public class TodayOnlineCrawler extends DeepCrawler {
         */
 
         TodayOnlineCrawler crawler = new TodayOnlineCrawler("../data/TodayOnline");
-        crawler.setThreads(1);
+        crawler.setThreads(10);
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-        crawler.addSeed("http://www.todayonline.com/business/oil-bargain-hunting-gains-capped-stockpile-forecast");
-//        crawler.addSeed("http://www.todayonline.com/world");
-//        crawler.addSeed("http://www.todayonline.com/business");
+//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+        crawler.addSeed("http://www.todayonline.com/world");
+        crawler.addSeed("http://www.todayonline.com/business");
 //        crawler.addSeed("http://www.theguardian.com/uk/culture");
 //        crawler.addSeed("http://www.theguardian.com/us/culture");
 //        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion

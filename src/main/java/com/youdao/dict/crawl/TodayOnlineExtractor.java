@@ -39,9 +39,15 @@ public class TodayOnlineExtractor extends BaseExtractor {
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
+
+
             String isarticle = context.output.get("isarticle").toString();
             if(isarticle.contains("article")){
                 log.debug("*****init  success*****");
+//                content.select("div[id=sidebar-second]").remove();
+//                content.select("div[id=content-bottom]").remove();
+                Elements socailLinks = content.select("div[class=social-links]");
+                if(socailLinks != null)socailLinks.remove();
                 return true;
             }
             log.info("*****init  failed，isn't an article***** url:" + url);
@@ -152,11 +158,15 @@ public class TodayOnlineExtractor extends BaseExtractor {
     }
 
     public boolean isPaging() {
-        Elements div = doc.select("div[id=div_currpage]");
+//        Elements div2 = doc.select("div[id=\"content-main\"]");
+        Elements div2 = content.select("div[id=content-main]");
+        Elements sociallinks = div2.select("div[class=social-links]");
+        if(sociallinks != null) sociallinks.remove();//去除社交网络分享栏目框
+        Elements div = div2.select("div[class=item-list");
         if (div == null) {
             return false;
         }
-        Elements a = div.select("a");
+        Elements a = div.select("li");
         if (a == null || a.size() == 0) {
             return false;
         }
@@ -171,6 +181,7 @@ public class TodayOnlineExtractor extends BaseExtractor {
         if (content == null || p == null) {
             return false;
         }
+        if(isPaging()) return true;
        /* if (host.equals(port)) return true;*/
 
         Elements imgs = content.select("img");
@@ -244,7 +255,7 @@ public class TodayOnlineExtractor extends BaseExtractor {
 
     public void mergePage(ParserPage p) {
         log.debug("*****mergePage*****");
-        Elements div = doc.select("div[class=\"item-list\"]").select("li[class=\"pager-next\"]").select("a");
+//        Elements div = doc.select("div[class=\"item-list\"]").select("li[class=\"pager-next\"]").select("a");
 //        LinkedList<String> list = new LinkedList<String>();
 //        for (Element a : div) {
 //            String url = a.attr("href");
@@ -252,13 +263,22 @@ public class TodayOnlineExtractor extends BaseExtractor {
 //                list.add(url);
 //            }
 //        }
-        String nextPage = div.attr("href");
-        if(nextPage.equals("")) return;
-        ChinaDailyExtractor extractor = new ChinaDailyExtractor(url);
+//        Elements div2 = content.select("div[id=content-main]");
+//        Elements sociallinks = div2.select("div[class=social-links]");
+//        if(sociallinks != null) sociallinks.remove();//去除社交网络分享栏目框
+//        Elements div = div2.select("div[class=item-list");
+//        if (div == null) {
+//            return;
+//        }
+//        Elements a = div.select("li");
+
+//        String nextPage = div.attr("href");
+//        if(nextPage.equals("")) return;
+        ChinaDailyExtractor extractor = new ChinaDailyExtractor(url + "?singlepage=true");
         extractor.init();
         extractor.extractorAndUploadImg();
         extractor.extractorContent(true);
-        p.setContent(p.getContent() + extractor.getParserPage().getContent());
+        p.setContent(extractor.getParserPage().getContent());
 
         log.info("*****mergePage end*****");
     }
