@@ -13,44 +13,45 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Locale;
+import java.util.PriorityQueue;
 
 /**
  * Created by liuhl on 15-8-17.
  */
 @CommonsLog
-public class TodayOnlineExtractor extends BaseExtractor {
+public class AsiaOneExtractor extends BaseExtractor {
 
-    public TodayOnlineExtractor(Page page) {
+    public AsiaOneExtractor(Page page) {
         super(page);
     }
 
-    public TodayOnlineExtractor(String url) {
+    public AsiaOneExtractor(String url) {
         super(url);
     }
 
     public boolean init() {
         log.debug("*****init*****");
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TodayOnlineRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("AsiaOneRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
 
 
-            String isarticle = context.output.get("isarticle").toString();
-            if(isarticle.contains("article")){
-                log.debug("*****init  success*****");
-//                content.select("div[id=sidebar-second]").remove();
-//                content.select("div[id=content-bottom]").remove();
-                Elements socailLinks = content.select("div[class=social-links]");
-                if(socailLinks != null)socailLinks.remove();
-                content.select("div[class=authoring full-date]").remove();
-                content.select("div[class=authoring]").remove();
-                return true;
-            }
-            log.info("*****init  failed，isn't an article***** url:" + url);
-            return false;
+//            String isarticle = context.output.get("isarticle").toString();
+//            if(isarticle.contains("article")){
+//                log.debug("*****init  success*****");
+////                content.select("div[id=sidebar-second]").remove();
+////                content.select("div[id=content-bottom]").remove();
+////                Elements socailLinks = content.select("div[class=social-links]");
+////                if(socailLinks != null)socailLinks.remove();
+//                return true;
+//            }
+//            log.info("*****init  failed，isn't an article***** url:" + url);
+            return true;
         } catch (Exception e) {
             log.info("*****init  failed***** url:" + url);
             return false;
@@ -132,29 +133,46 @@ public class TodayOnlineExtractor extends BaseExtractor {
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
+        String time = "";
+        SimpleDateFormat format = null;
         if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract Time, skip");
-            return false;
-
-        }
-        String time = elementTime.attr("content");
-        if (time == null || "".equals(time.trim())) {
-            log.info("*****extractorTime  failed***** url:" + url);
-            return false;
-        }
+            Elements contentTime = content.select("span[class=field-postdate]");
+            if(contentTime == null) return false;
+            time = contentTime.first().text();
+            time = time.substring(time.indexOf(",") + 2);
+            format = new SimpleDateFormat("MMM dd, yyyy");
+            Date date;
+            try {
+                date = format.parse(time.trim());
+            } catch (ParseException e) {
+                return false;
+            }
+            if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+                log.debug("*****extractorTime  out of date*****");
+                return false;
+            }
+            p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
+        }else {
+            time = elementTime.attr("content");
+            if (time == null || "".equals(time.trim())) {
+                log.info("*****extractorTime  failed***** url:" + url);
+                return false;
+            }
 //2015-09-12 08:25
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
-        Date date;
-        try {
-            date = format.parse(time.trim());
-        } catch (ParseException e) {
-            return false;
+            format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+//        }
+            Date date;
+            try {
+                date = format.parse(time.trim());
+            } catch (ParseException e) {
+                return false;
+            }
+            if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+                log.debug("*****extractorTime  out of date*****");
+                return false;
+            }
+            p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
         }
-        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
-            log.debug("*****extractorTime  out of date*****");
-            return false;
-        }
-        p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
     }
@@ -183,11 +201,6 @@ public class TodayOnlineExtractor extends BaseExtractor {
         if (content == null || p == null) {
             return false;
         }
-
-        //文章题目重复出现，去除之
-        content.select("div[id=block-onix-highlight-onix-highlight-article-header]").remove();
-        content.select("div[id=block-views-article-title-block]").remove();
-
         if(isPaging()) return true;
        /* if (host.equals(port)) return true;*/
 
@@ -281,7 +294,7 @@ public class TodayOnlineExtractor extends BaseExtractor {
 
 //        String nextPage = div.attr("href");
 //        if(nextPage.equals("")) return;
-        TodayOnlineExtractor extractor = new TodayOnlineExtractor(url + "?singlepage=true");
+        AsiaOneExtractor extractor = new AsiaOneExtractor(url + "?singlepage=true");
         extractor.init();
         extractor.extractorAndUploadImg();
         extractor.extractorContent(true);

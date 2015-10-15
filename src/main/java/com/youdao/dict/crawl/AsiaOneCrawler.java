@@ -26,11 +26,6 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -47,13 +42,13 @@ import java.util.Locale;
  *
  * @author hu
  */
-public class TodayOnlineCrawler extends DeepCrawler {
+public class AsiaOneCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public TodayOnlineCrawler(String crawlPath) {
+    public AsiaOneCrawler(String crawlPath) {
         super(crawlPath);
 
         regexRule.addRule("http://www.todayonline.com/.*");
@@ -87,7 +82,7 @@ public class TodayOnlineCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new TodayOnlineExtractor(page);
+            BaseExtractor extractor = new AsiaOneExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
@@ -121,22 +116,19 @@ public class TodayOnlineCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
 
-
-
-
-        TodayOnlineCrawler crawler = new TodayOnlineCrawler("../data/TodayOnline2");
-        crawler.setThreads(10);
+        AsiaOneCrawler crawler = new AsiaOneCrawler("../data/AsiaOne");
+        crawler.setThreads(1);
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-        crawler.addSeed("http://www.todayonline.com/world");
-        crawler.addSeed("http://www.todayonline.com/business");
-        crawler.addSeed("http://www.todayonline.com/tech");
-        crawler.addSeed("http://www.todayonline.com/sports");
-        crawler.addSeed("http://www.todayonline.com/entertainment");//opinion
-        crawler.addSeed("http://www.todayonline.com/lifestyle");
-        crawler.addSeed("http://www.todayonline.com/chinaindia");
-        crawler.addSeed("http://www.todayonline.com/");
+        crawler.addSeed("http://news.asiaone.com/lifestyle");
+        crawler.addSeed("http://business.asiaone.com/");
+        crawler.addSeed("http://news.asiaone.com/news/asia");
+//        crawler.addSeed("http://www.theguardian.com/us/culture");
+//        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
+//        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
+//        crawler.addSeed("http://www.theguardian.com/uk/business");
+//        crawler.addSeed("http://www.theguardian.com/uk/environment");
 //        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
 //        crawler.addSeed("http://www.theguardian.com/us/business");
 //        crawler.addSeed("http://www.theguardian.com/us/environment");
