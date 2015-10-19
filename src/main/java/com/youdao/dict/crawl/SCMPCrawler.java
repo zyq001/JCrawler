@@ -42,16 +42,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author hu
  */
-public class TheguardianCrawler extends DeepCrawler {
+public class SCMPCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public TheguardianCrawler(String crawlPath) {
+    public SCMPCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://www.theguardian.com/.*");
+        regexRule.addRule("http://www.scmp.com/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -82,7 +82,7 @@ public class TheguardianCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new TheguardianExtractor(page);
+            BaseExtractor extractor = new SCMPExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
@@ -116,26 +116,27 @@ public class TheguardianCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
 
-        TheguardianCrawler crawler = new TheguardianCrawler("/data/Theguardian2");
-        crawler.setThreads(10);
-//        crawler.addSeed("http://www.theguardian.com/business/2015/oct/09/wikileaks-releases-tpp-intellectual-property-rights-chapter");
-//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-        crawler.addSeed("http://www.theguardian.com/world");
-        crawler.addSeed("http://www.theguardian.com/uk/sport");
-        crawler.addSeed("http://www.theguardian.com/us/sport");
-        crawler.addSeed("http://www.theguardian.com/uk/culture");
-        crawler.addSeed("http://www.theguardian.com/us/culture");
-        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
-        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
-        crawler.addSeed("http://www.theguardian.com/uk/business");
-        crawler.addSeed("http://www.theguardian.com/uk/environment");
-        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-        crawler.addSeed("http://www.theguardian.com/us/business");
-        crawler.addSeed("http://www.theguardian.com/us/environment");
-////
-        crawler.addSeed("http://www.theguardian.com/travel");
-        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-        crawler.addSeed("http://www.theguardian.com/politics");
+
+
+
+        SCMPCrawler crawler = new SCMPCrawler("/data/SCMP");
+        crawler.setThreads(1);
+//
+      crawler.addSeed("http://www.scmp.com/business");
+        crawler.addSeed("http://www.scmp.com/technology");
+        crawler.addSeed("http://www.scmp.com/lifestyle");
+        crawler.addSeed("http://www.scmp.com/comment");//opinion
+        crawler.addSeed("http://www.scmp.com/sport");
+        crawler.addSeed("http://www.scmp.com/news");
+        crawler.addSeed("http://www.scmp.com/news/hong-kong");
+//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
+//        crawler.addSeed("http://www.theguardian.com/us/business");
+//        crawler.addSeed("http://www.theguardian.com/us/environment");
+//////
+//        crawler.addSeed("http://www.theguardian.com/travel");
+//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
+//        crawler.addSeed("http://www.theguardian.com/politics");
+
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
