@@ -20,7 +20,6 @@ import java.util.Date;
  */
 @CommonsLog
 public class CNNExtractor extends BaseExtractor {
-    private Context context;
 
     public CNNExtractor(Page page) {
         super(page);

@@ -140,10 +140,10 @@ public class GoogleNewsCrawler extends DeepCrawler {
         requester.setProxyGenerator(proxyGenerator);*/
 
         /*设置是否断点爬取*/
-        crawler.setResumable(true);
-//        crawler.setResumable(false);
+//        crawler.setResumable(true);
+        crawler.setResumable(false);
 
-        crawler.start(8);
+        crawler.start(3);
     }
 
 }

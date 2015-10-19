@@ -97,7 +97,7 @@ public class NYTimesCrawler extends DeepCrawler {
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
+                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -126,9 +126,12 @@ public class NYTimesCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        NYTimesCrawler crawler = new NYTimesCrawler("../data/nytimes");
-        crawler.setThreads(50);
-        crawler.addSeed("http://www.nytimes.com/");
+        NYTimesCrawler crawler = new NYTimesCrawler("/data/nytimes");
+        crawler.setThreads(1);
+        String seeds = "http://www.nytimes.com,http://international.nytimes.com/,http://www.nytimes.com/pages/world/index.html,http://www.nytimes.com/pages/national/index.html,http://www.nytimes.com/pages/politics/index.html,http://www.nytimes.com/pages/nyregion/index.html,http://www.nytimes.com/pages/business/index.html,http://www.nytimes.com/pages/business/international/index.html,http://www.nytimes.com/pages/opinion/index.html,http://www.nytimes.com/pages/opinion/international/index.html,http://www.nytimes.com/pages/technology/index.html,http://www.nytimes.com/pages/science/index.html,http://www.nytimes.com/pages/health/index.html,http://www.nytimes.com/pages/sports/index.html,http://www.nytimes.com/pages/sports/international/index.html,http://www.nytimes.com/pages/arts/index.html,http://www.nytimes.com/pages/arts/international/index.html,http://www.nytimes.com/pages/fashion/index.html,http://www.nytimes.com/pages/style/international/index.html,http://www.nytimes.com/pages/dining/index.html,http://www.nytimes.com/pages/dining/international/index.html,http://www.nytimes.com/pages/travel/index.html,http://www.nytimes.com/pages/magazine/index.html,http://www.nytimes.com/section/t-magazine,http://www.nytimes.com/pages/realestate/index.html,http://www.nytimes.com/pages/obituaries/index.html,http://www.nytimes.com/video/,http://www.nytimes.com/upshot/,http://www.nytimes.com/crosswords/,http://www.nytimes.com/times-insider,http://www.nytimes.com/pages/multimedia/index.html,http://lens.blogs.nytimes.com/,http://www.nytwineclub.com/,http://nytedu.com,http://www.nytimes.com/times-journeys/,http://www.nytimes.com/seeallnav,http://www.nytimes.com/membercenter,http://www.nytimes.com/pages/todayspaper/index.html,http://www.nytimes.com/interactive/blogs/directory.html,http://www.nytimes.com/pages/topics/,http://www.nytimes.com/marketing/tools-and-services/,http://www.nytimes.com/section/jobs,http://www.nytimes.com/ref/classifieds/,http://www.nytimes.com/pages/corrections/index.html";
+        for (String seed : seeds.split(",")) {
+            crawler.addSeed(seed);
+        }
 //        crawler.addSeed("http://www.nytimes.com/2015/08/26/business/dealbook/daily-stock-market-activity.html");
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
@@ -146,9 +149,9 @@ public class NYTimesCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(true);
+        crawler.setResumable(false);
 
-        crawler.start(5000);
+        crawler.start(2);
     }
 
 }

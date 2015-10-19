@@ -107,8 +107,8 @@ public class HackerNewsCrawler extends DeepCrawler {
                     p.setTitle(title);
                     p.setType("Technology");
                     p.setStyle("no-image");
-                    int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getContent(), p.getVersion(), p.getMainimage());
+                    int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?)",
+                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getContent(), p.getVersion(), p.getMainimage());
                     if (updates == 1) {
                         System.out.println("mysql插入成功");
                     }
@@ -139,7 +139,7 @@ public class HackerNewsCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        HackerNewsCrawler crawler = new HackerNewsCrawler("../data/hn");
+        HackerNewsCrawler crawler = new HackerNewsCrawler("/data/hn");
         crawler.setThreads(1);
         crawler.addSeed("https://news.ycombinator.com/news");
 
