@@ -69,15 +69,15 @@ public class TodayOnlineCrawler extends DeepCrawler {
          */
 
         try {
-//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-//                    "root", "123456", 5, 30);
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+                    "root", "", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+//                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -90,8 +90,8 @@ public class TodayOnlineCrawler extends DeepCrawler {
             BaseExtractor extractor = new TodayOnlineExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }

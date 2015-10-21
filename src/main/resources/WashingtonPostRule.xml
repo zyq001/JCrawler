@@ -14,5 +14,8 @@
         <element name="content" selector="div[id=article-body]">
         </element>
 
+        <element name="description" selector="meta[property=og:description]">
+        </element>
+
     </doc>
 </docs>

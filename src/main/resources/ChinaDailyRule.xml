@@ -98,6 +98,9 @@
             <text name="time" regex="Updated: (.*)"/>
         </element>
 
+        <element name="description" selector="meta[name=description]">
+        </element>
+
     </doc>
 
 

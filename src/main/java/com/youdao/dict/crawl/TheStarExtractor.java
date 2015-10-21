@@ -15,45 +15,40 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
  * Created by liuhl on 15-8-17.
  */
 @CommonsLog
-public class TheguardianExtractor extends BaseExtractor {
+public class TheStarExtractor extends BaseExtractor {
 
-    public TheguardianExtractor(Page page) {
+    public TheStarExtractor(Page page) {
         super(page);
     }
 
-    public TheguardianExtractor(String url) {
+    public TheStarExtractor(String url) {
         super(url);
     }
 
     public boolean init() {
         log.debug("*****init*****");
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TheguardianRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TheStarRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
-            for(Element svg: content.select("svg")){
-                if(svg != null) svg.remove();
-            }
-            content.select("span").remove();
-            for(Element e: content.select("div")){
-                String name = e.attr("class");
-                if(name.contains("content__meta-container js-content-meta js-football-meta u-cf") ||
-                        name.equals("submeta") ){
-                    e.remove();
-                }
-            }
-            content.removeClass("content__article-body from-content-api js-article__body");
-            content.removeClass("meta__social");
+
+
+
             String isarticle = context.output.get("isarticle").toString();
             if(isarticle.contains("article")){
                 log.debug("*****init  success*****");
+//                content.select("div[id=sidebar-second]").remove();
+//                content.select("div[id=content-bottom]").remove();
+                Elements socailLinks = content.select("div[class=social-links]");
+                if(socailLinks != null)socailLinks.remove();
+                content.select("div[class=authoring full-date]").remove();
+                content.select("div[class=authoring]").remove();
                 return true;
             }
             log.info("*****init  failed，isn't an article***** url:" + url);
@@ -88,7 +83,9 @@ public class TheguardianExtractor extends BaseExtractor {
         Element elementType = (Element) context.output.get("type");
         if (elementType == null)
             return false;
-        String type = elementType.attr("content");
+        String type = elementType.select("h2").text();
+//        child(0).tagName();
+//        String type = elementType.attr("content");
         if (type == null || "".equals(type.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
             return false;
@@ -102,12 +99,12 @@ public class TheguardianExtractor extends BaseExtractor {
 
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null)
-            return false;
+            return true;
         String label = elementLabel.attr("content");
 //        String label = (String) context.output.get("label");
         if (label == null || "".equals(label.trim())) {
             log.info("*****extractorLabel  failed***** url:" + url);
-            return false;
+            return true;
         }
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
         String[] keywords = label.split(",");
@@ -137,8 +134,11 @@ public class TheguardianExtractor extends BaseExtractor {
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
-        if (elementTime == null)
+        if (elementTime == null){//business版head meta里没有时间
+            log.error("can't extract Time, skip");
             return false;
+
+        }
         String time = elementTime.attr("content");
         if (time == null || "".equals(time.trim())) {
             log.info("*****extractorTime  failed***** url:" + url);
@@ -161,31 +161,16 @@ public class TheguardianExtractor extends BaseExtractor {
         return true;
     }
 
-
-    public boolean extractorDescription() {
-        log.debug("*****extractorTime*****");
-        Element elementTime = (Element) context.output.get("description");
-        if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract Time, skip");
-            return false;
-        }
-        String description = elementTime.attr("content");
-        if (description == null || "".equals(description.trim())) {
-            log.info("*****extractorTime  failed***** url:" + url);
-            return false;
-        }
-
-        p.setDescription(description);
-
-        return true;
-    }
-
     public boolean isPaging() {
-        Elements div = doc.select("div[id=div_currpage]");
+//        Elements div2 = doc.select("div[id=\"content-main\"]");
+        Elements div2 = content.select("div[id=content-main]");
+        Elements sociallinks = div2.select("div[class=social-links]");
+        if(sociallinks != null) sociallinks.remove();//去除社交网络分享栏目框
+        Elements div = div2.select("div[class=item-list");
         if (div == null) {
             return false;
         }
-        Elements a = div.select("a");
+        Elements a = div.select("li");
         if (a == null || a.size() == 0) {
             return false;
         }
@@ -200,6 +185,12 @@ public class TheguardianExtractor extends BaseExtractor {
         if (content == null || p == null) {
             return false;
         }
+
+        //文章题目重复出现，去除之
+        content.select("div[id=block-onix-highlight-onix-highlight-article-header]").remove();
+        content.select("div[id=block-views-article-title-block]").remove();
+
+        if(isPaging()) return true;
        /* if (host.equals(port)) return true;*/
 
         Elements imgs = content.select("img");
@@ -217,7 +208,6 @@ public class TheguardianExtractor extends BaseExtractor {
                 img.removeAttr("WIDTH");
                 img.removeAttr("height");
                 img.removeAttr("HEIGHT");
-                img.removeAttr("srcset");
                 //                img.removeAttr("srcset");
                 img.attr("style", "width:100%;");
                 OImageUploader uploader = new OImageUploader();
@@ -271,4 +261,35 @@ public class TheguardianExtractor extends BaseExtractor {
         return true;
 
     }
+
+    public void mergePage(ParserPage p) {
+        log.debug("*****mergePage*****");
+//        Elements div = doc.select("div[class=\"item-list\"]").select("li[class=\"pager-next\"]").select("a");
+//        LinkedList<String> list = new LinkedList<String>();
+//        for (Element a : div) {
+//            String url = a.attr("href");
+//            if (!list.contains(url)) {
+//                list.add(url);
+//            }
+//        }
+//        Elements div2 = content.select("div[id=content-main]");
+//        Elements sociallinks = div2.select("div[class=social-links]");
+//        if(sociallinks != null) sociallinks.remove();//去除社交网络分享栏目框
+//        Elements div = div2.select("div[class=item-list");
+//        if (div == null) {
+//            return;
+//        }
+//        Elements a = div.select("li");
+
+//        String nextPage = div.attr("href");
+//        if(nextPage.equals("")) return;
+        TheStarExtractor extractor = new TheStarExtractor(url + "?singlepage=true");
+        extractor.init();
+        extractor.extractorAndUploadImg();
+        extractor.extractorContent(true);
+        p.setContent(extractor.getParserPage().getContent());
+
+        log.info("*****mergePage end*****");
+    }
+
 }

@@ -112,6 +112,24 @@ public class CNNExtractor extends BaseExtractor {
         return true;
     }
 
+
+    public boolean extractorDescription() {
+        log.debug("*****extractorTime*****");
+        Element elementTime = (Element) context.output.get("description");
+        if (elementTime == null){//business版head meta里没有时间
+            log.error("can't extract Time, skip");
+            return false;
+        }
+        String description = elementTime.attr("content");
+        if (description == null || "".equals(description.trim())) {
+            log.info("*****extractorTime  failed***** url:" + url);
+            return false;
+        }
+
+        p.setDescription(description);
+
+        return true;
+    }
 //    public boolean extractorAndUploadImg() {
 //        return extractorAndUploadImg("proxy.corp.youdao.com", "7890");
 //    }

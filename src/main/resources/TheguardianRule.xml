@@ -28,6 +28,8 @@
         <!--<element name="content" selector="div[class=gs-container]">-->
         <!--</element>-->
 
+        <element name="description" selector="meta[name=description]">
+        </element>
         <element name="isarticle" selector="meta[property=og:type]">
         </element>
 

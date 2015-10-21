@@ -87,7 +87,7 @@ public class NYTimesExtractor extends BaseExtractor {
             return false;
         }
         try {
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+            DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
             Date date = format.parse(time);
             p.setTime(new Timestamp(date.getTime()).toString());
             log.debug("*****extractorTime  success*****");
@@ -98,7 +98,25 @@ public class NYTimesExtractor extends BaseExtractor {
         return true;
     }
 
+    public boolean extractorDescription() {
+        log.debug("*****extractorTime*****");
+        Element elementTime = (Element) context.output.get("description");
+        if (elementTime == null){//business版head meta里没有时间
+            log.error("can't extract Time, skip");
+            return true;
+        }
+        String description = elementTime.attr("content");
+        if (description == null || "".equals(description.trim())) {
+            log.info("*****extractorTime  failed***** url:" + url);
+            return true;
+        }
+
+        p.setDescription(description);
+
+        return true;
+    }
+
     public boolean extractorAndUploadImg() {
-        return extractorAndUploadImg("proxy.corp.youdao.com", "3456");
+        return extractorAndUploadImg("", "");
     }
 }

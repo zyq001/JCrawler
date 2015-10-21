@@ -23,15 +23,15 @@
         <element name="content" selector="div[id=content]">
         </element>
 
-        <element name="description" selector="meta[name=description]">
-        </element>
+        <!--<element name="content" selector="div[class=gs-container]">-->
+        <!--</element>-->
 
-        <element name="isarticle" selector="meta[property=og:type]">
-        </element>
+        <!--<element name="isarticle" selector="meta[property=og:type]">-->
+        <!--</element>-->
 
-        <element name="time" selector="meta[name=cXenseParse:recs:publishtime]">
+        <element name="time" selector="div[class=article-header]">
         </element>
-        <element name="title" selector="meta[property=og:title]">
+        <element name="title" selector="meta[name=twitter:title]">
         </element>
         <element name="type" selector="h2[class=header-sections]">
         </element>

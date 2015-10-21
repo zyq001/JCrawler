@@ -62,7 +62,7 @@ public class BaseExtractor {
 
     public boolean extractor() {
         if (init())
-            return extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel());
+            return extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorDescription() && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel());
         else
             return false;
     }
@@ -148,6 +148,10 @@ public class BaseExtractor {
             p.setStyle("mini-image");
         }
         return true;
+    }
+
+    public boolean extractorDescription() {
+        return false;
     }
 
     public boolean extractorContent() {

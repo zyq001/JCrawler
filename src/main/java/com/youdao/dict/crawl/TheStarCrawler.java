@@ -26,8 +26,6 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.net.Proxy;
-
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -44,16 +42,17 @@ import java.net.Proxy;
  *
  * @author hu
  */
-public class ChannelNewsAsiaCrawler extends DeepCrawler {
+public class TheStarCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public ChannelNewsAsiaCrawler(String crawlPath) {
+    public TheStarCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://www.channelnewsasia.com/.*");
+        regexRule.addRule("http://www.thestar.com.my/.*");
+        regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
          JDBCHelper.getJdbcTemplate("mysql1")来获取这个对象。
@@ -65,11 +64,12 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
          */
 
         try {
-/*
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-                    "root", "tiger", 5, 30);
-*/
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+//                    "root", "123456", 5, 30);
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
+//                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                     "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
                     "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
@@ -82,12 +82,11 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-
-            BaseExtractor extractor = new ChannelNewsAsiaExtractor(page);
+            BaseExtractor extractor = new TheStarExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -116,27 +115,41 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        ChannelNewsAsiaCrawler crawler = new ChannelNewsAsiaCrawler("data/cna");
-        crawler.setThreads(10);
-        crawler.addSeed("http://www.channelnewsasia.com/");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/lifestyle");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/health");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/technology");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/entertainment");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/sport");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/business");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/world");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/singapore");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/asiapacific");
 
-//        crawler.addSeed("http://www.channelnewsasia.com/news/asiapacific/korea-s-park-aiming-to/2188860.html");
+
+
+
+        TheStarCrawler crawler = new TheStarCrawler("data/TheStar");
+        crawler.setThreads(10);
+//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
+//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/21/haze-no-yellow-haze-says-dept-of-environment/");
+//        crawler.addSeed("http://www.todayonline.com/business");
+//        crawler.addSeed("http://www.todayonline.com/tech");
+//        crawler.addSeed("http://www.todayonline.com/sports");
+//        crawler.addSeed("http://www.todayonline.com/entertainment");//opinion
+//        crawler.addSeed("http://www.todayonline.com/lifestyle");
+//        crawler.addSeed("http://www.todayonline.com/chinaindia");
+//        crawler.addSeed("http://www.todayonline.com/");
+//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
+//        crawler.addSeed("http://www.theguardian.com/us/business");
+//        crawler.addSeed("http://www.theguardian.com/us/environment");
+//////
+//        crawler.addSeed("http://www.theguardian.com/travel");
+//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
+//        crawler.addSeed("http://www.theguardian.com/politics");
+
+
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
-        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+//        requester.setCookie("CNZZDATA1950488=cnzz_eid%3D739324831-1432460954-null%26ntime%3D1432460954; wdcid=44349d3f2aa96e51; vjuids=-53d395da8.14eca7eed44.0.f17be67e; CNZZDATA3473518=cnzz_eid%3D1882396923-1437965756-%26ntime%3D1440635510; pt_37a49e8b=uid=FuI4KYEfVz5xq7L4nzPd1w&nid=1&vid=r4AhSBmxisCiyeolr3V2Ow&vn=1&pvn=1&sact=1440639037916&to_flag=0&pl=t4NrgYqSK5M357L2nGEQCw*pt*1440639015734; _ga=GA1.3.1121158748.1437970841; __auc=c00a6ac114d85945f01d9c30128; CNZZDATA1975683=cnzz_eid%3D250014133-1432460541-null%26ntime%3D1440733997; CNZZDATA1254041250=2000695407-1442220871-%7C1442306691; pt_7f0a67e8=uid=6lmgYeZ3/jSObRMeK-t27A&nid=0&vid=lEKvEtZyZdd0UC264UyZnQ&vn=2&pvn=1&sact=1442306703728&to_flag=0&pl=7GB3sYS/PJDo1mY0qeu2cA*pt*1442306703728; 7NSx_98ef_saltkey=P05gN8zn; 7NSx_98ef_lastvisit=1444281282; IframeBodyHeight=256; NTVq_98ef_saltkey=j5PydYru; NTVq_98ef_lastvisit=1444282735; NTVq_98ef_atarget=1; NTVq_98ef_lastact=1444286377%09api.php%09js; 7NSx_98ef_sid=hZyDwc; __utmt=1; __utma=155578217.1121158748.1437970841.1443159326.1444285109.23; __utmb=155578217.57.10.1444285109; __utmc=155578217; __utmz=155578217.1439345650.3.2.utmcsr=travel.chinadaily.com.cn|utmccn=(referral)|utmcmd=referral|utmcct=/; CNZZDATA3089622=cnzz_eid%3D1722311508-1437912344-%26ntime%3D1444286009; wdlast=1444287704; vjlast=1437916393.1444285111.11; 7NSx_98ef_lastact=1444287477%09api.php%09chinadaily; pt_s_3bfec6ad=vt=1444287704638&cad=; pt_3bfec6ad=uid=bo87MAT/HC3hy12HDkBg1A&nid=0&vid=erwHQyFKxvwHXYc4-r6n-w&vn=28&pvn=2&sact=1444287708079&to_flag=0&pl=kkgvLoEHXsCD2gs4VJaWQg*pt*1444287704638; pt_t_3bfec6ad=?id=3bfec6ad.bo87MAT/HC3hy12HDkBg1A.erwHQyFKxvwHXYc4-r6n-w.kkgvLoEHXsCD2gs4VJaWQg.nZJ9Aj/bgfNDIKBXI5TwRQ&stat=167.132.1050.1076.1body%20div%3Aeq%288%29%20ul%3Aeq%280%29%20a%3Aeq%282%29.0.0.1595.3441.146.118&ptif=4");
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
+       //c requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         /*
+
         //多代理随机
         RandomProxyGenerator proxyGenerator=new RandomProxyGenerator();
         proxyGenerator.addProxy("127.0.0.1",8080,Proxy.Type.SOCKS);
@@ -144,8 +157,8 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(false);
 //        crawler.setResumable(true);
+        crawler.setResumable(false);
 
         crawler.start(2);
     }

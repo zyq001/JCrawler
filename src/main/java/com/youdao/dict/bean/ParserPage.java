@@ -51,6 +51,10 @@ public class ParserPage implements IWritable, Serializable {
 
     @Getter
     @Setter
+    private String description = "";
+
+    @Getter
+    @Setter
     private String content = "";
 
     @Getter

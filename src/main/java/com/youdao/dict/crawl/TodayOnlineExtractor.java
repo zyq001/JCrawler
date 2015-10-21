@@ -57,6 +57,8 @@ public class TodayOnlineExtractor extends BaseExtractor {
         }
     }
 
+
+
     public boolean extractorTitle() {
         log.debug("*****extractorTitle*****");
 //        String title = context.output.get("title").toString();
@@ -156,6 +158,24 @@ public class TodayOnlineExtractor extends BaseExtractor {
         }
         p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
+        return true;
+    }
+
+    public boolean extractorDescription() {
+        log.debug("*****extractorTime*****");
+        Element elementTime = (Element) context.output.get("description");
+        if (elementTime == null){//business版head meta里没有时间
+            log.error("can't extract Time, skip");
+            return false;
+        }
+        String description = elementTime.attr("content");
+        if (description == null || "".equals(description.trim())) {
+            log.info("*****extractorTime  failed***** url:" + url);
+            return false;
+        }
+
+        p.setDescription(description);
+
         return true;
     }
 

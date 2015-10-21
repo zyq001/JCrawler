@@ -6,11 +6,13 @@
         <element name="type" selector="meta[name=news_keywords]">
         </element>
 
-        <element name="time" selector="span[name=ptime]">
+        <element name="time" selector="meta[name=ptime]">
         </element>
 
         <element name="content" selector="div[id=story-body]">
         </element>
 
+        <element name="description" selector="meta[property=og:description]">
+        </element>
     </doc>
 </docs>
