@@ -119,7 +119,7 @@ public class SCMPCrawler extends DeepCrawler {
 
 
 
-        SCMPCrawler crawler = new SCMPCrawler("/data/SCMP");
+        SCMPCrawler crawler = new SCMPCrawler("data/SCMP");
         crawler.setThreads(1);
 //
       crawler.addSeed("http://www.scmp.com/business");

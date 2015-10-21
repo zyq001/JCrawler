@@ -124,7 +124,7 @@ public class TodayOnlineCrawler extends DeepCrawler {
 
 
 
-        TodayOnlineCrawler crawler = new TodayOnlineCrawler("/data/TodayOnline2");
+        TodayOnlineCrawler crawler = new TodayOnlineCrawler("data/TodayOnline2");
         crawler.setThreads(10);
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
