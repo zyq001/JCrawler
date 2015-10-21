@@ -120,7 +120,7 @@ public class CNNCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        CNNCrawler crawler = new CNNCrawler("/data/cnn");
+        CNNCrawler crawler = new CNNCrawler("data/cnn");
         crawler.setThreads(50);
         crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
 
