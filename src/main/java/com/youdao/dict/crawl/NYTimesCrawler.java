@@ -78,12 +78,12 @@ public class NYTimesCrawler extends DeepCrawler {
          */
 
         try {
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("nytimes",
-                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-                    "root", "", 5, 30);
-/*            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("nytimes",
+//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+//                    "root", "", 5, 30);
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                     "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);*/
+                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
