@@ -27,14 +27,19 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.JDBCHelper;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
+import java.io.*;
 import java.net.Proxy;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * WebCollector 2.x版本的tutorial
@@ -57,6 +62,8 @@ public class HackerNewsCrawler extends DeepCrawler {
     RegexRule regexRule = new RegexRule();
     SoupLang soupLang;
 
+    List<String> blackList;
+
     JdbcTemplate jdbcTemplate = null;
 
     public HackerNewsCrawler(String crawlPath) throws IOException, SAXException, ParserConfigurationException {
@@ -69,11 +76,9 @@ public class HackerNewsCrawler extends DeepCrawler {
 
 
         try {
-/*
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-                    "root", "tiger", 5, 30);
-*/
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+//                    "root", "", 5, 30);
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                     "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
                     "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
@@ -81,6 +86,26 @@ public class HackerNewsCrawler extends DeepCrawler {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
         }
+    }
+
+    boolean isBlocked(String url){
+        if(blackList == null) return true;
+        for(String s: blackList){
+            if(Pattern.compile(s).matcher(url).find())
+                return true;
+        }
+        return false;
+    }
+
+    public String extractorContent(String url){
+        Document content = null;
+        try {
+            content = Jsoup.connect(url).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+        return content.html();
     }
 
     @Override
@@ -98,17 +123,22 @@ public class HackerNewsCrawler extends DeepCrawler {
                     }
                     String title = titleElement.text();
                     String url = titleElement.attr("href");
+                    if(isBlocked(url)) //被墙则直接跳过
+                        continue;
                     String host = hostElement.text();
                     host = host.replace("(", "").replace(")", "");
                     System.out.println(title + "," + host + "," + url);
+                    String content = extractorContent(url);
                     ParserPage p = new ParserPage();
                     p.setUrl(url);
                     p.setHost(host);
+                    p.setContent(content);
                     p.setTitle(title);
                     p.setType("Technology");
                     p.setStyle("no-image");
-                    int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?)",
-                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getContent(), p.getVersion(), p.getMainimage());
+                    p.setFullPage(1);
+                    int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, content, version, mainimage, fullPage) values (?,?,?,?,?,?,?,?,?,?,?)",
+                            p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getContent(), p.getVersion(), p.getMainimage(), p.getFullPage());
                     if (updates == 1) {
                         System.out.println("mysql插入成功");
                     }
@@ -135,13 +165,37 @@ public class HackerNewsCrawler extends DeepCrawler {
         return nextLinks;
     }
 
+    public void loadBlackList(String fileName){
+        blackList = new ArrayList<String>();
+        File file = new File(SoupLang.class.getClassLoader().getResource(fileName).getPath());
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String tempString;
+            while ((tempString = reader.readLine()) != null) {
+                blackList.add(tempString);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws Exception {
+
+
+
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
         HackerNewsCrawler crawler = new HackerNewsCrawler("data/hn");
         crawler.setThreads(1);
         crawler.addSeed("https://news.ycombinator.com/news");
+
+        //将黑名单加载到内存中
+        crawler.loadBlackList("gfw.url_regex.lst");
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
