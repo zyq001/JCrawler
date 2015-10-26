@@ -29,6 +29,9 @@
         <!--<element name="isarticle" selector="meta[property=og:type]">-->
         <!--</element>-->
 
+        <element name="description" selector="meta[property=og:description]">
+        </element>
+
         <element name="time" selector="meta[itemprop=datePublished]">
         </element>
         <element name="title" selector="meta[property=og:title]">

@@ -8,6 +8,7 @@ import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import sun.util.resources.LocaleNames_ga;
 
 import java.net.URL;
 import java.sql.Timestamp;
@@ -15,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Locale;
 import java.util.PriorityQueue;
 
 /**
@@ -40,19 +42,19 @@ public class TheStarExtractor extends BaseExtractor {
 
 
 
-            String isarticle = context.output.get("isarticle").toString();
-            if(isarticle.contains("article")){
-                log.debug("*****init  success*****");
-//                content.select("div[id=sidebar-second]").remove();
-//                content.select("div[id=content-bottom]").remove();
-                Elements socailLinks = content.select("div[class=social-links]");
-                if(socailLinks != null)socailLinks.remove();
-                content.select("div[class=authoring full-date]").remove();
-                content.select("div[class=authoring]").remove();
-                return true;
-            }
-            log.info("*****init  failed，isn't an article***** url:" + url);
-            return false;
+//            String isarticle = context.output.get("isarticle").toString();
+//            if(isarticle.contains("article")){
+//                log.debug("*****init  success*****");
+////                content.select("div[id=sidebar-second]").remove();
+////                content.select("div[id=content-bottom]").remove();
+//                Elements socailLinks = content.select("div[class=social-links]");
+//                if(socailLinks != null)socailLinks.remove();
+//                content.select("div[class=authoring full-date]").remove();
+//                content.select("div[class=authoring]").remove();
+//                return true;
+//            }
+            log.info("*****init  success***** url:" + url);
+            return true;
         } catch (Exception e) {
             log.info("*****init  failed***** url:" + url);
             return false;
@@ -83,7 +85,9 @@ public class TheStarExtractor extends BaseExtractor {
         Element elementType = (Element) context.output.get("type");
         if (elementType == null)
             return false;
-        String type = elementType.select("h2").text();
+        Elements types = elementType.select("p[class=breadcrumbs]").select("a");
+        Element typeE = types.get(1);
+        String type = typeE.text();
 //        child(0).tagName();
 //        String type = elementType.attr("content");
         if (type == null || "".equals(type.trim())) {
@@ -100,14 +104,17 @@ public class TheStarExtractor extends BaseExtractor {
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null)
             return true;
-        String label = elementLabel.attr("content");
-//        String label = (String) context.output.get("label");
-        if (label == null || "".equals(label.trim())) {
-            log.info("*****extractorLabel  failed***** url:" + url);
+        Elements labelE = elementLabel.select("a");
+        if(labelE == null || labelE.size() < 1){
+            log.debug("no keywords, continue");
             return true;
         }
-//        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
-        String[] keywords = label.split(",");
+        String[] keywords = new String[labelE.size()];
+        for(int i = 0; i < labelE.size(); i++){
+            keywords[i] = labelE.get(i).text();
+        }
+
+        //按关键字由短到长排序
         PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
 
             @Override
@@ -126,6 +133,7 @@ public class TheStarExtractor extends BaseExtractor {
             sb.append(pq.poll());
             if(!pq.isEmpty()) sb.append(',');
         }
+
         p.setLabel(sb.toString());
         log.debug("*****extractorTitle  success*****");
         return true;
@@ -146,21 +154,70 @@ public class TheStarExtractor extends BaseExtractor {
             return false;
         }
         String time = timeE.text();
-        time = time.substring(time.indexOf("Published") + 10, time.indexOf("\"", 1));
-//2015-09-12 08:25
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
-        Date date;
-        try {
-            date = format.parse(time.trim());
-        } catch (ParseException e) {
-            return false;
+        Date date = new Date();
+        if(!time.contains("Updated")){
+            String month = time.split(" ")[2];
+            if (month == null) {
+                log.error("con't get month, skip");
+                return false;
+            }
+            int length = month.length();
+            StringBuilder M = new StringBuilder();
+            while (length-- > 0) M.append('M');
+            SimpleDateFormat format = new SimpleDateFormat("E, dd " + M.toString() + " yyyy ", Locale.US);
+
+            try {
+                date = format.parse(time.trim());
+            } catch (ParseException e) {
+//            return false;
+                e.printStackTrace();
+            }
+        }else {
+            time = time.substring(time.indexOf("Updated") + 9);
+
+            //获取月份的长度
+            String month = time.split(" ")[1];
+            if (month == null) {
+                log.error("con't get month, skip");
+                return false;
+            }
+            int length = month.length();
+            StringBuilder M = new StringBuilder();
+            while (length-- > 0) M.append('M');
+            SimpleDateFormat format = new SimpleDateFormat("E " + M.toString() + " dd, yyyy zzz h:mm:ss a", Locale.US);
+
+            try {
+                date = format.parse(time.trim());
+            } catch (ParseException e) {
+//            return false;
+                e.printStackTrace();
+            }
         }
         if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
             log.debug("*****extractorTime  out of date*****");
             return false;
         }
-        p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
+
+        p.setTime(new Timestamp(date.getTime()).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
+        return true;
+    }
+
+    public boolean extractorDescription() {
+        log.debug("*****extractor Desc*****");
+        Element elementTime = (Element) context.output.get("description");
+        if (elementTime == null){
+            log.error("can't extract desc, continue");
+            return true;
+        }
+        String description = elementTime.attr("content");
+        if (description == null || "".equals(description.trim())) {
+            log.info("*****extractor Desc  failed***** url:" + url);
+            return true;
+        }
+
+        p.setDescription(description);
+
         return true;
     }
 
@@ -225,28 +282,32 @@ public class TheStarExtractor extends BaseExtractor {
                     mainImage = newUrl.toString();
                 }
             } catch (Exception e) {
+                img.remove();
                 e.printStackTrace();
             }
         }
          if(mainImage == null) {
             Element elementImg = (Element) context.output.get("mainimage");
-            if (elementImg == null)
-                return false;
-            mainImage = elementImg.attr("content");
-            OImageUploader uploader = new OImageUploader();
-            if (!"".equals(host) && !"".equals(port))
-                uploader.setProxy(host, port);
-            long id = 0;
-            try {
-                id = uploader.deal(mainImage);
+            if (elementImg == null){
+                log.error("img craw failed, continue");
+//                return true;
+            }else {
+                mainImage = elementImg.attr("content");
+                OImageUploader uploader = new OImageUploader();
+                if (!"".equals(host) && !"".equals(port))
+                    uploader.setProxy(host, port);
+                long id = 0;
+                try {
+                    id = uploader.deal(mainImage);
 
 //                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                width = uploader.getWidth();
-                mainImage = newUrl.toString();
-            } catch (Exception e1) {
+                    URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
+                    width = uploader.getWidth();
+                    mainImage = newUrl.toString();
+                } catch (Exception e1) {
 //                        e1.printStackTrace();
 
+                }
             }
         }
         p.setMainimage(mainImage);

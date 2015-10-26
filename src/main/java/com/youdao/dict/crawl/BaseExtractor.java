@@ -151,7 +151,7 @@ public class BaseExtractor {
     }
 
     public boolean extractorDescription() {
-        return false;
+        return true;
     }
 
     public boolean extractorContent() {

@@ -96,16 +96,16 @@ public class WashingtonExtractor extends BaseExtractor {
     }
 
     public boolean extractorDescription() {
-        log.debug("*****extractorTime*****");
+        log.debug("*****extractor Desc*****");
         Element elementTime = (Element) context.output.get("description");
         if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract Time, skip");
-            return false;
+            log.error("can't extract desc, continue");
+            return true;
         }
         String description = elementTime.attr("content");
         if (description == null || "".equals(description.trim())) {
-            log.info("*****extractorTime  failed***** url:" + url);
-            return false;
+            log.info("*****extractor Desc  failed***** url:" + url);
+            return true;
         }
 
         p.setDescription(description);

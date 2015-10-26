@@ -117,7 +117,7 @@ public class TheguardianCrawler extends DeepCrawler {
         */
 
         TheguardianCrawler crawler = new TheguardianCrawler("data/Theguardian2");
-        crawler.setThreads(10);
+        crawler.setThreads(1);
 //        crawler.addSeed("http://www.theguardian.com/business/2015/oct/09/wikileaks-releases-tpp-intellectual-property-rights-chapter");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
         crawler.addSeed("http://www.theguardian.com/world");

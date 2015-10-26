@@ -26,6 +26,12 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -66,7 +72,7 @@ public class TheStarCrawler extends DeepCrawler {
         try {
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-//                    "root", "123456", 5, 30);
+//                    "root", "", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
@@ -85,8 +91,8 @@ public class TheStarCrawler extends DeepCrawler {
             BaseExtractor extractor = new TheStarExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -116,21 +122,24 @@ public class TheStarCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
 
+        String time = "Sunday October 25, 2015 MYT 9:12:56 PM";
+//2015-09-12 08:25
+
 
 
 
         TheStarCrawler crawler = new TheStarCrawler("data/TheStar");
-        crawler.setThreads(10);
+        crawler.setThreads(1);
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/21/haze-no-yellow-haze-says-dept-of-environment/");
-//        crawler.addSeed("http://www.todayonline.com/business");
-//        crawler.addSeed("http://www.todayonline.com/tech");
-//        crawler.addSeed("http://www.todayonline.com/sports");
-//        crawler.addSeed("http://www.todayonline.com/entertainment");//opinion
-//        crawler.addSeed("http://www.todayonline.com/lifestyle");
-//        crawler.addSeed("http://www.todayonline.com/chinaindia");
+        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/26/Rela-members-to-help-out-ministrys-unit/");
+        crawler.addSeed("http://www.thestar.com.my/News");
+        crawler.addSeed("http://www.thestar.com.my/Business/News/");
+        crawler.addSeed("http://www.thestar.com.my/Sport/");
+        crawler.addSeed("http://www.thestar.com.my/Tech/");//opinion
+        crawler.addSeed("http://www.thestar.com.my/Opinion/");
+        crawler.addSeed("http://www.thestar.com.my/Metro/");
 //        crawler.addSeed("http://www.todayonline.com/");
 //        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
 //        crawler.addSeed("http://www.theguardian.com/us/business");

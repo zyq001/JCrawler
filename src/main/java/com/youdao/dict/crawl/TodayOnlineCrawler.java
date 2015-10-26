@@ -69,15 +69,15 @@ public class TodayOnlineCrawler extends DeepCrawler {
          */
 
         try {
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-                    "root", "", 5, 30);
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+//                    "root", "", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
-//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-//                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-//                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -125,7 +125,7 @@ public class TodayOnlineCrawler extends DeepCrawler {
 
 
         TodayOnlineCrawler crawler = new TodayOnlineCrawler("data/TodayOnline2");
-        crawler.setThreads(10);
+        crawler.setThreads(1);
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");

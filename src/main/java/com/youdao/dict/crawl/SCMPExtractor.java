@@ -150,6 +150,24 @@ public class SCMPExtractor extends BaseExtractor {
         return true;
     }
 
+    public boolean extractorDescription() {
+        log.debug("*****extractor Desc*****");
+        Element elementTime = (Element) context.output.get("description");
+        if (elementTime == null){//business版head meta里没有时间
+            log.error("can't extract desc, continue");
+            return true;
+        }
+        String description = elementTime.attr("content");
+        if (description == null || "".equals(description.trim())) {
+            log.info("*****extractor Desc  failed***** url:" + url);
+            return true;
+        }
+
+        p.setDescription(description);
+
+        return true;
+    }
+
     public boolean isPaging() {
 //        Elements div2 = doc.select("div[id=\"content-main\"]");
         Elements div2 = content.select("div[id=content-main]");
