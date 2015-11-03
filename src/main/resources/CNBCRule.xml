@@ -18,22 +18,24 @@
             插入到数据库中时，会以Element元素源码的形式插入-->
         <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
                 </element>-->
-        <element name="content" selector="div[class=column]">
+        <element name="content" selector="div[class=story]">
         </element>
-        <element name="content" selector="div[id=content]">
-        </element>
+        <!--<element name="content" selector="div[id=content]">-->
+        <!--</element>-->
 
-        <element name="description" selector="meta[name=description]">
+        <element name="description" selector="meta[property=og:description]">
         </element>
 
         <element name="isarticle" selector="meta[property=og:type]">
         </element>
 
-        <element name="time" selector="meta[name=cXenseParse:recs:publishtime]">
+        <element name="time" selector="meta[property=article:modified_time]">
         </element>
         <element name="title" selector="meta[property=og:title]">
         </element>
-        <element name="type" selector="h2[class=header-sections]">
+        <element name="type" selector="meta[property=article:section]">
+        </element>
+        <element name="label" selector="meta[name=news_keywords]">
         </element>
         <element name="mainimage" selector="meta[property=og:image]">
         </element>

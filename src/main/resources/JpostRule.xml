@@ -18,10 +18,10 @@
             插入到数据库中时，会以Element元素源码的形式插入-->
         <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
                 </element>-->
-        <element name="content" selector="div[class=column]">
+        <element name="content" selector="div[class=article-inner-content-bg-inner]">
         </element>
-        <element name="content" selector="div[id=content]">
-        </element>
+        <!--<element name="content" selector="div[id=content]">-->
+        <!--</element>-->
 
         <element name="description" selector="meta[name=description]">
         </element>
@@ -29,11 +29,13 @@
         <element name="isarticle" selector="meta[property=og:type]">
         </element>
 
-        <element name="time" selector="meta[name=cXenseParse:recs:publishtime]">
+        <element name="time" selector="meta[name=publishdate]">
         </element>
         <element name="title" selector="meta[property=og:title]">
         </element>
-        <element name="type" selector="h2[class=header-sections]">
+        <element name="type" selector="p[class=uppercase content-box-title article-box-title]">
+        </element>
+        <element name="label" selector="meta[name=keywords]">
         </element>
         <element name="mainimage" selector="meta[property=og:image]">
         </element>
