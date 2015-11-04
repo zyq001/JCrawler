@@ -121,7 +121,7 @@ public class Jpostrawler extends DeepCrawler {
 
         Jpostrawler crawler = new Jpostrawler("data/Jpost");
         crawler.setThreads(1);
-        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
+//        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
         crawler.addSeed("http://www.jpost.com/");
         crawler.addSeed("http://www.jpost.com/Business-and-Innovation");
         crawler.addSeed("http://www.jpost.com/Middle-East");
