@@ -42,13 +42,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author hu
  */
-public class Jpostrawler extends DeepCrawler {
+public class JpostCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public Jpostrawler(String crawlPath) {
+    public JpostCrawler(String crawlPath) {
         super(crawlPath);
 
         regexRule.addRule("http://www.jpost.com/.*");
@@ -119,7 +119,7 @@ public class Jpostrawler extends DeepCrawler {
 
 
 
-        Jpostrawler crawler = new Jpostrawler("data/Jpost");
+        JpostCrawler crawler = new JpostCrawler("data/Jpost");
         crawler.setThreads(1);
 //        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
         crawler.addSeed("http://www.jpost.com/");
