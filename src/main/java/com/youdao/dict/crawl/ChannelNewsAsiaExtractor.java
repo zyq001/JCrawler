@@ -164,7 +164,7 @@ public class ChannelNewsAsiaExtractor extends BaseExtractor {
             } else if (width > 300) {
                 p.setStyle("large-image");
             } else {
-                p.setStyle("mini-image");
+                p.setStyle("no-image");
             }
 
         } catch (Exception e) {
