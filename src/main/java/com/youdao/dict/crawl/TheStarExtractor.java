@@ -8,7 +8,6 @@ import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import sun.util.resources.LocaleNames_ga;
 
 import java.net.URL;
 import java.sql.Timestamp;
