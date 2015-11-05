@@ -44,16 +44,19 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
 
     public boolean extractorTitle() {
         log.debug("*****extractorTitle*****");
-        String title = (String) context.output.get("title");
+        Element elementTitle = (Element) context.output.get("title");
+        if (elementTitle == null)
+            return false;
+        String title = elementTitle.attr("content");
         if (title == null || "".equals(title.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
             return false;
         }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
-        if (title.contains("-"))
-            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
-        else
-            p.setTitle(title.trim());
+//        if (title.contains("-"))
+//            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
+//        else
+        p.setTitle(title.trim());
         log.debug("*****extractorTitle  success*****");
         return true;
     }
@@ -105,10 +108,10 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
         int lengthDay = time.split(" ")[1].length() - 1;
         StringBuilder d = new StringBuilder();
         while (lengthDay-- > 0) d.append('d');
-//        SimpleDateFormat format = new SimpleDateFormat(M.toString() + " " +d.toString() + ", yyyy");
+        SimpleDateFormat format = new SimpleDateFormat(M.toString() + " " +d.toString() + ", yyyy");
         try {
 
-            DateFormat format = new SimpleDateFormat("MMMMMMMM dd, yyyy");
+//            DateFormat format = new SimpleDateFormat("MMMMMMMM dd, yyyy");
             Date date = format.parse(time);
             if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
                 return false;

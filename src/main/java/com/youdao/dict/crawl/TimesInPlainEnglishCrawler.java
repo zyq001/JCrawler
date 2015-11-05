@@ -68,15 +68,15 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
          */
 
         try {
-//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-//                    "root", "", 5, 30);
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+                    "root", "123456", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+//                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -120,16 +120,16 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
 
-//        DateFormat format = new SimpleDateFormat("MMM dd, yyyy");
-//        Date date = format.parse("Nov 02, 2015");
-
+//        DateFormat format = new SimpleDateFormat("MMM d, yyyy");
+//        Date date = format.parse("Nov 2, 2015");
+//System.out.println(date);
 
         TimesInPlainEnglishCrawler crawler = new TimesInPlainEnglishCrawler("data/TimesPE");
         crawler.setThreads(1);
         crawler.addSeed("http://www.thetimesinplainenglish.com/wp/global-migration-the-wave-of-the-future/");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-//        crawler.addSeed("http://www.cnbc.com/world/");
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/education/");
 //        crawler.addSeed("http://www.cnbc.com/us-news/");
 //        crawler.addSeed("http://www.cnbc.com/technology/");
 //        crawler.addSeed("http://www.cnbc.com/investing/");
