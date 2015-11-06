@@ -5,6 +5,7 @@ import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
+import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -75,6 +76,7 @@ public class CNNExtractor extends BaseExtractor {
             type = type.substring(0, type.indexOf("/"));
             type = type.replace("/", "");
         }
+        type = TypeDictHelper.getType(type, type);
         p.setType(type.trim());
 
         Element labelElement = (Element) context.output.get("label");

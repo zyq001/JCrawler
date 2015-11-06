@@ -72,13 +72,13 @@ public class TheStarCrawler extends DeepCrawler {
         try {
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-//                    "root", "", 5, 30);
+//                    "root", "123456", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+//                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -133,13 +133,13 @@ public class TheStarCrawler extends DeepCrawler {
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/26/Rela-members-to-help-out-ministrys-unit/");
+//        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/26/Rela-members-to-help-out-ministrys-unit/");
         crawler.addSeed("http://www.thestar.com.my/News");
         crawler.addSeed("http://www.thestar.com.my/Business/News/");
         crawler.addSeed("http://www.thestar.com.my/Sport/");
         crawler.addSeed("http://www.thestar.com.my/Tech/");//opinion
         crawler.addSeed("http://www.thestar.com.my/Opinion/");
-        crawler.addSeed("http://www.thestar.com.my/Metro/");
+        crawler.addSeed("http://www.thestar.com.my/Metro/Eat-And-Drink/");
 //        crawler.addSeed("http://www.todayonline.com/");
 //        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
 //        crawler.addSeed("http://www.theguardian.com/us/business");

@@ -5,6 +5,7 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
+import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -98,6 +99,7 @@ public class TheguardianExtractor extends BaseExtractor {
             type = type.replace("/", "");
         }
 //        type = type
+        type = TypeDictHelper.getType(type, type);
         p.setType(type.trim());
 
         Element elementLabel = (Element) context.output.get("label");
