@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 public class BaseExtractor {
     Context context;
     String keywords;
-    public static long MINSIZE = 512;
+    public static long MINSIZE = 384;
     public ParserPage p = new ParserPage();
     String url;
     Document doc;

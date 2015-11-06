@@ -126,17 +126,17 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
 
         TimesInPlainEnglishCrawler crawler = new TimesInPlainEnglishCrawler("data/TimesPE");
         crawler.setThreads(1);
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/global-migration-the-wave-of-the-future/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/global-migration-the-wave-of-the-future/");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
         crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/education/");
-//        crawler.addSeed("http://www.cnbc.com/us-news/");
-//        crawler.addSeed("http://www.cnbc.com/technology/");
-//        crawler.addSeed("http://www.cnbc.com/investing/");
-//        crawler.addSeed("http://www.cnbc.com/small-business-financing/");
-//        crawler.addSeed("http://www.todayonline.com/lifestyle");
-//        crawler.addSeed("http://www.todayonline.com/chinaindia");
-//        crawler.addSeed("http://www.todayonline.com/");
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/news/");
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/money-work/");
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/health/");
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/law/");
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/new-york/");
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/of-interest/");
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/");
 //        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
 //        crawler.addSeed("http://www.theguardian.com/us/business");
 //        crawler.addSeed("http://www.theguardian.com/us/environment");

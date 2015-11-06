@@ -12,7 +12,10 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Locale;
+import java.util.PriorityQueue;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -72,21 +75,46 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
         if (type == null || "".equals(type.trim())) {
             log.info("*****extractorType  failed***** url:" + url);
 //            return false;
+//            return true;
+        }else {
+            if (type.contains("/")) {
+                type = type.substring(0, type.indexOf("/"));
+                type = type.replace("/", "");
+            }
+            p.setType(type.trim());
+        }
+        Element elementLabel = (Element) context.output.get("label");
+        if (elementLabel == null)
+            return true;
+        String label = elementLabel.attr("content");
+//        String label = (String) context.output.get("label");
+        if (label == null || "".equals(label.trim())) {
+            log.info("*****extractorLabel  failed***** url:" + url);
             return true;
         }
-        if (type.contains("/")) {
-            type = type.substring(0, type.indexOf("/"));
-            type = type.replace("/", "");
-        }
-        p.setType(type.trim());
+//        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
+        String[] keywords = label.split(", ");
+        PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
 
-        Element labelElement = (Element) context.output.get("label");
-        String label = "";
-        if (labelElement != null) {
-            label = labelElement.attr("content");
+            @Override
+            public int compare(String o1, String o2) {
+                int length1 = o1.split(" ").length, length2 = o2.split(" ").length;
+                return length1 - length2;
+            }
+        });
+
+        for(String keyword: keywords){
+            keyword = keyword.replaceAll(",", "");
+            int wordCount = keyword.split(" ").length;
+            if(wordCount <= 3) pq.add(keyword);
         }
-        p.setLabel(label);
-        log.debug("*****extractorType  success*****");
+        StringBuilder sb = new StringBuilder();
+        while(!pq.isEmpty()){
+            sb.append(pq.poll());
+            if(!pq.isEmpty()) sb.append(", ");
+        }
+        p.setLabel(sb.toString());
+        log.debug("*****extractorTitle  success*****");
         return true;
 
     }
@@ -108,7 +136,7 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
         int lengthDay = time.split(" ")[1].length() - 1;
         StringBuilder d = new StringBuilder();
         while (lengthDay-- > 0) d.append('d');
-        SimpleDateFormat format = new SimpleDateFormat(M.toString() + " " +d.toString() + ", yyyy");
+        SimpleDateFormat format = new SimpleDateFormat(M.toString() + " " +d.toString() + ", yyyy", Locale.US);
         try {
 
 //            DateFormat format = new SimpleDateFormat("MMMMMMMM dd, yyyy");
