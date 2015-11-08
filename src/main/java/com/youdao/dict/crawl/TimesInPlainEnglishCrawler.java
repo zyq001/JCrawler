@@ -29,6 +29,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * WebCollector 2.x版本的tutorial
@@ -52,6 +54,8 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
 
     JdbcTemplate jdbcTemplate = null;
 
+    public static Map<String, String> url2type = new HashMap<String, String>();
+
     public TimesInPlainEnglishCrawler(String crawlPath) {
         super(crawlPath);
 
@@ -68,15 +72,15 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
          */
 
         try {
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-                    "root", "123456", 5, 30);
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+//                    "root", "123456", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
-//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-//                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-//                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -108,6 +112,23 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
          Links.addAllFromDocument为我们提供了相应的功能*/
         nextLinks.addAllFromDocument(page.getDoc(), regexRule);
 
+        String type = "";
+        if(page.getUrl().contains("category/money-work"))
+            type = "Business";
+        else if(page.getUrl().contains("category/health"))
+            type = "Health";
+        else if(page.getUrl().contains("category/law"))
+            type = "Law";
+        else if(page.getUrl().contains("category/education"))
+            type = "Politics";//***website's mistake***
+        else if(page.getUrl().contains("category/new-york"))
+            type = "Us";
+
+        // typify depend on the former url
+        if(!type.equals(""))
+            for(String subUrl: nextLinks)
+                url2type.put(subUrl, type);
+
         /*Links类继承ArrayList<String>,可以使用add、addAll等方法自己添加URL
          如果当前页面的链接中，没有需要爬取的，可以return null
          例如如果你的爬取任务只是爬取seed列表中的所有链接，这种情况应该return null
@@ -130,13 +151,13 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
         crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/education/");
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/news/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/news/");
         crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/money-work/");
         crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/health/");
         crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/law/");
         crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/new-york/");
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/of-interest/");
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/of-interest/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/");
 //        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
 //        crawler.addSeed("http://www.theguardian.com/us/business");
 //        crawler.addSeed("http://www.theguardian.com/us/environment");
