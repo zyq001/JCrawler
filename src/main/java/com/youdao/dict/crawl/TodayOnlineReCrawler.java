@@ -26,6 +26,9 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -42,16 +45,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author hu
  */
-public class TheguardianCrawler extends DeepCrawler {
+public class TodayOnlineReCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public TheguardianCrawler(String crawlPath) {
+    public TodayOnlineReCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://www.theguardian.com/.*");
+        regexRule.addRule("http://www.todayonline.com/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -64,15 +67,15 @@ public class TheguardianCrawler extends DeepCrawler {
          */
 
         try {
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-                    "root", "", 5, 30);
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+//                    "root", "", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
-//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-//                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-//                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -82,11 +85,10 @@ public class TheguardianCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new TheguardianExtractor(page);
+            BaseExtractor extractor = new TodayOnlineExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -116,26 +118,36 @@ public class TheguardianCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
 
-        TheguardianCrawler crawler = new TheguardianCrawler("data/Theguardian2");
-        crawler.setThreads(1);
-//        crawler.addSeed("http://www.theguardian.com/media/2015/nov/03/instagram-star-essena-oneill-quits-2d-life-to-reveal-true-story-behind-images");
+
+
+
+        TodayOnlineReCrawler crawler = new TodayOnlineReCrawler("data/TodayOnline2");
+        crawler.setThreads(5);
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host = 'www.todayonline.com'");
+//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-        crawler.addSeed("http://www.theguardian.com/world");
-        crawler.addSeed("http://www.theguardian.com/uk/sport");
-        crawler.addSeed("http://www.theguardian.com/us/sport");
-        crawler.addSeed("http://www.theguardian.com/uk/culture");
-        crawler.addSeed("http://www.theguardian.com/us/culture");
-        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
-        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
-        crawler.addSeed("http://www.theguardian.com/uk/business");
-        crawler.addSeed("http://www.theguardian.com/uk/environment");
-        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-        crawler.addSeed("http://www.theguardian.com/us/business");
-        crawler.addSeed("http://www.theguardian.com/us/environment");
+//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+        for(int i = 0; i < urls.size(); i++){
+            String url = (String)urls.get(i).get("url");
+            crawler.addSeed(url);
+        }
+
+//        crawler.addSeed("http://www.todayonline.com/business/local-eco-friendly-company-international-audience");
+//        crawler.addSeed("http://www.todayonline.com/business");
+//        crawler.addSeed("http://www.todayonline.com/tech");
+//        crawler.addSeed("http://www.todayonline.com/sports");
+//        crawler.addSeed("http://www.todayonline.com/entertainment");//opinion
+//        crawler.addSeed("http://www.todayonline.com/lifestyle");
+//        crawler.addSeed("http://www.todayonline.com/chinaindia");
+//        crawler.addSeed("http://www.todayonline.com/");
+//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
+//        crawler.addSeed("http://www.theguardian.com/us/business");
+//        crawler.addSeed("http://www.theguardian.com/us/environment");
 //////
-        crawler.addSeed("http://www.theguardian.com/travel");
-        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-        crawler.addSeed("http://www.theguardian.com/politics");
+//        crawler.addSeed("http://www.theguardian.com/travel");
+//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
+//        crawler.addSeed("http://www.theguardian.com/politics");
+
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
@@ -156,7 +168,7 @@ public class TheguardianCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }
