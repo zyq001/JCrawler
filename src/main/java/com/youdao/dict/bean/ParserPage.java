@@ -39,7 +39,7 @@ public class ParserPage implements IWritable, Serializable {
 
     @Getter
     @Setter
-    private String style = "default";
+    private String style = "no-image";
 
     @Getter
     @Setter

@@ -183,10 +183,10 @@ public class TodayOnlineExtractor extends BaseExtractor {
 
     public boolean isPaging() {
 //        Elements div2 = doc.select("div[id=\"content-main\"]");
-        Elements div2 = content.select("div[id=content-main]");
-        Elements sociallinks = div2.select("div[class=social-links]");
+//        Elements div2 = content.select("div[id=content-main]");
+        Elements sociallinks = content.select("div[class=social-links]");
         if(sociallinks != null) sociallinks.remove();//去除社交网络分享栏目框
-        Elements div = div2.select("div[class=item-list");
+        Elements div = content.select("div[class=item-list");
         if (div == null) {
             return false;
         }
@@ -245,10 +245,8 @@ public class TodayOnlineExtractor extends BaseExtractor {
                 e.printStackTrace();
             }
         }
-         if(mainImage == null) {
-            Element elementImg = (Element) context.output.get("mainimage");
-            if (elementImg == null)
-                return false;
+        Element elementImg = (Element) context.output.get("mainimage");
+        if (elementImg != null){
             mainImage = elementImg.attr("content");
             OImageUploader uploader = new OImageUploader();
             if (!"".equals(host) && !"".equals(port))
@@ -269,7 +267,7 @@ public class TodayOnlineExtractor extends BaseExtractor {
         p.setMainimage(mainImage);
         if (width == 0) {
             p.setStyle("no-image");
-        } else if (width > 300) {
+        } else if (width >= 300) {
             p.setStyle("large-image");
         } else {
             p.setStyle("no-image");
@@ -306,7 +304,10 @@ public class TodayOnlineExtractor extends BaseExtractor {
         TodayOnlineExtractor extractor = new TodayOnlineExtractor(url + "?singlepage=true");
         extractor.init();
         extractor.extractorAndUploadImg();
+        Elements es = extractor.content.select("div[class=pager-pagenum bottom]");
+        es.remove();
         extractor.extractorContent(true);
+
         p.setContent(extractor.getParserPage().getContent());
 
         log.info("*****mergePage end*****");

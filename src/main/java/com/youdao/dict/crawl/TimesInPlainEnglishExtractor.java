@@ -38,8 +38,26 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TimesInPlainEnglishRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
-            log.debug("*****init  success*****");
-            return true;
+//            log.debug("*****init  success*****");
+//            return true;
+            String isarticle = context.output.get("isarticle").toString();
+            if(isarticle.contains("article")){
+                log.debug("*****init  success*****");
+//                content.select("div[id=sidebar-second]").remove();
+//                content.select("div[id=content-bottom]").remove();
+//                Elements socailLinks = content.select("div[class=social-links]");
+//                if(socailLinks != null)socailLinks.remove();
+//                content.select("div[class=authoring full-date]").remove();
+//                content.select("div[class=authoring]").remove();
+                //去除分享
+//                content.select("div[id=157_ArticleControl_divShareButton]").remove();
+//                content.select("img[alt=subscribe newsletter]").remove();
+//                content.select("div[class=article-top-wrap]").remove();
+//                content.select("h2[class=article-teaser-text]").remove();//图片文字多余
+                return true;
+            }
+            log.info("*****init  failed，isn't an article***** url:" + url);
+            return false;
         } catch (Exception e) {
             log.info("*****init  failed***** url:" + url);
             return false;
@@ -67,24 +85,29 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
 
     public boolean extractorType() {
         log.debug("*****extractorType*****");
-        Element typeElement = (Element) context.output.get("type");
-        String type = "";
-        if (typeElement != null) {
-            type = typeElement.attr("content");
-        }
+//        Element typeElement = (Element) context.output.get("type");
+//        String type = "";
+//        if (typeElement != null) {
+//            type = typeElement.attr("content");
+//        }
+//
+//        if (type == null || "".equals(type.trim())) {
+//            log.info("*****extractorType  failed***** url:" + url);
+////            return false;
+////            return true;
+//        }else {
+//            if (type.contains("/")) {
+//                type = type.substring(0, type.indexOf("/"));
+//                type = type.replace("/", "");
+//            }
+//            type = TypeDictHelper.getType(type, type);
+//            p.setType(type.trim());
+//        }
+        if(TimesInPlainEnglishCrawler.url2type.containsKey(this.url))
+            p.setType(TimesInPlainEnglishCrawler.url2type.get(this.url));
+        else
+            return false;
 
-        if (type == null || "".equals(type.trim())) {
-            log.info("*****extractorType  failed***** url:" + url);
-//            return false;
-//            return true;
-        }else {
-            if (type.contains("/")) {
-                type = type.substring(0, type.indexOf("/"));
-                type = type.replace("/", "");
-            }
-            type = TypeDictHelper.getType(type, type);
-            p.setType(type.trim());
-        }
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null)
             return true;

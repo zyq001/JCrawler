@@ -26,11 +26,8 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.List;
+import java.util.Map;
 
 /**
  * WebCollector 2.x版本的tutorial
@@ -48,16 +45,16 @@ import java.util.Locale;
  *
  * @author hu
  */
-public class TheStarCrawler extends DeepCrawler {
+public class TodayOnlineReCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public TheStarCrawler(String crawlPath) {
+    public TodayOnlineReCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://www.thestar.com.my/.*");
+        regexRule.addRule("http://www.todayonline.com/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -72,7 +69,7 @@ public class TheStarCrawler extends DeepCrawler {
         try {
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-//                    "root", "123456", 5, 30);
+//                    "root", "", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
@@ -88,11 +85,10 @@ public class TheStarCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new TheStarExtractor(page);
+            BaseExtractor extractor = new TodayOnlineExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -122,24 +118,27 @@ public class TheStarCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
 
-        String time = "Sunday October 25, 2015 MYT 9:12:56 PM";
-//2015-09-12 08:25
 
 
 
-
-        TheStarCrawler crawler = new TheStarCrawler("data/TheStar");
-        crawler.setThreads(1);
+        TodayOnlineReCrawler crawler = new TodayOnlineReCrawler("data/TodayOnline2");
+        crawler.setThreads(5);
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host = 'www.todayonline.com'");
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-//        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/26/Rela-members-to-help-out-ministrys-unit/");
-        crawler.addSeed("http://www.thestar.com.my/News");
-        crawler.addSeed("http://www.thestar.com.my/Business/News/");
-        crawler.addSeed("http://www.thestar.com.my/Sport/");
-        crawler.addSeed("http://www.thestar.com.my/Tech/");//opinion
-        crawler.addSeed("http://www.thestar.com.my/Opinion/");
-        crawler.addSeed("http://www.thestar.com.my/Metro/Eat-And-Drink/");
+        for(int i = 0; i < urls.size(); i++){
+            String url = (String)urls.get(i).get("url");
+            crawler.addSeed(url);
+        }
+
+//        crawler.addSeed("http://www.todayonline.com/business/local-eco-friendly-company-international-audience");
+//        crawler.addSeed("http://www.todayonline.com/business");
+//        crawler.addSeed("http://www.todayonline.com/tech");
+//        crawler.addSeed("http://www.todayonline.com/sports");
+//        crawler.addSeed("http://www.todayonline.com/entertainment");//opinion
+//        crawler.addSeed("http://www.todayonline.com/lifestyle");
+//        crawler.addSeed("http://www.todayonline.com/chinaindia");
 //        crawler.addSeed("http://www.todayonline.com/");
 //        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
 //        crawler.addSeed("http://www.theguardian.com/us/business");
@@ -169,7 +168,7 @@ public class TheStarCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }
