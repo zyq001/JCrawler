@@ -120,22 +120,23 @@ public class TheguardianCrawler extends DeepCrawler {
         crawler.setThreads(1);
 //        crawler.addSeed("http://www.theguardian.com/business/2015/oct/09/wikileaks-releases-tpp-intellectual-property-rights-chapter");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-        crawler.addSeed("http://www.theguardian.com/world");
-        crawler.addSeed("http://www.theguardian.com/uk/sport");
-        crawler.addSeed("http://www.theguardian.com/us/sport");
-        crawler.addSeed("http://www.theguardian.com/uk/culture");
-        crawler.addSeed("http://www.theguardian.com/us/culture");
-        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
-        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
-        crawler.addSeed("http://www.theguardian.com/uk/business");
-        crawler.addSeed("http://www.theguardian.com/uk/environment");
-        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-        crawler.addSeed("http://www.theguardian.com/us/business");
-        crawler.addSeed("http://www.theguardian.com/us/environment");
-////
-        crawler.addSeed("http://www.theguardian.com/travel");
-        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-        crawler.addSeed("http://www.theguardian.com/politics");
+
+//        crawler.addSeed("http://www.theguardian.com/world");
+//        crawler.addSeed("http://www.theguardian.com/uk/sport");
+//        crawler.addSeed("http://www.theguardian.com/us/sport");
+//        crawler.addSeed("http://www.theguardian.com/uk/culture");
+//        crawler.addSeed("http://www.theguardian.com/us/culture");
+//        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
+//        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
+//        crawler.addSeed("http://www.theguardian.com/uk/business");
+//        crawler.addSeed("http://www.theguardian.com/uk/environment");
+//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
+//        crawler.addSeed("http://www.theguardian.com/us/business");
+//        crawler.addSeed("http://www.theguardian.com/us/environment");
+//////
+//        crawler.addSeed("http://www.theguardian.com/travel");
+//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
+//        crawler.addSeed("http://www.theguardian.com/politics");
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
