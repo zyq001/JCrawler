@@ -236,10 +236,8 @@ public class SCMPExtractor extends BaseExtractor {
                 e.printStackTrace();
             }
         }
-         if(mainImage == null) {
-            Element elementImg = (Element) context.output.get("mainimage");
-            if (elementImg == null)
-                return false;
+        Element elementImg = (Element) context.output.get("mainimage");
+        if (elementImg != null){
             mainImage = elementImg.attr("content");
             OImageUploader uploader = new OImageUploader();
             if (!"".equals(host) && !"".equals(port))
@@ -260,7 +258,7 @@ public class SCMPExtractor extends BaseExtractor {
         p.setMainimage(mainImage);
         if (width == 0) {
             p.setStyle("no-image");
-        } else if (width > 300) {
+        } else if (width >= 300) {
             p.setStyle("large-image");
         } else {
             p.setStyle("no-image");

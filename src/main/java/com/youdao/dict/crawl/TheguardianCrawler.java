@@ -64,15 +64,15 @@ public class TheguardianCrawler extends DeepCrawler {
          */
 
         try {
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-                    "root", "", 5, 30);
+//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
+//                    "root", "", 5, 30);
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8",
 //                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
-//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-//                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-//                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
+                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
@@ -119,7 +119,7 @@ public class TheguardianCrawler extends DeepCrawler {
         TheguardianCrawler crawler = new TheguardianCrawler("data/Theguardian2");
         crawler.setThreads(1);
 //        crawler.addSeed("http://www.theguardian.com/media/2015/nov/03/instagram-star-essena-oneill-quits-2d-life-to-reveal-true-story-behind-images");
-//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+
         crawler.addSeed("http://www.theguardian.com/world");
         crawler.addSeed("http://www.theguardian.com/uk/sport");
         crawler.addSeed("http://www.theguardian.com/us/sport");
@@ -136,6 +136,7 @@ public class TheguardianCrawler extends DeepCrawler {
         crawler.addSeed("http://www.theguardian.com/travel");
         crawler.addSeed("http://www.theguardian.com/lifeandstyle");
         crawler.addSeed("http://www.theguardian.com/politics");
+
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理

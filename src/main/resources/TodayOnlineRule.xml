@@ -35,8 +35,8 @@
         </element>
         <element name="type" selector="h2[class=header-sections]">
         </element>
-        <element name="mainimage" selector="meta[property=og:image]">
-        </element>
+        <!--<element name="mainimage" selector="meta[property=og:image]">-->
+        <!--</element>-->
 
     </doc>
 
