@@ -272,7 +272,7 @@ public class JpostExtractor extends BaseExtractor {
 
             }
         }
-        p.setMainimage(mainImage);
+//        p.setMainimage(mainImage);
         if (width == 0) {
             p.setStyle("no-image");
         } else if (width >= 300) {
