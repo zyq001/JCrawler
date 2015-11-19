@@ -238,23 +238,23 @@ public class AsiaOneExtractor extends BaseExtractor {
         }
          if(mainImage == null) {
             Element elementImg = (Element) context.output.get("mainimage");
-            if (elementImg == null)
-                return false;
-            mainImage = elementImg.attr("content");
-            OImageUploader uploader = new OImageUploader();
-            if (!"".equals(host) && !"".equals(port))
-                uploader.setProxy(host, port);
-            long id = 0;
-            try {
-                id = uploader.deal(mainImage);
+            if (elementImg != null) {
+                String tmpMainImage = elementImg.attr("content");
+                OImageUploader uploader = new OImageUploader();
+                if (!"".equals(host) && !"".equals(port))
+                    uploader.setProxy(host, port);
+                long id = 0;
+                try {
+                    id = uploader.deal(tmpMainImage);
 
 //                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                width = uploader.getWidth();
-                mainImage = newUrl.toString();
-            } catch (Exception e1) {
+                    URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
+                    width = uploader.getWidth();
+                    mainImage = newUrl.toString();
+                } catch (Exception e1) {
 //                        e1.printStackTrace();
 
+                }
             }
         }
         p.setMainimage(mainImage);

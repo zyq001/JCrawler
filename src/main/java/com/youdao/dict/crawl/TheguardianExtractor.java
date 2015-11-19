@@ -240,13 +240,13 @@ public class TheguardianExtractor extends BaseExtractor {
 //         if(mainImage == null) {
         Element elementImg = (Element) context.output.get("mainimage");
         if (elementImg != null){
-            mainImage = elementImg.attr("content");
+            String tmpMainImage = elementImg.attr("content");
             OImageUploader uploader = new OImageUploader();
             if (!"".equals(host) && !"".equals(port))
                 uploader.setProxy(host, port);
             long id = 0;
             try {
-                id = uploader.deal(mainImage);
+                id = uploader.deal(tmpMainImage);
 
 //                long id = 0;
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
