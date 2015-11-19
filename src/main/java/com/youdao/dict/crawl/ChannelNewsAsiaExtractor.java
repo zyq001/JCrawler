@@ -52,9 +52,9 @@ public class ChannelNewsAsiaExtractor extends BaseExtractor {
             return false;
         }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
-        if (title.contains("-"))
-            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
-        else
+//        if (title.contains("-"))
+//            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
+//        else
             p.setTitle(title.trim());
         log.debug("*****extractorTitle  success*****");
         return true;
@@ -186,6 +186,11 @@ public class ChannelNewsAsiaExtractor extends BaseExtractor {
         content.select("div[class=cx-similar]").remove();
         content.select("ul[class=post-info-list]").remove();
         content.select("ul[class=gallery-tab-nav]").remove();
+
+        content.select("div[class=btn-lst-holder]").remove();//图片集缩略图
+        content.select("div[class=btn-prev-hold]").remove();//pre按钮
+        content.select("div[class=btn-next-hold]").remove();//next按钮
+
         String contentHtml = content.html();
 
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script

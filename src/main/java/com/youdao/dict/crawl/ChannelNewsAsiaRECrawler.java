@@ -27,6 +27,8 @@ import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.net.Proxy;
+import java.util.List;
+import java.util.Map;
 
 /**
  * WebCollector 2.x版本的tutorial
@@ -44,13 +46,13 @@ import java.net.Proxy;
  *
  * @author hu
  */
-public class ChannelNewsAsiaCrawler extends DeepCrawler {
+public class ChannelNewsAsiaRECrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public ChannelNewsAsiaCrawler(String crawlPath) {
+    public ChannelNewsAsiaRECrawler(String crawlPath) {
         super(crawlPath);
 
         regexRule.addRule("http://www.channelnewsasia.com/.*");
@@ -86,8 +88,7 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
             BaseExtractor extractor = new ChannelNewsAsiaExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -116,25 +117,35 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        ChannelNewsAsiaCrawler crawler = new ChannelNewsAsiaCrawler("data/cna");
+        ChannelNewsAsiaRECrawler crawler = new ChannelNewsAsiaRECrawler("data/cna");
         crawler.setThreads(10);
-        crawler.addSeed("http://www.channelnewsasia.com/");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/lifestyle");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/health");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/technology");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/entertainment");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/sport");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/business");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/world");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/singapore");
-        crawler.addSeed("http://www.channelnewsasia.com/archives/asiapacific");
+
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url,id FROM parser_page where host = 'www.channelnewsasia.com' AND style = 'large-image' AND type = 'Lifestyle' ORDER BY id desc");
+//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
+//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+        for(int i = 0; i < urls.size(); i++){
+            String url = (String)urls.get(i).get("url");
+            crawler.addSeed(url);
+        }
+
+//        crawler.addSeed("http://www.channelnewsasia.com/");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/lifestyle");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/health");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/technology");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/entertainment");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/sport");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/business");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/world");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/singapore");
+//        crawler.addSeed("http://www.channelnewsasia.com/archives/asiapacific");
 
 //        crawler.addSeed("http://www.channelnewsasia.com/news/lifestyle/mali-s-famous-bazin-cloth/2272754.html");
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
-        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+//        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
         //多代理随机
@@ -147,7 +158,7 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
         crawler.setResumable(false);
 //        crawler.setResumable(true);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }
