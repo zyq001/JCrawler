@@ -22,9 +22,26 @@ import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
+import com.google.gson.JsonObject;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
  * WebCollector 2.x版本的tutorial
@@ -91,7 +108,7 @@ public class CNNBreakingCrawler extends DeepCrawler {
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
+                        p.getTitle(),"Breaking News",p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -117,70 +134,93 @@ public class CNNBreakingCrawler extends DeepCrawler {
     }
 
     public static void main(String[] args) throws Exception {
-        /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
+
+        try {
+            //1.从StdSchedulerFactory工厂中获取一个任务调度器
+            Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+
+            //2. 启动调度器
+            scheduler.start();
+            System.out.println("scheduler is start...");
+            //3. 添加定时任务
+            //  3.1 定义job
+            JobDetail job = newJob(CNNBreakingNewsJob.class)
+                    .withIdentity("jobCNN", "groupCNN")
+                    .build();
+
+            //  3.2 定义Trigger，使得job现在就运行，并每隔3s中运行一次，重复运行5次, withRepeatCount(number)设定job运行次数为number+1
+            Trigger trigger = newTrigger()
+                    .withIdentity("triggerCNN", "groupCNN")
+                    .startNow()
+                    .withSchedule(simpleSchedule()
+                            .withIntervalInMinutes(30).repeatForever())//withIntervalInSeconds(3)
+//                            .withRepeatCount(4))
+                    .build();
+
+            //  3.3 交给scheduler去调度
+            scheduler.scheduleJob(job, trigger);
+
+            JobDetail jobJpost = newJob(JpostBreakingNewsJob.class)
+                    .withIdentity("jobJpost", "groupJpost")
+                    .build();
+
+            //  3.2 定义Trigger，使得job现在就运行，并每隔3s中运行一次，重复运行5次, withRepeatCount(number)设定job运行次数为number+1
+            Trigger triggerJpost = newTrigger()
+                    .withIdentity("triggerJpost", "groupJpost")
+                    .startNow()
+                    .withSchedule(simpleSchedule()
+                            .withIntervalInMinutes(30).repeatForever())//withIntervalInSeconds(3)
+//                            .withRepeatCount(4))
+                    .build();
+
+            //  3.3 交给scheduler去调度
+            scheduler.scheduleJob(jobJpost, triggerJpost);
+
+            //4. 关闭调度器
+            //scheduler.shutdown();
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static class CNNBreakingNewsJob implements Job{
+
+        public void execute(JobExecutionContext context) throws JobExecutionException {
+//            System.out.println("execute job at " + new Date() + " by trigger " + context.getTrigger().getJobKey());
+
+             /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-        CNNBreakingCrawler crawler = new CNNBreakingCrawler("data/cnn");
-        crawler.setThreads(50);
-        crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
+            CNNBreakingCrawler crawler = new CNNBreakingCrawler("data/cnn");
+            crawler.setThreads(1);
 
-        crawler.addSeed("http://us.cnn.com/world");
-        crawler.addSeed("http://us.cnn.com/middle-east");
-        crawler.addSeed("http://us.cnn.com/europe");
-        crawler.addSeed("http://us.cnn.com/asia");
-        crawler.addSeed("http://us.cnn.com/americas");
-        crawler.addSeed("http://us.cnn.com/africa");
+            HttpClient client = new HttpClient();
+            HttpMethod method=new GetMethod("http://data.cnn.com/jsonp/breaking_news/domestic.json");
+            try {
+                client.executeMethod(method);
+                String response = method.getResponseBodyAsString();
+                if(response != null && !response.equals("")){
+                    response = response.substring(response.indexOf("{"));
+                    JSONObject ob = new JSONObject(response);
+                    String url = ob.getString("linkURL");
+                    if(url != null && !url.equals("")){
+                        crawler.addSeed(url);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        crawler.addSeed("http://us.cnn.com/politics");
-        crawler.addSeed("http://us.cnn.com/specials/politics/world-politics");
-        crawler.addSeed("http://us.cnn.com/specials/politics/national-politics");
-        crawler.addSeed("http://us.cnn.com/specials/politics/washington-politics");
 
-        crawler.addSeed("http://us.cnn.com/tech");
-        crawler.addSeed("http://money.cnn.com/technology/innovate/index.html");
-        crawler.addSeed("http://us.cnn.com/specials/space-science");
-        crawler.addSeed("http://us.cnn.com/specials/tech/cybersecurity");
-        crawler.addSeed("http://us.cnn.com/specials/tech/consumer-tech");
-
-        crawler.addSeed("http://us.cnn.com/health");
-        crawler.addSeed("http://us.cnn.com/specials/health-care");
-        crawler.addSeed("http://us.cnn.com/specials/health/living-well");
-        crawler.addSeed("http://us.cnn.com/specials/health/diet-fitness");
-
-        crawler.addSeed("http://us.cnn.com/entertainment");
-        crawler.addSeed("http://us.cnn.com/specials/showbiz/movies-music");
-        crawler.addSeed("http://us.cnn.com/specials/showbiz/tv-web");
-        crawler.addSeed("http://us.cnn.com/specials/showbiz/celebrity-watch");
-
-        crawler.addSeed("http://us.cnn.com/living");
-        crawler.addSeed("http://us.cnn.com/specials/belief");
-        crawler.addSeed("http://us.cnn.com/specials/living/relationships");
-        crawler.addSeed("http://us.cnn.com/specials/living/eatocracy");
-        crawler.addSeed("http://us.cnn.com/specials/living/cnn-parents");
-
-        crawler.addSeed("http://us.cnn.com/travel");
-        crawler.addSeed("http://us.cnn.com/specials/travel/aviation-more");
-        crawler.addSeed("http://us.cnn.com/specials/travel/sleep-eats");
-        crawler.addSeed("http://us.cnn.com/specials/travel/best-of-travel");
-        crawler.addSeed("http://us.cnn.com/style/arts");
-        crawler.addSeed("http://us.cnn.com/style/architecture");
-
-        crawler.addSeed("http://money.cnn.com/");
-        crawler.addSeed("http://money.cnn.com/luxury/");
-        crawler.addSeed("http://money.cnn.com/smallbusiness/");
-        crawler.addSeed("http://money.cnn.com/pf/");
-        crawler.addSeed("http://money.cnn.com/media/");
-        crawler.addSeed("http://money.cnn.com/technology/");
-        crawler.addSeed("http://money.cnn.com/data/markets/");
-        crawler.addSeed("http://money.cnn.com/news/");
-        crawler.addSeed("http://money.cnn.com/data/markets/");
 //        crawler.addSeed("http://us.cnn.com/2015/08/07/us/death-row-stories-ruben-cantu/index.html");
 
-        //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
-        HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
-        requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+            //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
+            HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
+            requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
 //        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
-        //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
+            //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
 blended-wrapper esc-wrapper
         //多代理随机
@@ -190,9 +230,43 @@ blended-wrapper esc-wrapper
         */
 
         /*设置是否断点爬取*/
-        crawler.setResumable(false);
+            crawler.setResumable(false);
 
-        crawler.start(2);
+            try {
+                crawler.start(1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public static class JpostBreakingNewsJob implements Job{
+
+        public void execute(JobExecutionContext context) throws JobExecutionException {
+//            System.out.println("execute job at " + new Date() + " by trigger " + context.getTrigger().getJobKey());
+
+             /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
+          不同的爬虫请使用不同的crawlPath
+        */
+            JpostCrawler crawler = new JpostCrawler("data/Jpost");
+            crawler.setThreads(1);
+//        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
+            crawler.addSeed("http://www.jpost.com/Headlines");
+
+            //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
+            HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
+            requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+
+            crawler.setResumable(false);
+
+            try {
+                crawler.start(2);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
 }

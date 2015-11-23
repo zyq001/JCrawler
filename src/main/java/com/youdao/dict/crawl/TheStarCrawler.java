@@ -26,6 +26,10 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -129,10 +133,35 @@ public class TheStarCrawler extends DeepCrawler {
 
 
         TheStarCrawler crawler = new TheStarCrawler("data/TheStar");
-        crawler.setThreads(1);
-//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
-//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+        crawler.setThreads(10);
+
+//        File file = new File("./thestar.txt");
+//        BufferedReader reader = null;
+//        try {
+//            System.out.println("以行为单位读取文件内容，一次读一整行：");
+//            reader = new BufferedReader(new FileReader(file));
+//            String tempString = null;
+//            int line = 1;
+//            // 一次读入一行，直到读入null为文件结束
+//            while ((tempString = reader.readLine()) != null) {
+//                // 显示行号
+////                System.out.println("line " + line + ": " + tempString);
+//                crawler.addSeed(tempString);
+//                line++;
+//            }
+//            reader.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (reader != null) {
+//                try {
+//                    reader.close();
+//                } catch (IOException e1) {
+//                }
+//            }
+//        }
+
+
 //        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/26/Rela-members-to-help-out-ministrys-unit/");
         crawler.addSeed("http://www.thestar.com.my/News");
         crawler.addSeed("http://www.thestar.com.my/Business/News/");
@@ -140,14 +169,7 @@ public class TheStarCrawler extends DeepCrawler {
         crawler.addSeed("http://www.thestar.com.my/Tech/");//opinion
         crawler.addSeed("http://www.thestar.com.my/Opinion/");
         crawler.addSeed("http://www.thestar.com.my/Metro/Eat-And-Drink/");
-//        crawler.addSeed("http://www.todayonline.com/");
-//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-//        crawler.addSeed("http://www.theguardian.com/us/business");
-//        crawler.addSeed("http://www.theguardian.com/us/environment");
-//////
-//        crawler.addSeed("http://www.theguardian.com/travel");
-//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-//        crawler.addSeed("http://www.theguardian.com/politics");
+
 
 
 
@@ -169,7 +191,7 @@ public class TheStarCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }

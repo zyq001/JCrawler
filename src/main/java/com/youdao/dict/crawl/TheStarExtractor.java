@@ -106,14 +106,11 @@ public class TheStarExtractor extends BaseExtractor {
         if (elementLabel == null)
             return true;
         Elements labelE = elementLabel.select("a");
-        if(labelE == null || labelE.size() < 1){
-            log.debug("no keywords, continue");
-            return true;
-        }
-        String[] keywords = new String[labelE.size()];
-        for(int i = 0; i < labelE.size(); i++){
-            keywords[i] = labelE.get(i).text();
-        }
+        String kws = elementLabel.attr("content");
+        String[] keywords = kws.split(",");
+//        for(int i = 0; i < labelE.size(); i++){
+//            keywords[i] = labelE.get(i).text();
+//        }
 
         //按关键字由短到长排序
         PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
@@ -314,7 +311,7 @@ public class TheStarExtractor extends BaseExtractor {
         p.setMainimage(mainImage);
         if (width == 0) {
             p.setStyle("no-image");
-        } else if (width > 300) {
+        } else if (width >= 300) {
             p.setStyle("large-image");
         } else {
             p.setStyle("no-image");
