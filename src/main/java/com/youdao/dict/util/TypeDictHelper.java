@@ -31,14 +31,24 @@ public class TypeDictHelper {
             if(strKey == null || strValue == null || strValue.equals("")) continue;
             String[] words = strValue.split(",");
             for(String s: words){
-                typeDict.put(s, strKey);
+                typeDict.put(s.toLowerCase(), strKey);
             }
         }
     }
 
     public static String getType(String key, String defult){
-        String value = typeDict.get(key);
-        if(value == null || value.equals("")) return defult;
-        return value;
+        String lkey = key.toLowerCase();
+
+        String value = typeDict.get(lkey);
+        if(value != null && !value.equals(key)) return value;
+
+        if(typeDict.containsValue(key)) return key;//正好是app频道之一。返回
+
+        //拆开来匹配
+        for(String s: lkey.split(" ")){
+            value = typeDict.get(s);
+            if(value != null && !value.equals(s)) return value;
+        }
+        return defult;
     }
 }
