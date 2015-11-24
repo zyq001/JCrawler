@@ -54,15 +54,32 @@ public class WikiHowExtractor extends BaseExtractor {
                 content.select("a[id=qa_toc]").remove();//QA
                 content.select("h2[class=hidden]").remove();//隐藏 “Steps”
                 content.select("sup[class=reference]").remove();//引用上标
-                content.select("div[class=qa section qa sticky]").remove();//QA submit
-                content.select("div[class=section knowledgebox-section sticky ]").remove();//3mins knowladge
-                content.select("div[class=section kb-submit-section]").remove();//kb-submit-sectio
-                content.select("div[class=section video  sticky ]").remove();//Video Youtub
-                content.select("div[class='section relatedwikihows  sticky ']").remove();//relatedwikihows
-                content.select("div[class=section sourcesandcitations  sticky ]").remove();//sourcesandcitations
-                content.select("div[class=section video  sticky ]").remove();//Video Youtub
+                content.select("qa").select(".section").select(".qa").remove();
+//                content.select("div[class=qa section qa sticky]").remove();//QA submit
+                content.select(".section").select(".knowledgebox-section").remove();
+//                content.select("div[class=section knowledgebox-section sticky ]").remove();//3mins knowladge
+
+                content.select(".section").select(".kb-submit-section").remove();
+//                content.select("div[class=section kb-submit-section]").remove();//kb-submit-sectio
+
+                content.select(".section").select(".video").remove();
+//                content.select("div[class=section video  sticky ]").remove();//Video Youtub
+
+                Elements es = content.select(".section").select(".relatedwikihows");
+                es.remove();
+                content.select("div .section.relatedwikihows.sticky").remove();//relatedwikihows section relatedwikihows  sticky
+
+                content.select(".section").select(".sourcesandcitations").remove();
+//                content.select("div[class=section sourcesandcitations  sticky ]").remove();//sourcesandcitations
+
+                content.select(".section").select(".video").remove();
+//                content.select("div[class=section video  sticky ]").remove();//Video Youtub
+
+
                 content.select("a[class=stepeditlink]").remove();//
-                content.select("div[class=section warnings  sticky ]").remove();//
+
+                content.select(".section").select(".warnings").remove();
+//                content.select("div[class=section warnings  sticky ]").remove();//
 //                content.select("div[class=section video  sticky ]").remove();//
                 return true;
             }
