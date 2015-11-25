@@ -51,9 +51,19 @@ public class WikiHowExtractor extends BaseExtractor {
 //                content.select("div[class=authoring full-date]").remove();
 //                content.select("div[class=authoring]").remove();
                 //去除分享
+
+                content.select(".editsection").remove();//Edit Article
+
+                content.select(".firstHeading").remove();//重复的title
+
+                content.select(".ad_label").remove();//Ad
+
+                content.select(".absolute_stepnum").remove();//全局编号
+
                 content.select("a[id=qa_toc]").remove();//QA
                 content.select("h2[class=hidden]").remove();//隐藏 “Steps”
                 content.select("sup[class=reference]").remove();//引用上标
+
                 content.select("qa").select(".section").select(".qa").remove();
 //                content.select("div[class=qa section qa sticky]").remove();//QA submit
                 content.select(".section").select(".knowledgebox-section").remove();
@@ -67,7 +77,7 @@ public class WikiHowExtractor extends BaseExtractor {
 
                 Elements es = content.select(".section").select(".relatedwikihows");
                 es.remove();
-                content.select("div .section.relatedwikihows.sticky").remove();//relatedwikihows section relatedwikihows  sticky
+//                content.select("div .section.relatedwikihows.sticky").remove();//relatedwikihows section relatedwikihows  sticky
 
                 content.select(".section").select(".sourcesandcitations").remove();
 //                content.select("div[class=section sourcesandcitations  sticky ]").remove();//sourcesandcitations
@@ -78,9 +88,28 @@ public class WikiHowExtractor extends BaseExtractor {
 
                 content.select("a[class=stepeditlink]").remove();//
 
-                content.select(".section").select(".warnings").remove();
+
+//                content.select(".section").select(".warnings").remove();
 //                content.select("div[class=section warnings  sticky ]").remove();//
 //                content.select("div[class=section video  sticky ]").remove();//
+
+
+                //加p标签
+                content.select(".mw-headline").wrap("<p></p>");
+
+                content.select(".step").wrap("<p></p>");
+
+                content.select(".step_num").wrap("<p></p>");
+
+                Elements lis = content.select("li");
+                for(Element e: lis){
+                    if(!e.parent().tagName().equals("ul"))
+                        e.unwrap();
+                }
+//                if(content.select())
+//                content.select("ul").select("li").wrap("<p></p>");
+//                content.select(".mw-headline").wrap("<i></i>");
+
                 return true;
             }
             log.info("*****init  failed，isn't an article***** url:" + url);
@@ -92,6 +121,39 @@ public class WikiHowExtractor extends BaseExtractor {
     }
 
 
+    public boolean extractorContent() {
+        return extractorContent(false);
+    }
+
+    public boolean extractorContent(boolean paging) {
+        log.debug("*****extractorContent*****");
+        if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
+            return false;
+        }
+        Elements hypLinks = content.select("a");
+        for(Element a: hypLinks){
+            a.unwrap();
+//            System.out.println(a);
+        }
+        String contentHtml = content.html();
+
+        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
+
+        contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
+        contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
+        contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
+        contentHtml = contentHtml.replaceAll("<(?!img|br|li|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
+        contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t /n
+//        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
+
+
+        p.setContent(contentHtml);
+        if (!paging && isPaging()) {
+            mergePage(p);
+        }
+        log.debug("*****extractorContent  success*****");
+        return true;
+    }
 
     public boolean extractorTitle() {
         log.debug("*****extractorTitle*****");
@@ -267,8 +329,11 @@ public class WikiHowExtractor extends BaseExtractor {
                 String imageUrl = img.attr("data-src");
                 //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
                 if ("".equals(imageUrl)) {
-                    img.remove();
-                    continue;
+                    imageUrl = img.attr("src");
+                    if ("".equals(imageUrl)) {
+                        img.remove();
+                        continue;
+                    }
                 }
                 img.removeAttr("width");
                 img.removeAttr("WIDTH");

@@ -121,7 +121,7 @@ public class WikiHowCrawler extends DeepCrawler {
 
         WikiHowCrawler crawler = new WikiHowCrawler("data/WikiHow");
         crawler.setThreads(1);
-//        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
+//        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
         crawler.addSeed("http://www.wikihow.com/Main-Page");
         crawler.addSeed("http://www.wikihow.com/Category:Arts-and-Entertainment");
         crawler.addSeed("http://www.wikihow.com/Category:Cars-%26-Other-Vehicles");
