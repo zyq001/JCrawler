@@ -21,6 +21,7 @@ import cn.edu.hfut.dmic.webcollector.crawler.DeepCrawler;
 import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
+import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
@@ -147,6 +148,10 @@ public class WikiHowCrawler extends DeepCrawler {
         crawler.addSeed("http://www.wikihow.com/Category:Youth");
 
 
+        Config.WAIT_THREAD_END_TIME = 1000*60*5;
+        Config.TIMEOUT_CONNECT = 1000*10;
+        Config.TIMEOUT_READ = 1000*30;
+        Config.requestMaxInterval = 1000*60*10;
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
