@@ -39,10 +39,10 @@ public class WikiHowExtractor extends BaseExtractor {
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
-
-
-            String isarticle = context.output.get("isarticle").toString();
-            if(isarticle.contains("article")){
+            Element article = (Element) context.output.get("isarticle");
+            if(article == null || article.toString().contains("article")){
+//            String isarticle = context.output.get("isarticle").toString();
+//            if(isarticle.contains("article")){
                 log.debug("*****init  success*****");
 //                content.select("div[id=sidebar-second]").remove();
 //                content.select("div[id=content-bottom]").remove();

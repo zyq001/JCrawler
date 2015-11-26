@@ -26,10 +26,8 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,7 +46,7 @@ import java.util.Map;
  *
  * @author hu
  */
-public class TimesInPlainEnglishCrawler extends DeepCrawler {
+public class TimesInPlainEnglishRECrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
@@ -56,13 +54,14 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
 
     public static Map<String, String> url2type = new HashMap<String, String>();
 
-    public TimesInPlainEnglishCrawler(String crawlPath) {
+    public TimesInPlainEnglishRECrawler(String crawlPath) {
         super(crawlPath);
 
         regexRule.addRule("http://www.thetimesinplainenglish.com/wp/.*");
         regexRule.addRule("-.*jpg.*");
         regexRule.addRule("-.*p=.*");
         regexRule.addRule("-.*easy-printing.*");
+
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
          JDBCHelper.getJdbcTemplate("mysql1")来获取这个对象。
          参数分别是：名称、连接URL、用户名、密码、初始化连接数、最大连接数
@@ -94,8 +93,8 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
             BaseExtractor extractor = new TimesInPlainEnglishExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
+
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -124,23 +123,12 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
 //            type = "Politics";//***website's mistake***
 //        else if(page.getUrl().contains("category/new-york"))
 //            type = "Us";
-
-        // typify depend on the former url
+//
+//        // typify depend on the former url
 //        if(!type.equals(""))
-            for(String subUrl: nextLinks) {
-                String type = "";
-                if(subUrl.contains("category/money-work"))
-                    type = "Business";
-                else if(subUrl.contains("category/health"))
-                    type = "Health";
-                else if(subUrl.contains("category/law"))
-                    type = "Law";
-                else if(subUrl.contains("category/education"))
-                    type = "Politics";//***website's mistake***
-                else if (subUrl.contains("category/new-york"))
-                    type = "Us";
-                url2type.put(subUrl, type);
-            }
+//            for(String subUrl: nextLinks)
+//                url2type.put(subUrl, type);
+
         /*Links类继承ArrayList<String>,可以使用add、addAll等方法自己添加URL
          如果当前页面的链接中，没有需要爬取的，可以return null
          例如如果你的爬取任务只是爬取seed列表中的所有链接，这种情况应该return null
@@ -157,17 +145,44 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
 //        Date date = format.parse("Nov 2, 2015");
 //System.out.println(date);
 
-        TimesInPlainEnglishCrawler crawler = new TimesInPlainEnglishCrawler("data/TimesPE");
-        crawler.setThreads(1);
-//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/global-migration-the-wave-of-the-future/");
+        TimesInPlainEnglishRECrawler crawler = new TimesInPlainEnglishRECrawler("data/TimesPE");
+        crawler.setThreads(10);
+
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host = 'www.thetimesinplainenglish.com'");
+////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
+////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+//        for(int i = 0; i < urls.size(); i++){
+//            String url = (String)urls.get(i).get("url");
+//            String type = "";
+//            if(url.contains("category/money-work"))
+//                type = "Business";
+//            else if(url.contains("category/health"))
+//                type = "Health";
+//            else if(url.contains("category/law"))
+//                type = "Law";
+//            else if(url.contains("category/education"))
+//                type = "Politics";//***website's mistake***
+//            else if(url.contains("category/new-york"))
+//                type = "Us";
+//
+//            // typify depend on the former url
+////            if(!type.equals(""))
+////                for(String subUrl: nextLinks)
+//                    url2type.put(url, type);
+//            crawler.addSeed(url);
+//        }
+
+
+        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/?p=3290");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/education/");
-//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/news/");
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/money-work/");
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/health/");
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/law/");
-        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/new-york/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/education/");
+////        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/news/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/money-work/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/health/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/law/");
+//        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/new-york/");
 //        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/category/of-interest/");
 //        crawler.addSeed("http://www.thetimesinplainenglish.com/wp/");
 //        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
@@ -198,7 +213,7 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }

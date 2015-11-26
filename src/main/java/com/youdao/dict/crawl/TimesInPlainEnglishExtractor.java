@@ -40,8 +40,8 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
             content = (Element) context.output.get("content");
 //            log.debug("*****init  success*****");
 //            return true;
-            String isarticle = context.output.get("isarticle").toString();
-            if(isarticle.contains("article")){
+            Element article = (Element) context.output.get("isarticle");
+            if(article == null || article.toString().contains("article")){
                 log.debug("*****init  success*****");
 //                content.select("div[id=sidebar-second]").remove();
 //                content.select("div[id=content-bottom]").remove();
@@ -54,6 +54,9 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
 //                content.select("img[alt=subscribe newsletter]").remove();
 //                content.select("div[class=article-top-wrap]").remove();
 //                content.select("h2[class=article-teaser-text]").remove();//图片文字多余
+                content.select(".printfriendly").remove();
+                content.select(".addtoany_share_save_container").remove();
+                content.select(".al2fb_like_button").remove();
                 return true;
             }
             log.info("*****init  failed，isn't an article***** url:" + url);
@@ -106,7 +109,7 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
         if(TimesInPlainEnglishCrawler.url2type.containsKey(this.url))
             p.setType(TimesInPlainEnglishCrawler.url2type.get(this.url));
         else
-            return false;
+            p.setType(TypeDictHelper.getType(url, url));
 
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null)

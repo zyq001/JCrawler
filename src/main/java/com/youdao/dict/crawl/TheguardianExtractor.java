@@ -52,8 +52,11 @@ public class TheguardianExtractor extends BaseExtractor {
             }
             content.removeClass("content__article-body from-content-api js-article__body");
             content.removeClass("meta__social");
-            String isarticle = context.output.get("isarticle").toString();
-            if(isarticle.contains("article")){
+
+            Element article = (Element) context.output.get("isarticle");
+            if(article == null || article.toString().contains("article")){
+//            String isarticle = context.output.get("isarticle").toString();
+//            if(isarticle.contains("article")){
                 log.debug("*****init  success*****");
                 return true;
             }
