@@ -89,6 +89,8 @@ public class WikiHowCrawler extends DeepCrawler {
                         p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
+                }else{
+                    System.out.println("mysql插入不成功，updates：" + updates);
                 }
             }
         } catch (Exception e) {
@@ -120,7 +122,7 @@ public class WikiHowCrawler extends DeepCrawler {
 
 
         WikiHowCrawler crawler = new WikiHowCrawler("data/WikiHow");
-        crawler.setThreads(1);
+        crawler.setThreads(10);
 //        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
         crawler.addSeed("http://www.wikihow.com/Main-Page");
         crawler.addSeed("http://www.wikihow.com/Category:Arts-and-Entertainment");

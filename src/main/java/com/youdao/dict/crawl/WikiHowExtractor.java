@@ -43,7 +43,7 @@ public class WikiHowExtractor extends BaseExtractor {
             if(article == null || article.toString().contains("article")){
 //            String isarticle = context.output.get("isarticle").toString();
 //            if(isarticle.contains("article")){
-                log.debug("*****init  success*****");
+
 //                content.select("div[id=sidebar-second]").remove();
 //                content.select("div[id=content-bottom]").remove();
 //                Elements socailLinks = content.select("div[class=social-links]");
@@ -109,7 +109,7 @@ public class WikiHowExtractor extends BaseExtractor {
 //                if(content.select())
 //                content.select("ul").select("li").wrap("<p></p>");
 //                content.select(".mw-headline").wrap("<i></i>");
-
+                log.debug("*****init  success*****");
                 return true;
             }
             log.info("*****init  failed，isn't an article***** url:" + url);
@@ -128,6 +128,7 @@ public class WikiHowExtractor extends BaseExtractor {
     public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
+            log.debug("*****extractorContent failed,return false*****");
             return false;
         }
         Elements hypLinks = content.select("a");
@@ -159,8 +160,10 @@ public class WikiHowExtractor extends BaseExtractor {
         log.debug("*****extractorTitle*****");
 //        String title = context.output.get("title").toString();
         Element elementTitle = (Element) context.output.get("title");
-        if (elementTitle == null)
+        if (elementTitle == null){
+            log.error("extractorTitle failed skippppp");
             return false;
+        }
         String title = elementTitle.attr("content");
         if (title == null || "".equals(title.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
@@ -177,13 +180,16 @@ public class WikiHowExtractor extends BaseExtractor {
 
     public boolean extractorType() {
         Element elementType = (Element) context.output.get("type");
-        if (elementType == null)
+        if (elementType == null){
+            log.debug("*****extractorType  null  skipp url:" + url);
             return false;
+
+        }
 
         Elements cats = elementType.select("li");
         Element thirdCat = cats.get(2);
         if(thirdCat == null) {
-            log.error("extracte type failed, skip");
+            log.error("extracte type failed, skip url:" + url);
             return false;
         }
         String type = thirdCat.select("a").text();
@@ -206,12 +212,14 @@ public class WikiHowExtractor extends BaseExtractor {
         p.setType(type.trim());
 
         Element elementLabel = (Element) context.output.get("label");
-        if (elementLabel == null)
+        if (elementLabel == null) {
+            log.info("*****extractorLabel  failed, continue***** url:" + url);
             return true;
+        }
         String label = elementLabel.attr("content");
 //        String label = (String) context.output.get("label");
         if (label == null || "".equals(label.trim())) {
-            log.info("*****extractorLabel  failed***** url:" + url);
+            log.info("*****extractorLabel  failed, continue***** url:" + url);
             return true;
         }
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
@@ -244,7 +252,7 @@ public class WikiHowExtractor extends BaseExtractor {
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
         if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract Time, skip");
+            log.error("can't extract Time, skip url:" + url);
             return false;
 
         }
@@ -259,6 +267,7 @@ public class WikiHowExtractor extends BaseExtractor {
         try {
             date = format.parse(time.trim());
         } catch (ParseException e) {
+            log.info("*****extractorTime format.parse  failed***** url:" + url);
             return false;
         }
 //        if (System.currentTimeMillis() - date.getTime() > Long.MAX_VALUE >> 25) {
@@ -274,7 +283,7 @@ public class WikiHowExtractor extends BaseExtractor {
         log.debug("*****extractor Desc*****");
         Element elementTime = (Element) context.output.get("description");
         if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract desc, continue");
+            log.error("can't extract desc, continue + url : " + url);
             return true;
         }
         String description = elementTime.attr("content");
@@ -318,7 +327,7 @@ public class WikiHowExtractor extends BaseExtractor {
 //        content.select("div[id=block-views-article-title-block]").remove();
 //        //
 //        content.select("div[id=157_ArticleControl_divShareButton]").remove();
-        if(isPaging()) return true;
+//        if(isPaging()) return true;
        /* if (host.equals(port)) return true;*/
 
         Elements imgs = content.select("img");
