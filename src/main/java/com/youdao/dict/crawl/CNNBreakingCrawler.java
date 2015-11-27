@@ -193,7 +193,7 @@ public class CNNBreakingCrawler extends DeepCrawler {
              /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-            CNNBreakingCrawler crawler = new CNNBreakingCrawler("data/cnn");
+            CNNBreakingCrawler crawler = new CNNBreakingCrawler("data/cnnBreaking");
             crawler.setThreads(1);
 
             HttpClient client = new HttpClient();
