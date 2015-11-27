@@ -100,7 +100,7 @@ public class WikiHowCrawler extends DeepCrawler {
             e.printStackTrace();
         }
 
-        log.info("after insert");
+//        log.info("after insert");
         /*下面是2.0版本新加入的内容*/
         /*抽取page中的链接返回，这些链接会在下一轮爬取时被爬取。
          不用担心URL去重，爬虫会自动过滤重复URL。*/
@@ -114,7 +114,7 @@ public class WikiHowCrawler extends DeepCrawler {
          如果当前页面的链接中，没有需要爬取的，可以return null
          例如如果你的爬取任务只是爬取seed列表中的所有链接，这种情况应该return null
          */
-        log.info("Before return nextLinks");
+//        log.info("Before return nextLinks");
         return nextLinks;
     }
 
