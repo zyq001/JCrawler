@@ -249,7 +249,7 @@ blended-wrapper esc-wrapper
              /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
-            JpostCrawler crawler = new JpostCrawler("data/Jpost");
+            JpostCrawler crawler = new JpostCrawler("data/JpostBreaking");
             crawler.setThreads(1);
 //        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
             crawler.addSeed("http://www.jpost.com/Headlines");

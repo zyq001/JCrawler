@@ -98,6 +98,7 @@ public class WikiHowCrawler extends DeepCrawler {
             e.printStackTrace();
         }
 
+        System.out.println("after insert");
         /*下面是2.0版本新加入的内容*/
         /*抽取page中的链接返回，这些链接会在下一轮爬取时被爬取。
          不用担心URL去重，爬虫会自动过滤重复URL。*/
@@ -111,6 +112,7 @@ public class WikiHowCrawler extends DeepCrawler {
          如果当前页面的链接中，没有需要爬取的，可以return null
          例如如果你的爬取任务只是爬取seed列表中的所有链接，这种情况应该return null
          */
+        System.out.println("Before return nextLinks");
         return nextLinks;
     }
 
@@ -149,9 +151,9 @@ public class WikiHowCrawler extends DeepCrawler {
 
 
         Config.WAIT_THREAD_END_TIME = 1000*60*5;
-        Config.TIMEOUT_CONNECT = 1000*10;
-        Config.TIMEOUT_READ = 1000*30;
-        Config.requestMaxInterval = 1000*60*10;
+//        Config.TIMEOUT_CONNECT = 1000*10;
+//        Config.TIMEOUT_READ = 1000*30;
+//        Config.requestMaxInterval = 1000*60*10;
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
