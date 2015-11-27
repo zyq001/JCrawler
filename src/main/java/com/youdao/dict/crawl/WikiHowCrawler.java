@@ -25,6 +25,7 @@ import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -43,6 +44,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author hu
  */
+@CommonsLog
 public class WikiHowCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
@@ -98,7 +100,7 @@ public class WikiHowCrawler extends DeepCrawler {
             e.printStackTrace();
         }
 
-        System.out.println("after insert");
+        log.info("after insert");
         /*下面是2.0版本新加入的内容*/
         /*抽取page中的链接返回，这些链接会在下一轮爬取时被爬取。
          不用担心URL去重，爬虫会自动过滤重复URL。*/
@@ -112,7 +114,7 @@ public class WikiHowCrawler extends DeepCrawler {
          如果当前页面的链接中，没有需要爬取的，可以return null
          例如如果你的爬取任务只是爬取seed列表中的所有链接，这种情况应该return null
          */
-        System.out.println("Before return nextLinks");
+        log.info("Before return nextLinks");
         return nextLinks;
     }
 
@@ -125,7 +127,7 @@ public class WikiHowCrawler extends DeepCrawler {
 
 
         WikiHowCrawler crawler = new WikiHowCrawler("data/WikiHow");
-        crawler.setThreads(10);
+        crawler.setThreads(50);
 //        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
         crawler.addSeed("http://www.wikihow.com/Main-Page");
         crawler.addSeed("http://www.wikihow.com/Category:Arts-and-Entertainment");
@@ -150,10 +152,11 @@ public class WikiHowCrawler extends DeepCrawler {
         crawler.addSeed("http://www.wikihow.com/Category:Youth");
 
 
-        Config.WAIT_THREAD_END_TIME = 1000*60*5;
+//        Config
+        Config.WAIT_THREAD_END_TIME = 1000*60*3;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
 //        Config.TIMEOUT_READ = 1000*30;
-//        Config.requestMaxInterval = 1000*60*10;
+        Config.requestMaxInterval = 1000*60*10;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
