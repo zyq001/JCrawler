@@ -37,12 +37,14 @@ public class TypeDictHelper {
     }
 
     public static String getType(String key, String defult){
+        if(typeDict.containsValue(key)) return key;//正好是app频道之一。返回
+
         String lkey = key.toLowerCase();
 
         String value = typeDict.get(lkey);
         if(value != null && !value.equals(key)) return value;
 
-        if(typeDict.containsValue(key)) return key;//正好是app频道之一。返回
+
 
         //拆开来匹配
         for(String s: lkey.split(" ")){
