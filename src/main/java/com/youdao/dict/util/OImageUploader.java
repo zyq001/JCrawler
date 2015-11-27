@@ -18,6 +18,7 @@ import java.net.URL;
 public class OImageUploader {
     public String product = "dict-consult";
     public int timeout = 3000;
+    public int readTimeout = 60 * 1000;
     @Getter
     private int width;
     @Getter
@@ -62,6 +63,7 @@ public class OImageUploader {
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept-Encoding", "identity");
         conn.setConnectTimeout(timeout);
+        conn.setReadTimeout(readTimeout);
         conn.connect();
         InputStream inStream = conn.getInputStream();
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
