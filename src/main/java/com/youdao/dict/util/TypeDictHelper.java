@@ -53,4 +53,8 @@ public class TypeDictHelper {
         }
         return defult;
     }
+
+    public static void updateType(){
+
+    }
 }
