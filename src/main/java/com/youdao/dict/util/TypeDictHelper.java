@@ -3,16 +3,14 @@ package com.youdao.dict.util;
 import com.youdao.dict.souplang.SoupLang;
 
 import java.io.FileInputStream;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Created by Administrator on 2015/11/6.
  */
 public class TypeDictHelper {
     private static Map<String, String> typeDict = new HashMap<String, String>();
+    private static Set<String> typeSet = new HashSet<String>();
     static {
         Properties dictProp=new Properties();
         try
@@ -27,6 +25,7 @@ public class TypeDictHelper {
         {
             Map.Entry<Object,Object> e = ppsi.next();
             String strKey = (String)e.getKey();
+            typeSet.add(strKey);
             String strValue = (String)e.getValue();
             if(strKey == null || strValue == null || strValue.equals("")) continue;
             String[] words = strValue.split(",");
@@ -34,6 +33,11 @@ public class TypeDictHelper {
                 typeDict.put(s.toLowerCase(), strKey);
             }
         }
+    }
+
+    public static boolean rightTheType(String orgType){
+        if(orgType == null || orgType.equals("")) return  false;
+        return typeSet.contains(orgType);
     }
 
     public static String getType(String key, String defult){
@@ -55,6 +59,10 @@ public class TypeDictHelper {
     }
 
     public static void updateType(){
+
+    }
+
+    public static void main (String[] args){
 
     }
 }

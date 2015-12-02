@@ -1,6 +1,7 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import com.google.gson.Gson;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
@@ -13,10 +14,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Locale;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -106,11 +104,19 @@ public class TimesInPlainEnglishExtractor extends BaseExtractor {
 //            type = TypeDictHelper.getType(type, type);
 //            p.setType(type.trim());
 //        }
+        String type = "";
         if(TimesInPlainEnglishCrawler.url2type.containsKey(this.url))
-            p.setType(TimesInPlainEnglishCrawler.url2type.get(this.url));
+            type = TimesInPlainEnglishCrawler.url2type.get(this.url);
         else
-            p.setType(TypeDictHelper.getType(url, url));
+            type = TypeDictHelper.getType(url, url);
 
+        if(!TypeDictHelper.rightTheType(type)){
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("orgType", type);
+            String moreinfo = new Gson().toJson(map);
+            p.setMoreinfo(moreinfo);
+        }
+        p.setType(type);
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null)
             return true;

@@ -1,6 +1,7 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
@@ -12,9 +13,7 @@ import org.jsoup.select.Elements;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -69,6 +68,13 @@ public class ChinaDailyExtractor extends BaseExtractor {
         if (type.contains("/")) {
             type = type.substring(0, type.indexOf("/"));
             type = type.replace("/", "");
+        }
+
+        if(!TypeDictHelper.rightTheType(type)){
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("orgType", type);
+            String moreinfo = new Gson().toJson(map);
+            p.setMoreinfo(moreinfo);
         }
         type = TypeDictHelper.getType(type, type);
         p.setType(type.trim());

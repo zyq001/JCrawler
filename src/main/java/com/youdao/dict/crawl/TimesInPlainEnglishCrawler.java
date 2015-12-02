@@ -94,8 +94,8 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
             BaseExtractor extractor = new TimesInPlainEnglishExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }
@@ -113,32 +113,23 @@ public class TimesInPlainEnglishCrawler extends DeepCrawler {
          Links.addAllFromDocument为我们提供了相应的功能*/
         nextLinks.addAllFromDocument(page.getDoc(), regexRule);
 
-//        String type = "";
-//        if(page.getUrl().contains("category/money-work"))
-//            type = "Business";
-//        else if(page.getUrl().contains("category/health"))
-//            type = "Health";
-//        else if(page.getUrl().contains("category/law"))
-//            type = "Law";
-//        else if(page.getUrl().contains("category/education"))
-//            type = "Politics";//***website's mistake***
-//        else if(page.getUrl().contains("category/new-york"))
-//            type = "Us";
+        String type = "";
+        if(page.getUrl().contains("category/money-work"))
+            type = "Business";
+        else if(page.getUrl().contains("category/health"))
+            type = "Health";
+        else if(page.getUrl().contains("category/law"))
+            type = "Law";
+        else if(page.getUrl().contains("category/education"))
+            type = "Politics";//***website's mistake***
+        else if(page.getUrl().contains("category/new-york"))
+            type = "Us";
+        else
+        type = "World";
 
         // typify depend on the former url
-//        if(!type.equals(""))
+        if(!type.equals(""))
             for(String subUrl: nextLinks) {
-                String type = "";
-                if(subUrl.contains("category/money-work"))
-                    type = "Business";
-                else if(subUrl.contains("category/health"))
-                    type = "Health";
-                else if(subUrl.contains("category/law"))
-                    type = "Law";
-                else if(subUrl.contains("category/education"))
-                    type = "Politics";//***website's mistake***
-                else if (subUrl.contains("category/new-york"))
-                    type = "Us";
                 url2type.put(subUrl, type);
             }
         /*Links类继承ArrayList<String>,可以使用add、addAll等方法自己添加URL

@@ -22,10 +22,19 @@ import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
+import com.youdao.dict.util.TypeDictHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -136,6 +145,8 @@ public class TimesInPlainEnglishRECrawler extends DeepCrawler {
         return nextLinks;
     }
 
+//    public static
+
     public static void main(String[] args) throws Exception {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
@@ -148,29 +159,48 @@ public class TimesInPlainEnglishRECrawler extends DeepCrawler {
         TimesInPlainEnglishRECrawler crawler = new TimesInPlainEnglishRECrawler("data/TimesPE");
         crawler.setThreads(10);
 
-//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host = 'www.thetimesinplainenglish.com'");
+
+//        File deleteFile = new File("delete.txt");
+//        InputStreamReader read = new InputStreamReader(
+//                new FileInputStream(deleteFile));//考虑到编码格式
+//        BufferedReader bufferedReader = new BufferedReader(read);
+//        String lineTxt = null;
+//        while((lineTxt = bufferedReader.readLine()) != null){
+////            System.out.println(lineTxt);
+//            int del = crawler.jdbcTemplate.update("DELETE FROM parser_page WHERE type = ?", lineTxt);
+//            System.out.println(del + ":  " + lineTxt);
+//        }
+//        read.close();
+//
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT type,url FROM parser_page WHERE type != 'Art' AND type != 'Technology' AND type != 'Sports' AND type != 'World' AND type != 'Business' and type != 'News' AND type != 'Lifestyle' AND type != 'China' AND type != 'Us' AND type != 'Entertainment' and type != 'Politics' AND type != 'Opinion' AND type != 'Health' AND type != 'Culture' AND type != 'Media' and type != 'Travel' AND type != 'Environment' AND type != 'Finance' AND type != 'Asia' AND type != 'Books' and type != 'Education'  ORDER BY id desc");
 ////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 ////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 ////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+////        List<Map<String, String>> moreInfo = new ArrayList<Map<String, String>>();
+//        Map<String, String> map = new HashMap<String, String>();
+////        moreInfo.add(map);
+//
 //        for(int i = 0; i < urls.size(); i++){
 //            String url = (String)urls.get(i).get("url");
-//            String type = "";
-//            if(url.contains("category/money-work"))
-//                type = "Business";
-//            else if(url.contains("category/health"))
-//                type = "Health";
-//            else if(url.contains("category/law"))
-//                type = "Law";
-//            else if(url.contains("category/education"))
-//                type = "Politics";//***website's mistake***
-//            else if(url.contains("category/new-york"))
-//                type = "Us";
+//            String type = (String)urls.get(i).get("type");
+//            String newType = TypeDictHelper.getType(type, type);
 //
-//            // typify depend on the former url
-////            if(!type.equals(""))
-////                for(String subUrl: nextLinks)
-//                    url2type.put(url, type);
-//            crawler.addSeed(url);
+//
+//            map.put("orgType", type);
+//            String moreinfo = new Gson().toJson(map);
+//            System.out.println(moreinfo);
+//
+////            if(type.equals(newType)){
+////                int dele = crawler.jdbcTemplate.update("DELETE FROM parser_page WHERE type = ?", type);
+////                System.out.println("del: " + dele + "   " + type + "  " + url);
+////            }else {
+//                int suc = crawler.jdbcTemplate.update("update parser_page set type = ?, moreinfo = ? where url = ?", newType, moreinfo, url);
+//                System.out.println(suc + ":  " + url);
+//
+////            }
+////            if (newType.equals(type) && !type.equals("Opinion") && !type.equals("China") && !type.equals("Health") && !type.equals("Entertainment") && !type.equals("Us") && !type.equals("Asia Pacific"))
+////                System.out.println(type + "-->" + newType);
+//
 //        }
 
 

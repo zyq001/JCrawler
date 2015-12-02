@@ -77,6 +77,10 @@ public class ParserPage implements IWritable, Serializable {
     @Setter
     private int fullPage = 0;
 
+    @Getter
+    @Setter
+    private String moreinfo = "";
+
     public void setTitle(String title) {
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
         title = title.replaceAll("<.*?.>", "");//去除所有标签

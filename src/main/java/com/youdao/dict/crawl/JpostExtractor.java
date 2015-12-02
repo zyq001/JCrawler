@@ -1,6 +1,7 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
@@ -14,9 +15,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -103,6 +102,12 @@ public class JpostExtractor extends BaseExtractor {
             type = type.replace("/", "");
         }
         type = type.replaceAll("&", "");
+        if(!TypeDictHelper.rightTheType(type)){
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("orgType", type);
+            String moreinfo = new Gson().toJson(map);
+            p.setMoreinfo(moreinfo);
+        }
 //        type = type
         type = TypeDictHelper.getType(type, type);
         p.setType(type.trim());
@@ -167,7 +172,7 @@ public class JpostExtractor extends BaseExtractor {
             log.debug("*****extractorTime  out of date*****");
             return false;
         }
-        p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
+        p.setTime(new Timestamp(date.getTime()).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
     }

@@ -1,6 +1,7 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
@@ -14,9 +15,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -98,6 +97,13 @@ public class CNBCExtractor extends BaseExtractor {
             type = type.replace("/", "");
         }
 //        type = type
+
+        if(!TypeDictHelper.rightTheType(type)){
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("orgType", type);
+            String moreinfo = new Gson().toJson(map);
+            p.setMoreinfo(moreinfo);
+        }
         type = TypeDictHelper.getType(type, type);
         p.setType(type.trim());
 
