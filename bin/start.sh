@@ -1,7 +1,7 @@
 #!/bin/sh
 source /home/liuhongliang/.bash_profile
 
-DATE=$(date +%Y%m%d)
+DATE=$(date +%Y%m%d%H%M)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 LOG_DIR=$DIR/logs
 DATA_DIR=$DIR/data
