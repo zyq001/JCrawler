@@ -52,7 +52,8 @@ public class ChinaDailyExtractor extends BaseExtractor {
         }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
         if (title.contains("-"))
-            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
+//            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
+            p.setTitle(title.substring(0, title.indexOf(" - ")).trim());
         else
             p.setTitle(title.trim());
         log.debug("*****extractorTitle  success*****");

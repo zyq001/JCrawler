@@ -186,7 +186,8 @@ public class WikiHowExtractor extends BaseExtractor {
         }
 
         Elements cats = elementType.select("li");
-        Element thirdCat = cats.get(2);
+        Element thirdCat = null;
+        if(cats.size() >2) thirdCat = cats.get(2);
         if(thirdCat == null) {
             log.error("extracte type failed, skip url:" + url);
             return false;

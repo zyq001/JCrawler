@@ -158,6 +158,10 @@ public class TheStarExtractor extends BaseExtractor {
         }
         String time = timeE.text();
         Date date = new Date();
+        int shuIdx = time.indexOf(" | ");
+        if(shuIdx > 0){
+            time = time.substring(0, shuIdx);
+        }
         if(!time.contains("Updated")){
             String month = time.split(" ")[2];
             if (month == null) {
@@ -167,7 +171,17 @@ public class TheStarExtractor extends BaseExtractor {
             int length = month.length();
             StringBuilder M = new StringBuilder();
             while (length-- > 0) M.append('M');
-            SimpleDateFormat format = new SimpleDateFormat("E, dd " + M.toString() + " yyyy ", Locale.US);
+
+            String day = time.split(" ")[1];
+            if (day == null) {
+                log.error("con't get day, skip");
+                return false;
+            }
+            int dayLength = day.length();
+            StringBuilder d = new StringBuilder();
+            while (dayLength-- > 0) d.append('d');
+
+            SimpleDateFormat format = new SimpleDateFormat("E, " + d.toString()+" " + M.toString() + " yyyy ", Locale.US);
 
             try {
                 date = format.parse(time.trim());
@@ -187,7 +201,16 @@ public class TheStarExtractor extends BaseExtractor {
             int length = month.length();
             StringBuilder M = new StringBuilder();
             while (length-- > 0) M.append('M');
-            SimpleDateFormat format = new SimpleDateFormat("E " + M.toString() + " dd, yyyy zzz h:mm:ss a", Locale.US);
+            String day = time.split(" ")[1];
+            if (day == null) {
+                log.error("con't get day, skip");
+                return false;
+            }
+            int dayLength = day.length();
+            StringBuilder d = new StringBuilder();
+            while (dayLength-- > 0) d.append('d');
+
+            SimpleDateFormat format = new SimpleDateFormat("E, " + d.toString()+" " + M.toString() + " yyyy ", Locale.US);
 
             try {
                 date = format.parse(time.trim());
