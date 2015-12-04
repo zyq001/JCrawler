@@ -21,6 +21,7 @@ import cn.edu.hfut.dmic.webcollector.crawler.DeepCrawler;
 import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
+import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
@@ -122,10 +123,14 @@ public class TodayOnlineCrawler extends DeepCrawler {
         */
 
 
+        Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
+//        Config.TIMEOUT_CONNECT = 1000*10;
+//        Config.TIMEOUT_READ = 1000*30;
+        Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
 
 
         TodayOnlineCrawler crawler = new TodayOnlineCrawler("data/TodayOnline2");
-        crawler.setThreads(1);
+        crawler.setThreads(2);
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");

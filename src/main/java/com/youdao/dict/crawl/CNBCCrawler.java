@@ -21,6 +21,7 @@ import cn.edu.hfut.dmic.webcollector.crawler.DeepCrawler;
 import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
+import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
@@ -120,7 +121,7 @@ public class CNBCCrawler extends DeepCrawler {
 
 
         CNBCCrawler crawler = new CNBCCrawler("data/CNBC");
-        crawler.setThreads(1);
+        crawler.setThreads(10);
 //        crawler.addSeed("http://www.cnbc.com/2015/11/02/private-jet-yachts-on-demand-marketplace-app-web-summit.html");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
@@ -140,6 +141,10 @@ public class CNBCCrawler extends DeepCrawler {
 //        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
 //        crawler.addSeed("http://www.theguardian.com/politics");
 
+        Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
+//        Config.TIMEOUT_CONNECT = 1000*10;
+//        Config.TIMEOUT_READ = 1000*30;
+        Config.requestMaxInterval = 1000*60*10;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理

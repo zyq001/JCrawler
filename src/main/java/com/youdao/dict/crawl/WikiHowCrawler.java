@@ -127,7 +127,7 @@ public class WikiHowCrawler extends DeepCrawler {
 
 
         WikiHowCrawler crawler = new WikiHowCrawler("data/WikiHow");
-        crawler.setThreads(50);
+        crawler.setThreads(10);
 //        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
         crawler.addSeed("http://www.wikihow.com/Main-Page");
         crawler.addSeed("http://www.wikihow.com/Category:Arts-and-Entertainment");
@@ -156,7 +156,7 @@ public class WikiHowCrawler extends DeepCrawler {
         Config.WAIT_THREAD_END_TIME = 1000*60*3;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
 //        Config.TIMEOUT_READ = 1000*30;
-        Config.requestMaxInterval = 1000*60*10;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
+        Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
@@ -174,7 +174,7 @@ public class WikiHowCrawler extends DeepCrawler {
 
         /*设置是否断点爬取*/
 //        crawler.setResumable(true);
-        crawler.setResumable(false);
+        crawler.setResumable(true);
 
         crawler.start(2);
     }
