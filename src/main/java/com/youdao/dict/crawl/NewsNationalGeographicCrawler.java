@@ -140,7 +140,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
         crawler.setThreads(30);
 //        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
 
-        String jsonUrl = "http://news.nationalgeographic.com/bin/services/news/public/query/content.json?pageSize=180&page=0&contentTypes=news/components/pagetypes/article,news/components/pagetypes/simple-article,news/components/pagetypes/photo-gallery";
+        String jsonUrl = "http://news.nationalgeographic.com/bin/services/news/public/query/content.json?pageSize=20&page=0&contentTypes=news/components/pagetypes/article,news/components/pagetypes/simple-article,news/components/pagetypes/photo-gallery";
 
         URL urls = new URL(jsonUrl);
         HttpURLConnection urlConnection = (HttpURLConnection)urls.openConnection();
@@ -157,10 +157,10 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 
 
 //        Config
-        Config.WAIT_THREAD_END_TIME = 1000*60*3;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
+        Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
 //        Config.TIMEOUT_READ = 1000*30;
-        Config.requestMaxInterval = 1000*60*10;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
+        Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();

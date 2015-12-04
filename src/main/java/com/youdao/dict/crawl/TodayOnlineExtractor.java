@@ -240,6 +240,7 @@ public class TodayOnlineExtractor extends BaseExtractor {
                 OImageUploader uploader = new OImageUploader();
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);
+//                imageUrl = imageUrl.replace("jpg", "adapt.1190.1.jpg");
                 long id = uploader.deal(imageUrl);
                 //                long id = 0;
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");

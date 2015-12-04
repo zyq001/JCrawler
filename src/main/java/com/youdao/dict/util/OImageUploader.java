@@ -18,7 +18,7 @@ import java.net.URL;
 public class OImageUploader {
     public String product = "dict-consult";
     public int timeout = 6000;
-    public int readTimeout = 2 * 60 * 1000;
+    public int readTimeout = 3 * 60 * 1000;
     @Getter
     private int width;
     @Getter

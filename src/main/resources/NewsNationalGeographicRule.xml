@@ -37,6 +37,9 @@
         </element>
         <element name="label" selector="meta[name=keywords]">
         </element>
+
+        <element name="label" selector="meta[name=tax:adKeywords]">
+        </element>
         <element name="mainimage" selector="meta[property=og:image]">
         </element><!--小图是logo，大的是主图-->
 

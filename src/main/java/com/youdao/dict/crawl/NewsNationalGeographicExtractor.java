@@ -339,7 +339,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 }else{
                     imageUrl.substring(0, imageUrl.indexOf("jpg") + 3);
                 }
-
+                imageUrl = imageUrl.replace("jpg", "adapt.1190.1.jpg");
                 OImageUploader uploader = new OImageUploader();
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);
