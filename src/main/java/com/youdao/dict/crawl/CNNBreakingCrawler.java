@@ -22,7 +22,10 @@ import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.apache.commons.httpclient.HttpClient;
@@ -31,13 +34,19 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.*;
+import java.net.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
@@ -63,7 +72,11 @@ public class CNNBreakingCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
-    JdbcTemplate jdbcTemplate = null;
+    public static JdbcTemplate jdbcTemplate = null;
+
+
+
+
 
     public CNNBreakingCrawler(String crawlPath) {
         super(crawlPath);
@@ -133,7 +146,13 @@ public class CNNBreakingCrawler extends DeepCrawler {
         return nextLinks;
     }
 
+
+
     public static void main(String[] args) throws Exception {
+
+
+
+
 
         try {
             //1.从StdSchedulerFactory工厂中获取一个任务调度器
@@ -176,6 +195,22 @@ public class CNNBreakingCrawler extends DeepCrawler {
             //  3.3 交给scheduler去调度
             scheduler.scheduleJob(jobJpost, triggerJpost);
 
+            JobDetail dictWikiJob = newJob(DictBKWikiCrawler.class)
+                    .withIdentity("jobDictWiki", "groupDictWiki")
+                    .build();
+
+            //  3.2 定义Trigger，使得job现在就运行，并每隔3s中运行一次，重复运行5次, withRepeatCount(number)设定job运行次数为number+1
+            Trigger triggerdictWiki = newTrigger()
+                    .withIdentity("triggerDictWiki", "groupDictWiki")
+                    .startNow()
+                    .withSchedule(simpleSchedule()
+                            .withIntervalInMinutes(60).repeatForever())//withIntervalInSeconds(3)
+//                            .withRepeatCount(4))
+                    .build();
+
+            //  3.3 交给scheduler去调度
+            scheduler.scheduleJob(dictWikiJob, triggerdictWiki);
+
             //4. 关闭调度器
             //scheduler.shutdown();
         } catch (SchedulerException e) {
@@ -184,6 +219,8 @@ public class CNNBreakingCrawler extends DeepCrawler {
 
 
     }
+
+
 
     public static class CNNBreakingNewsJob implements Job{
 

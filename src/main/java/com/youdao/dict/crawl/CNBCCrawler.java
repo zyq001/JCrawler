@@ -27,6 +27,10 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -90,8 +94,10 @@ public class CNBCCrawler extends DeepCrawler {
                         p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
-                }
-            }
+                }else
+                    System.out.println("插入不成功， update： " + updates);
+            }else
+            System.out.println("extract false");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -119,27 +125,33 @@ public class CNBCCrawler extends DeepCrawler {
 
 
 
-
         CNBCCrawler crawler = new CNBCCrawler("data/CNBC");
         crawler.setThreads(10);
-//        crawler.addSeed("http://www.cnbc.com/2015/11/02/private-jet-yachts-on-demand-marketplace-app-web-summit.html");
-//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+
+
+
         crawler.addSeed("http://www.cnbc.com/world/");
         crawler.addSeed("http://www.cnbc.com/us-news/");
         crawler.addSeed("http://www.cnbc.com/technology/");
         crawler.addSeed("http://www.cnbc.com/investing/");
         crawler.addSeed("http://www.cnbc.com/small-business-financing/");
-//        crawler.addSeed("http://www.todayonline.com/lifestyle");
-//        crawler.addSeed("http://www.todayonline.com/chinaindia");
-//        crawler.addSeed("http://www.todayonline.com/");
-//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-//        crawler.addSeed("http://www.theguardian.com/us/business");
-//        crawler.addSeed("http://www.theguardian.com/us/environment");
-//////
-//        crawler.addSeed("http://www.theguardian.com/travel");
-//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-//        crawler.addSeed("http://www.theguardian.com/politics");
+
+
+        crawler.addSeed("http://www.cnbc.com/autos/");
+        crawler.addSeed("http://www.cnbc.com/politics/");
+        crawler.addSeed("http://www.cnbc.com/asia-news/");
+        crawler.addSeed("http://www.cnbc.com/world-markets/");//us == uk
+        crawler.addSeed("http://www.cnbc.com/finance/");
+        crawler.addSeed("http://www.cnbc.com/wall-street/");
+////
+        crawler.addSeed("http://www.cnbc.com/mobile/");
+        crawler.addSeed("http://www.cnbc.com/gaming/");
+        crawler.addSeed("http://www.cnbc.com/wealth-in-asia/");
+        crawler.addSeed("http://www.cnbc.com/tech-transformers/");
+        crawler.addSeed("http://www.cnbc.com/economy/");
+        crawler.addSeed("http://www.cnbc.com/the-weekly/");
+        crawler.addSeed("http://www.cnbc.com/europe-news/");
+        crawler.addSeed("http://www.cnbc.com/small-business/");
 
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;

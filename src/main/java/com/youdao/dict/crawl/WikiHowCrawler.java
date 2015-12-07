@@ -127,7 +127,7 @@ public class WikiHowCrawler extends DeepCrawler {
 
 
         WikiHowCrawler crawler = new WikiHowCrawler("data/WikiHow");
-        crawler.setThreads(20);
+        crawler.setThreads(5);
 //        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
         crawler.addSeed("http://www.wikihow.com/Main-Page");
         crawler.addSeed("http://www.wikihow.com/Category:Arts-and-Entertainment");
@@ -174,7 +174,7 @@ public class WikiHowCrawler extends DeepCrawler {
 
         /*设置是否断点爬取*/
 //        crawler.setResumable(true);
-        crawler.setResumable(true);
+        crawler.setResumable(false);
 
         crawler.start(2);
     }

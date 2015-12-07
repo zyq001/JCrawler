@@ -65,8 +65,10 @@ public class CNBCExtractor extends BaseExtractor {
         log.debug("*****extractorTitle*****");
 //        String title = context.output.get("title").toString();
         Element elementTitle = (Element) context.output.get("title");
-        if (elementTitle == null)
+        if (elementTitle == null) {
+            log.error("extrate title null skip");
             return false;
+        }
         String title = elementTitle.attr("content");
         if (title == null || "".equals(title.trim())) {
             log.info("*****extractorTitle  failed***** url:" + url);
@@ -83,8 +85,10 @@ public class CNBCExtractor extends BaseExtractor {
 
     public boolean extractorType() {
         Element elementType = (Element) context.output.get("type");
-        if (elementType == null)
+        if (elementType == null) {
+            log.error("extract type null, skip");
             return false;
+        }
 //        String type = elementType.select("h2").text();
 //        child(0).tagName();
         String type = elementType.attr("content");
@@ -161,10 +165,11 @@ public class CNBCExtractor extends BaseExtractor {
         try {
             date = format.parse(time.trim());
         } catch (ParseException e) {
+            log.error("parse time exception, skip");
             return false;
         }
         if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
-            log.debug("*****extractorTime  out of date*****");
+            log.info("*****extractorTime  out of date*****");
             return false;
         }
         p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
