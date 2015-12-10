@@ -414,15 +414,15 @@ public class CollegeFashionCrawler implements Job{
     }
 
     public static void dictBK(){
-//        String collegeLife = collegeLifetoken + collegeLifeJson;
-//        fetch(collegeLife);
-//
-//
-//        String campus = collegeLifetoken.replace("college-life", "campus-style") + CampusStyleJson;
-//        fetch(campus);
+        String collegeLife = collegeLifetoken + collegeLifeJson;
+        fetch(collegeLife);
 
-//        String shopping = collegeLifetoken.replace("college-life", "shopping") + shoppingJson;
-//        fetch(shopping);
+
+        String campus = collegeLifetoken.replace("college-life", "campus-style") + CampusStyleJson;
+        fetch(campus);
+
+        String shopping = collegeLifetoken.replace("college-life", "shopping") + shoppingJson;
+        fetch(shopping);
 
         String beautyHair = collegeLifetoken.replace("college-life", "beauty-and-hair") + beautyHearJson;
         fetch(beautyHair);
