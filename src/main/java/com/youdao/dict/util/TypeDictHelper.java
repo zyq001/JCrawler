@@ -1,5 +1,6 @@
 package com.youdao.dict.util;
 
+import com.google.gson.Gson;
 import com.youdao.dict.souplang.SoupLang;
 
 import java.io.FileInputStream;
@@ -56,6 +57,16 @@ public class TypeDictHelper {
             if(value != null && !value.equals(s)) return value;
         }
         return defult;
+    }
+
+    public static String getMoreInfo(String key){
+        if(!rightTheType(key)){
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("orgType", key);
+            String moreinfo = new Gson().toJson(map);
+            return moreinfo;
+        }
+        return "";
     }
 
     public static void updateType(){
