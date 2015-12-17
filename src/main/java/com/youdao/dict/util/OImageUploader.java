@@ -62,6 +62,7 @@ public class OImageUploader {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept-Encoding", "identity");
+        conn.setRequestProperty("User-Agent","Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
         conn.setConnectTimeout(timeout);
         conn.setReadTimeout(readTimeout);
         conn.connect();
