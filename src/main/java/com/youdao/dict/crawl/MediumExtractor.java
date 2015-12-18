@@ -40,7 +40,7 @@ public class MediumExtractor extends BaseExtractor {
 
             String lang = doc.select(".postArticle--full").attr("lang");
             System.out.println(lang);
-            if(lang != null && !lang.equals("en")){
+            if(lang != null && !lang.equals("") && !lang.equals("en")){
                 log.info("lang != en--------not Engligh article, skipped url:" + url);
                 return  false;
             }
