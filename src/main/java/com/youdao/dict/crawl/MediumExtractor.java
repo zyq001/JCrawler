@@ -38,6 +38,13 @@ public class MediumExtractor extends BaseExtractor {
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
+            String lang = doc.select(".postArticle--full").attr("lang");
+            System.out.println(lang);
+            if(lang != null && !lang.equals("en")){
+                log.info("lang != en--------not Engligh article, skipped url:" + url);
+                return  false;
+            }
+//            lang.
             Element article = (Element) context.output.get("isarticle");
             if(article == null || article.toString().contains("article")){
 //            String isarticle = context.output.get("isarticle").toString();
@@ -178,6 +185,13 @@ public class MediumExtractor extends BaseExtractor {
 //        else
         int lastIdx = title.lastIndexOf("—");
         if(lastIdx > 0) title = title.substring(0, lastIdx);
+        title = title.trim();
+        String fstWord = title.substring(0, title.indexOf(" "));
+        char fstC = fstWord.charAt(0);
+        if(fstC > 127){//非英文字符
+            log.info("not english article, skipped url:" + url);
+            return  false;
+        }
         p.setTitle(title.trim());
         log.debug("*****extractorTitle  success*****");
         return true;

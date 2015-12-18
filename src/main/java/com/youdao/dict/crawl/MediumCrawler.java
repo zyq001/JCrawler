@@ -85,6 +85,7 @@ public class MediumCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
+//            System.out.println(page.getResponse().getHeader("accept-language"));
             if (page.getResponse().getContentType().toLowerCase().contains("utf-8")) {
                 page.setHtml(new String(page.getContent(), "UTF-8"));
                 BaseExtractor extractor = new MediumExtractor(page);
@@ -103,8 +104,8 @@ public class MediumCrawler extends DeepCrawler {
             e.printStackTrace();
         }
 
-        System.out.println(page.getResponse().getContentType());
-        System.out.println(page.getResponse().getCode());
+//        System.out.println(page.getResponse().getContentType());
+//        System.out.println(page.getResponse().getCode());
 //        log.info("after insert");
         /*下面是2.0版本新加入的内容*/
         /*抽取page中的链接返回，这些链接会在下一轮爬取时被爬取。
@@ -133,9 +134,28 @@ public class MediumCrawler extends DeepCrawler {
 
         MediumCrawler crawler = new MediumCrawler("data/Medium");
         crawler.setThreads(10);
-//        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
+//        crawler.addSeed("https://medium.com/@gsaltawa/handling-alarming-news-and-events-f6b8e1750c93#.pqydqj8ao");
         crawler.addSeed("https://medium.com/");
         crawler.addSeed("https://medium.com/top-stories");
+        crawler.addSeed("https://medium.com/tag/sports");
+        crawler.addSeed("https://medium.com/tag/food");
+        crawler.addSeed("https://medium.com/tag/business");
+        crawler.addSeed("https://medium.com/tag/art");
+        crawler.addSeed("https://medium.com/tag/education");
+        crawler.addSeed("https://medium.com/tag/future-of-food");
+        crawler.addSeed("https://medium.com/tag/government");
+        crawler.addSeed("https://medium.com/tag/health");
+        crawler.addSeed("https://medium.com/tag/life");
+        crawler.addSeed("https://medium.com/tag/media");
+        crawler.addSeed("https://medium.com/tag/music");
+        crawler.addSeed("https://medium.com/tag/news");
+        crawler.addSeed("https://medium.com/tag/politics");
+        crawler.addSeed("https://medium.com/tag/teaching");
+//////
+        crawler.addSeed("https://medium.com/tag/tech");
+        crawler.addSeed("https://medium.com/tag/travel");
+        crawler.addSeed("https://medium.com/tag/lifestyle");
+        crawler.addSeed("https://medium.com/tag/economics");
         crawler.addSeed("https://medium.com/tag/sports/latest");
         crawler.addSeed("https://medium.com/tag/food/latest");
         crawler.addSeed("https://medium.com/tag/business/latest");
@@ -161,12 +181,13 @@ public class MediumCrawler extends DeepCrawler {
         Config.WAIT_THREAD_END_TIME = 1000*60*3;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
 //        Config.TIMEOUT_READ = 1000*30;
-        Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
+        Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一新任务启动时间>此时间就会认为hung
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
-        requester.setHeader("Charset", "iso-8859-1");
+        requester.addHeader("Accept-Language", "en-US,en;q=0.8,en-ca;q=0.6");
+//        setHeader("Accept-Language", "iso-8859-1");
 //        requester.setHeader();
 //        requester.setCookie("CNZZDATA1950488=cnzz_eid%3D739324831-1432460954-null%26ntime%3D1432460954; wdcid=44349d3f2aa96e51; vjuids=-53d395da8.14eca7eed44.0.f17be67e; CNZZDATA3473518=cnzz_eid%3D1882396923-1437965756-%26ntime%3D1440635510; pt_37a49e8b=uid=FuI4KYEfVz5xq7L4nzPd1w&nid=1&vid=r4AhSBmxisCiyeolr3V2Ow&vn=1&pvn=1&sact=1440639037916&to_flag=0&pl=t4NrgYqSK5M357L2nGEQCw*pt*1440639015734; _ga=GA1.3.1121158748.1437970841; __auc=c00a6ac114d85945f01d9c30128; CNZZDATA1975683=cnzz_eid%3D250014133-1432460541-null%26ntime%3D1440733997; CNZZDATA1254041250=2000695407-1442220871-%7C1442306691; pt_7f0a67e8=uid=6lmgYeZ3/jSObRMeK-t27A&nid=0&vid=lEKvEtZyZdd0UC264UyZnQ&vn=2&pvn=1&sact=1442306703728&to_flag=0&pl=7GB3sYS/PJDo1mY0qeu2cA*pt*1442306703728; 7NSx_98ef_saltkey=P05gN8zn; 7NSx_98ef_lastvisit=1444281282; IframeBodyHeight=256; NTVq_98ef_saltkey=j5PydYru; NTVq_98ef_lastvisit=1444282735; NTVq_98ef_atarget=1; NTVq_98ef_lastact=1444286377%09api.php%09js; 7NSx_98ef_sid=hZyDwc; __utmt=1; __utma=155578217.1121158748.1437970841.1443159326.1444285109.23; __utmb=155578217.57.10.1444285109; __utmc=155578217; __utmz=155578217.1439345650.3.2.utmcsr=travel.chinadaily.com.cn|utmccn=(referral)|utmcmd=referral|utmcct=/; CNZZDATA3089622=cnzz_eid%3D1722311508-1437912344-%26ntime%3D1444286009; wdlast=1444287704; vjlast=1437916393.1444285111.11; 7NSx_98ef_lastact=1444287477%09api.php%09chinadaily; pt_s_3bfec6ad=vt=1444287704638&cad=; pt_3bfec6ad=uid=bo87MAT/HC3hy12HDkBg1A&nid=0&vid=erwHQyFKxvwHXYc4-r6n-w&vn=28&pvn=2&sact=1444287708079&to_flag=0&pl=kkgvLoEHXsCD2gs4VJaWQg*pt*1444287704638; pt_t_3bfec6ad=?id=3bfec6ad.bo87MAT/HC3hy12HDkBg1A.erwHQyFKxvwHXYc4-r6n-w.kkgvLoEHXsCD2gs4VJaWQg.nZJ9Aj/bgfNDIKBXI5TwRQ&stat=167.132.1050.1076.1body%20div%3Aeq%288%29%20ul%3Aeq%280%29%20a%3Aeq%282%29.0.0.1595.3441.146.118&ptif=4");
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
