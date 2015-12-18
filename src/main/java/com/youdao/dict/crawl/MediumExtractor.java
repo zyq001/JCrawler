@@ -300,7 +300,7 @@ public class MediumExtractor extends BaseExtractor {
             log.info("*****extractorTime format.parse  failed***** url:" + url);
             return false;
         }
-        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+        if (System.currentTimeMillis() - date.getTime() > new Long(Integer.MAX_VALUE * 2)) {
             log.debug("*****extractorTime  out of date*****");
             return false;
         }

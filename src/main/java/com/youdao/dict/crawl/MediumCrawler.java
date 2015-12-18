@@ -129,7 +129,7 @@ public class MediumCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
 
-
+//System.out.println(Long.MAX_VALUE);
 
 
         MediumCrawler crawler = new MediumCrawler("data/Medium");
