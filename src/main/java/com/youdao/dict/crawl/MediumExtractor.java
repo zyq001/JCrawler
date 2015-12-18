@@ -300,8 +300,8 @@ public class MediumExtractor extends BaseExtractor {
             log.info("*****extractorTime format.parse  failed***** url:" + url);
             return false;
         }
-        if (System.currentTimeMillis() - date.getTime() > new Long(Integer.MAX_VALUE * 2)) {
-            log.debug("*****extractorTime  out of date*****");
+        if (System.currentTimeMillis() - date.getTime() > Integer.MAX_VALUE) {
+            log.info("*****extractorTime  out of date*****");
             return false;
         }
         p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
