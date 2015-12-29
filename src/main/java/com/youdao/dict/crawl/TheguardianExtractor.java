@@ -40,7 +40,7 @@ public class TheguardianExtractor extends BaseExtractor {
             for(Element svg: content.select("svg")){
                 if(svg != null) svg.remove();
             }
-            content.select("span").remove();
+//            content.select("span").remove();
             for(Element e: content.select("div")){
                 String name = e.attr("class");
                 if(name.contains("content__meta-container js-content-meta js-football-meta u-cf") ||
@@ -62,6 +62,7 @@ public class TheguardianExtractor extends BaseExtractor {
             return false;
         } catch (Exception e) {
             log.info("*****init  failed***** url:" + url);
+            e.printStackTrace();
             return false;
         }
     }

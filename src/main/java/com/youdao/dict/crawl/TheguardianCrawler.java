@@ -119,24 +119,24 @@ public class TheguardianCrawler extends DeepCrawler {
 
         TheguardianCrawler crawler = new TheguardianCrawler("data/Theguardian2");
         crawler.setThreads(10);
-//        crawler.addSeed("http://www.theguardian.com/media/2015/nov/03/instagram-star-essena-oneill-quits-2d-life-to-reveal-true-story-behind-images");
+//        crawler.addSeed("http://www.theguardian.com/artanddesign/2015/dec/23/robert-ryman-review-dia-art-foundation");
 
-        crawler.addSeed("http://www.theguardian.com/world");
-        crawler.addSeed("http://www.theguardian.com/uk/sport");
-        crawler.addSeed("http://www.theguardian.com/us/sport");
-        crawler.addSeed("http://www.theguardian.com/uk/culture");
-        crawler.addSeed("http://www.theguardian.com/us/culture");
-        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
-        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
-        crawler.addSeed("http://www.theguardian.com/uk/business");
-        crawler.addSeed("http://www.theguardian.com/uk/environment");
-        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-        crawler.addSeed("http://www.theguardian.com/us/business");
-        crawler.addSeed("http://www.theguardian.com/us/environment");
-//////
-        crawler.addSeed("http://www.theguardian.com/travel");
-        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-        crawler.addSeed("http://www.theguardian.com/politics");
+//        crawler.addSeed("http://www.theguardian.com/world");
+//        crawler.addSeed("http://www.theguardian.com/uk/sport");
+//        crawler.addSeed("http://www.theguardian.com/us/sport");
+//        crawler.addSeed("http://www.theguardian.com/uk/culture");
+//        crawler.addSeed("http://www.theguardian.com/us/culture");
+//        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
+//        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
+//        crawler.addSeed("http://www.theguardian.com/uk/business");
+//        crawler.addSeed("http://www.theguardian.com/uk/environment");
+//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
+//        crawler.addSeed("http://www.theguardian.com/us/business");
+//        crawler.addSeed("http://www.theguardian.com/us/environment");
+////////
+//        crawler.addSeed("http://www.theguardian.com/travel");
+//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
+//        crawler.addSeed("http://www.theguardian.com/politics");
 
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;

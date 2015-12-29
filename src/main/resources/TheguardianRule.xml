@@ -24,6 +24,8 @@
         </element>
         <element name="content" selector="div[id=storytext]">
         </element>
+        <element name="content" selector="div[itemprop=reviewBody]">
+        </element>
 
         <!--<element name="content" selector="div[class=gs-container]">-->
         <!--</element>-->
