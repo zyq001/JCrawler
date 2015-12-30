@@ -40,7 +40,15 @@ public class TheguardianExtractor extends BaseExtractor {
             for(Element svg: content.select("svg")){
                 if(svg != null) svg.remove();
             }
-//            content.select("span").remove();
+            content.select(".rounded-icon").remove();//分享图标
+            content.select(".inline-icon").remove();//分享图标
+            content.select(".inline-share-facebook").remove();//分享图标
+//            content.select(".inline-icon").remove();
+//            content.select(".inline-share-facebook").remove();
+//            content.select(".inline-icon").remove();
+//            content.select(".inline-share-facebook").remove();
+//            content.select(".inline-icon").remove();
+
             for(Element e: content.select("div")){
                 String name = e.attr("class");
                 if(name.contains("content__meta-container js-content-meta js-football-meta u-cf") ||
@@ -163,10 +171,10 @@ public class TheguardianExtractor extends BaseExtractor {
         } catch (ParseException e) {
             return false;
         }
-        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
-            log.debug("*****extractorTime  out of date*****");
-            return false;
-        }
+//        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+//            log.debug("*****extractorTime  out of date*****");
+//            return false;
+//        }
         p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
