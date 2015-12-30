@@ -54,13 +54,13 @@ import java.net.URL;
  * @author hu
  */
 @CommonsLog
-public class NewsNationalGeographicCrawler extends DeepCrawler {
+public class TravelNationalGeographicCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public NewsNationalGeographicCrawler(String crawlPath) {
+    public TravelNationalGeographicCrawler(String crawlPath) {
         super(crawlPath);
 
         regexRule.addRule("http://news.nationalgeographic.com/.*");
@@ -136,7 +136,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 
 
 
-        NewsNationalGeographicCrawler crawler = new NewsNationalGeographicCrawler("data/NewsNationalGeographic");
+        TravelNationalGeographicCrawler crawler = new TravelNationalGeographicCrawler("data/NewsNationalGeographic");
         crawler.setThreads(30);
 //        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
 
@@ -180,7 +180,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }

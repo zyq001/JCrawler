@@ -171,10 +171,10 @@ public class TheguardianExtractor extends BaseExtractor {
         } catch (ParseException e) {
             return false;
         }
-//        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
-//            log.debug("*****extractorTime  out of date*****");
-//            return false;
-//        }
+        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+            log.debug("*****extractorTime  out of date*****");
+            return false;
+        }
         p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
