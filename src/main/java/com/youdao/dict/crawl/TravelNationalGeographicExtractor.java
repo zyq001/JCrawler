@@ -35,69 +35,19 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
     public boolean init() {
         log.debug("*****init*****");
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("NewsNationalGeographicRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TravelNationalGeographicRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
             Element article = (Element) context.output.get("isarticle");
             if(article == null || article.toString().contains("article")){
 
-                content.select(".byline").remove();//作者-时间等
-                content.select(".Kicker").remove();
-                content.select(".titleAndDek").remove();
-                content.select(".col-md-1").remove();
-                content.select(".icon-menu").remove();
-                content.select(".info-button").remove();
-                content.select("div[id=bottom-caption-button]").remove();
-                content.select(".current-item-display").remove();
-                content.select(".hidden").remove();
-                content.select(".photo-gallery-initial--button").remove();
-                content.select(".photo-gallery-initial__header").remove();
-                content.select(".gallery-modal--next-gallery__body").remove();
+                content.select(".header").remove();
 
-                content.select(".media__caption--text").select(".mobile").remove();
-
-                content.select(".gallery-modal__header").remove();
-
-                content.select(".carousel-control").remove();
-
-                content.select(".gallery-modal__footer").remove();
-
-                content.select(".gallery-modal__right-rail").remove();
-
-                content.select(".rightRailSlot").remove();
-                content.select(".OneColumn").remove();//推荐链接
-                content.select(".UniversalVideo").remove();//删除视频
-                for(Element e: content.select("i")){//删除follow smBody on Twitter
-                    String iText = e.text();
-                    if(iText.contains("Follow "))
-                        e.parent().remove();
-                }
+                content.select(".box-share").remove();//
+                content.select(".footer").remove();
 
 
-                content.select(".media--small").select(".left").remove();
-
-                content.select(".instagram-media").remove();
-
-//                content.select(".media--small").select(".right").remove();
-//                content.select(".media--small").select(".middle").remove();
-                content.select(".pull-quote__author").select(".hidden-md").remove();
-
-                //加p标签
-//                content.select(".mw-headline").wrap("<p></p>");
-//
-//                content.select(".step").wrap("<p></p>");
-//
-//                content.select(".step_num").wrap("<p></p>");
-//
-//                Elements lis = content.select("li");
-//                for(Element e: lis){
-//                    if(!e.parent().tagName().equals("ul"))
-//                        e.unwrap();
-//                }
-//                if(content.select())
-//                content.select("ul").select("li").wrap("<p></p>");
-//                content.select(".mw-headline").wrap("<i></i>");
                 log.debug("*****init  success*****");
                 return true;
             }
@@ -184,7 +134,7 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
             p.setMoreinfo(moreinfo);
         }
 
-        type = TypeDictHelper.getType(type, "News");
+        type = TypeDictHelper.getType(type, "Travel");
 
 
         p.setType(type.trim());
@@ -240,7 +190,7 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
             return false;
         }
 //2015-09-12 08:25
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ", Locale.US);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssX", Locale.US);
         Date date;
         try {
             date = format.parse(time.trim());
@@ -309,7 +259,7 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
        /* if (host.equals(port)) return true;*/
 
 
-        Elements imgs = content.select(".delayed-image-load--photogallery-modal");
+        Elements imgs = content.select("img");
         if(imgs == null || imgs.size() < 1)
                 imgs = content.select(".delayed-image-load");
 
@@ -326,20 +276,20 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
                         continue;
                     }
                 }
-                Tag imgTag = Tag.valueOf("img");
-//                img.appendChild(imgTag);
-                Element newImg = new Element(imgTag, "");
-                img.appendChild(newImg);
-                img = newImg;
+//                Tag imgTag = Tag.valueOf("img");
+////                img.appendChild(imgTag);
+//                Element newImg = new Element(imgTag, "");
+//                img.appendChild(newImg);
+//                img = newImg;
                 img.attr("style", "width:100%;");
 
-                int idx = imageUrl.indexOf("width");
-                if(idx > 0){
-                    imageUrl = imageUrl.substring(0, idx - 2);
-                }else{
-                    imageUrl.substring(0, imageUrl.indexOf("jpg") + 3);
-                }
-                imageUrl = imageUrl.replace("jpg", "adapt.1190.1.jpg");
+//                int idx = imageUrl.indexOf("width");
+//                if(idx > 0){
+//                    imageUrl = imageUrl.substring(0, idx - 2);
+//                }else{
+//                    imageUrl.substring(0, imageUrl.indexOf("jpg") + 3);
+//                }
+//                imageUrl = imageUrl.replace("jpg", "adapt.1190.1.jpg");
                 OImageUploader uploader = new OImageUploader();
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);

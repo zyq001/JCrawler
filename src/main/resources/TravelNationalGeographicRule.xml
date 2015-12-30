@@ -18,12 +18,12 @@
             插入到数据库中时，会以Element元素源码的形式插入-->
         <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
                 </element>-->
-        <element name="content" selector="section[itemprop=mainContentOfPage]">
+        <element name="content" selector=".post-full">
         </element>
         <!--<element name="content" selector="div[id=content]">-->
         <!--</element>-->
 
-        <element name="description" selector="meta[name=og:description]">
+        <element name="description" selector="meta[name=description]">
         </element>
 
         <element name="isarticle" selector="meta[property=og:type]">
@@ -33,7 +33,7 @@
         </element>
         <element name="title" selector="meta[property=og:title]">
         </element>
-        <element name="type" selector="meta[name=article:section]">
+        <element name="type" selector="meta[property=og:site_name]">
         </element>
         <element name="label" selector="meta[name=keywords]">
         </element>

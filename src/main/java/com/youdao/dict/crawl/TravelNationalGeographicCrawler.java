@@ -63,7 +63,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
     public TravelNationalGeographicCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://news.nationalgeographic.com/.*");
+        regexRule.addRule("http://intelligenttravel.nationalgeographic.com/.*");
 
         regexRule.addRule("-.*jpg.*");
 
@@ -95,7 +95,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new NewsNationalGeographicExtractor(page);
+            BaseExtractor extractor = new TravelNationalGeographicExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -136,22 +136,18 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
 
 
 
-        TravelNationalGeographicCrawler crawler = new TravelNationalGeographicCrawler("data/NewsNationalGeographic");
+        TravelNationalGeographicCrawler crawler = new TravelNationalGeographicCrawler("data/TravelNationalGeographic");
         crawler.setThreads(30);
-//        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
 
-        String jsonUrl = "http://news.nationalgeographic.com/bin/services/news/public/query/content.json?pageSize=20&page=0&contentTypes=news/components/pagetypes/article,news/components/pagetypes/simple-article,news/components/pagetypes/photo-gallery";
+        crawler.addSeed("http://intelligenttravel.nationalgeographic.com/");
 
-        URL urls = new URL(jsonUrl);
-        HttpURLConnection urlConnection = (HttpURLConnection)urls.openConnection();
-        InputStream is = urlConnection.getInputStream();
-        Reader rd = new InputStreamReader(is, "utf-8");
-        JsonArray json = new JsonParser().parse(rd).getAsJsonArray();
-        for(JsonElement jOb: json){
-            String url = jOb.getAsJsonObject().get("page").getAsJsonObject().get("url").getAsString();
-            if(url != null && !url.equals(""))
-                crawler.addSeed(url);
+        String baseUrl = "http://intelligenttravel.nationalgeographic.com/page/";
+
+
+        for(int i = 2; i < 10; i++){
+            crawler.addSeed(baseUrl + i + "/");
         }
+
 //        crawler.addSeed("http://news.nationalgeographic.com/2015/10/151030-owl-red-fox-animals-scary-screams-halloween-science/");
 
 
@@ -180,7 +176,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(1);
+        crawler.start(2);
     }
 
 }
