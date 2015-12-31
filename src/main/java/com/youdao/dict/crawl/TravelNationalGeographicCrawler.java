@@ -103,7 +103,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }else{
-                    System.out.println("mysql插入不成功，updates：" + updates);
+                    System.out.println("mysql插入不成功，updates：" + updates + page.getUrl());
                 }
             }
         } catch (Exception e) {
@@ -144,7 +144,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
         String baseUrl = "http://intelligenttravel.nationalgeographic.com/page/";
 
 
-        for(int i = 2; i < 10; i++){
+        for(int i = 2; i < 50; i++){
             crawler.addSeed(baseUrl + i + "/");
         }
 

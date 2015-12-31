@@ -9,6 +9,7 @@ import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
@@ -40,7 +41,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
             content = (Element) context.output.get("content");
 
             Element article = (Element) context.output.get("isarticle");
-            if(article == null || article.toString().contains("article")){
+//            if(article == null || article.toString().contains("article")){
 
                 content.select(".byline").remove();//作者-时间等
                 content.select(".Kicker").remove();
@@ -68,6 +69,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 content.select(".rightRailSlot").remove();
                 content.select(".OneColumn").remove();//推荐链接
                 content.select(".UniversalVideo").remove();//删除视频
+
                 for(Element e: content.select("i")){//删除follow smBody on Twitter
                     String iText = e.text();
                     if(iText.contains("Follow "))
@@ -80,9 +82,29 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 content.select(".instagram-media").remove();
 
 //                content.select(".media--small").select(".right").remove();
-//                content.select(".media--small").select(".middle").remove();
                 content.select(".pull-quote__author").select(".hidden-md").remove();
 
+                content.select(".author").remove();//ngm
+                content.select(".published").remove();
+
+                content.select(".share-buttons").remove();
+                content.select(".editors-note").remove();
+                content.select(".tpPlayer").remove();
+                content.select(".bio").remove();
+                content.select(".promo-thumbs").remove();
+                content.select(".livefyre").remove();
+
+                content.select(".arrower").remove();
+                content.select("script").remove();//promo-tile box explorer
+//                content.select(".keyel").remove();//删除图例 太小了 效果不好
+
+                content.select(".promo-tile").remove();//作者连接
+//                content.select(".explorer").remove();//作者连接
+                content.select(".promo-previous").remove();//上一篇文章
+                content.select(".promo-next").remove();//下一篇文章
+                content.select(".detail-image").remove();//图片上有文字 显示乱
+
+//                content.
                 //加p标签
 //                content.select(".mw-headline").wrap("<p></p>");
 //
@@ -100,10 +122,11 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 //                content.select(".mw-headline").wrap("<i></i>");
                 log.debug("*****init  success*****");
                 return true;
-            }
-            log.info("*****init  failed，isn't an article***** url:" + url);
-            return false;
+//            }
+//            log.info("*****init  failed，isn't an article***** url:" + url);
+//            return false;
         } catch (Exception e) {
+//            e.printStackTrace();
             log.info("*****init  failed***** url:" + url);
             return false;
         }
@@ -114,6 +137,17 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         return extractorContent(false);
     }
 
+    private static void removeComments(Node node) {
+        for (int i = 0; i < node.childNodes().size();) {
+            Node child = node.childNode(i);
+            if (child.nodeName().equals("#comment"))
+                child.remove();
+            else {
+                removeComments(child);
+                i++;
+            }
+        }
+    }
     public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
@@ -126,11 +160,15 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 //            System.out.println(a);
         }
         content.select("img").wrap("<p></p>");
+//        content.select("#comment").remove();
+        removeComments(content);
 
         String contentHtml = content.html();
 
         contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
 
+
+        contentHtml = contentHtml.replaceAll("<!--.*?-->", "");//去除换行符制表符/r,/n,/t /n
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
         contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
@@ -157,8 +195,12 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         }
         String title = elementTitle.attr("content");
         if (title == null || "".equals(title.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
-            return false;
+            title = elementTitle.text();
+            if (title == null || "".equals(title.trim())) {
+//                title = elementTitle.text();
+                log.info("*****extractorTitle  failed***** url:" + url);
+                return false;
+            }
         }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
 //        if (title.contains("-"))
@@ -184,7 +226,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
             p.setMoreinfo(moreinfo);
         }
 
-        type = TypeDictHelper.getType(type, "News");
+        type = TypeDictHelper.getType(type, type);
 
 
         p.setType(type.trim());
@@ -235,6 +277,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 
         }
         String time = elementTime.attr("content");
+        if(time == null || "".equals(time.trim())) time = elementTime.text();
         if (time == null || "".equals(time.trim())) {
             log.info("*****extractorTime  failed***** url:" + url);
             return false;
@@ -245,8 +288,23 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         try {
             date = format.parse(time.trim());
         } catch (ParseException e) {
-            log.info("*****extractorTime format.parse  failed***** url:" + url);
-            return false;
+            if(time.startsWith("Publish")){
+                int idx = time.indexOf(":");
+                if(idx >= 0) time = time.substring(idx + 2);
+            }
+            int length = time.split(" ")[0].length();
+            StringBuilder M = new StringBuilder();
+            while (length-- > 0) M.append('M');
+            format = new SimpleDateFormat(M.toString() +" yyyy", Locale.US);
+            try {
+                date = format.parse(time.trim());
+            } catch (ParseException e1) {
+
+                e1.printStackTrace();
+                log.info("*****extractorTime format.parse  failed***** url:" + url);
+                return false;
+            }
+
         }
 //        if (System.currentTimeMillis() - date.getTime() > Long.MAX_VALUE >> 25) {
 //            log.debug("*****extractorTime  out of date*****");
@@ -310,9 +368,11 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 
 
         Elements imgs = content.select(".delayed-image-load--photogallery-modal");
-        if(imgs == null || imgs.size() < 1)
-                imgs = content.select(".delayed-image-load");
-
+        if(imgs == null || imgs.size() < 1) {
+            imgs = content.select(".delayed-image-load");
+            if (imgs == null || imgs.size() < 1)
+                imgs = content.select("img");
+        }
         String mainImage = null;
         int width = 0;
         for (Element img : imgs) {
@@ -322,24 +382,33 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 if ("".equals(imageUrl)) {
                     imageUrl = img.attr("src");
                     if ("".equals(imageUrl)) {
-                        img.remove();
-                        continue;
+                        imageUrl = img.attr("data-srcset");
+                        if ("".equals(imageUrl)) {
+                            img.remove();
+                            continue;
+                        }
                     }
                 }
-                Tag imgTag = Tag.valueOf("img");
+                if(!img.tagName().equals("img")) {
+                    Tag imgTag = Tag.valueOf("img");
 //                img.appendChild(imgTag);
-                Element newImg = new Element(imgTag, "");
-                img.appendChild(newImg);
-                img = newImg;
-                img.attr("style", "width:100%;");
-
-                int idx = imageUrl.indexOf("width");
-                if(idx > 0){
-                    imageUrl = imageUrl.substring(0, idx - 2);
-                }else{
-                    imageUrl.substring(0, imageUrl.indexOf("jpg") + 3);
+                    Element newImg = new Element(imgTag, "");
+                    img.appendChild(newImg);
+                    img = newImg;
+                    int idx = imageUrl.indexOf("width");
+                    if(idx > 0){
+                        imageUrl = imageUrl.substring(0, idx - 2);
+                    }else{
+                        imageUrl.substring(0, imageUrl.indexOf("jpg") + 3);
+                    }
+                    imageUrl = imageUrl.replace("jpg", "adapt.1190.1.jpg");
                 }
-                imageUrl = imageUrl.replace("jpg", "adapt.1190.1.jpg");
+
+                if(imageUrl.startsWith("/")){
+                    imageUrl = "http://" + p.getHost()+imageUrl;
+                }
+
+
                 OImageUploader uploader = new OImageUploader();
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);
@@ -349,6 +418,9 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 
                 img.attr("src", newUrl.toString());
 
+                width = uploader.getWidth();
+                if(width > 300)
+                    img.attr("style", "width:100%;");
                 if (mainImage == null) {
                     width = uploader.getWidth();
                     mainImage = newUrl.toString();

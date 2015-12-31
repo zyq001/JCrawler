@@ -64,7 +64,8 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
         super(crawlPath);
 
         regexRule.addRule("http://news.nationalgeographic.com/.*");
-
+        regexRule.addRule("http://ngm.nationalgeographic.com/.*");
+        regexRule.addRule("http://.*.nationalgeographic.com/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -137,8 +138,11 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 
 
         NewsNationalGeographicCrawler crawler = new NewsNationalGeographicCrawler("data/NewsNationalGeographic");
-        crawler.setThreads(30);
-//        crawler.addSeed("http://www.wikihow.com/Accept-Criticism-While-at-Work");
+        crawler.setThreads(10);
+        crawler.addSeed("http://ngm.nationalgeographic.com/");
+        crawler.addSeed("http://ngm.nationalgeographic.com/archives");
+        crawler.addSeed("http://ngm.nationalgeographic.com/featurehub");
+
 
         String jsonUrl = "http://news.nationalgeographic.com/bin/services/news/public/query/content.json?pageSize=20&page=0&contentTypes=news/components/pagetypes/article,news/components/pagetypes/simple-article,news/components/pagetypes/photo-gallery";
 
@@ -180,7 +184,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(3);
     }
 
 }

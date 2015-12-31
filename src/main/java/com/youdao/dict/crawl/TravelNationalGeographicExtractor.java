@@ -195,6 +195,7 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
         try {
             date = format.parse(time.trim());
         } catch (ParseException e) {
+
             log.info("*****extractorTime format.parse  failed***** url:" + url);
             return false;
         }
@@ -281,6 +282,10 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
 //                Element newImg = new Element(imgTag, "");
 //                img.appendChild(newImg);
 //                img = newImg;
+                img.removeAttr("width");
+                img.removeAttr("WIDTH");
+                img.removeAttr("height");
+                img.removeAttr("HEIGHT");
                 img.attr("style", "width:100%;");
 
 //                int idx = imageUrl.indexOf("width");
@@ -304,6 +309,7 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
                     mainImage = newUrl.toString();
                 }
             } catch (Exception e) {
+                System.out.println(img.attr("src"));
                 e.printStackTrace();
             }
         }
