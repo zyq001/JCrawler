@@ -51,6 +51,8 @@ public class WikiHowExtractor extends BaseExtractor {
 //                content.select("div[class=authoring]").remove();
                 //去除分享
 
+                content.select(".whvid_cont").remove();//
+
                 content.select(".editsection").remove();//Edit Article
 
                 content.select(".firstHeading").remove();//重复的title
