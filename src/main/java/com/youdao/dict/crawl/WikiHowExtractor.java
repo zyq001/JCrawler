@@ -51,6 +51,11 @@ public class WikiHowExtractor extends BaseExtractor {
 //                content.select("div[class=authoring]").remove();
                 //去除分享
 
+//                Elements ems = content.select("tagged as a stub");
+                if(content.html().contains("tagged as a stub")){
+                    System.out.println("tagged as a stub");
+                    return false;
+                }
                 content.select(".whvid_cont").remove();//
 
                 content.select(".editsection").remove();//Edit Article
