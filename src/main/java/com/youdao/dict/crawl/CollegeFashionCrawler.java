@@ -387,6 +387,7 @@ public class CollegeFashionCrawler implements Job{
                 String style = "large-image";
                 if(mainImage == null || mainImage.equals("") || width < 300) style = "no-image";
 
+                if(doc.body().html().length() < 384) return false;//太短
 
                 long bef = System.currentTimeMillis();
                 int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",

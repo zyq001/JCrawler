@@ -180,6 +180,8 @@ public class BaseExtractor {
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
 
+        if(contentHtml.length() < 384) return false;//太短
+
         p.setContent(contentHtml);
         if (!paging && isPaging()) {
             mergePage(p);

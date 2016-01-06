@@ -91,6 +91,9 @@ public class MediumCrawler extends DeepCrawler {
                 BaseExtractor extractor = new MediumExtractor(page);
                 if (extractor.extractor() && jdbcTemplate != null) {
                     ParserPage p = extractor.getParserPage();
+                    String url = p.getUrl();
+                    int idx = url.indexOf("?");
+                    if(idx > 0) p.setUrl(url.substring(0, idx));
                     int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                             p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
                     if (updates == 1) {

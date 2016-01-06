@@ -146,7 +146,7 @@ public class CollegeFashionExtractor extends BaseExtractor {
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t /n
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
-
+        if(contentHtml.length() < 384) return false;//太短
         p.setContent(contentHtml);
         if (!paging && isPaging()) {
             mergePage(p);
