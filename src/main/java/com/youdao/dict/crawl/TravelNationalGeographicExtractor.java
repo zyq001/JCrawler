@@ -287,7 +287,7 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
                 img.removeAttr("WIDTH");
                 img.removeAttr("height");
                 img.removeAttr("HEIGHT");
-                img.attr("style", "width:100%;");
+//                img.attr("style", "width:100%;");
 
 //                int idx = imageUrl.indexOf("width");
 //                if(idx > 0){
@@ -302,7 +302,9 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
                 long id = uploader.deal(imageUrl);
                 //                long id = 0;
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-
+                int twidth = uploader.getWidth();
+                if(twidth > 300)
+                    img.attr("style", "width:100%;");
                 img.attr("src", newUrl.toString());
 
                 if (mainImage == null) {

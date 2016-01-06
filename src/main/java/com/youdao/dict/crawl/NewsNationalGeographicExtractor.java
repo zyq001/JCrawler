@@ -421,7 +421,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 img.attr("src", newUrl.toString());
 
                 width = uploader.getWidth();
-                if(width > 300)
+                if(width >= 300)
                     img.attr("style", "width:100%;");
                 if (mainImage == null) {
                     width = uploader.getWidth();

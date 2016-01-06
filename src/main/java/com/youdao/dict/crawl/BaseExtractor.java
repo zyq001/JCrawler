@@ -122,12 +122,15 @@ public class BaseExtractor {
                 img.removeAttr("WIDTH");
                 img.removeAttr("height");
                 img.removeAttr("HEIGHT");
-                img.attr("style", "width:100%;");
+//                img.attr("style", "width:100%;");
                 OImageUploader uploader = new OImageUploader();
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);
                 long id = uploader.deal(imageUrl);
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
+                int twidth = uploader.getWidth();
+                if(twidth >= 300)
+                    img.attr("style", "width:100%;");
                 img.attr("src", newUrl.toString());
                 if (mainImage == null) {
                     width = uploader.getWidth();
