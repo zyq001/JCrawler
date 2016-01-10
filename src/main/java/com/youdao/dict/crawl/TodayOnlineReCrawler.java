@@ -131,7 +131,7 @@ public class TodayOnlineReCrawler extends DeepCrawler {
         int counter = 0;
         for(int i = 0; i < urls.size(); i++) {
             String url = (String) urls.get(i).get("url");
-            int id = (int) urls.get(i).get("id");
+            int id = Integer.valueOf((String) urls.get(i).get("id"));
 //            crawler.addSeed(url);
             try {
 
