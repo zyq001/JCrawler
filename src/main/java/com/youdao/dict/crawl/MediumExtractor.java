@@ -207,6 +207,10 @@ public class MediumExtractor extends BaseExtractor {
         }
 
         Elements tags = elementType.select("a");
+        if(tags == null || tags.size() < 1) {
+            log.info("no tag, continue");
+            return true;
+        }
         Element first = tags.get(0);
 
         if(first == null) {
@@ -301,10 +305,10 @@ public class MediumExtractor extends BaseExtractor {
             log.info("*****extractorTime format.parse  failed***** url:" + url);
             return false;
         }
-        if (System.currentTimeMillis() - date.getTime() > Integer.MAX_VALUE) {
-            log.info("*****extractorTime  out of date*****");
-            return false;
-        }
+//        if (System.currentTimeMillis() - date.getTime() > Integer.MAX_VALUE) {
+//            log.info("*****extractorTime  out of date*****");
+//            return false;
+//        }
         p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;

@@ -136,48 +136,48 @@ public class MediumCrawler extends DeepCrawler {
 
 
         MediumCrawler crawler = new MediumCrawler("data/Medium");
-        crawler.setThreads(10);
+        crawler.setThreads(30);
 //        crawler.addSeed("https://medium.com/@gsaltawa/handling-alarming-news-and-events-f6b8e1750c93#.pqydqj8ao");
-        crawler.addSeed("https://medium.com/");
-        crawler.addSeed("https://medium.com/top-stories");
-        crawler.addSeed("https://medium.com/tag/sports");
-        crawler.addSeed("https://medium.com/tag/food");
-        crawler.addSeed("https://medium.com/tag/business");
-        crawler.addSeed("https://medium.com/tag/art");
-        crawler.addSeed("https://medium.com/tag/education");
-        crawler.addSeed("https://medium.com/tag/future-of-food");
-        crawler.addSeed("https://medium.com/tag/government");
-        crawler.addSeed("https://medium.com/tag/health");
-        crawler.addSeed("https://medium.com/tag/life");
-        crawler.addSeed("https://medium.com/tag/media");
-        crawler.addSeed("https://medium.com/tag/music");
-        crawler.addSeed("https://medium.com/tag/news");
-        crawler.addSeed("https://medium.com/tag/politics");
-        crawler.addSeed("https://medium.com/tag/teaching");
-//////
-        crawler.addSeed("https://medium.com/tag/tech");
-        crawler.addSeed("https://medium.com/tag/travel");
-        crawler.addSeed("https://medium.com/tag/lifestyle");
-        crawler.addSeed("https://medium.com/tag/economics");
-        crawler.addSeed("https://medium.com/tag/sports/latest");
-        crawler.addSeed("https://medium.com/tag/food/latest");
-        crawler.addSeed("https://medium.com/tag/business/latest");
-        crawler.addSeed("https://medium.com/tag/art/latest");
-        crawler.addSeed("https://medium.com/tag/education/latest");
-        crawler.addSeed("https://medium.com/tag/future-of-food/latest");
-        crawler.addSeed("https://medium.com/tag/government/latest");
-        crawler.addSeed("https://medium.com/tag/health/latest");
-        crawler.addSeed("https://medium.com/tag/life/latest");
-        crawler.addSeed("https://medium.com/tag/media/latest");
-        crawler.addSeed("https://medium.com/tag/music/latest");
-        crawler.addSeed("https://medium.com/tag/news/latest");
-        crawler.addSeed("https://medium.com/tag/politics/latest");
-        crawler.addSeed("https://medium.com/tag/teaching/latest");
-//////
-        crawler.addSeed("https://medium.com/tag/tech/latest");
-        crawler.addSeed("https://medium.com/tag/travel/latest");
-        crawler.addSeed("https://medium.com/tag/lifestyle/latest");
-        crawler.addSeed("https://medium.com/tag/economics/latest");
+//        crawler.addSeed("https://medium.com/");
+        crawler.addSeed("https://medium.com/top-100/january-2015");
+//        crawler.addSeed("https://medium.com/top-stories");
+        crawler.addSeed("https://medium.com/top-100/december-2015");
+        crawler.addSeed("https://medium.com/top-100/november-2015");
+        crawler.addSeed("https://medium.com/top-100/october-2015");
+        crawler.addSeed("https://medium.com/top-100/september-2015");
+        crawler.addSeed("https://medium.com/top-100/august-2015");
+        crawler.addSeed("https://medium.com/top-100/july-2015");
+        crawler.addSeed("https://medium.com/top-100/june-2015");
+        crawler.addSeed("https://medium.com/top-100/may-2015");
+        crawler.addSeed("https://medium.com/top-100/april-2015");
+        crawler.addSeed("https://medium.com/top-100/march-2015");
+        crawler.addSeed("https://medium.com/top-100/february-2015");
+//        crawler.addSeed("https://medium.com/tag/politics");
+//        crawler.addSeed("https://medium.com/tag/teaching");
+////////
+//        crawler.addSeed("https://medium.com/tag/tech");
+//        crawler.addSeed("https://medium.com/tag/travel");
+//        crawler.addSeed("https://medium.com/tag/lifestyle");
+//        crawler.addSeed("https://medium.com/tag/economics");
+//        crawler.addSeed("https://medium.com/tag/sports/latest");
+//        crawler.addSeed("https://medium.com/tag/food/latest");
+//        crawler.addSeed("https://medium.com/tag/business/latest");
+//        crawler.addSeed("https://medium.com/tag/art/latest");
+//        crawler.addSeed("https://medium.com/tag/education/latest");
+//        crawler.addSeed("https://medium.com/tag/future-of-food/latest");
+//        crawler.addSeed("https://medium.com/tag/government/latest");
+//        crawler.addSeed("https://medium.com/tag/health/latest");
+//        crawler.addSeed("https://medium.com/tag/life/latest");
+//        crawler.addSeed("https://medium.com/tag/media/latest");
+//        crawler.addSeed("https://medium.com/tag/music/latest");
+//        crawler.addSeed("https://medium.com/tag/news/latest");
+//        crawler.addSeed("https://medium.com/tag/politics/latest");
+//        crawler.addSeed("https://medium.com/tag/teaching/latest");
+////////
+//        crawler.addSeed("https://medium.com/tag/tech/latest");
+//        crawler.addSeed("https://medium.com/tag/travel/latest");
+//        crawler.addSeed("https://medium.com/tag/lifestyle/latest");
+//        crawler.addSeed("https://medium.com/tag/economics/latest");
 
 
 //        Config
