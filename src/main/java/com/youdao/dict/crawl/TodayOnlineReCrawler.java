@@ -123,7 +123,7 @@ public class TodayOnlineReCrawler extends DeepCrawler {
 
         TodayOnlineReCrawler crawler = new TodayOnlineReCrawler("data/TodayOnline2");
         crawler.setThreads(5);
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,url FROM parser_page WHERE type = 'Technology' and description IS Null and mainimage IS Null");
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,url FROM parser_page WHERE type = 'Technology' and description IS Null and mainimage = ''");
 
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
