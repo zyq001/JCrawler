@@ -123,58 +123,30 @@ public class TodayOnlineReCrawler extends DeepCrawler {
 
         TodayOnlineReCrawler crawler = new TodayOnlineReCrawler("data/TodayOnline2");
         crawler.setThreads(5);
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url,content FROM parser_page where host = 'www.wikihow.com' and time < '2015-07-29 11:55:30'");
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,url FROM parser_page WHERE type = 'Technology' and description IS Null and mainimage IS Null");
+
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
         int counter = 0;
-        for(int i = 0; i < urls.size(); i++){
-            String url = (String)urls.get(i).get("url");
-            String content = (String) urls.get(i).get("content");
-            if(content.contains("need to be cleaned up")){
-                counter++;
-                System.out.println("REMOVE: " + url);
-                int updates = crawler.jdbcTemplate.update("DELETE  from parser_page where url = '" + url + "'");
-                if (updates == 1) {
-                    System.out.println("删除成功");
-                }else{
-                    System.out.println("删除失败：" + url);
-                }
-            }
+        for(int i = 0; i < urls.size(); i++) {
+            String url = (String) urls.get(i).get("url");
+            int id = (int) urls.get(i).get("id");
 //            crawler.addSeed(url);
+            try {
+
+                int updates = crawler.jdbcTemplate.update("delete FROM parser_page where url = '" + url + "'");
+            } catch (Exception e) {
+//                e.printStackTrace();
+                int updates = crawler.jdbcTemplate.update("delete FROM breakingnews where id = '" + id + "'");
+                if (updates == 1)
+                    crawler.jdbcTemplate.update("delete FROM parser_page where url = '" + url + "'");
+                else
+                    System.out.println("del breaking fail " + url);
+//                System.out.println("  url:" + url);
+
+            }
         }
-        System.out.println("totle:" + urls.size() + "del: " + counter);
-
-//        crawler.addSeed("http://www.todayonline.com/business/local-eco-friendly-company-international-audience");
-//        crawler.addSeed("http://www.todayonline.com/business");
-//        crawler.addSeed("http://www.todayonline.com/tech");
-//        crawler.addSeed("http://www.todayonline.com/sports");
-//        crawler.addSeed("http://www.todayonline.com/entertainment");//opinion
-//        crawler.addSeed("http://www.todayonline.com/lifestyle");
-//        crawler.addSeed("http://www.todayonline.com/chinaindia");
-//        crawler.addSeed("http://www.todayonline.com/");
-//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-//        crawler.addSeed("http://www.theguardian.com/us/business");
-//        crawler.addSeed("http://www.theguardian.com/us/environment");
-//////
-//        crawler.addSeed("http://www.theguardian.com/travel");
-//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-//        crawler.addSeed("http://www.theguardian.com/politics");
-
-
-
-        //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
-        HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
-        requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
-
-
-        /*
-
-        //多代理随机
-        RandomProxyGenerator proxyGenerator=new RandomProxyGenerator();
-        proxyGenerator.addProxy("127.0.0.1",8080,Proxy.Type.SOCKS);
-        requester.setProxyGenerator(proxyGenerator);
-        */
 
         /*设置是否断点爬取*/
 //        crawler.setResumable(true);
