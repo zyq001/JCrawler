@@ -23,19 +23,10 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * WebCollector 2.x版本的tutorial
@@ -54,18 +45,21 @@ import java.net.URL;
  * @author hu
  */
 @CommonsLog
-public class TravelNationalGeographicCrawler extends DeepCrawler {
+public class TodayGeographicCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public TravelNationalGeographicCrawler(String crawlPath) {
+    public TodayGeographicCrawler(String crawlPath) {
         super(crawlPath);
 
         regexRule.addRule("http://intelligenttravel.nationalgeographic.com/.*");
 
-        regexRule.addRule("http://.*.nationalgeographic.com/.*");
+
+        regexRule.addRule("http://travel.nationalgeographic.com/.*");
+        regexRule.addRule("http://animals.nationalgeographic.com/.*");
+        regexRule.addRule("http://photography.nationalgeographic.com/.*");
 
         regexRule.addRule("-.*jpg.*");
 
@@ -97,7 +91,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new TravelNationalGeographicExtractor(page);
+            BaseExtractor extractor = new TodayGeographicExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -138,17 +132,25 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
 
 
 
-        TravelNationalGeographicCrawler crawler = new TravelNationalGeographicCrawler("data/TravelNationalGeographic");
+        TodayGeographicCrawler crawler = new TodayGeographicCrawler("data/TodayNationalGeographic");
         crawler.setThreads(30);
 
-        crawler.addSeed("http://intelligenttravel.nationalgeographic.com/");
+//        crawler.addSeed("http://travel.nationalgeographic.com/travel/top-10/");
+//        crawler.addSeed("http://photography.nationalgeographic.com/photography/");
+//        crawler.addSeed("http://photography.nationalgeographic.com/photography/photogalleries/");
+//        crawler.addSeed("http://photography.nationalgeographic.com/photography/wallpapers/");
+//
+//        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-tips/");
+//        crawler.addSeed("http://animals.nationalgeographic.com/animals/photos/");
 
-        String baseUrl = "http://intelligenttravel.nationalgeographic.com/page/";
+        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-of-the-day/dresden-gahan/");
 
-
-        for(int i = 2; i < 50; i++){
-            crawler.addSeed(baseUrl + i + "/");
-        }
+//        String baseUrl = "http://intelligenttravel.nationalgeographic.com/page/";
+//
+//
+//        for(int i = 2; i < 50; i++){
+//            crawler.addSeed(baseUrl + i + "/");
+//        }
 
 //        crawler.addSeed("http://news.nationalgeographic.com/2015/10/151030-owl-red-fox-animals-scary-screams-halloween-science/");
 
@@ -161,6 +163,8 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
         Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
+
+//        crawler.setHttpRequester(new SeleniumHttpRequester());
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
 //        requester.setCookie("CNZZDATA1950488=cnzz_eid%3D739324831-1432460954-null%26ntime%3D1432460954; wdcid=44349d3f2aa96e51; vjuids=-53d395da8.14eca7eed44.0.f17be67e; CNZZDATA3473518=cnzz_eid%3D1882396923-1437965756-%26ntime%3D1440635510; pt_37a49e8b=uid=FuI4KYEfVz5xq7L4nzPd1w&nid=1&vid=r4AhSBmxisCiyeolr3V2Ow&vn=1&pvn=1&sact=1440639037916&to_flag=0&pl=t4NrgYqSK5M357L2nGEQCw*pt*1440639015734; _ga=GA1.3.1121158748.1437970841; __auc=c00a6ac114d85945f01d9c30128; CNZZDATA1975683=cnzz_eid%3D250014133-1432460541-null%26ntime%3D1440733997; CNZZDATA1254041250=2000695407-1442220871-%7C1442306691; pt_7f0a67e8=uid=6lmgYeZ3/jSObRMeK-t27A&nid=0&vid=lEKvEtZyZdd0UC264UyZnQ&vn=2&pvn=1&sact=1442306703728&to_flag=0&pl=7GB3sYS/PJDo1mY0qeu2cA*pt*1442306703728; 7NSx_98ef_saltkey=P05gN8zn; 7NSx_98ef_lastvisit=1444281282; IframeBodyHeight=256; NTVq_98ef_saltkey=j5PydYru; NTVq_98ef_lastvisit=1444282735; NTVq_98ef_atarget=1; NTVq_98ef_lastact=1444286377%09api.php%09js; 7NSx_98ef_sid=hZyDwc; __utmt=1; __utma=155578217.1121158748.1437970841.1443159326.1444285109.23; __utmb=155578217.57.10.1444285109; __utmc=155578217; __utmz=155578217.1439345650.3.2.utmcsr=travel.chinadaily.com.cn|utmccn=(referral)|utmcmd=referral|utmcct=/; CNZZDATA3089622=cnzz_eid%3D1722311508-1437912344-%26ntime%3D1444286009; wdlast=1444287704; vjlast=1437916393.1444285111.11; 7NSx_98ef_lastact=1444287477%09api.php%09chinadaily; pt_s_3bfec6ad=vt=1444287704638&cad=; pt_3bfec6ad=uid=bo87MAT/HC3hy12HDkBg1A&nid=0&vid=erwHQyFKxvwHXYc4-r6n-w&vn=28&pvn=2&sact=1444287708079&to_flag=0&pl=kkgvLoEHXsCD2gs4VJaWQg*pt*1444287704638; pt_t_3bfec6ad=?id=3bfec6ad.bo87MAT/HC3hy12HDkBg1A.erwHQyFKxvwHXYc4-r6n-w.kkgvLoEHXsCD2gs4VJaWQg.nZJ9Aj/bgfNDIKBXI5TwRQ&stat=167.132.1050.1076.1body%20div%3Aeq%288%29%20ul%3Aeq%280%29%20a%3Aeq%282%29.0.0.1595.3441.146.118&ptif=4");
@@ -178,7 +182,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }
