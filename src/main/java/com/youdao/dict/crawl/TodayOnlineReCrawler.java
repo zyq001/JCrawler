@@ -140,7 +140,7 @@ public class TodayOnlineReCrawler extends DeepCrawler {
         for(int i = 0; i < urls.size(); i++) {
             String url = (String) urls.get(i).get("url");
             String title = (String) urls.get(i).get("title");
-            int id = (int) urls.get(i).get("id");
+//            int id = (int) urls.get(i).get("id");
 //            crawler.addSeed(url);
             try {
                 int idx1 = title.indexOf(" -- National Geographic");
