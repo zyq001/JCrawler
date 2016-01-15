@@ -265,9 +265,17 @@ public class CollegeFashionCrawler implements Job{
                 JsonObject jo = je.getAsJsonObject();
                 String title = jo.get("title").getAsString();
 
+
+
                 String time = jo.get("publicationTimestamp").getAsString();
                 time = extractTime(time);
                 String url = baseUrl + jo.get("path").getAsString();
+
+                //过滤部分文章
+                if(title == null || title.contains("autelinks")){
+                    System.out.println("skip article:" + title + "---url:" + url);
+                    continue;
+                }
 
                 String description ="";
                         JsonElement descJE = jo.get("metaDescription");

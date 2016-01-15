@@ -42,6 +42,10 @@ public class JpostExtractor extends BaseExtractor {
 
             String isarticle = context.output.get("isarticle").toString();
             if(isarticle.contains("Article")){
+                content.select(".article-top-wrap").remove();
+                content.select(".social-share-buttons").remove();//
+                content.select(".sjXXfadScG").remove();
+
                 log.debug("*****init  success*****");
 //                content.select("div[id=sidebar-second]").remove();
 //                content.select("div[id=content-bottom]").remove();
@@ -54,12 +58,15 @@ public class JpostExtractor extends BaseExtractor {
                 content.select("img[alt=subscribe newsletter]").remove();
                 content.select("div[class=article-top-wrap]").remove();
                 content.select("h2[class=article-teaser-text]").remove();//图片文字多余
+                content.select(".ICETDnnlwT").remove();//广告
+//                content.select(".").remove();
                 return true;
             }
             log.info("*****init  failed，isn't an article***** url:" + url);
             return false;
         } catch (Exception e) {
             log.info("*****init  failed***** url:" + url);
+            e.printStackTrace();
             return false;
         }
     }

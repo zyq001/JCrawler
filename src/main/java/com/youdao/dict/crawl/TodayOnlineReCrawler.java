@@ -113,6 +113,8 @@ public class TodayOnlineReCrawler extends DeepCrawler {
         return nextLinks;
     }
 
+//    public static void replace
+
     public static void main(String[] args) throws Exception {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
@@ -123,7 +125,13 @@ public class TodayOnlineReCrawler extends DeepCrawler {
 
         TodayOnlineReCrawler crawler = new TodayOnlineReCrawler("data/TodayOnline2");
         crawler.setThreads(5);
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,url FROM parser_page WHERE type = 'Technology' and description IS Null and mainimage = ''");
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,title,url FROM parser_page where host like '%national%';");
+
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,url FROM parser_page where title like '%autelinks%';");
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,url FROM parser_page WHERE type = 'Technology' and description IS Null and mainimage = ''");
+
+
+
 
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
@@ -131,22 +139,67 @@ public class TodayOnlineReCrawler extends DeepCrawler {
         int counter = 0;
         for(int i = 0; i < urls.size(); i++) {
             String url = (String) urls.get(i).get("url");
-            int id = Integer.valueOf((String) urls.get(i).get("id"));
+            String title = (String) urls.get(i).get("title");
+            int id = (int) urls.get(i).get("id");
 //            crawler.addSeed(url);
             try {
-
-                int updates = crawler.jdbcTemplate.update("delete FROM parser_page where url = '" + url + "'");
+                int idx1 = title.indexOf(" -- National Geographic");
+                if (idx1 < 0) {
+                    idx1 = title.indexOf(" - National Geographic");
+                    if (idx1 < 0) {
+                        idx1 = title.indexOf("National Geographic");
+                        if (idx1 > 0) {
+                            System.out.println(title + url);
+                        }
+                        continue;
+                    }
+                }
+                if (idx1 > 0) {
+                    title = title.substring(0, idx1);
+                    int updates = crawler.jdbcTemplate.update("UPDATE parser_page SET title = %s where url = %s", title, url);
+                    if (updates != 1) {
+                        System.out.println("code:" + updates + "error Update:" + url);
+                    }
+                }
             } catch (Exception e) {
-//                e.printStackTrace();
-                int updates = crawler.jdbcTemplate.update("delete FROM breakingnews where id = '" + id + "'");
-                if (updates == 1)
-                    crawler.jdbcTemplate.update("delete FROM parser_page where url = '" + url + "'");
-                else
-                    System.out.println("del breaking fail " + url);
-//                System.out.println("  url:" + url);
-
+                e.printStackTrace();
             }
         }
+
+////System.out.println(id);
+////                int updates = crawler.jdbcTemplate.update("delete FROM parser_page where url = '" + url + "'");
+////                if(updates == 1){
+////                    int insertRes = crawler.jdbcTemplate.update("insert into deleted_page (id) VALUES (" + id + ");");
+////                    if(insertRes == 1){
+////                        System.out.println("insert into deleted_page id = " + id);
+////                    }else{
+////                        System.out.println("error insert into deleted_page id = " + id + "code: " + insertRes);
+////                    }
+////                }else{
+////                    System.out.println("error delete page id = " + id + "code: " + updates);
+////                }
+////            } catch (Exception e) {
+//////                e.printStackTrace();
+////                int updates = crawler.jdbcTemplate.update("delete FROM breakingnews where id = '" + id + "'");
+////                if (updates == 1) {
+////                    updates = crawler.jdbcTemplate.update("delete FROM parser_page where url = '" + url + "'");
+////                    if(updates == 1){
+////                        int insertRes = crawler.jdbcTemplate.update("insert into deleted_page id VALUES (" + id + ");");
+////                        if(insertRes == 1){
+////                            System.out.println("After del breaking insert into deleted_page id = " + id);
+////                        }else{
+////                            System.out.println("After del breaking error insert into deleted_page id = " + id + "code: " + insertRes);
+////                        }
+////                    }else{
+////                        System.out.println("After del breaking error delete page id = " + id + "code: " + updates);
+////                    }
+////                }
+////                else
+////                    System.out.println("del breaking fail " + url);
+//////                System.out.println("  url:" + url);
+//
+//            }
+//        }
 
         /*设置是否断点爬取*/
 //        crawler.setResumable(true);
