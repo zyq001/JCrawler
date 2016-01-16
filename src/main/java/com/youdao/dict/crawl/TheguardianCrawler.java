@@ -82,18 +82,19 @@ public class TheguardianCrawler extends DeepCrawler {
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
         }
     }
-
+static int conter = 1;
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
             BaseExtractor extractor = new TheguardianExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
-//                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
+//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+//                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
+                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
 
                 if (updates == 1) {
+                    System.out.println(conter++);
                     System.out.println("mysql插入成功");
                 }else{
                     System.out.println("失败插入mysql");
@@ -125,35 +126,35 @@ public class TheguardianCrawler extends DeepCrawler {
         */
 
         TheguardianCrawler crawler = new TheguardianCrawler("data/Theguardian2");
-        crawler.setThreads(10);
+        crawler.setThreads(50);
 //
-//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host = 'www.theguardian.com' and time < '2015-11-28s 23:22:46' ORDER BY id desc");
-////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
-////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-//        for(int i = 0; i < urls.size(); i++){
-//            String url = (String)urls.get(i).get("url");
-//            crawler.addSeed(url);
-//        }
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%theguardian.com%'  ORDER BY id desc");
+//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
+//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+        for(int i = 0; i < urls.size(); i++){
+            String url = (String)urls.get(i).get("url");
+            crawler.addSeed(url);
+        }
 
 //        crawler.addSeed("http://www.theguardian.com/money/2015/oct/31/previous-talk-talk-victims-awaiting-compensation");
 
-        crawler.addSeed("http://www.theguardian.com/world");
-        crawler.addSeed("http://www.theguardian.com/uk/sport");
-        crawler.addSeed("http://www.theguardian.com/us/sport");
-        crawler.addSeed("http://www.theguardian.com/uk/culture");
-        crawler.addSeed("http://www.theguardian.com/us/culture");
-        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
-        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
-        crawler.addSeed("http://www.theguardian.com/uk/business");
-        crawler.addSeed("http://www.theguardian.com/uk/environment");
-        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-        crawler.addSeed("http://www.theguardian.com/us/business");
-        crawler.addSeed("http://www.theguardian.com/us/environment");
-//////
-        crawler.addSeed("http://www.theguardian.com/travel");
-        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-        crawler.addSeed("http://www.theguardian.com/politics");
+//        crawler.addSeed("http://www.theguardian.com/world");
+//        crawler.addSeed("http://www.theguardian.com/uk/sport");
+//        crawler.addSeed("http://www.theguardian.com/us/sport");
+//        crawler.addSeed("http://www.theguardian.com/uk/culture");
+//        crawler.addSeed("http://www.theguardian.com/us/culture");
+//        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
+//        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
+//        crawler.addSeed("http://www.theguardian.com/uk/business");
+//        crawler.addSeed("http://www.theguardian.com/uk/environment");
+//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
+//        crawler.addSeed("http://www.theguardian.com/us/business");
+//        crawler.addSeed("http://www.theguardian.com/us/environment");
+////////
+//        crawler.addSeed("http://www.theguardian.com/travel");
+//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
+//        crawler.addSeed("http://www.theguardian.com/politics");
 
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
@@ -179,7 +180,7 @@ public class TheguardianCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(3);
+        crawler.start(1);
     }
 
 }

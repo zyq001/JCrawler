@@ -37,36 +37,30 @@ public class TheguardianExtractor extends BaseExtractor {
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TheguardianRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
-            for(Element svg: content.select("svg")){
-                if(svg != null) svg.remove();
-            }
-            content.select(".rounded-icon").remove();//分享图标
-            content.select(".inline-icon").remove();//分享图标
-            content.select(".inline-share-facebook").remove();//分享图标
-//            content.select(".inline-icon").remove();
-//            content.select(".inline-share-facebook").remove();
-//            content.select(".inline-icon").remove();
-//            content.select(".inline-share-facebook").remove();
-//            content.select(".inline-icon").remove();
-
-            for(Element e: content.select("div")){
-                String name = e.attr("class");
-                if(name.contains("content__meta-container js-content-meta js-football-meta u-cf") ||
-                        name.equals("submeta") ){
-                    e.remove();
-                }
-            }
-            content.removeClass("content__article-body from-content-api js-article__body");
-            content.removeClass("meta__social");
-
             Element article = (Element) context.output.get("isarticle");
             if(article == null || article.toString().contains("article")){
-//            String isarticle = context.output.get("isarticle").toString();
-//            if(isarticle.contains("article")){
-                log.debug("*****init  success*****");
-                return true;
+                for(Element svg: content.select("svg")){
+                    if(svg != null) svg.remove();
+                }
+                content.select(".rounded-icon").remove();//分享图标
+                content.select(".inline-icon").remove();//分享图标
+                content.select(".inline-share-facebook").remove();//分享图标
+                content.select(".js-sport-tabs").remove();
+                content.select(".content__meta-container").remove();//作者与分享图标
+                content.select(".submeta").remove();
+    //            content.select(".inline-share-facebook").remove();
+    //            content.select(".inline-icon").remove();
+
+                content.removeClass("content__article-body from-content-api js-article__body");
+                content.removeClass("meta__social");
+
+
+    //            String isarticle = context.output.get("isarticle").toString();
+    //            if(isarticle.contains("article")){
+                    log.debug("*****init  success*****");
+                    return true;
             }
-            log.info("*****init  failed，isn't an article***** url:" + url);
+            log.error("*****init  failed，isn't an article***** url:" + url);
             return false;
         } catch (Exception e) {
             log.info("*****init  failed***** url:" + url);
@@ -171,10 +165,10 @@ public class TheguardianExtractor extends BaseExtractor {
         } catch (ParseException e) {
             return false;
         }
-        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
-            log.debug("*****extractorTime  out of date*****");
-            return false;
-        }
+//        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+//            log.debug("*****extractorTime  out of date*****");
+//            return false;
+//        }
         p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;

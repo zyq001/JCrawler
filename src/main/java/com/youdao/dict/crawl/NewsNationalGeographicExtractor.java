@@ -372,8 +372,13 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         Elements imgs = content.select(".delayed-image-load--photogallery-modal");
         if(imgs == null || imgs.size() < 1) {
             imgs = content.select(".delayed-image-load");
-            if (imgs == null || imgs.size() < 1)
-                imgs = content.select("img");
+            if (imgs == null || imgs.size() < 1) {
+//                imgs = content.select("img");
+//            "data-platform-component" -> ""data-platform-component" -> "PictureFill""
+                imgs = content.select("div[data-platform-component=PictureFill]");
+                if (imgs == null || imgs.size() < 1)
+                    imgs = content.select("img");
+            }
         }
         String mainImage = null;
         int width = 0;
@@ -386,8 +391,11 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                     if ("".equals(imageUrl)) {
                         imageUrl = img.attr("data-srcset");
                         if ("".equals(imageUrl)) {
-                            img.remove();
-                            continue;
+                            imageUrl = img.attr("data-platform-src");
+                            if ("".equals(imageUrl)) {
+                                img.remove();
+                                continue;
+                            }
                         }
                     }
                 }

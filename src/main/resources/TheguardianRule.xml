@@ -18,10 +18,6 @@
             插入到数据库中时，会以Element元素源码的形式插入-->
         <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
                 </element>-->
-        <element name="content" selector="div[class=content__main tonal__main tonal__main--tone-news]">
-        </element>
-        <element name="content" selector="div[class=content__main tonal__main tonal__main--tone-feature]">
-        </element>
         <element name="content" selector="div[id=storytext]">
         </element>
         <element name="content" selector="div[itemprop=reviewBody]">
@@ -29,6 +25,9 @@
 
         <element name="content" selector="div[itemprop=articleBody]">
         </element>
+        <element name="content" selector=".content__main-column--article">
+        </element>
+
         <!--<element name="content" selector="div[class=gs-container]">-->
         <!--</element>-->
 

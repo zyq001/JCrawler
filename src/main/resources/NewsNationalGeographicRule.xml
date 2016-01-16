@@ -39,10 +39,15 @@
         </element>
         <element name="title" selector=".title">
         </element>
-        <element name="type" selector="meta[name=article:section]">
-        </element>
         <element name="type" selector="meta[name=category]">
         </element>
+        <element name="type" selector="meta[name=article:section]">
+        </element>
+        <!--<element name="type" selector="meta[name=article:section]">-->
+        <!--</element>-->
+        <element name="type" selector="meta[property=article:section]">
+        </element>
+
         <element name="label" selector="meta[name=keywords]">
         </element>
 
