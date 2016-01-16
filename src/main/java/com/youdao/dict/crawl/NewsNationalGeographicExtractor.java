@@ -43,7 +43,14 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
             Element article = (Element) context.output.get("isarticle");
 //            if(article == null || article.toString().contains("article")){
 
-                content.select(".byline").remove();//作者-时间等
+            content.select(".article_title").remove();
+            content.select(".title").remove();
+            content.select(".article_credits_author").remove();
+            content.select(".article_credits_photographer").remove();
+            content.select(".nextpage_continue").remove();//
+            content.select(".subscribe").remove();
+
+            content.select(".byline").remove();//作者-时间等
                 content.select(".Kicker").remove();
                 content.select(".titleAndDek").remove();
                 content.select(".col-md-1").remove();
@@ -103,6 +110,8 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 content.select(".promo-previous").remove();//上一篇文章
                 content.select(".promo-next").remove();//下一篇文章
                 content.select(".detail-image").remove();//图片上有文字 显示乱
+
+//            content.select(".share-buttons").remove();//fb 分享图标
 
 //                content.
                 //加p标签

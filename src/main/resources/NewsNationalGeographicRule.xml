@@ -23,6 +23,8 @@
         <element name="content" selector="div[class=content]">
         </element>
 
+        <element name="content" selector=".main_3narrow">
+        </element>
         <element name="description" selector="meta[name=og:description]">
         </element>
         <element name="description" selector="meta[property=og:description]">
