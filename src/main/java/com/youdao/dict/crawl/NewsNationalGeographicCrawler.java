@@ -36,6 +36,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 
 /**
  * WebCollector 2.x版本的tutorial
@@ -65,7 +67,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 
         regexRule.addRule("http://news.nationalgeographic.com/.*");
         regexRule.addRule("http://ngm.nationalgeographic.com/.*");
-        regexRule.addRule("http://.*.nationalgeographic.com/.*");
+//        regexRule.addRule("http://.*.nationalgeographic.com/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -101,6 +103,8 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                         p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
+//                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
+
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
                 }else{
@@ -142,8 +146,8 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
         crawler.addSeed("http://ngm.nationalgeographic.com/");
         crawler.addSeed("http://ngm.nationalgeographic.com/archives");
         crawler.addSeed("http://ngm.nationalgeographic.com/featurehub");
-
-
+//
+//
         String jsonUrl = "http://news.nationalgeographic.com/bin/services/news/public/query/content.json?pageSize=20&page=0&contentTypes=news/components/pagetypes/article,news/components/pagetypes/simple-article,news/components/pagetypes/photo-gallery";
 
         URL urls = new URL(jsonUrl);
@@ -156,9 +160,14 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
             if(url != null && !url.equals(""))
                 crawler.addSeed(url);
         }
-//        crawler.addSeed("http://news.nationalgeographic.com/2015/10/151030-owl-red-fox-animals-scary-screams-halloween-science/");
-
-
+//        crawler.addSeed("http://news.nationalgeographic.com/2015/09/150910-human-evolution-change");
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,title,url FROM parser_page where host like '%ngm.national%' ORDER by id desc;");
+//        for(int i = 0; i < urls.size(); i++) {
+//            String url = (String) urls.get(i).get("url");
+//            String title = (String) urls.get(i).get("title");
+////            int id = (int) urls.get(i).get("id");
+//            crawler.addSeed(url);
+//        }
 
 //        Config
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
@@ -184,7 +193,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(3);
+        crawler.start(2);
     }
 
 }

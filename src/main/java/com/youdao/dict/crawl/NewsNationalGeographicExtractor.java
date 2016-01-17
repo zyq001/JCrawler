@@ -50,6 +50,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
             content.select(".nextpage_continue").remove();//
             content.select(".subscribe").remove();
 
+            content.select(".relatedContentList").remove();
             content.select(".byline").remove();//作者-时间等
                 content.select(".Kicker").remove();
                 content.select(".titleAndDek").remove();
@@ -84,7 +85,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 }
 
 
-                content.select(".media--small").select(".left").remove();
+                content.select(".Interactive").select(".section").select(".media--small").select(".left").remove();
 
                 content.select(".instagram-media").remove();
 
@@ -135,7 +136,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 //            log.info("*****init  failed，isn't an article***** url:" + url);
 //            return false;
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
             log.info("*****init  failed***** url:" + url);
             return false;
         }
