@@ -143,24 +143,26 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 
         NewsNationalGeographicCrawler crawler = new NewsNationalGeographicCrawler("data/NewsNationalGeographic");
         crawler.setThreads(10);
-        crawler.addSeed("http://ngm.nationalgeographic.com/");
-        crawler.addSeed("http://ngm.nationalgeographic.com/archives");
-        crawler.addSeed("http://ngm.nationalgeographic.com/featurehub");
+//        crawler.addSeed("http://ngm.nationalgeographic.com/");
+//        crawler.addSeed("http://ngm.nationalgeographic.com/archives");
+//        crawler.addSeed("http://ngm.nationalgeographic.com/featurehub");
+////
+////
+//        String jsonUrl = "http://news.nationalgeographic.com/bin/services/news/public/query/content.json?pageSize=20&page=0&contentTypes=news/components/pagetypes/article,news/components/pagetypes/simple-article,news/components/pagetypes/photo-gallery";
 //
-//
-        String jsonUrl = "http://news.nationalgeographic.com/bin/services/news/public/query/content.json?pageSize=20&page=0&contentTypes=news/components/pagetypes/article,news/components/pagetypes/simple-article,news/components/pagetypes/photo-gallery";
+//        URL urls = new URL(jsonUrl);
+//        HttpURLConnection urlConnection = (HttpURLConnection)urls.openConnection();
+//        InputStream is = urlConnection.getInputStream();
+//        Reader rd = new InputStreamReader(is, "utf-8");
+//        JsonArray json = new JsonParser().parse(rd).getAsJsonArray();
+//        for(JsonElement jOb: json){
+//            String url = jOb.getAsJsonObject().get("page").getAsJsonObject().get("url").getAsString();
+//            if(url != null && !url.equals(""))
+//                crawler.addSeed(url);
+//        }
 
-        URL urls = new URL(jsonUrl);
-        HttpURLConnection urlConnection = (HttpURLConnection)urls.openConnection();
-        InputStream is = urlConnection.getInputStream();
-        Reader rd = new InputStreamReader(is, "utf-8");
-        JsonArray json = new JsonParser().parse(rd).getAsJsonArray();
-        for(JsonElement jOb: json){
-            String url = jOb.getAsJsonObject().get("page").getAsJsonObject().get("url").getAsString();
-            if(url != null && !url.equals(""))
-                crawler.addSeed(url);
-        }
-//        crawler.addSeed("http://news.nationalgeographic.com/2015/09/150910-human-evolution-change");
+
+        crawler.addSeed("http://news.nationalgeographic.com/2016/01/160119-insects-spiders-bugs-homes-science-animals");
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,title,url FROM parser_page where host like '%ngm.national%' ORDER by id desc;");
 //        for(int i = 0; i < urls.size(); i++) {
 //            String url = (String) urls.get(i).get("url");

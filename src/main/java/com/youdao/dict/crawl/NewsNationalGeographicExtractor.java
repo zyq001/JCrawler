@@ -76,7 +76,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 
                 content.select(".rightRailSlot").remove();
                 content.select(".OneColumn").remove();//推荐链接
-                content.select(".UniversalVideo").remove();//删除视频
+//                content.select(".UniversalVideo").remove();//删除视频
 
                 for(Element e: content.select("i")){//删除follow smBody on Twitter
                     String iText = e.text();
@@ -170,8 +170,20 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 //            System.out.println(a);
         }
         content.select("img").wrap("<p></p>");
+        Elements videos = content.select(".tpPlayer").select(". inline").select(".ngs-video");
+        for(Element e: videos){
+            String videoUrl = e.attr("src");
+            String className = e.className();
+            Tag imgTag = Tag.valueOf("p");
+//                img.appendChild(imgTag);
+            Element newImg = new Element(imgTag, "");
+            newImg.attr("class", className);
+            newImg.attr("src", videoUrl);
+            e.appendChild(newImg);
+        }
 //        content.select("#comment").remove();
         removeComments(content);
+
 
         String contentHtml = content.html();
 
@@ -182,7 +194,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
         contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
-        contentHtml = contentHtml.replaceAll("<(?!img|br|li|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
+        contentHtml = contentHtml.replaceAll("<(?!img|br|figure|li|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t /n
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
