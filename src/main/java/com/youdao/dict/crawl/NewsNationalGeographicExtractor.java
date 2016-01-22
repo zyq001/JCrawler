@@ -8,6 +8,8 @@ import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
@@ -112,6 +114,8 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 content.select(".promo-next").remove();//下一篇文章
                 content.select(".detail-image").remove();//图片上有文字 显示乱
 
+            content.select(".inline-gallery__on-image-control").remove();//图片集的左右图标
+
 //            content.select(".share-buttons").remove();//fb 分享图标
 
 //                content.
@@ -170,17 +174,18 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 //            System.out.println(a);
         }
         content.select("img").wrap("<p></p>");
-//        Elements videos = content.select(".media").select("iframe");
-//        for(Element e: videos){
-//            String videoUrl = e.attr("src");
-//            String className = e.className();
-//            Tag imgTag = Tag.valueOf("p");
-////                img.appendChild(imgTag);
-//            Element newImg = new Element(imgTag, "");
-//            newImg.attr("class", className);
-//            newImg.attr("src", videoUrl);
-//            e.appendChild(newImg);
-//        }
+        Elements videos = content.select(".media--small").select("iframe");
+        for(Element e: videos){
+            String videoUrl = e.attr("src");
+            String className = e.className();
+            Tag imgTag = Tag.valueOf("p");
+//                img.appendChild(imgTag);
+            Element newImg = new Element(imgTag, "");
+            newImg.attr("class", "iframe");
+            newImg.attr("src", videoUrl);
+            newImg.attr("style", "width:100%; heigh:100%");
+            e.appendChild(newImg);
+        }
 //        content.select("#comment").remove();
         removeComments(content);
 
@@ -194,17 +199,33 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
         contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
-        contentHtml = contentHtml.replaceAll("<(?!img|br|iframe|li|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
+        contentHtml = contentHtml.replaceAll("<(?!img|br|li|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t /n
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
+
 
 
         if(contentHtml.length() < 512) {
             log.info("too short < 512 skip " + contentHtml.length());
             return false;//太短
         }
+        Document extractedContent = Jsoup.parse(contentHtml);
+//        for(String className: classNames){
+            Elements videoClassNames = extractedContent.select(".iframe");
+            for(Element e: videoClassNames){
+                String videoUrl = e.attr("src");
+                Tag imgTag = Tag.valueOf("iframe");
+//                img.appendChild(imgTag);
+                Element newImg = new Element(imgTag, "");
+                newImg.attr("src", videoUrl);
+                newImg.attr("style", "width:100%; heigh:100%");
+//                newImg.a
+                e.appendChild(newImg);
+                e.unwrap();
+            }
+//        }
 
-        p.setContent(contentHtml);
+        p.setContent(extractedContent.html());
         if (!paging && isPaging()) {
             mergePage(p);
         }
@@ -296,54 +317,56 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
     }
 
     public boolean extractorTime() {
-        log.debug("*****extractorTime*****");
-        Element elementTime = (Element) context.output.get("time");
-        if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract Time, skip url:" + url);
-            return false;
 
-        }
-        String time = elementTime.attr("content");
-        if(time == null || "".equals(time.trim())) time = elementTime.text();
-        if (time == null || "".equals(time.trim())) {
-            log.info("*****extractorTime  failed***** url:" + url);
-            return false;
-        }
-//2015-09-12 08:25
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ", Locale.US);
-        Date date;
-        try {
-            date = format.parse(time.trim());
-        } catch (ParseException e) {
-            if(time.startsWith("Publish")){
-                int idx = time.indexOf(":");
-                if(idx >= 0) time = time.substring(idx + 2);
-            }
-            int length = time.split(" ")[0].length();
-            StringBuilder M = new StringBuilder();
-            while (length-- > 0) M.append('M');
-            format = new SimpleDateFormat(M.toString() +" yyyy", Locale.US);
-            try {
-                date = format.parse(time.trim());
-            } catch (ParseException e1) {
-
-                format = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.US);
-                try {
-                    date = format.parse(time.trim());
-                } catch (ParseException e2) {
-                    e2.printStackTrace();
-                }
-                e1.printStackTrace();
-                log.info("*****extractorTime format.parse  failed***** url:" + url);
-                return false;
-            }
-
-        }
-//        if (System.currentTimeMillis() - date.getTime() > Long.MAX_VALUE >> 25) {
-//            log.debug("*****extractorTime  out of date*****");
+//        log.debug("*****extractorTime*****");
+//        Element elementTime = (Element) context.output.get("time");
+//        if (elementTime == null){//business版head meta里没有时间
+//            log.error("can't extract Time, skip url:" + url);
+//            return false;
+//
+//        }
+//        String time = elementTime.attr("content");
+//        if(time == null || "".equals(time.trim())) time = elementTime.text();
+//        if (time == null || "".equals(time.trim())) {
+//            log.info("*****extractorTime  failed***** url:" + url);
 //            return false;
 //        }
-        p.setTime(new Timestamp(date.getTime() + 13 * 60 * 60 * 1000).toString());//-0500纽约时间 +13h是 cst北京时间
+////2015-09-12 08:25
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ", Locale.US);
+//        Date date;
+//        try {
+//            date = format.parse(time.trim());
+//        } catch (ParseException e) {
+//            if(time.startsWith("Publish")){
+//                int idx = time.indexOf(":");
+//                if(idx >= 0) time = time.substring(idx + 2);
+//            }
+//            int length = time.split(" ")[0].length();
+//            StringBuilder M = new StringBuilder();
+//            while (length-- > 0) M.append('M');
+//            format = new SimpleDateFormat(M.toString() +" yyyy", Locale.US);
+//            try {
+//                date = format.parse(time.trim());
+//            } catch (ParseException e1) {
+//
+//                format = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.US);
+//                try {
+//                    date = format.parse(time.trim());
+//                } catch (ParseException e2) {
+//                    e2.printStackTrace();
+//                    log.info("*****extractorTime format.parse  failed***** url:" + url);
+//                    return false;
+//                }
+////                e1.printStackTrace();
+//
+//            }
+//
+//        }
+////        if (System.currentTimeMillis() - date.getTime() > Long.MAX_VALUE >> 25) {
+////            log.debug("*****extractorTime  out of date*****");
+////            return false;
+////        }
+//        p.setTime(new Timestamp(date.getTime() + 13 * 60 * 60 * 1000).toString());//-0500纽约时间 +13h是 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
     }
