@@ -318,55 +318,55 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 
     public boolean extractorTime() {
 
-//        log.debug("*****extractorTime*****");
-//        Element elementTime = (Element) context.output.get("time");
-//        if (elementTime == null){//business版head meta里没有时间
-//            log.error("can't extract Time, skip url:" + url);
+        log.debug("*****extractorTime*****");
+        Element elementTime = (Element) context.output.get("time");
+        if (elementTime == null){//business版head meta里没有时间
+            log.error("can't extract Time, skip url:" + url);
+            return false;
+
+        }
+        String time = elementTime.attr("content");
+        if(time == null || "".equals(time.trim())) time = elementTime.text();
+        if (time == null || "".equals(time.trim())) {
+            log.info("*****extractorTime  failed***** url:" + url);
+            return false;
+        }
+//2015-09-12 08:25
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ", Locale.US);
+        Date date;
+        try {
+            date = format.parse(time.trim());
+        } catch (ParseException e) {
+            if(time.startsWith("Publish")){
+                int idx = time.indexOf(":");
+                if(idx >= 0) time = time.substring(idx + 2);
+            }
+            int length = time.split(" ")[0].length();
+            StringBuilder M = new StringBuilder();
+            while (length-- > 0) M.append('M');
+            format = new SimpleDateFormat(M.toString() +" yyyy", Locale.US);
+            try {
+                date = format.parse(time.trim());
+            } catch (ParseException e1) {
+
+                format = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.US);
+                try {
+                    date = format.parse(time.trim());
+                } catch (ParseException e2) {
+                    e2.printStackTrace();
+                    log.info("*****extractorTime format.parse  failed***** url:" + url);
+                    return false;
+                }
+//                e1.printStackTrace();
+
+            }
+
+        }
+//        if (System.currentTimeMillis() - date.getTime() > Long.MAX_VALUE >> 25) {
+//            log.debug("*****extractorTime  out of date*****");
 //            return false;
-//
 //        }
-//        String time = elementTime.attr("content");
-//        if(time == null || "".equals(time.trim())) time = elementTime.text();
-//        if (time == null || "".equals(time.trim())) {
-//            log.info("*****extractorTime  failed***** url:" + url);
-//            return false;
-//        }
-////2015-09-12 08:25
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ", Locale.US);
-//        Date date;
-//        try {
-//            date = format.parse(time.trim());
-//        } catch (ParseException e) {
-//            if(time.startsWith("Publish")){
-//                int idx = time.indexOf(":");
-//                if(idx >= 0) time = time.substring(idx + 2);
-//            }
-//            int length = time.split(" ")[0].length();
-//            StringBuilder M = new StringBuilder();
-//            while (length-- > 0) M.append('M');
-//            format = new SimpleDateFormat(M.toString() +" yyyy", Locale.US);
-//            try {
-//                date = format.parse(time.trim());
-//            } catch (ParseException e1) {
-//
-//                format = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.US);
-//                try {
-//                    date = format.parse(time.trim());
-//                } catch (ParseException e2) {
-//                    e2.printStackTrace();
-//                    log.info("*****extractorTime format.parse  failed***** url:" + url);
-//                    return false;
-//                }
-////                e1.printStackTrace();
-//
-//            }
-//
-//        }
-////        if (System.currentTimeMillis() - date.getTime() > Long.MAX_VALUE >> 25) {
-////            log.debug("*****extractorTime  out of date*****");
-////            return false;
-////        }
-//        p.setTime(new Timestamp(date.getTime() + 13 * 60 * 60 * 1000).toString());//-0500纽约时间 +13h是 cst北京时间
+        p.setTime(new Timestamp(date.getTime() + 13 * 60 * 60 * 1000).toString());//-0500纽约时间 +13h是 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
     }
