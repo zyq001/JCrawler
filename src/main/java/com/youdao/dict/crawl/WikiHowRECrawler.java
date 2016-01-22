@@ -23,19 +23,11 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -56,18 +48,16 @@ import java.util.Map;
  * @author hu
  */
 @CommonsLog
-public class NewsNationalGeographicCrawler extends DeepCrawler {
+public class WikiHowRECrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public NewsNationalGeographicCrawler(String crawlPath) {
+    public WikiHowRECrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://news.nationalgeographic.com/.*");
-        regexRule.addRule("http://ngm.nationalgeographic.com/.*");
-//        regexRule.addRule("http://.*.nationalgeographic.com/.*");
+        regexRule.addRule("http://www.wikihow.com/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -98,12 +88,12 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new NewsNationalGeographicExtractor(page);
+            BaseExtractor extractor = new WikiHowExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
-//                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
+//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+//                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
+                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
 
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
@@ -141,38 +131,41 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 
 
 
-        NewsNationalGeographicCrawler crawler = new NewsNationalGeographicCrawler("data/NewsNationalGeographic");
-        crawler.setThreads(10);
-        crawler.addSeed("http://ngm.nationalgeographic.com/");
-        crawler.addSeed("http://ngm.nationalgeographic.com/archives");
-        crawler.addSeed("http://ngm.nationalgeographic.com/featurehub");
-//
-//
-        String jsonUrl = "http://news.nationalgeographic.com/bin/services/news/public/query/content.json?pageSize=20&page=0&contentTypes=news/components/pagetypes/article,news/components/pagetypes/simple-article,news/components/pagetypes/photo-gallery";
+        WikiHowRECrawler crawler = new WikiHowRECrawler("data/WikiHow");
+        crawler.setThreads(50);
+//        crawler.addSeed("http://www.wikihow.com/Become-a-Wine-Maker");
+//        crawler.addSeed("http://www.wikihow.com/Main-Page");
+//        crawler.addSeed("http://www.wikihow.com/Category:Arts-and-Entertainment");
+//        crawler.addSeed("http://www.wikihow.com/Category:Cars-%26-Other-Vehicles");
+//        crawler.addSeed("http://www.wikihow.com/Category:Computers-and-Electronics");
+//        crawler.addSeed("http://www.wikihow.com/Category:Education-and-Communications");
+//        crawler.addSeed("http://www.wikihow.com/Category:Family-Life");
+//        crawler.addSeed("http://www.wikihow.com/Category:Finance-and-Business");
+//        crawler.addSeed("http://www.wikihow.com/Category:Food-and-Entertaining");
+//        crawler.addSeed("http://www.wikihow.com/Category:Health");
+//        crawler.addSeed("http://www.wikihow.com/Category:Hobbies-and-Crafts");
+//        crawler.addSeed("http://www.wikihow.com/Category:Holidays-and-Traditions");
+//        crawler.addSeed("http://www.wikihow.com/Category:Home-and-Garden");
+//        crawler.addSeed("http://www.wikihow.com/Category:Personal-Care-and-Style");
+//        crawler.addSeed("http://www.wikihow.com/Category:Pets-and-Animals");
+//        crawler.addSeed("http://www.wikihow.com/Category:Philosophy-and-Religion");
+//        crawler.addSeed("http://www.wikihow.com/Category:Relationships");
+////////
+//        crawler.addSeed("http://www.wikihow.com/Category:Sports-and-Fitness");
+//        crawler.addSeed("http://www.wikihow.com/Category:Travel");
+//        crawler.addSeed("http://www.wikihow.com/Category:Work-World");
+//        crawler.addSeed("http://www.wikihow.com/Category:Youth");
 
-        URL urls = new URL(jsonUrl);
-        HttpURLConnection urlConnection = (HttpURLConnection)urls.openConnection();
-        InputStream is = urlConnection.getInputStream();
-        Reader rd = new InputStreamReader(is, "utf-8");
-        JsonArray json = new JsonParser().parse(rd).getAsJsonArray();
-        for(JsonElement jOb: json){
-            String url = jOb.getAsJsonObject().get("page").getAsJsonObject().get("url").getAsString();
-            if(url != null && !url.equals(""))
-                crawler.addSeed(url);
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host like '%wikihow%' ORDER by id desc;");
+//        int counter = 0;
+        for(int i = 0; i < urls.size(); i++) {
+            String url = (String) urls.get(i).get("url");
+//            String title = (String) urls.get(i).get("title");
+            crawler.addSeed(url);
         }
 
-
-//        crawler.addSeed("http://news.nationalgeographic.com/2016/01/160118-mummies-world-bog-egypt-science/");
-//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,title,url FROM parser_page where host like '%ngm.national%' ORDER by id desc;");
-//        for(int i = 0; i < urls.size(); i++) {
-//            String url = (String) urls.get(i).get("url");
-//            String title = (String) urls.get(i).get("title");
-////            int id = (int) urls.get(i).get("id");
-//            crawler.addSeed(url);
-//        }
-
 //        Config
-        Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
+        Config.WAIT_THREAD_END_TIME = 1000*60*3;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
 //        Config.TIMEOUT_READ = 1000*30;
         Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
@@ -195,7 +188,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }

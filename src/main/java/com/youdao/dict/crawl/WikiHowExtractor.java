@@ -70,7 +70,7 @@ public class WikiHowExtractor extends BaseExtractor {
                 content.select("h2[class=hidden]").remove();//隐藏 “Steps”
                 content.select("sup[class=reference]").remove();//引用上标
 
-                content.select("qa").select(".section").select(".qa").remove();
+                content.select(".qa").remove();
 //                content.select("div[class=qa section qa sticky]").remove();//QA submit
                 content.select(".section").select(".knowledgebox-section").remove();
 //                content.select("div[class=section knowledgebox-section sticky ]").remove();//3mins knowladge

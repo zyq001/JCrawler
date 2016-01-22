@@ -85,7 +85,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 }
 
 
-                content.select(".Interactive").select(".section").select(".media--small").select(".left").remove();
+//                content.select(".Interactive").select(".section").select(".media--small").select(".left").remove();
 
                 content.select(".instagram-media").remove();
 
@@ -170,17 +170,17 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 //            System.out.println(a);
         }
         content.select("img").wrap("<p></p>");
-        Elements videos = content.select(".tpPlayer").select(". inline").select(".ngs-video");
-        for(Element e: videos){
-            String videoUrl = e.attr("src");
-            String className = e.className();
-            Tag imgTag = Tag.valueOf("p");
-//                img.appendChild(imgTag);
-            Element newImg = new Element(imgTag, "");
-            newImg.attr("class", className);
-            newImg.attr("src", videoUrl);
-            e.appendChild(newImg);
-        }
+//        Elements videos = content.select(".media").select("iframe");
+//        for(Element e: videos){
+//            String videoUrl = e.attr("src");
+//            String className = e.className();
+//            Tag imgTag = Tag.valueOf("p");
+////                img.appendChild(imgTag);
+//            Element newImg = new Element(imgTag, "");
+//            newImg.attr("class", className);
+//            newImg.attr("src", videoUrl);
+//            e.appendChild(newImg);
+//        }
 //        content.select("#comment").remove();
         removeComments(content);
 
@@ -194,12 +194,15 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
         contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
-        contentHtml = contentHtml.replaceAll("<(?!img|br|figure|li|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
+        contentHtml = contentHtml.replaceAll("<(?!img|br|iframe|li|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t /n
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
 
-        if(contentHtml.length() < 384) return false;//太短
+        if(contentHtml.length() < 512) {
+            log.info("too short < 512 skip " + contentHtml.length());
+            return false;//太短
+        }
 
         p.setContent(contentHtml);
         if (!paging && isPaging()) {
@@ -324,6 +327,12 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
                 date = format.parse(time.trim());
             } catch (ParseException e1) {
 
+                format = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.US);
+                try {
+                    date = format.parse(time.trim());
+                } catch (ParseException e2) {
+                    e2.printStackTrace();
+                }
                 e1.printStackTrace();
                 log.info("*****extractorTime format.parse  failed***** url:" + url);
                 return false;
