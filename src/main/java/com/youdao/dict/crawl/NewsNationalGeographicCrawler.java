@@ -101,9 +101,9 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
             BaseExtractor extractor = new NewsNationalGeographicExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-//                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
-                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
+//                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
 
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
@@ -142,7 +142,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 
 
         NewsNationalGeographicCrawler crawler = new NewsNationalGeographicCrawler("data/NewsNationalGeographic");
-        crawler.setThreads(10);
+        crawler.setThreads(2);
         crawler.addSeed("http://ngm.nationalgeographic.com/");
         crawler.addSeed("http://ngm.nationalgeographic.com/archives");
         crawler.addSeed("http://ngm.nationalgeographic.com/featurehub");
@@ -195,7 +195,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(3);
+        crawler.start(2);
     }
 
 }

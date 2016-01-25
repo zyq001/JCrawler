@@ -126,7 +126,7 @@ public class CNBCCrawler extends DeepCrawler {
 
 
         CNBCCrawler crawler = new CNBCCrawler("data/CNBC");
-        crawler.setThreads(10);
+        crawler.setThreads(3);
 
 
 

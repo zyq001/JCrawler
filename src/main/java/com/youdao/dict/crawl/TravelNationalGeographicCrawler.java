@@ -139,7 +139,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
 
 
         TravelNationalGeographicCrawler crawler = new TravelNationalGeographicCrawler("data/TravelNationalGeographic");
-        crawler.setThreads(30);
+        crawler.setThreads(1);
 
         crawler.addSeed("http://intelligenttravel.nationalgeographic.com/");
 

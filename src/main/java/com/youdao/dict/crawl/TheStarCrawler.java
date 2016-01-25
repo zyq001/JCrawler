@@ -138,7 +138,7 @@ public class TheStarCrawler extends DeepCrawler {
 
 
         TheStarCrawler crawler = new TheStarCrawler("data/TheStar");
-        crawler.setThreads(10);
+        crawler.setThreads(2);
 
 //        File file = new File("./thestar.txt");
 //        BufferedReader reader = null;

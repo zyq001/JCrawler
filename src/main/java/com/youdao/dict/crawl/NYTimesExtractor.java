@@ -4,6 +4,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
@@ -32,6 +33,7 @@ public class NYTimesExtractor extends BaseExtractor {
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
             log.debug("*****init  success*****");
+            AntiAntiSpiderHelper.crawlinterval(20);
             return true;
         } catch (Exception e) {
             log.info("*****init  failed***** url:" + url);

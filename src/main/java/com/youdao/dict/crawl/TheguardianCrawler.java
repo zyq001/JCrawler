@@ -126,7 +126,7 @@ static int conter = 1;
         */
 
         TheguardianCrawler crawler = new TheguardianCrawler("data/Theguardian2");
-        crawler.setThreads(20);
+        crawler.setThreads(5);
 //
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%theguardian.com%'  ORDER BY id desc");
 ////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");

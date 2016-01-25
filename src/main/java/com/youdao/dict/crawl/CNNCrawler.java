@@ -121,7 +121,7 @@ public class CNNCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
         CNNCrawler crawler = new CNNCrawler("data/cnn");
-        crawler.setThreads(50);
+        crawler.setThreads(5);
         crawler.addSeed("http://us.cnn.com/?hpt=header_edition-picker");
 
         crawler.addSeed("http://us.cnn.com/world");

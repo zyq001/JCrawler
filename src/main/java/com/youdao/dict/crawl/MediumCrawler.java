@@ -136,7 +136,7 @@ public class MediumCrawler extends DeepCrawler {
 
 
         MediumCrawler crawler = new MediumCrawler("data/Medium");
-        crawler.setThreads(5);
+        crawler.setThreads(3);
         crawler.addSeed("https://medium.com/top-stories");
         crawler.addSeed("https://medium.com/");
 //        crawler.addSeed("https://medium.com/top-100/january-2015");

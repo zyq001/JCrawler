@@ -134,7 +134,7 @@ public class Top10GeographicCrawler extends DeepCrawler {
 
 
         Top10GeographicCrawler crawler = new Top10GeographicCrawler("data/Top10NationalGeographic");
-        crawler.setThreads(30);
+        crawler.setThreads(1);
 
 //        crawler.addSeed("http://travel.nationalgeographic.com/travel/top-10/");
 //        crawler.addSeed("http://photography.nationalgeographic.com/photography/");

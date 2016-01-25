@@ -133,7 +133,7 @@ public class TodayGeographicCrawler extends DeepCrawler {
 
 
         TodayGeographicCrawler crawler = new TodayGeographicCrawler("data/TodayNationalGeographic");
-        crawler.setThreads(30);
+        crawler.setThreads(1);
 
 //        crawler.addSeed("http://travel.nationalgeographic.com/travel/top-10/");
 //        crawler.addSeed("http://photography.nationalgeographic.com/photography/");

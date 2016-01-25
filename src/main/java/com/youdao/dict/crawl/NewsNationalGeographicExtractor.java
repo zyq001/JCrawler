@@ -4,6 +4,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
@@ -135,6 +136,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 //                content.select("ul").select("li").wrap("<p></p>");
 //                content.select(".mw-headline").wrap("<i></i>");
                 log.debug("*****init  success*****");
+            AntiAntiSpiderHelper.crawlinterval(10);
                 return true;
 //            }
 //            log.info("*****init  failed，isn't an article***** url:" + url);

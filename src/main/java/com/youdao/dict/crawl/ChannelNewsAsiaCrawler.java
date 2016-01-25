@@ -117,7 +117,7 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
         ChannelNewsAsiaCrawler crawler = new ChannelNewsAsiaCrawler("data/cna");
-        crawler.setThreads(10);
+        crawler.setThreads(5);
         crawler.addSeed("http://www.channelnewsasia.com/");
         crawler.addSeed("http://www.channelnewsasia.com/archives/lifestyle");
         crawler.addSeed("http://www.channelnewsasia.com/archives/health");
