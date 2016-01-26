@@ -89,9 +89,9 @@ static int conter = 1;
             BaseExtractor extractor = new TheOnionExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-//                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
-                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
+//                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
 
                 if (updates == 1) {
                     System.out.println(conter++);
@@ -126,26 +126,26 @@ static int conter = 1;
         */
 
         TheOnionCrawler crawler = new TheOnionCrawler("data/TheOnion");
-        crawler.setThreads(1);
+        crawler.setThreads(2);
 //
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%theonion.com%'  ORDER BY id desc");
-//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
-//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-        for(int i = 0; i < urls.size(); i++){
-            String url = (String)urls.get(i).get("url");
-            crawler.addSeed(url);
-        }
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%theonion.com%'  ORDER BY id desc");
+////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
+////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+//        for(int i = 0; i < urls.size(); i++){
+//            String url = (String)urls.get(i).get("url");
+//            crawler.addSeed(url);
+//        }
 
 //        crawler.addSeed("http://www.theguardian.com/money/2015/oct/31/previous-talk-talk-victims-awaiting-compensation");
 
-//        crawler.addSeed("http://www.theonion.com/section/politics/");
-//        crawler.addSeed("http://www.theonion.com/section/sports/");
-//        crawler.addSeed("http://www.theonion.com/section/business");
-//        crawler.addSeed("http://www.theonion.com/section/entertainment/");
-//        crawler.addSeed("http://www.theonion.com/section/science-technology/");
-//        crawler.addSeed("http://www.theonion.com/section/after-birth");//opinion
-//        crawler.addSeed("http://www.theonion.com/");
+        crawler.addSeed("http://www.theonion.com/section/politics/");
+        crawler.addSeed("http://www.theonion.com/section/sports/");
+        crawler.addSeed("http://www.theonion.com/section/business");
+        crawler.addSeed("http://www.theonion.com/section/entertainment/");
+        crawler.addSeed("http://www.theonion.com/section/science-technology/");
+        crawler.addSeed("http://www.theonion.com/section/after-birth");//opinion
+        crawler.addSeed("http://www.theonion.com/");
 
 //        crawler.addSeed("http://www.theonion.com/article/pentagon-holds-gala-celebrate-25-years-bombing-ira-52213");
 //        crawler.addSeed("http://www.theguardian.com/uk/environment");
@@ -181,7 +181,7 @@ static int conter = 1;
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(1);
+        crawler.start(2);
     }
 
 }
