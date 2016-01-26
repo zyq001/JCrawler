@@ -171,6 +171,7 @@ public class BaseExtractor {
             a.unwrap();
 //            System.out.println(a);
         }
+
         String contentHtml = content.html();
 
         contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符

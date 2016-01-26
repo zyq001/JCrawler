@@ -41,6 +41,14 @@ public class TheOnionExtractor extends BaseExtractor {
                 for(Element svg: content.select("svg")){
                     if(svg != null) svg.remove();
                 }
+                content = content.child(0).select(".content-body").first();
+                content.select(".content-meta").remove();//fenxiang
+//                content.select(".small-thing").remove();//同上 一般一起出现
+                content.select(".icon").remove();//每篇文章最后都有的洋葱图标
+                content.select(".on-overlay").remove();//CLOSE button
+                content.select(".below-article-tools").remove();//文章下面分享图标
+
+
                 content.select(".rounded-icon").remove();//分享图标
                 content.select(".inline-icon").remove();//分享图标
                 content.select(".inline-share-facebook").remove();//分享图标
@@ -103,6 +111,10 @@ public class TheOnionExtractor extends BaseExtractor {
         }
 //        type = type
 
+        if(type.contains("horoscope")){
+            log.info("horoscope, skipped");
+            return  false;
+        }
         if(!TypeDictHelper.rightTheType(type)){
             Map<String, String> map = new HashMap<String, String>();
             map.put("orgType", type);
@@ -132,6 +144,11 @@ public class TheOnionExtractor extends BaseExtractor {
             }
         });
 
+        String typeFromLabel = keywords[0];
+        typeFromLabel = TypeDictHelper.getType(typeFromLabel, type);
+//        if(TypeDictHelper.rightTheType(type))
+        p.setType(typeFromLabel);
+
         for(String keyword: keywords){
             int wordCount = keyword.split(" ").length;
             if(wordCount <= 3) pq.add(keyword);
@@ -157,7 +174,7 @@ public class TheOnionExtractor extends BaseExtractor {
             return false;
         }
 //2015-09-12 08:25
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssX", Locale.US);
         Date date;
         try {
             date = format.parse(time.trim());
@@ -168,7 +185,7 @@ public class TheOnionExtractor extends BaseExtractor {
 //            log.debug("*****extractorTime  out of date*****");
 //            return false;
 //        }
-        p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
+        p.setTime(new Timestamp(date.getTime() + 14 * 60 * 60 * 1000).toString());//-6 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
     }
@@ -189,6 +206,44 @@ public class TheOnionExtractor extends BaseExtractor {
 
         p.setDescription(description);
 
+        return true;
+    }
+
+    public boolean extractorContent(boolean paging) {
+        log.debug("*****extractorContent*****");
+        if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
+            return false;
+        }
+        Elements hypLinks = content.select("a");
+        for(Element a: hypLinks){
+            a.unwrap();
+//            System.out.println(a);
+        }
+        hypLinks = content.select("noscript");
+        for(Element a: hypLinks){
+            a.unwrap();
+//            System.out.println(a);
+        }
+
+        String contentHtml = content.html();
+
+        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
+
+        contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
+        contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
+        contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
+        contentHtml = contentHtml.replaceAll("<(?!img|br|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
+        contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t /n
+//        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
+
+
+        if(contentHtml.length() < 384) return false;//太短
+
+        p.setContent(contentHtml);
+        if (!paging && isPaging()) {
+            mergePage(p);
+        }
+        log.debug("*****extractorContent  success*****");
         return true;
     }
 

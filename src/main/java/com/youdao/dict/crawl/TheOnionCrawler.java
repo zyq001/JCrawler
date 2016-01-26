@@ -27,6 +27,9 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -122,36 +125,37 @@ static int conter = 1;
           不同的爬虫请使用不同的crawlPath
         */
 
-        TheOnionCrawler crawler = new TheOnionCrawler("data/Theguardian2");
-        crawler.setThreads(5);
+        TheOnionCrawler crawler = new TheOnionCrawler("data/TheOnion");
+        crawler.setThreads(1);
 //
-//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%theguardian.com%'  ORDER BY id desc");
-////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
-////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-//        for(int i = 0; i < urls.size(); i++){
-//            String url = (String)urls.get(i).get("url");
-//            crawler.addSeed(url);
-//        }
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%theonion.com%'  ORDER BY id desc");
+//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
+//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+        for(int i = 0; i < urls.size(); i++){
+            String url = (String)urls.get(i).get("url");
+            crawler.addSeed(url);
+        }
 
 //        crawler.addSeed("http://www.theguardian.com/money/2015/oct/31/previous-talk-talk-victims-awaiting-compensation");
 
-        crawler.addSeed("http://www.theguardian.com/world");
-        crawler.addSeed("http://www.theguardian.com/uk/sport");
-        crawler.addSeed("http://www.theguardian.com/us/sport");
-        crawler.addSeed("http://www.theguardian.com/uk/culture");
-        crawler.addSeed("http://www.theguardian.com/us/culture");
-        crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
-        crawler.addSeed("http://www.theguardian.com/us/commentisfree");
-        crawler.addSeed("http://www.theguardian.com/uk/business");
-        crawler.addSeed("http://www.theguardian.com/uk/environment");
-        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-        crawler.addSeed("http://www.theguardian.com/us/business");
-        crawler.addSeed("http://www.theguardian.com/us/environment");
-//////
-        crawler.addSeed("http://www.theguardian.com/travel");
-        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-        crawler.addSeed("http://www.theguardian.com/politics");
+//        crawler.addSeed("http://www.theonion.com/section/politics/");
+//        crawler.addSeed("http://www.theonion.com/section/sports/");
+//        crawler.addSeed("http://www.theonion.com/section/business");
+//        crawler.addSeed("http://www.theonion.com/section/entertainment/");
+//        crawler.addSeed("http://www.theonion.com/section/science-technology/");
+//        crawler.addSeed("http://www.theonion.com/section/after-birth");//opinion
+//        crawler.addSeed("http://www.theonion.com/");
+
+//        crawler.addSeed("http://www.theonion.com/article/pentagon-holds-gala-celebrate-25-years-bombing-ira-52213");
+//        crawler.addSeed("http://www.theguardian.com/uk/environment");
+//        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
+//        crawler.addSeed("http://www.theguardian.com/us/business");
+//        crawler.addSeed("http://www.theguardian.com/us/environment");
+////////
+//        crawler.addSeed("http://www.theguardian.com/travel");
+//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
+//        crawler.addSeed("http://www.theguardian.com/politics");
 
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
@@ -177,7 +181,7 @@ static int conter = 1;
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }

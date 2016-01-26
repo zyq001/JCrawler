@@ -18,15 +18,15 @@
             插入到数据库中时，会以Element元素源码的形式插入-->
         <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
                 </element>-->
-        <element name="content" selector="div[id=storytext]">
+        <element name="content" selector=".reading-list-items">
         </element>
-        <element name="content" selector="div[itemprop=reviewBody]">
-        </element>
+        <!--<element name="content" selector="div[itemprop=reviewBody]">-->
+        <!--</element>-->
 
-        <element name="content" selector="div[itemprop=articleBody]">
-        </element>
-        <element name="content" selector=".content__main-column--article">
-        </element>
+        <!--<element name="content" selector="div[itemprop=articleBody]">-->
+        <!--</element>-->
+        <!--<element name="content" selector=".content__main-column&#45;&#45;article">-->
+        <!--</element>-->
 
         <!--<element name="content" selector="div[class=gs-container]">-->
         <!--</element>-->
@@ -36,11 +36,11 @@
         <element name="isarticle" selector="meta[property=og:type]">
         </element>
 
-        <element name="time" selector="meta[property=article:published_time]">
+        <element name="time" selector="meta[property=og:published_time]">
         </element>
         <element name="title" selector="meta[property=og:title]">
         </element>
-        <element name="type" selector="meta[property=article:section]">
+        <element name="type" selector="meta[property=og:section]">
         </element>
         <element name="label" selector="meta[name=keywords]">
         </element>
