@@ -35,6 +35,10 @@ public class BBCExtractor extends BaseExtractor {
     public boolean init() {
         log.debug("*****init*****");
         try {
+            if(url.contains("bbc.com/japan")) {
+                log.debug("japanese article, skipped");
+                return false;
+            }
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("BBCRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
@@ -56,6 +60,9 @@ public class BBCExtractor extends BaseExtractor {
                 content.select(".component").remove();
                 content.select(".component--default").remove();
                 content.select(".story-body__link").remove();//READ MORE
+                content.select(".story-body__crosshead").remove();
+                content.select(".media-landscape").remove();
+                content.select(".story-body__unordered-list").remove();//magazine 推荐文章
 
 
                 content.select(".content-meta").remove();//fenxiang
@@ -166,6 +173,13 @@ public class BBCExtractor extends BaseExtractor {
         label = label.replaceAll(" ", "");
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
         String[] keywords = label.split(",");
+        for(String k: keywords){
+            if(TypeDictHelper.rightTheType(k)) {
+                p.setType(k.trim());
+                break;
+            }
+
+        }
         PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
 
             @Override
@@ -234,6 +248,10 @@ public class BBCExtractor extends BaseExtractor {
 //2015-09-12 08:25
 
         long t = Long.valueOf(time);
+        if (System.currentTimeMillis() - t * 1000 > 7 * 24 * 60 * 60 * 1000) {
+            log.debug("*****extractorTime  out of date*****");
+            return false;
+        }
         p.setTime(new Timestamp(t * 1000).toString());//-6 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
@@ -276,6 +294,7 @@ public class BBCExtractor extends BaseExtractor {
                 a.remove();
             }
             if(text.contains("Next story: ")) a.remove();
+            if(text.contains("Subscribe to the")) a.remove();
 //            System.out.println(a);
         }
 //        hypLinks = content.select("noscript");

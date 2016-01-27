@@ -137,7 +137,7 @@ static int conter = 1;
 //            crawler.addSeed(url);
 //        }
 
-//        crawler.addSeed("http://www.bbc.com/news/business-35416967");
+        crawler.addSeed("http://www.bbc.com/autos/");
 
         crawler.addSeed("http://www.bbc.com/");
         crawler.addSeed("http://www.bbc.com/news/science_and_environment");
@@ -149,7 +149,7 @@ static int conter = 1;
 
         crawler.addSeed("http://www.bbc.com/news/technology");
         crawler.addSeed("http://www.bbc.com/news/entertainment_and_arts");
-        crawler.addSeed("http://www.bbc.com/news/health");//us == uk
+        crawler.addSeed("http://www.bbc.com/news/health");
         crawler.addSeed("http://www.bbc.com/earth/world");
         crawler.addSeed("http://www.bbc.co.uk/arts");
 ////////
