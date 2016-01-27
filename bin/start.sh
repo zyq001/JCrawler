@@ -1,5 +1,5 @@
 #!/bin/sh
-source /home/liuhongliang/.bash_profile
+source /home/zangyq/.profile
 
 DATE=$(date +%Y%m%d%H%M)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
