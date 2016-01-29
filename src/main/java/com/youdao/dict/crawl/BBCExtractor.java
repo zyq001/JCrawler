@@ -35,14 +35,20 @@ public class BBCExtractor extends BaseExtractor {
     public boolean init() {
         log.debug("*****init*****");
         try {
-            if(url.contains("bbc.com/japan")) {
-                log.debug("japanese article, skipped");
+            if(url.matches(".*bbc.com/[japan|urdu|vietnamese|persian|arabic|zhongwen|indone" +
+            "|kyrgyz|portuguese|mundo|ukrainian|azeri|afrique|nepali|russian|swahili|bengali|hausa|gahuza|pashto|sinhala|tamil" +
+                    "|uzbek|turkce|somali|gahuza|hindi|burmese].*")) {
+                log.debug("non-English article, skipped");
                 return false;
             }
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("BBCRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
             Element article = (Element) context.output.get("isarticle");
+            if(content == null) {
+                log.debug("extrate content failed, skipped");
+                return false;
+            }
             AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
             if(article == null || article.toString().contains("article")){
                 for(Element svg: content.select("svg")){
@@ -61,7 +67,7 @@ public class BBCExtractor extends BaseExtractor {
                 content.select(".component--default").remove();
                 content.select(".story-body__link").remove();//READ MORE
                 content.select(".story-body__crosshead").remove();
-                content.select(".media-landscape").remove();
+//                content.select(".media-landscape").remove();
                 content.select(".story-body__unordered-list").remove();//magazine 推荐文章
 
 
@@ -103,12 +109,18 @@ public class BBCExtractor extends BaseExtractor {
         log.debug("*****extractorTitle*****");
 //        String title = context.output.get("title").toString();
         Element elementTitle = (Element) context.output.get("title");
-        if (elementTitle == null)
+        String title;
+        if (elementTitle == null){
+            log.info("extracte title failed skipped");
             return false;
-        String title = elementTitle.attr("content");
+        }
+        title = elementTitle.attr("content");
         if (title == null || "".equals(title.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
-            return false;
+            title = elementTitle.text();
+            if (title == null || "".equals(title.trim())) {
+                log.info("*****extractorTitle  failed***** url:" + url);
+                return false;
+            }
         }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
 //        if (title.contains("-"))
@@ -124,8 +136,18 @@ public class BBCExtractor extends BaseExtractor {
         if (elementType == null) {
             int idx = url.indexOf("bbc.com");
             String fromUrl = url.substring(idx + 8);
-            fromUrl = fromUrl.substring(0, fromUrl.indexOf("/"));
-            if(!TypeDictHelper.rightTheType(fromUrl)){
+            if(idx < 0) {
+                Element selectedType = doc.select(".navigation-arrow--open").first();
+                if(selectedType != null) {
+                    Element span = selectedType.select("span").first();
+                    if(span != null)
+                        fromUrl = span.text();
+                }
+            }else {
+
+                fromUrl = fromUrl.substring(0, fromUrl.indexOf("/"));
+            }
+            if (!TypeDictHelper.rightTheType(fromUrl)) {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("orgType", fromUrl);
                 String moreinfo = new Gson().toJson(map);
@@ -133,6 +155,7 @@ public class BBCExtractor extends BaseExtractor {
             }
             fromUrl = TypeDictHelper.getType(fromUrl, fromUrl);
             p.setType(fromUrl.trim());
+
 //            return true;
         }else {
             String type = elementType.attr("content");
@@ -248,10 +271,10 @@ public class BBCExtractor extends BaseExtractor {
 //2015-09-12 08:25
 
         long t = Long.valueOf(time);
-        if (System.currentTimeMillis() - t * 1000 > 7 * 24 * 60 * 60 * 1000) {
-            log.debug("*****extractorTime  out of date*****");
-            return false;
-        }
+//        if (System.currentTimeMillis() - t * 1000 > 7 * 24 * 60 * 60 * 1000) {
+//            log.info("*****extractorTime  out of date*****");
+//            return false;
+//        }
         p.setTime(new Timestamp(t * 1000).toString());//-6 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;

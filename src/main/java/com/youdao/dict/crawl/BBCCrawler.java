@@ -55,7 +55,7 @@ public class BBCCrawler extends DeepCrawler {
     public BBCCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://www.bbc.com/.*");
+        regexRule.addRule("http://www.bbc.co.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -126,7 +126,7 @@ static int conter = 1;
         */
 
         BBCCrawler crawler = new BBCCrawler("data/BBC");
-        crawler.setThreads(2);
+        crawler.setThreads(1);
 //
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%bbc.com%'  ORDER BY id");
 ////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
@@ -137,25 +137,26 @@ static int conter = 1;
 //            crawler.addSeed(url);
 //        }
 
-        crawler.addSeed("http://www.bbc.com/autos/");
+//        crawler.addSeed("http://www.bbc.com/autos/");
+//
+//        crawler.addSeed("http://www.bbc.com/");
+//        crawler.addSeed("http://www.bbc.com/news/science_and_environment");
+//        crawler.addSeed("http://www.bbc.com/news");
+//        crawler.addSeed("http://www.bbc.com/travel/");
+//        crawler.addSeed("http://www.bbc.com/culture/");
+//        crawler.addSeed("http://www.bbc.com/news/business");//opinion
+//        crawler.addSeed("http://www.bbc.com/news/world");
+//
+//        crawler.addSeed("http://www.bbc.com/news/technology");
+//        crawler.addSeed("http://www.bbc.com/news/entertainment_and_arts");
+//        crawler.addSeed("http://www.bbc.com/news/health");
+//        crawler.addSeed("http://www.bbc.com/earth/world");
+//        crawler.addSeed("http://www.bbc.co.uk/arts");
 
-        crawler.addSeed("http://www.bbc.com/");
-        crawler.addSeed("http://www.bbc.com/news/science_and_environment");
-        crawler.addSeed("http://www.bbc.com/news");
-        crawler.addSeed("http://www.bbc.com/travel/");
-        crawler.addSeed("http://www.bbc.com/culture/");
-        crawler.addSeed("http://www.bbc.com/news/business");//opinion
-        crawler.addSeed("http://www.bbc.com/news/world");
-
-        crawler.addSeed("http://www.bbc.com/news/technology");
-        crawler.addSeed("http://www.bbc.com/news/entertainment_and_arts");
-        crawler.addSeed("http://www.bbc.com/news/health");
-        crawler.addSeed("http://www.bbc.com/earth/world");
-        crawler.addSeed("http://www.bbc.co.uk/arts");
 ////////
-//        crawler.addSeed("http://www.theguardian.com/travel");
-//        crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-//        crawler.addSeed("http://www.theguardian.com/politics");
+        crawler.addSeed("http://www.bbc.co.uk/newsround/news");
+        crawler.addSeed("http://www.bbc.co.uk/newsround/sport");
+        crawler.addSeed("http://www.bbc.co.uk/newsround/entertainment");
 
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;

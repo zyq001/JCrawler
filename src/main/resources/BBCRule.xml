@@ -42,6 +42,8 @@
         </element>
         <element name="title" selector="meta[property=og:title]">
         </element>
+        <element name="title" selector="title">
+        </element>
         <element name="type" selector="meta[property=og:article:section]">
         </element>
         <element name="label" selector="meta[name=keywords]">
