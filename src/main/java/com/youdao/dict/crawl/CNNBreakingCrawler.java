@@ -124,7 +124,12 @@ public class CNNBreakingCrawler extends DeepCrawler {
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
                         p.getTitle(),"Breaking News",p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
                 if (updates == 1) {
-                    System.out.println("mysql插入成功");
+                    System.out.println("parser_page插入成功");
+                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+
+                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+                            id, extractor.doc.html());
+                    System.out.println("org_content插入成功");
                 }
             }
         } catch (Exception e) {

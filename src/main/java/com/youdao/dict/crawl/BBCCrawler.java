@@ -94,8 +94,13 @@ static int conter = 1;
 //                int updates = jdbcTemplate.update("update parser_page set content = ?, time = ? where url = ?", p.getContent(), p.getTime(), p.getUrl());
 
                 if (updates == 1) {
-                    System.out.println(conter++);
-                    System.out.println("mysql插入成功");
+//                    System.out.println(conter++);
+                    System.out.println("parser_page插入成功");
+                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+
+                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+                            id, extractor.doc.html());
+                    System.out.println("org_content插入成功");
                 }else{
                     System.out.println("失败插入mysql");
                 }
@@ -128,13 +133,37 @@ static int conter = 1;
         BBCCrawler crawler = new BBCCrawler("data/BBC");
         crawler.setThreads(1);
 //
-//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%bbc.com%'  ORDER BY id");
+//        int id = crawler.jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", "http://cgi.money.cnn.com/2015/10/06/technology/twitter-moments/index.html");
+
+//        byte[] b1 = {-30,-102,-67}; //ios5 //0xE2 0x9A 0xBD
+//        byte[] b2 = {-18,-128,-104}; //ios4 //"E018"
+//
+//        //-------------------------------------
+////
+//        byte[] b3 = {-16,-97,-113,-128};    //0xF0 0x9F 0x8F 0x80
+////        byte[] b4 = "\\xF0\\x9F\\x98\\x81".getBytes();
+////        Byte b = new Byte("0xF0");
+//
+////        byte[] testbytes = {105,111,115,-30,-102,-67,32,36,-18,-128,-104,32,36,-16,-97,-113,-128,32,36,-18,-112,-86};
+//        String tmpstr = new String(b3,"utf-8");
+//        byte[] tt = tmpstr.getBytes();
+//        System.out.println(tmpstr);
+//        int updates = crawler.jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+//                0, tmpstr );
+////        String s = crawler.jdbcTemplate.queryForObject("SELECT id FROM parser_page WHERE id = 0");
+//
+////        String[] ios5emoji = new String[]{new String(b1,"utf-8"),new String(b3,"utf-8")};
+////        String[] ios4emoji = new String[]{new String(b2,"utf-8"),new String(b4,"utf-8")};
+//
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT content FROM org_content WHERE id = 0");
 ////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 ////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 ////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
 //        for(int i = 0; i < urls.size(); i++){
-//            String url = (String)urls.get(i).get("url");
-//            crawler.addSeed(url);
+//            String url = (String)urls.get(i).get("content");
+//            byte[] bb = url.getBytes();
+//            System.out.println(url);
+////            crawler.addSeed(url);
 //        }
 
 //        crawler.addSeed("http://www.bbc.com/autos/");

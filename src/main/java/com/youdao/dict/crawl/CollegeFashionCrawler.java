@@ -403,7 +403,12 @@ public class CollegeFashionCrawler implements Job{
                 long aft = System.currentTimeMillis();
 //                System.out.println("插入耗时（毫秒）：" + (aft - bef));
                 if (updates == 1) {
-                    System.out.println("mysql插入成功");
+                    System.out.println("parser_page插入成功");
+                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", url);
+
+                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+                            id, jo.get("bodyTml").getAsString());
+                    System.out.println("org_content插入成功");
                 }else{
                     System.out.println("插入失败：updates：" + updates);
                 }

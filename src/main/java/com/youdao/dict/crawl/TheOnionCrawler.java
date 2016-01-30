@@ -94,8 +94,12 @@ static int conter = 1;
 //                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
 
                 if (updates == 1) {
-                    System.out.println(conter++);
-                    System.out.println("mysql插入成功");
+                    System.out.println("parser_page插入成功");
+                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+
+                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+                            id, extractor.doc.html());
+                    System.out.println("org_content插入成功");
                 }else{
                     System.out.println("失败插入mysql");
                 }

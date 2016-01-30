@@ -93,7 +93,12 @@ public class CNBCCrawler extends DeepCrawler {
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                         p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
                 if (updates == 1) {
-                    System.out.println("mysql插入成功");
+                    System.out.println("parser_page插入成功");
+                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+
+                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+                            id, extractor.doc.html());
+                    System.out.println("org_content插入成功");
                 }else
                     System.out.println("插入不成功， update： " + updates);
             }else
