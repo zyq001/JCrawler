@@ -347,7 +347,7 @@ public class NewsCanadaExtractor extends BaseExtractor {
         }
         Element elementImg = (Element) context.output.get("mainimage");
         if (elementImg != null){
-            String tmpMainImage = elementImg.attr("content");
+            String tmpMainImage = elementImg.attr("href");
             OImageUploader uploader = new OImageUploader();
             if (!"".equals(host) && !"".equals(port))
                 uploader.setProxy(host, port);
@@ -360,7 +360,7 @@ public class NewsCanadaExtractor extends BaseExtractor {
                 width = uploader.getWidth();
                 mainImage = newUrl.toString();
             } catch (Exception e1) {
-//                        e1.printStackTrace();
+                        e1.printStackTrace();
 
             }
         }
