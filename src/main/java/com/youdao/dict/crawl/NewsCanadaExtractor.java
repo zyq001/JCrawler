@@ -320,7 +320,7 @@ public class NewsCanadaExtractor extends BaseExtractor {
                 }
                 if(imageUrl.startsWith("/"))
                     imageUrl = "http://" + host + imageUrl;
-                imageUrl = imageUrl.replace(".jpg", "H.jpg");
+                imageUrl = imageUrl.replaceAll(".jpg", "H.jpg");
                 img.removeAttr("width");
                 img.removeAttr("WIDTH");
                 img.removeAttr("height");
