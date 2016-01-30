@@ -146,7 +146,7 @@ public class REAllCrawler extends DeepCrawler {
 //        int counter = 0;
         for(int i = 0; i < urls.size(); i++) {
             String url = (String) urls.get(i).get("url");
-            int id = Integer.valueOf((String)urls.get(i).get("id"));
+            int id = (Integer)urls.get(i).get("id");
             crawler.url2id.put(url, id);
             crawler.addSeed(url);
         }
