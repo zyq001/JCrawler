@@ -21,20 +21,20 @@ import java.util.*;
  * Created by liuhl on 15-8-17.
  */
 @CommonsLog
-public class WikiHowExtractor extends BaseExtractor {
+public class DgiwireExtractor extends BaseExtractor {
 
-    public WikiHowExtractor(Page page) {
+    public DgiwireExtractor(Page page) {
         super(page);
     }
 
-    public WikiHowExtractor(String url) {
+    public DgiwireExtractor(String url) {
         super(url);
     }
 
     public boolean init() {
         log.debug("*****init*****");
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("WikiHowRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("DgiwireRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
@@ -52,66 +52,17 @@ public class WikiHowExtractor extends BaseExtractor {
                 //去除分享
 
 //                Elements ems = content.select("tagged as a stub");
-                if(content.html().contains("tagged as a stub")){
-                    System.out.println("tagged as a stub");
-                    return false;
+                content.select("div[id=ob_holder]").remove();//重复题目
+                content.select(".OUTBRAIN").remove();//推荐
+                content.select(".shareaholic-canvas").remove();//分享图标
+                content.select(".wpptopdfenh").remove();//pdf版下载
+                content.select(".entry-html-box").remove();//html版
+                for(Element e: content.select(".article")){
+                    if(e.text().contains("To open/download image"))
+                        e.remove();
                 }
-                content.select(".whvid_cont").remove();//
-
-                content.select(".editsection").remove();//Edit Article
-
-                content.select(".firstHeading").remove();//重复的title
-
-                content.select(".ad_label").remove();//Ad
-
-                content.select(".absolute_stepnum").remove();//全局编号
-
-                content.select("a[id=qa_toc]").remove();//QA
-                content.select("h2[class=hidden]").remove();//隐藏 “Steps”
-                content.select("sup[class=reference]").remove();//引用上标
-
-                content.select(".qa").remove();
-//                content.select("div[class=qa section qa sticky]").remove();//QA submit
-                content.select(".section").select(".knowledgebox-section").remove();
-//                content.select("div[class=section knowledgebox-section sticky ]").remove();//3mins knowladge
-
-                content.select(".section").select(".kb-submit-section").remove();
-//                content.select("div[class=section kb-submit-section]").remove();//kb-submit-sectio
-
-                content.select(".section").select(".video").remove();
-//                content.select("div[class=section video  sticky ]").remove();//Video Youtub
-
-                Elements es = content.select(".section").select(".relatedwikihows");
-                es.remove();
-//                content.select("div .section.relatedwikihows.sticky").remove();//relatedwikihows section relatedwikihows  sticky
-
-                content.select(".section").select(".sourcesandcitations").remove();
-//                content.select("div[class=section sourcesandcitations  sticky ]").remove();//sourcesandcitations
-
-                content.select(".section").select(".video").remove();
-//                content.select("div[class=section video  sticky ]").remove();//Video Youtub
 
 
-                content.select("a[class=stepeditlink]").remove();//
-
-
-//                content.select(".section").select(".warnings").remove();
-//                content.select("div[class=section warnings  sticky ]").remove();//
-//                content.select("div[class=section video  sticky ]").remove();//
-
-
-                //加p标签
-                content.select(".mw-headline").wrap("<p></p>");
-
-                content.select(".step").wrap("<p></p>");
-
-                content.select(".step_num").wrap("<p></p>");
-
-                Elements lis = content.select("li");
-                for(Element e: lis){
-                    if(!e.parent().tagName().equals("ul"))
-                        e.unwrap();
-                }
 //                if(content.select())
 //                content.select("ul").select("li").wrap("<p></p>");
 //                content.select(".mw-headline").wrap("<i></i>");
@@ -137,11 +88,11 @@ public class WikiHowExtractor extends BaseExtractor {
             log.debug("*****extractorContent failed,return false*****");
             return false;
         }
-//        Elements hypLinks = content.select("a");
-//        for(Element a: hypLinks){
-//            a.unwrap();
-////            System.out.println(a);
-//        }
+        Elements hypLinks = content.select("a");
+        for(Element a: hypLinks){
+            a.unwrap();
+//            System.out.println(a);
+        }
         String contentHtml = content.html();
 
         contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
@@ -153,7 +104,7 @@ public class WikiHowExtractor extends BaseExtractor {
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t /n
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
-        if(contentHtml.length() < 384) return false;//太短
+        if(contentHtml.length() < 512) return false;//太短
 
         p.setContent(contentHtml);
         if (!paging && isPaging()) {
@@ -193,38 +144,28 @@ public class WikiHowExtractor extends BaseExtractor {
 
         }
 
-        Elements cats = elementType.select("li");
-        Element thirdCat = null;
-        if(cats.size() >2) thirdCat = cats.get(2);
-        if(thirdCat == null) {
-            log.error("extracte type failed, skip url:" + url);
+        String type = elementType.attr("content");
+//        int idx = type.indexOf(":");
+//        if(idx > 0) type = type.substring(0, idx);
+
+        if (type == null || "".equals(type.trim())) {
+            log.info("*****extractorTitle  failed***** url:" + url);
             return false;
         }
-        String type = thirdCat.select("a").text();
-        if(!TypeDictHelper.rightTheType(type)){
+//        if (type.contains("/")) {
+//            type = type.substring(0, type.indexOf("/"));
+//            type = type.replace("/", "");
+//        }
+
+        if (!TypeDictHelper.rightTheType(type)) {
             Map<String, String> map = new HashMap<String, String>();
             map.put("orgType", type);
             String moreinfo = new Gson().toJson(map);
             p.setMoreinfo(moreinfo);
         }
-        for(int i = 2; i < cats.size(); i++){
-            String t = cats.get(i).select("a").text();
-            String newT = TypeDictHelper.getType(t, t);
-            if(!t.equals(newT)) type = newT;
-        }
-//        String type = thirdCat.select("a").text();
-//
-        if (type == null || "".equals(type.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
-            return false;
-        }
-        if (type.contains("/")) {
-            type = type.substring(0, type.indexOf("/"));
-            type = type.replace("/", "");
-        }
-
-
+        type = TypeDictHelper.getType(type, type);
         p.setType(type.trim());
+//        p.setType(type.trim());
 
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null) {
@@ -238,7 +179,7 @@ public class WikiHowExtractor extends BaseExtractor {
             return true;
         }
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
-        String[] keywords = label.split(", ");
+        String[] keywords = label.split(",");
         PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
 
             @Override
@@ -251,7 +192,7 @@ public class WikiHowExtractor extends BaseExtractor {
         for(String keyword: keywords){
             keyword = keyword.replaceAll(",", "");
             int wordCount = keyword.split(" ").length;
-            if(wordCount <= 3) pq.add(keyword);
+            if(wordCount <= 3) pq.add(keyword.trim());
         }
         StringBuilder sb = new StringBuilder();
         while(!pq.isEmpty()){
@@ -271,25 +212,19 @@ public class WikiHowExtractor extends BaseExtractor {
             return false;
 
         }
-        String time = elementTime.attr("data-datestamp");
-        if (time == null || "".equals(time.trim())) {
-            log.info("*****extractorTime  failed***** url:" + url);
-            return false;
-        }
-//2015-09-12 08:25
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
-        Date date;
+        String time = elementTime.attr("content");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssX", Locale.US);
+        Date date = null;
         try {
             date = format.parse(time.trim());
         } catch (ParseException e) {
-            log.info("*****extractorTime format.parse  failed***** url:" + url);
-            return false;
+            e.printStackTrace();
         }
 //        if (System.currentTimeMillis() - date.getTime() > Long.MAX_VALUE >> 25) {
 //            log.debug("*****extractorTime  out of date*****");
 //            return false;
 //        }
-        p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
+        p.setTime(new Timestamp(date.getTime()).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
     }
@@ -359,6 +294,9 @@ public class WikiHowExtractor extends BaseExtractor {
                         continue;
                     }
                 }
+                if(imageUrl.startsWith("/"))
+                    imageUrl = "http://" + host + imageUrl;
+//                imageUrl = imageUrl.replaceAll(".jpg", "H.jpg");
                 img.removeAttr("width");
                 img.removeAttr("WIDTH");
                 img.removeAttr("height");
@@ -398,7 +336,7 @@ public class WikiHowExtractor extends BaseExtractor {
                 width = uploader.getWidth();
                 mainImage = newUrl.toString();
             } catch (Exception e1) {
-//                        e1.printStackTrace();
+                        e1.printStackTrace();
 
             }
         }

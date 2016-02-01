@@ -28,10 +28,6 @@ import com.youdao.dict.util.JDBCHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -49,20 +45,16 @@ import java.util.Map;
  * @author hu
  */
 @CommonsLog
-public class REAllCrawler extends DeepCrawler {
+public class DgiwireCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    static int counter = 0;
-
-    private Map<String, Integer> url2id = new HashMap<String, Integer>();
-
-    public REAllCrawler(String crawlPath) {
+    public DgiwireCrawler(String crawlPath) {
         super(crawlPath);
 
-//        regexRule.addRule("http://www.wikihow.com/.*");
+        regexRule.addRule("http://www.dgiwire.com/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -90,21 +82,16 @@ public class REAllCrawler extends DeepCrawler {
         }
     }
 
-
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            REAllExtractor extractor = new REAllExtractor(page);
-            if (extractor.init() && jdbcTemplate != null) {
-//                ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
-                        url2id.get(extractor.url), extractor.doc.html());
+            BaseExtractor extractor = new DgiwireExtractor(page);
+            if (extractor.extractor() && jdbcTemplate != null) {
+                ParserPage p = extractor.getParserPage();
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
-                    counter++;
-                    if(counter % 10 == 0)
-                        System.out.println("Counter:" + counter);
-
                 }else{
                     System.out.println("mysql插入不成功，updates：" + updates);
                 }
@@ -139,24 +126,38 @@ public class REAllCrawler extends DeepCrawler {
 
 
 
-        REAllCrawler crawler = new REAllCrawler("data/Allin");
+        DgiwireCrawler crawler = new DgiwireCrawler("data/Dgiwire");
         crawler.setThreads(3);
-//        crawler.addSeed("http://www.wikihow.com/Become-a-Wine-Maker");
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id, url FROM parser_page where host != 'www.wikihow.com' and host != 'www.thetimesinplainenglish.com' and host != 'www.wikipedia.org' and time <= '2015-12-30 13:55:45' ORDER BY time;");
-//        int counter = 0;
-        for(int i = 0; i < urls.size(); i++) {
-            String url = (String) urls.get(i).get("url");
-            int id = (Integer)urls.get(i).get("id");
-            crawler.url2id.put(url, id);
-            crawler.addSeed(url);
-        }
+        crawler.addSeed("http://www.dgiwire.com/");
+        crawler.addSeed("http://www.dgiwire.com/category/arts-entertainment/");
+        crawler.addSeed("http://www.dgiwire.com/category/arts-entertainment/page/2");
+        crawler.addSeed("http://www.dgiwire.com/category/arts-entertainment/page/3");
+        crawler.addSeed("http://www.dgiwire.com/category/headline-news/");
+        crawler.addSeed("http://www.dgiwire.com/category/headline-news/page/2");
+        crawler.addSeed("http://www.dgiwire.com/category/headline-news/page/3");
+        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/");
+        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/page/2");
+        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/page/3");
+        crawler.addSeed("http://www.dgiwire.com/category/business-finance/");
+        crawler.addSeed("http://www.dgiwire.com/category/business-finance/page/2");
+        crawler.addSeed("http://www.dgiwire.com/category/business-finance/page/3");
+        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/");
+        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/page/2");
+        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/page/3");
+        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/");
+        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/page/2");
+        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/page/3");
+        crawler.addSeed("http://www.dgiwire.com/category/science-technology/");
+        crawler.addSeed("http://www.dgiwire.com/category/science-technology/page/2");
+        crawler.addSeed("http://www.dgiwire.com/category/science-technology/page/3");
+
 
 
 //        Config
         Config.WAIT_THREAD_END_TIME = 1000*60*3;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
 //        Config.TIMEOUT_READ = 1000*30;
-        Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
+        Config.requestMaxInterval = 1000*60*30;//线程池可用最长等待时间，当前时间-上一任务启动时间>此时间就会认为hung
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
@@ -176,7 +177,7 @@ public class REAllCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(1);
+        crawler.start(2);
     }
 
 }
