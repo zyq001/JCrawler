@@ -4,11 +4,15 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
+import com.youdao.dict.util.GFWHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
 import java.net.URL;
@@ -34,12 +38,12 @@ public class YesExtractor extends BaseExtractor {
     public boolean init() {
         log.debug("*****init*****");
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("DgiwireRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("YesRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
             Element article = (Element) context.output.get("isarticle");
-            if(article == null || article.toString().contains("article")){
+            if(article == null || article.toString().contains("rticle")){
 //            String isarticle = context.output.get("isarticle").toString();
 //            if(isarticle.contains("article")){
 
@@ -52,15 +56,20 @@ public class YesExtractor extends BaseExtractor {
                 //去除分享
 
 //                Elements ems = content.select("tagged as a stub");
-                content.select("div[id=ob_holder]").remove();//重复题目
-                content.select(".OUTBRAIN").remove();//推荐
-                content.select(".shareaholic-canvas").remove();//分享图标
-                content.select(".wpptopdfenh").remove();//pdf版下载
-                content.select(".entry-html-box").remove();//html版
-                for(Element e: content.select(".article")){
-                    if(e.text().contains("To open/download image"))
-                        e.remove();
-                }
+                content.select(".article-title").remove();//重复题目
+                content.select("aside").remove();
+                content.select("share-bar").remove();
+                content.select("blockquote").unwrap();
+                content.select(".published").remove();//日期
+                content.select(".external-link").remove();//continue to read
+                content.select(".more-from-issue").remove();//
+//                content.select(".shareaholic-canvas").remove();//分享图标
+//                content.select(".wpptopdfenh").remove();//pdf版下载
+//                content.select(".entry-html-box").remove();//html版
+//                for(Element e: content.select(".article")){
+//                    if(e.text().contains("To open/download image"))
+//                        e.remove();
+//                }
 
 
 //                if(content.select())
@@ -93,6 +102,23 @@ public class YesExtractor extends BaseExtractor {
             a.unwrap();
 //            System.out.println(a);
         }
+
+        Elements videos = content.select("iframe");
+        for(Element e: videos){
+            String videoUrl = e.attr("src");
+            if(GFWHelper.isBlocked(videoUrl))
+                continue;
+            String className = e.className();
+            Tag imgTag = Tag.valueOf("p");
+//                img.appendChild(imgTag);
+            Element newImg = new Element(imgTag, "");
+            newImg.attr("class", "iframe");
+            newImg.attr("src", videoUrl);
+            newImg.attr("style", "width:100%; heigh:100%");
+            newImg.attr("heigh","200");
+            e.appendChild(newImg);
+        }
+
         String contentHtml = content.html();
 
         contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
@@ -105,6 +131,21 @@ public class YesExtractor extends BaseExtractor {
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
         if(contentHtml.length() < 512) return false;//太短
+
+        Document extractedContent = Jsoup.parse(contentHtml);
+//        for(String className: classNames){
+        Elements videoClassNames = extractedContent.select(".iframe");
+        for(Element e: videoClassNames){
+            String videoUrl = e.attr("src");
+            Tag imgTag = Tag.valueOf("iframe");
+//                img.appendChild(imgTag);
+            Element newImg = new Element(imgTag, "");
+            newImg.attr("src", videoUrl);
+            newImg.attr("style", "width:100%");
+//                newImg.a
+            e.appendChild(newImg);
+            e.unwrap();
+        }
 
         p.setContent(contentHtml);
         if (!paging && isPaging()) {
@@ -137,26 +178,12 @@ public class YesExtractor extends BaseExtractor {
     }
 
     public boolean extractorType() {
-        Element elementType = (Element) context.output.get("type");
-        if (elementType == null){
-            log.debug("*****extractorType  null  skipp url:" + url);
-            return false;
-
-        }
-
-        String type = elementType.attr("content");
-//        int idx = type.indexOf(":");
-//        if(idx > 0) type = type.substring(0, idx);
-
-        if (type == null || "".equals(type.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
-            return false;
-        }
-//        if (type.contains("/")) {
-//            type = type.substring(0, type.indexOf("/"));
-//            type = type.replace("/", "");
-//        }
-
+        String type;
+        int urlstypeidx = url.indexOf("yesmagazine.org/");
+        String typeFromUrl = url.substring(urlstypeidx + 16);
+        urlstypeidx = typeFromUrl.indexOf("/");
+        typeFromUrl = typeFromUrl.substring(0, urlstypeidx);
+        type = typeFromUrl;
         if (!TypeDictHelper.rightTheType(type)) {
             Map<String, String> map = new HashMap<String, String>();
             map.put("orgType", type);
@@ -319,6 +346,7 @@ public class YesExtractor extends BaseExtractor {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                img.attr("style", "width:100%;");//抛异常则图片没有传到Oimage，即使用原地址，很有可能是因为图片太大，很有可能没有width：100%，
             }
         }
         Element elementImg = (Element) context.output.get("mainimage");

@@ -48,16 +48,17 @@ import java.util.Map;
  * @author hu
  */
 @CommonsLog
-public class YesCrawler extends DeepCrawler {
+public class PropublicaCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
 
     JdbcTemplate jdbcTemplate = null;
 
-    public YesCrawler(String crawlPath) {
+    public PropublicaCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("http://www.yesmagazine.org/.*");
+        regexRule.addRule("https://www.propublica.org/.*");
+        regexRule.addRule("http://www.propublica.org/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
@@ -88,12 +89,12 @@ public class YesCrawler extends DeepCrawler {
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new YesExtractor(page);
+            BaseExtractor extractor = new PropublicaExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-//                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
-                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
+//                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
 
                 if (updates == 1) {
                     System.out.println("mysql插入成功");
@@ -131,7 +132,7 @@ public class YesCrawler extends DeepCrawler {
 
 
 
-        YesCrawler crawler = new YesCrawler("data/Yes");
+        PropublicaCrawler crawler = new PropublicaCrawler("data/Propublica");
         crawler.setThreads(3);
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host like '%yesmagazine%' ORDER by id desc;");
 ////        int counter = 0;
@@ -141,27 +142,15 @@ public class YesCrawler extends DeepCrawler {
 //            crawler.addSeed(url);
 //        }
 //        crawler.addSeed("http://www.yesmagazine.org/people-power/how-this-black-student-used-documents-and-dna-to-find-her-slave-ancestors-20160114");
-        crawler.addSeed("http://www.yesmagazine.org/peace-justice");
-        crawler.addSeed("http://www.yesmagazine.org/planet");
-        crawler.addSeed("http://www.yesmagazine.org/new-economy");
-        crawler.addSeed("http://www.yesmagazine.org/people-power");
-        crawler.addSeed("http://www.yesmagazine.org/happiness");
-//        crawler.addSeed("http://www.dgiwire.com/category/headline-news/page/3");
-//        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/");
-//        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/page/2");
-//        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/page/3");
-//        crawler.addSeed("http://www.dgiwire.com/category/business-finance/");
-//        crawler.addSeed("http://www.dgiwire.com/category/business-finance/page/2");
-//        crawler.addSeed("http://www.dgiwire.com/category/business-finance/page/3");
-//        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/");
-//        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/page/2");
-//        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/page/3");
-//        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/");
-//        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/page/2");
-//        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/page/3");
-//        crawler.addSeed("http://www.dgiwire.com/category/science-technology/");
-//        crawler.addSeed("http://www.dgiwire.com/category/science-technology/page/2");
-//        crawler.addSeed("http://www.dgiwire.com/category/science-technology/page/3");
+        crawler.addSeed("https://www.propublica.org/");
+        crawler.addSeed("https://www.propublica.org/investigations/");
+        crawler.addSeed("http://www.propublica.org/archive/P0/");
+        crawler.addSeed("http://www.propublica.org/archive/P20/");
+        crawler.addSeed("http://www.propublica.org/archive/P40/");
+        crawler.addSeed("http://www.propublica.org/archive/P60/");
+        crawler.addSeed("http://www.propublica.org/archive/P80/");
+        crawler.addSeed("http://www.propublica.org/archive/P100/");
+
 
 
 

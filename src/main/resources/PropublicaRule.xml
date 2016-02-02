@@ -18,9 +18,9 @@
             插入到数据库中时，会以Element元素源码的形式插入-->
         <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
                 </element>-->
-        <element name="content" selector=".content">
+        <element name="content" selector=".bodytext">
         </element>
-        <!--<element name="content" selector="div[property=articleBody]">-->
+        <!--<element name="content" selector="article">-->
         <!--</element>-->
 
         <!--<element name="content" selector=".body-content">-->
@@ -33,10 +33,10 @@
 
         <element name="description" selector="meta[property=og:description]">
         </element>
-        <element name="isarticle" selector="meta[name=DC.type]">
+        <element name="isarticle" selector="meta[property=og:type]">
         </element>
 
-        <element name="time" selector="meta[name=DC.date.created]">
+        <element name="time" selector="meta[property=article:published_time]">
         </element>
         <element name="title" selector="meta[property=og:title]">
         </element>
