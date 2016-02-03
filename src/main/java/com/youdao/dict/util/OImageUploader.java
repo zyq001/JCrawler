@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 
 /**
@@ -113,26 +115,52 @@ public class OImageUploader {
         return upload();
     }
 
-    public static void main(String[] args) {
-        System.out.println("args.length = " + args.length);
-        OImageUploader tool = new OImageUploader(
-                args.length >= 2 ? args[1] : "", args.length >= 3 ? args[2] : "", args.length >= 1 ? args[0] : "");
-        //"proxy.corp.youdao.com", "8080", args.length>1?args[1]:"");
-        InputStream fs = System.in;
-        BufferedReader br = new BufferedReader(new InputStreamReader(fs));
-        String line = null;
-        while (true) {
-            try {
-                line = br.readLine();
-                if (line == null) {
-                    break;
-                }
-                long r = tool.deal(line);
-                System.out.println(line + " : " + r);
-            } catch (Exception e) {
-                System.out.println(line + " : " + e);
-            }
-        }
+    public static void main(String[] args) throws IOException {
+//        System.out.println("args.length = " + args.length);
+//        OImageUploader tool = new OImageUploader(
+//                args.length >= 2 ? args[1] : "", args.length >= 3 ? args[2] : "", args.length >= 1 ? args[0] : "");
+//        //"proxy.corp.youdao.com", "8080", args.length>1?args[1]:"");
+//        InputStream fs = System.in;
+//        BufferedReader br = new BufferedReader(new InputStreamReader(fs));
+//        String line = null;
+//        while (true) {
+//            try {
+//                line = br.readLine();
+//                if (line == null) {
+//                    break;
+//                }
+//                long r = tool.deal(line);
+//                System.out.println(line + " : " + r);
+//            } catch (Exception e) {
+//                System.out.println(line + " : " + e);
+//            }
+//        }
 
+//        String img = "http://static.propublica.org/projects/year-in-review/assets/img/flashbang-animated.gif";
+//        String img = "http://static.propublica.org/projects/year-in-review/assets/img/generated/robot-river-screenshot-crop-480*360-d5b371.jpg";
+//        String img = "http://static.propublica.org/projects/year-in-review/assets/img/generated/ship-cutaway-480*200-614fc9.png";
+//        String img = "http://static.propublica.org/projects/year-in-review/assets/img/generated/workers-comp-limb-worth-480*360-56f230.jpg";
+        String img = "http://static.propublica.org/projects/year-in-review/assets/img/flashbang-animated.gif";
+        URL url = new URL(img);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept-Encoding", "identity");
+        conn.setRequestProperty("User-Agent","Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+//        conn.setConnectTimeout(timeout);
+//        conn.setReadTimeout(readTimeout);
+        conn.connect();
+        InputStream inStream = conn.getInputStream();
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while ((len = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, len);
+        }
+        byte[] data = outStream.toByteArray();//图片的二进制数据
+        inStream.close();
+        BufferedImage sourceImg = ImageIO.read(new ByteArrayInputStream(data));
+//        BufferedImage sourceImg = ImageIO.read(inStream);
+        int width = sourceImg.getWidth();
+        int height = sourceImg.getHeight();
     }
 }

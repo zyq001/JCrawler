@@ -337,8 +337,9 @@ public class PropublicaExtractor extends BaseExtractor {
         String mainImage = null;
         int width = 0;
         for (Element img : imgs) {
+            String imageUrl = null;
             try {
-                String imageUrl = img.attr("data-src");
+                imageUrl = img.attr("data-src");
                 //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
                 if ("".equals(imageUrl)) {
                     imageUrl = img.attr("src");
@@ -371,6 +372,7 @@ public class PropublicaExtractor extends BaseExtractor {
                     mainImage = newUrl.toString();
                 }
             } catch (Exception e) {
+                System.out.println(imageUrl);
                 e.printStackTrace();
                 img.attr("style", "width:100%;");//抛异常则图片没有传到Oimage，即使用原地址，很有可能是因为图片太大，很有可能没有width：100%，
             }
