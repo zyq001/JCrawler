@@ -80,12 +80,21 @@ public class TheStarExtractor extends BaseExtractor {
     }
 
     public boolean extractorType() {
+        String type = "";
         Element elementType = (Element) context.output.get("type");
-        if (elementType == null)
-            return false;
-        Elements types = elementType.select("p[class=breadcrumbs]").select("a");
-        Element typeE = types.get(1);
-        String type = typeE.text();
+        if (elementType == null) {
+//            return false;
+            try {
+                Elements types = elementType.select("p[class=breadcrumbs]").select("a");
+                Element typeE = types.get(1);
+                type = typeE.text();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else {
+            String wholeType = elementType.attr("content");
+            type = wholeType.split("-")[0].trim();
+        }
 //        child(0).tagName();
 //        String type = elementType.attr("content");
         if (type == null || "".equals(type.trim())) {
@@ -181,7 +190,8 @@ public class TheStarExtractor extends BaseExtractor {
             StringBuilder d = new StringBuilder();
             while (dayLength-- > 0) d.append('d');
 
-            SimpleDateFormat format = new SimpleDateFormat("E, " + d.toString()+" " + M.toString() + " yyyy ", Locale.US);
+            SimpleDateFormat format = new SimpleDateFormat("E, " + d.toString()+" " + M.toString() + " yyyy", Locale.US);
+//            SimpleDateFormat format = new SimpleDateFormat("EEEEEEEE, " + d.toString()+" " + M.toString() + " yyyy", Locale.US);
 
             try {
                 date = format.parse(time.trim());

@@ -133,7 +133,7 @@ public class PropublicaCrawler extends DeepCrawler {
 
 
         PropublicaCrawler crawler = new PropublicaCrawler("data/Propublica");
-        crawler.setThreads(1);
+        crawler.setThreads(2);
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host like '%yesmagazine%' ORDER by id desc;");
 ////        int counter = 0;
 //        for(int i = 0; i < urls.size(); i++) {

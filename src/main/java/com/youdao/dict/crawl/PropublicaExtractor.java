@@ -4,10 +4,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
-import com.youdao.dict.util.GFWHelper;
-import com.youdao.dict.util.OImageConfig;
-import com.youdao.dict.util.OImageUploader;
-import com.youdao.dict.util.TypeDictHelper;
+import com.youdao.dict.util.*;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -49,6 +46,8 @@ public class PropublicaExtractor extends BaseExtractor {
                     content = doc.select(".article-full").first();
                 }
             }
+
+            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
 
             Element article = (Element) context.output.get("isarticle");
             if(article == null || article.toString().contains("rticle")){

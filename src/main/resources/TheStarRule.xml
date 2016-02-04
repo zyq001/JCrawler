@@ -18,10 +18,10 @@
             插入到数据库中时，会以Element元素源码的形式插入-->
         <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
                 </element>-->
-        <element name="content" selector="div[class=story]">
+        <element name="content" selector=".story">
         </element>
-        <!--<element name="content" selector="div[id=content]">-->
-        <!--</element>-->
+        <element name="content" selector="div[id=slcontent3_4_sleft_0_storyDiv]">
+        </element>
 
         <!--<element name="content" selector="div[class=gs-container]">-->
         <!--</element>-->
@@ -33,10 +33,10 @@
         </element>
         <element name="title" selector="meta[name=twitter:title]">
         </element>
-        <element name="type" selector="div[class=row wrapper]">
+        <element name="type" selector="meta[name=sections]">
         </element>
 
-        <element name="label" selector="meta[name=keywords]">
+        <element name="label" selector="meta[name=tags]">
         </element>
 
         <element name="description" selector="meta[property=og:description]">
