@@ -114,7 +114,7 @@ public class OImageUploader {
         return upload();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
 //        System.out.println("args.length = " + args.length);
 //        OImageUploader tool = new OImageUploader(
 //                args.length >= 2 ? args[1] : "", args.length >= 3 ? args[2] : "", args.length >= 1 ? args[0] : "");
@@ -141,11 +141,11 @@ public class OImageUploader {
 //        String img = "http://static.propublica.org/projects/year-in-review/assets/img/generated/workers-comp-limb-worth-480*360-56f230.jpg";
 //        String img = "http://static.propublica.org/projects/year-in-review/assets/img/flashbang-animated.gif";
 
-        try {
+//        try {
             URL url = new URL(img);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
         String[] names = ImageIO.getReaderFormatNames();
 //        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //        conn.setRequestMethod("GET");
@@ -166,7 +166,7 @@ public class OImageUploader {
 //        BufferedImage sourceImg = ImageIO.read(new ByteArrayInputStream(data));
         BufferedImage sourceImg = null;
         try {
-            sourceImg = ImageIO.read(new File("ship-cutaway-480-200-614fc9.png"));
+            sourceImg = ImageIO.read(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
