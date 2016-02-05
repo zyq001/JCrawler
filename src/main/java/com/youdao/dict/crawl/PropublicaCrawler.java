@@ -57,8 +57,8 @@ public class PropublicaCrawler extends DeepCrawler {
     public PropublicaCrawler(String crawlPath) {
         super(crawlPath);
 
-        regexRule.addRule("https://www.propublica.org/.*");
-        regexRule.addRule("http://www.propublica.org/.*");
+        regexRule.addRule("https://www.propublica.org/article/.*");
+        regexRule.addRule("http://www.propublica.org/article/.*");
         regexRule.addRule("-.*jpg.*");
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
