@@ -1,6 +1,7 @@
 package com.youdao.dict.util;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +16,11 @@ public class GFWHelper {
 
     static {
         try {
-            gfwBr = new BufferedReader(new FileReader(new File("gfw.url_regex.lst")));
-            cnBr = new BufferedReader(new FileReader(new File("cn.url_regex.lst")));
+
+//            gfwBr = new BufferedReader(new FileReader(new File("gfw.url_regex.lst")));
+            gfwBr = new BufferedReader(new InputStreamReader(GFWHelper.class.getResourceAsStream("/gfw.url_regex.lst")));
+            cnBr = new BufferedReader(new InputStreamReader(GFWHelper.class.getResourceAsStream("/cn.url_regex.lst")));
+//            cnBr = new BufferedReader(new FileReader(new File("cn.url_regex.lst")));
             String readline = null;
             while((readline = gfwBr.readLine()) != null){
                 gfw_list.add(readline);

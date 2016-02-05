@@ -123,6 +123,8 @@ public class PropublicaExtractor extends BaseExtractor {
 ////            System.out.println(a);
 //        }
 
+        removeComments(content);
+
         Elements videos = content.select("iframe");
         for(Element e: videos){
             String videoUrl = e.attr("src");
@@ -167,7 +169,7 @@ public class PropublicaExtractor extends BaseExtractor {
             e.unwrap();
         }
 
-        p.setContent(contentHtml);
+        p.setContent(extractedContent.html());
         if (!paging && isPaging()) {
             mergePage(p);
         }

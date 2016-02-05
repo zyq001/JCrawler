@@ -11,6 +11,7 @@ import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -161,6 +162,7 @@ public class BaseExtractor {
         return extractorContent(false);
     }
 
+
     public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
@@ -171,6 +173,8 @@ public class BaseExtractor {
             a.unwrap();
 //            System.out.println(a);
         }
+
+        removeComments(content);
 
         String contentHtml = content.html();
 
@@ -192,6 +196,18 @@ public class BaseExtractor {
         }
         log.debug("*****extractorContent  success*****");
         return true;
+    }
+
+    public static void removeComments(Node node) {
+        for (int i = 0; i < node.childNodes().size();) {
+            Node child = node.childNode(i);
+            if (child.nodeName().equals("#comment"))
+                child.remove();
+            else {
+                removeComments(child);
+                i++;
+            }
+        }
     }
 
     public void mergePage(ParserPage p) {

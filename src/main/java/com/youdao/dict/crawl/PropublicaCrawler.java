@@ -133,7 +133,7 @@ public class PropublicaCrawler extends DeepCrawler {
 
 
         PropublicaCrawler crawler = new PropublicaCrawler("data/Propublica");
-        crawler.setThreads(2);
+        crawler.setThreads(1);
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url FROM parser_page where host like '%yesmagazine%' ORDER by id desc;");
 ////        int counter = 0;
 //        for(int i = 0; i < urls.size(); i++) {
@@ -141,15 +141,25 @@ public class PropublicaCrawler extends DeepCrawler {
 ////            String title = (String) urls.get(i).get("title");
 //            crawler.addSeed(url);
 //        }
-//        crawler.addSeed("http://www.yesmagazine.org/people-power/how-this-black-student-used-documents-and-dna-to-find-her-slave-ancestors-20160114");
-        crawler.addSeed("https://www.propublica.org/");
-        crawler.addSeed("https://www.propublica.org/investigations/");
-        crawler.addSeed("http://www.propublica.org/archive/P0/");
-        crawler.addSeed("http://www.propublica.org/archive/P20/");
-        crawler.addSeed("http://www.propublica.org/archive/P40/");
-        crawler.addSeed("http://www.propublica.org/archive/P60/");
-        crawler.addSeed("http://www.propublica.org/archive/P80/");
-        crawler.addSeed("http://www.propublica.org/archive/P100/");
+//        crawler.addSeed("http://www.propublica.org/article/paul-ryan-reading-guide-the-best-reporting-on-the-vp-candidate/");
+//        crawler.addSeed("http://www.propublica.org/article/patient-guide/");
+//        crawler.addSeed("http://www.propublica.org/article/assisted-living-giant-focus-of-federal-probe/");
+//        crawler.addSeed("http://www.propublica.org/article/army-says-war-records-gap-is-real-launches-recovery-effort/");
+//        crawler.addSeed("http://www.propublica.org/article/all-the-magnetar-trade-how-one-hedge-fund-helped-keep-the-housing-bubble");
+//        crawler.addSeed("http://www.propublica.org/article/alabama-considers-a-step-back-from-prosecuting-pregnant-drug-users/");
+//        crawler.addSeed("http://www.propublica.org/article/after-open-enrollment-activity-high-federal-health-insurance-exchange/");
+//        crawler.addSeed("http://www.propublica.org/article/afghanistan-waste-kajaki-dam-more-than-300-million-spent-still-not-done/");
+//        crawler.addSeed("http://www.propublica.org/article/advoserv-profit-and-abuse-at-homes-for-the-profoundly-disabled/");
+//        crawler.addSeed("http://www.propublica.org/article/2015-propublica-visuals-and-interactives-year-in-review/");
+        crawler.addSeed("http://www.propublica.org/article/workers-comp-conferences-expos-and-middlemen/");
+//        crawler.addSeed("https://www.propublica.org/");
+//        crawler.addSeed("https://www.propublica.org/investigations/");
+//        crawler.addSeed("http://www.propublica.org/archive/P0/");
+//        crawler.addSeed("http://www.propublica.org/archive/P20/");
+//        crawler.addSeed("http://www.propublica.org/archive/P40/");
+//        crawler.addSeed("http://www.propublica.org/archive/P60/");
+//        crawler.addSeed("http://www.propublica.org/archive/P80/");
+//        crawler.addSeed("http://www.propublica.org/archive/P100/");
 
 
 
@@ -178,7 +188,7 @@ public class PropublicaCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }

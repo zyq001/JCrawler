@@ -150,17 +150,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         return extractorContent(false);
     }
 
-    private static void removeComments(Node node) {
-        for (int i = 0; i < node.childNodes().size();) {
-            Node child = node.childNode(i);
-            if (child.nodeName().equals("#comment"))
-                child.remove();
-            else {
-                removeComments(child);
-                i++;
-            }
-        }
-    }
+
     public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
