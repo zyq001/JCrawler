@@ -35,9 +35,9 @@ public class BBCExtractor extends BaseExtractor {
     public boolean init() {
         log.debug("*****init*****");
         try {
-            if(url.matches(".*bbc.com/[japan|urdu|vietnamese|persian|arabic|zhongwen|indone" +
+            if(url.matches(".*bbc.com/(japan|urdu|vietnamese|persian|arabic|zhongwen|indone" +
             "|kyrgyz|portuguese|mundo|ukrainian|azeri|afrique|nepali|russian|swahili|bengali|hausa|gahuza|pashto|sinhala|tamil" +
-                    "|uzbek|turkce|somali|gahuza|hindi|burmese].*")) {
+                    "|uzbek|turkce|somali|gahuza|hindi|burmese).*")) {
                 log.debug("non-English article, skipped");
                 return false;
             }
@@ -50,7 +50,7 @@ public class BBCExtractor extends BaseExtractor {
                 return false;
             }
             AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
-            if(article == null || article.toString().contains("article")){
+            if(article == null || article.toString().contains("article") || url.contains("story")){
                 for(Element svg: content.select("svg")){
                     if(svg != null) svg.remove();
                 }
@@ -257,6 +257,7 @@ public class BBCExtractor extends BaseExtractor {
                 return false;
             }
             if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+//            if (System.currentTimeMillis() - date.getTime() > (long)Integer.MAX_VALUE * 10) {
                 log.debug("*****extractorTime  out of date*****");
                 return false;
             }
@@ -271,10 +272,10 @@ public class BBCExtractor extends BaseExtractor {
 //2015-09-12 08:25
 
         long t = Long.valueOf(time);
-//        if (System.currentTimeMillis() - t * 1000 > 7 * 24 * 60 * 60 * 1000) {
-//            log.info("*****extractorTime  out of date*****");
-//            return false;
-//        }
+        if (System.currentTimeMillis() - t * 1000 > 7 * 24 * 60 * 60 * 1000) {
+            log.info("*****extractorTime  out of date*****");
+            return false;
+        }
         p.setTime(new Timestamp(t * 1000).toString());//-6 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;

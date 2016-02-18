@@ -95,14 +95,14 @@ static int conter = 1;
 
                 if (updates == 1) {
 //                    System.out.println(conter++);
-                    System.out.println("parser_page插入成功");
+                    System.out.println("parser_page插入成功" + p.getUrl());
                     int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
 
                     updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
                             id, extractor.doc.html());
-                    System.out.println("org_content插入成功");
+                    System.out.println("org_content插入成功" + p.getUrl());
                 }else{
-                    System.out.println("失败插入mysql");
+                    System.out.println("失败插入mysql" + p.getUrl());
                 }
             }
         } catch (Exception e) {
@@ -131,7 +131,7 @@ static int conter = 1;
         */
 
         BBCCrawler crawler = new BBCCrawler("data/BBC");
-        crawler.setThreads(1);
+        crawler.setThreads(5);
 //
 //        int id = crawler.jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", "http://cgi.money.cnn.com/2015/10/06/technology/twitter-moments/index.html");
 
@@ -165,6 +165,7 @@ static int conter = 1;
 //            System.out.println(url);
 ////            crawler.addSeed(url);
 //        }
+//        crawler.addSeed("http://www.bbc.com/culture/story/20160112-what-i-learned-when-i-lived-as-david-bowie");
 
         crawler.addSeed("http://www.bbc.com/autos/");
 
