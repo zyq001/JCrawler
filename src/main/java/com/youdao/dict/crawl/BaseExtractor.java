@@ -5,6 +5,7 @@ import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.score.LeveDis;
 import com.youdao.dict.souplang.Context;
+import com.youdao.dict.util.GFWHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
@@ -12,6 +13,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
+import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -196,6 +198,42 @@ public class BaseExtractor {
         }
         log.debug("*****extractorContent  success*****");
         return true;
+    }
+
+    public  void replaceFrame(){
+        Elements videos = content.select("iframe");
+        for(Element e: videos){
+            String videoUrl = e.attr("src");
+            if(GFWHelper.isBlocked(videoUrl))
+                continue;
+            String className = e.className();
+            Tag imgTag = Tag.valueOf("p");
+//                img.appendChild(imgTag);
+            Element newImg = new Element(imgTag, "");
+            newImg.attr("class", "iframe");
+            newImg.attr("src", videoUrl);
+            newImg.attr("style", "width:100%; heigh:100%");
+            newImg.attr("heigh","200");
+            e.appendChild(newImg);
+        }
+    }
+
+    public String resumeFrame(String orgContent){
+        Document extractedContent = Jsoup.parse(orgContent);
+//        for(String className: classNames){
+        Elements videoClassNames = extractedContent.select(".iframe");
+        for(Element e: videoClassNames){
+            String videoUrl = e.attr("src");
+            Tag imgTag = Tag.valueOf("iframe");
+//                img.appendChild(imgTag);
+            Element newImg = new Element(imgTag, "");
+            newImg.attr("src", videoUrl);
+            newImg.attr("style", "width:100%");
+//                newImg.a
+            e.appendChild(newImg);
+            e.unwrap();
+        }
+        return extractedContent.body().html();
     }
 
     public static void removeComments(Node node) {

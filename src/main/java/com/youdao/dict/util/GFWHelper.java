@@ -36,7 +36,7 @@ public class GFWHelper {
     }
 
     public static boolean isBlocked(String url){
-        for(String patten: cn_list){
+        for(String patten: cn_list){//白名单
             if(url.matches(patten))
                 return false;
         }

@@ -147,7 +147,7 @@ public class YesExtractor extends BaseExtractor {
             e.unwrap();
         }
 
-        p.setContent(contentHtml);
+        p.setContent(extractedContent.body().html());
         if (!paging && isPaging()) {
             mergePage(p);
         }
