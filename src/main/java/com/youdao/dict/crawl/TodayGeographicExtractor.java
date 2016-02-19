@@ -3,6 +3,7 @@ package com.youdao.dict.crawl;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
@@ -15,6 +16,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -33,6 +35,7 @@ public class TodayGeographicExtractor extends BaseExtractor {
     public boolean init() {
         log.debug("*****init*****");
         try {
+            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(20));
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TodayGeographicRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");

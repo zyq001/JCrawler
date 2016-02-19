@@ -4,6 +4,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
@@ -35,6 +36,7 @@ public class TravelNationalGeographicExtractor extends BaseExtractor {
     public boolean init() {
         log.debug("*****init*****");
         try {
+            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(20));
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TravelNationalGeographicRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");

@@ -36,6 +36,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
     public boolean init() {
         log.debug("*****init*****");
         try {
+            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(20));
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("NewsNationalGeographicRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");

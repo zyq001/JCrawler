@@ -142,7 +142,8 @@ public class REAllCrawler extends DeepCrawler {
         REAllCrawler crawler = new REAllCrawler("data/Allin");
         crawler.setThreads(3);
 //        crawler.addSeed("http://www.wikihow.com/Become-a-Wine-Maker");
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id, url FROM parser_page where host != 'www.wikihow.com' and host != 'www.thetimesinplainenglish.com' and host != 'www.wikipedia.org' and time <= '2015-12-30 13:55:45' ORDER BY time;");
+        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,url FROM parser_page WHERE host not like '%wiki%' and host not like '%newscanada%' and host not like '%propublica%' and host not like '%dgiwire%' " +
+                "and host not LIKE '%yesmagazine%' and host not LIKE '%thetimesinplainenglish%' and id not in (SELECT id FROM org_content);");
 //        int counter = 0;
         for(int i = 0; i < urls.size(); i++) {
             String url = (String) urls.get(i).get("url");
