@@ -151,7 +151,7 @@ public class TravelNationalGeographicCrawler extends DeepCrawler {
         String baseUrl = "http://intelligenttravel.nationalgeographic.com/page/";
 
 
-        for(int i = 2; i < 50; i++){
+        for(int i = 2; i < 3; i++){
             crawler.addSeed(baseUrl + i + "/");
         }
 

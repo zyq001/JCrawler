@@ -141,15 +141,15 @@ public class Top10GeographicCrawler extends DeepCrawler {
         Top10GeographicCrawler crawler = new Top10GeographicCrawler("data/Top10NationalGeographic");
         crawler.setThreads(1);
 
-//        crawler.addSeed("http://travel.nationalgeographic.com/travel/top-10/");
-//        crawler.addSeed("http://photography.nationalgeographic.com/photography/");
-//        crawler.addSeed("http://photography.nationalgeographic.com/photography/photogalleries/");
-//        crawler.addSeed("http://photography.nationalgeographic.com/photography/wallpapers/");
-//
-//        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-tips/");
-//        crawler.addSeed("http://animals.nationalgeographic.com/animals/photos/");
+        crawler.addSeed("http://travel.nationalgeographic.com/travel/top-10/");
+        crawler.addSeed("http://photography.nationalgeographic.com/photography/");
+        crawler.addSeed("http://photography.nationalgeographic.com/photography/photogalleries/");
+        crawler.addSeed("http://photography.nationalgeographic.com/photography/wallpapers/");
 
-        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-of-the-day/dresden-gahan/");
+        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-tips/");
+        crawler.addSeed("http://animals.nationalgeographic.com/animals/photos/");
+
+//        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-of-the-day/dresden-gahan/");
 
 //        String baseUrl = "http://intelligenttravel.nationalgeographic.com/page/";
 //

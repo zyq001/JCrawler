@@ -148,7 +148,7 @@ public class TodayGeographicCrawler extends DeepCrawler {
 //        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-tips/");
 //        crawler.addSeed("http://animals.nationalgeographic.com/animals/photos/");
 
-        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-of-the-day/dresden-gahan/");
+        crawler.addSeed("http://photography.nationalgeographic.com/photography/photo-of-the-day/");
 
 //        String baseUrl = "http://intelligenttravel.nationalgeographic.com/page/";
 //
