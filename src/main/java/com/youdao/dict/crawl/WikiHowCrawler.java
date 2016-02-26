@@ -127,7 +127,7 @@ public class WikiHowCrawler extends DeepCrawler {
 
 
         WikiHowCrawler crawler = new WikiHowCrawler("data/WikiHow");
-        crawler.setThreads(10);
+        crawler.setThreads(30);
 //        crawler.addSeed("http://www.wikihow.com/Become-a-Wine-Maker");
         crawler.addSeed("http://www.wikihow.com/Main-Page");
         crawler.addSeed("http://www.wikihow.com/Category:Arts-and-Entertainment");

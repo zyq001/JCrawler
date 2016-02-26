@@ -130,26 +130,26 @@ public class DgiwireCrawler extends DeepCrawler {
         crawler.setThreads(3);
         crawler.addSeed("http://www.dgiwire.com/");
         crawler.addSeed("http://www.dgiwire.com/category/arts-entertainment/");
-        crawler.addSeed("http://www.dgiwire.com/category/arts-entertainment/page/2");
-        crawler.addSeed("http://www.dgiwire.com/category/arts-entertainment/page/3");
+//        crawler.addSeed("http://www.dgiwire.com/category/arts-entertainment/page/2");
+//        crawler.addSeed("http://www.dgiwire.com/category/arts-entertainment/page/3");
         crawler.addSeed("http://www.dgiwire.com/category/headline-news/");
-        crawler.addSeed("http://www.dgiwire.com/category/headline-news/page/2");
-        crawler.addSeed("http://www.dgiwire.com/category/headline-news/page/3");
+//        crawler.addSeed("http://www.dgiwire.com/category/headline-news/page/2");
+//        crawler.addSeed("http://www.dgiwire.com/category/headline-news/page/3");
         crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/");
-        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/page/2");
-        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/page/3");
+//        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/page/2");
+//        crawler.addSeed("http://www.dgiwire.com/category/beauty-fashion/page/3");
         crawler.addSeed("http://www.dgiwire.com/category/business-finance/");
-        crawler.addSeed("http://www.dgiwire.com/category/business-finance/page/2");
-        crawler.addSeed("http://www.dgiwire.com/category/business-finance/page/3");
+//        crawler.addSeed("http://www.dgiwire.com/category/business-finance/page/2");
+//        crawler.addSeed("http://www.dgiwire.com/category/business-finance/page/3");
         crawler.addSeed("http://www.dgiwire.com/category/health-medicine/");
-        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/page/2");
-        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/page/3");
+//        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/page/2");
+//        crawler.addSeed("http://www.dgiwire.com/category/health-medicine/page/3");
         crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/");
-        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/page/2");
-        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/page/3");
+//        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/page/2");
+//        crawler.addSeed("http://www.dgiwire.com/category/lifestyle-sexuality/page/3");
         crawler.addSeed("http://www.dgiwire.com/category/science-technology/");
-        crawler.addSeed("http://www.dgiwire.com/category/science-technology/page/2");
-        crawler.addSeed("http://www.dgiwire.com/category/science-technology/page/3");
+//        crawler.addSeed("http://www.dgiwire.com/category/science-technology/page/2");
+//        crawler.addSeed("http://www.dgiwire.com/category/science-technology/page/3");
 
 
 

@@ -167,7 +167,7 @@ public class SCMPCrawler extends DeepCrawler {
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(3);
+        crawler.start(2);
     }
 
 }
