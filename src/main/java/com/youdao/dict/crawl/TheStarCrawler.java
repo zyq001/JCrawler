@@ -174,13 +174,16 @@ public class TheStarCrawler extends DeepCrawler {
 
 //        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/26/Rela-members-to-help-out-ministrys-unit/");
         crawler.addSeed("http://www.thestar.com.my/News");
-        crawler.addSeed("http://www.thestar.com.my/Business/News/");
-        crawler.addSeed("http://www.thestar.com.my/Sport/");
-        crawler.addSeed("http://www.thestar.com.my/Tech/");//opinion
-        crawler.addSeed("http://www.thestar.com.my/Opinion/");
-        crawler.addSeed("http://www.thestar.com.my/Metro/Eat-And-Drink/");
 
+        if(BaseExtractor.isNormalTime()) {
 
+            crawler.addSeed("http://www.thestar.com.my/Business/News/");
+            crawler.addSeed("http://www.thestar.com.my/Sport/");
+            crawler.addSeed("http://www.thestar.com.my/Tech/");//opinion
+            crawler.addSeed("http://www.thestar.com.my/Opinion/");
+            crawler.addSeed("http://www.thestar.com.my/Metro/Eat-And-Drink/");
+
+        }
 
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理

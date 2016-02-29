@@ -131,14 +131,19 @@ public class SCMPCrawler extends DeepCrawler {
 
         SCMPCrawler crawler = new SCMPCrawler("data/SCMP");
         crawler.setThreads(2);
-//
-      crawler.addSeed("http://www.scmp.com/business");
-        crawler.addSeed("http://www.scmp.com/technology");
-        crawler.addSeed("http://www.scmp.com/lifestyle");
-        crawler.addSeed("http://www.scmp.com/comment");//opinion
-        crawler.addSeed("http://www.scmp.com/sport");
+
         crawler.addSeed("http://www.scmp.com/news");
         crawler.addSeed("http://www.scmp.com/news/hong-kong");
+//
+        if(BaseExtractor.isNormalTime()) {
+
+            crawler.addSeed("http://www.scmp.com/business");
+            crawler.addSeed("http://www.scmp.com/technology");
+            crawler.addSeed("http://www.scmp.com/lifestyle");
+            crawler.addSeed("http://www.scmp.com/comment");//opinion
+            crawler.addSeed("http://www.scmp.com/sport");
+
+        }
 //        crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
 //        crawler.addSeed("http://www.theguardian.com/us/business");
 //        crawler.addSeed("http://www.theguardian.com/us/environment");

@@ -2,6 +2,7 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
+import com.sleepycat.persist.impl.SimpleFormat;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.score.LeveDis;
 import com.youdao.dict.souplang.Context;
@@ -18,8 +19,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,6 +38,13 @@ public class BaseExtractor {
     Element content;
     List<ParserPage> parserPages = new ArrayList<ParserPage>();
 
+    static Set<String> normalHour = new HashSet<String>();
+    static{
+        normalHour.add("06");
+        normalHour.add("11");
+        normalHour.add("15");
+        normalHour.add("20");
+    }
 
     public ParserPage getParserPage() {
         return p;
@@ -60,6 +68,13 @@ public class BaseExtractor {
         JsoupUtils.makeAbs(doc, url);
         p.setHost(getHost(url));
         p.setUrl(url);
+    }
+
+    public static boolean isNormalTime(){
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
+        String hour = dateFormat.format(date);
+        return normalHour.contains(hour);
     }
 
 

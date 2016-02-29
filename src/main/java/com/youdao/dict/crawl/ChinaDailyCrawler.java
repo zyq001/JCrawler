@@ -126,65 +126,67 @@ public class ChinaDailyCrawler extends DeepCrawler {
         crawler.addSeed("http://www.chinadaily.com.cn/");
         crawler.addSeed("http://www.chinadaily.com.cn/index.html");
 
-        crawler.addSeed("http://www.chinadaily.com.cn/china/governmentandpolicy.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/china/society.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/china/scitech.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/china/education.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/coverstory.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/photo/china.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/china/newsmaker.html");
+        if(BaseExtractor.isNormalTime()) {
 
-        crawler.addSeed("http://www.chinadaily.com.cn/world/");
-        crawler.addSeed("http://www.chinadaily.com.cn/world/asia_pacific.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/world/america.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/world/latinamerica.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/world/europe.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/world/africa.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/world/middle_east.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/world/reportersjournal.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/china/governmentandpolicy.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/china/society.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/china/scitech.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/china/education.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/coverstory.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/photo/china.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/china/newsmaker.html");
 
-
-        crawler.addSeed("http://www.chinadaily.com.cn/business/");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/economy.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/policyandregulation.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/chinadata/");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/companies.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/money.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/biz_industries.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/bizopinion.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/motoring/");
-        crawler.addSeed("http://www.chinadaily.com.cn/business/tech/");
-
-        crawler.addSeed("http://www.chinadaily.com.cn/life/");
-        crawler.addSeed("http://www.chinadaily.com.cn/fashion/");
-        crawler.addSeed("http://www.chinadaily.com.cn/life/health.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/food/");
-        crawler.addSeed("http://www.chinadaily.com.cn/celebrity/");
-        crawler.addSeed("http://www.chinadaily.com.cn/travel/");
-
-        crawler.addSeed("http://www.chinadaily.com.cn/culture/");
-        crawler.addSeed("http://www.chinadaily.com.cn/culture/column.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/culture/eventandfestival.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/culture/heritage.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/culture/books.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/culture/filmandtv.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/culture/musicandtheater.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/culture/art/");
-
-        crawler.addSeed("http://www.chinadaily.com.cn/sports/");
-        crawler.addSeed("http://www.chinadaily.com.cn/sports/stars.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/sports/china.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/sports/golf.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/sports/swimming.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/sports/tennis.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/sports/volleyball.html");
-        crawler.addSeed("http://www.chinadaily.com.cn/sports/basketball.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/world/");
+            crawler.addSeed("http://www.chinadaily.com.cn/world/asia_pacific.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/world/america.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/world/latinamerica.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/world/europe.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/world/africa.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/world/middle_east.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/world/reportersjournal.html");
 
 
+            crawler.addSeed("http://www.chinadaily.com.cn/business/");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/economy.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/policyandregulation.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/chinadata/");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/companies.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/money.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/biz_industries.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/bizopinion.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/motoring/");
+            crawler.addSeed("http://www.chinadaily.com.cn/business/tech/");
 
-        crawler.addSeed("http://www.chinadaily.com.cn/opinion/");
-        crawler.addSeed("http://www.chinadaily.com.cn/regional/");
+            crawler.addSeed("http://www.chinadaily.com.cn/life/");
+            crawler.addSeed("http://www.chinadaily.com.cn/fashion/");
+            crawler.addSeed("http://www.chinadaily.com.cn/life/health.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/food/");
+            crawler.addSeed("http://www.chinadaily.com.cn/celebrity/");
+            crawler.addSeed("http://www.chinadaily.com.cn/travel/");
 
+            crawler.addSeed("http://www.chinadaily.com.cn/culture/");
+            crawler.addSeed("http://www.chinadaily.com.cn/culture/column.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/culture/eventandfestival.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/culture/heritage.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/culture/books.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/culture/filmandtv.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/culture/musicandtheater.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/culture/art/");
+
+            crawler.addSeed("http://www.chinadaily.com.cn/sports/");
+            crawler.addSeed("http://www.chinadaily.com.cn/sports/stars.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/sports/china.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/sports/golf.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/sports/swimming.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/sports/tennis.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/sports/volleyball.html");
+            crawler.addSeed("http://www.chinadaily.com.cn/sports/basketball.html");
+
+
+            crawler.addSeed("http://www.chinadaily.com.cn/opinion/");
+            crawler.addSeed("http://www.chinadaily.com.cn/regional/");
+
+        }
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
 //        Config.TIMEOUT_READ = 1000*30;

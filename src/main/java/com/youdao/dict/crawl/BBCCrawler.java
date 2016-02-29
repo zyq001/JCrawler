@@ -167,26 +167,31 @@ static int conter = 1;
 //        }
 //        crawler.addSeed("http://www.bbc.com/culture/story/20160112-what-i-learned-when-i-lived-as-david-bowie");
 
-        crawler.addSeed("http://www.bbc.com/autos/");
 
         crawler.addSeed("http://www.bbc.com/");
-        crawler.addSeed("http://www.bbc.com/news/science_and_environment");
-        crawler.addSeed("http://www.bbc.com/news");
-        crawler.addSeed("http://www.bbc.com/travel/");
-        crawler.addSeed("http://www.bbc.com/culture/");
-        crawler.addSeed("http://www.bbc.com/news/business");//opinion
-        crawler.addSeed("http://www.bbc.com/news/world");
 
-        crawler.addSeed("http://www.bbc.com/news/technology");
-        crawler.addSeed("http://www.bbc.com/news/entertainment_and_arts");
-        crawler.addSeed("http://www.bbc.com/news/health");
-        crawler.addSeed("http://www.bbc.com/earth/world");
-        crawler.addSeed("http://www.bbc.co.uk/arts");
+        if(BaseExtractor.isNormalTime()) {
+            crawler.addSeed("http://www.bbc.com/autos/");
+
+            crawler.addSeed("http://www.bbc.com/news/science_and_environment");
+            crawler.addSeed("http://www.bbc.com/news");
+            crawler.addSeed("http://www.bbc.com/travel/");
+            crawler.addSeed("http://www.bbc.com/culture/");
+            crawler.addSeed("http://www.bbc.com/news/business");//opinion
+            crawler.addSeed("http://www.bbc.com/news/world");
+
+            crawler.addSeed("http://www.bbc.com/news/technology");
+            crawler.addSeed("http://www.bbc.com/news/entertainment_and_arts");
+            crawler.addSeed("http://www.bbc.com/news/health");
+            crawler.addSeed("http://www.bbc.com/earth/world");
+            crawler.addSeed("http://www.bbc.co.uk/arts");
 
 ////////
-        crawler.addSeed("http://www.bbc.co.uk/newsround/news");
-        crawler.addSeed("http://www.bbc.co.uk/newsround/sport");
-        crawler.addSeed("http://www.bbc.co.uk/newsround/entertainment");
+            crawler.addSeed("http://www.bbc.co.uk/newsround/news");
+            crawler.addSeed("http://www.bbc.co.uk/newsround/sport");
+            crawler.addSeed("http://www.bbc.co.uk/newsround/entertainment");
+
+        }
 
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
