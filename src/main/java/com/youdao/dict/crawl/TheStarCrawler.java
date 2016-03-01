@@ -173,10 +173,11 @@ public class TheStarCrawler extends DeepCrawler {
 
 
 //        crawler.addSeed("http://www.thestar.com.my/News/Nation/2015/10/26/Rela-members-to-help-out-ministrys-unit/");
-        crawler.addSeed("http://www.thestar.com.my/News");
 
+        crawler.addSeed("http://www.thestar.com.my/");
+        crawler.addSeed("http://www.thestar.com.my/news/latest/");
         if(BaseExtractor.isNormalTime()) {
-
+            crawler.addSeed("http://www.thestar.com.my/News");
             crawler.addSeed("http://www.thestar.com.my/Business/News/");
             crawler.addSeed("http://www.thestar.com.my/Sport/");
             crawler.addSeed("http://www.thestar.com.my/Tech/");//opinion

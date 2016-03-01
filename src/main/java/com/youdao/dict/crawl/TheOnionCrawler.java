@@ -142,13 +142,15 @@ static int conter = 1;
 //        }
 
 //        crawler.addSeed("http://www.theguardian.com/money/2015/oct/31/previous-talk-talk-victims-awaiting-compensation");
+        if(BaseExtractor.isNormalTime()) {
 
-        crawler.addSeed("http://www.theonion.com/section/politics/");
-        crawler.addSeed("http://www.theonion.com/section/sports/");
-        crawler.addSeed("http://www.theonion.com/section/business");
-        crawler.addSeed("http://www.theonion.com/section/entertainment/");
-        crawler.addSeed("http://www.theonion.com/section/science-technology/");
-        crawler.addSeed("http://www.theonion.com/section/after-birth");//opinion
+            crawler.addSeed("http://www.theonion.com/section/politics/");
+            crawler.addSeed("http://www.theonion.com/section/sports/");
+            crawler.addSeed("http://www.theonion.com/section/business");
+            crawler.addSeed("http://www.theonion.com/section/entertainment/");
+            crawler.addSeed("http://www.theonion.com/section/science-technology/");
+            crawler.addSeed("http://www.theonion.com/section/after-birth");//opinion
+        }
         crawler.addSeed("http://www.theonion.com/");
 
 //        crawler.addSeed("http://www.theonion.com/article/pentagon-holds-gala-celebrate-25-years-bombing-ira-52213");

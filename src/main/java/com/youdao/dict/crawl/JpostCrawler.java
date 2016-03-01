@@ -133,9 +133,12 @@ public class JpostCrawler extends DeepCrawler {
         crawler.setThreads(10);
 //        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
         crawler.addSeed("http://www.jpost.com/");
-        crawler.addSeed("http://www.jpost.com/Business-and-Innovation");
-        crawler.addSeed("http://www.jpost.com/Middle-East");
-        crawler.addSeed("http://www.jpost.com/Opinion");
+        if(BaseExtractor.isNormalTime()) {
+
+            crawler.addSeed("http://www.jpost.com/Business-and-Innovation");
+            crawler.addSeed("http://www.jpost.com/Middle-East");
+            crawler.addSeed("http://www.jpost.com/Opinion");
+        }
 //        crawler.addSeed("http://www.cnbc.com/technology/");
 //        crawler.addSeed("http://www.cnbc.com/investing/");
 //        crawler.addSeed("http://www.cnbc.com/small-business-financing/");
