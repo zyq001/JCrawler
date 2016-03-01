@@ -142,10 +142,14 @@ public class MediumCrawler extends DeepCrawler {
 
         MediumCrawler crawler = new MediumCrawler("data/Medium");
         crawler.setThreads(3);
-        crawler.addSeed("https://medium.com/top-stories");
+
         crawler.addSeed("https://medium.com/");
+        if(BaseExtractor.isNormalTime()) {
+            crawler.addSeed("https://medium.com/top-stories");
 //        crawler.addSeed("https://medium.com/top-100/january-2015");
-        crawler.addSeed("https://medium.com/@MediumStaff/has-recommended");
+            crawler.addSeed("https://medium.com/@MediumStaff/has-recommended");
+
+        }
 //        crawler.addSeed("https://medium.com/top-100/december-2015");
 //        crawler.addSeed("https://medium.com/top-100/november-2015");
 //        crawler.addSeed("https://medium.com/top-100/october-2015");

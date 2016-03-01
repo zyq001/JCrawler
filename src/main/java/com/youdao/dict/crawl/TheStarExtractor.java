@@ -38,6 +38,12 @@ public class TheStarExtractor extends BaseExtractor {
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
+            content.select(".service-panel").remove();
+            content.select(".category-highlights").remove();
+            content.select(".interestNews").remove();
+            content.select(".relatedNews").remove();
+            content.select(".").remove();
+            content.select(".").remove();
 
 
 //            String isarticle = context.output.get("isarticle").toString();
