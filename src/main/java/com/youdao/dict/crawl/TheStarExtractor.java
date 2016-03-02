@@ -42,8 +42,8 @@ public class TheStarExtractor extends BaseExtractor {
             content.select(".category-highlights").remove();
             content.select(".interestNews").remove();
             content.select(".relatedNews").remove();
-            content.select(".").remove();
-            content.select(".").remove();
+//            content.select(".").remove();
+//            content.select(".").remove();
 
 
 //            String isarticle = context.output.get("isarticle").toString();
