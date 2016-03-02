@@ -87,6 +87,7 @@ public class TheStarExtractor extends BaseExtractor {
 
     public boolean extractorType() {
         String type = "";
+
         Element elementType = (Element) context.output.get("type");
         if (elementType == null) {
 //            return false;

@@ -20,8 +20,8 @@
                 </element>-->
         <element name="content" selector=".story-container">
         </element>
-        <element name="content" selector="div[id=slcontent3_4_sleft_0_storyDiv]">
-        </element>
+        <!--<element name="content" selector="div[id=slcontent3_4_sleft_0_storyDiv]">-->
+        <!--</element>-->
 
         <!--<element name="content" selector="div[class=gs-container]">-->
         <!--</element>-->
