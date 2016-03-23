@@ -27,6 +27,7 @@ JPSCOUNT=`jps | wc -l`
 while(($JPSCOUNT>2))
 do
   #let JPSCOUNT=JPSCOUNT-1
+  let JPSCOUNT=`jps | wc -l`
   sleep 1m
   echo $(date +%Y%m%d%H%M) "jps count:" $JPSCOUNT
 done
