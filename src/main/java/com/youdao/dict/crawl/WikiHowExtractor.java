@@ -4,6 +4,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
@@ -37,6 +38,9 @@ public class WikiHowExtractor extends BaseExtractor {
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("WikiHowRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
+
+            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(5));
+
 
             Element article = (Element) context.output.get("isarticle");
             if(article == null || article.toString().contains("article")){

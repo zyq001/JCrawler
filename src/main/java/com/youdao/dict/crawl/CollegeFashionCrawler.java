@@ -245,6 +245,11 @@ public class CollegeFashionCrawler implements Job{
         return resMap;
     }
 
+    public static boolean fetchFullPage(String url){
+
+        return  false;
+    }
+
     public static boolean fetch(String chanel){
         String jsonUrl = baseUrl + chanel;
         if(jsonUrl == null || jsonUrl.equals("") || jsonUrl.indexOf("http") < 0) return false;

@@ -4,6 +4,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
@@ -15,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -28,10 +30,18 @@ public class WashingtonExtractor extends BaseExtractor {
 
     public boolean init() {
         log.debug("*****init*****");
+
+        AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(20));
+
+
         try {
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("WashingtonPostRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
+            content.select(".external-game-embed").remove();
+            content.select(".pinnochio").remove();
+            content.select(".post-body-sig-line").remove();
+            content.select(".moat-trackable").remove();
             log.debug("*****init  success*****");
             return true;
         } catch (Exception e) {
