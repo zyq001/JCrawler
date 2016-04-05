@@ -26,6 +26,7 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -199,7 +200,7 @@ public class HackerNewsCrawler extends DeepCrawler {
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
-        requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+        AntiAntiSpiderHelper.defaultUserAgent(requester);
         RequestConfig config = requester.getRequestConfig();
         config.setTimeoutForConnect(60000);
         config.setTimeoutForRead(60000);

@@ -28,6 +28,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.youdao.dict.bean.ParserPage;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
@@ -264,7 +265,7 @@ public class CNNBreakingCrawler extends DeepCrawler {
 
             //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
             HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
-            requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+            AntiAntiSpiderHelper.defaultUserAgent(requester);
 //        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
             //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
@@ -302,7 +303,7 @@ blended-wrapper esc-wrapper
 
             //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
             HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
-            requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+            AntiAntiSpiderHelper.defaultUserAgent(requester);
 
             crawler.setResumable(false);
 

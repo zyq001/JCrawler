@@ -23,6 +23,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -188,7 +189,7 @@ public class CNNCrawler extends DeepCrawler {
 
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
-        requester.setUserAgent("Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0");
+        AntiAntiSpiderHelper.defaultUserAgent(requester);
 //        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
