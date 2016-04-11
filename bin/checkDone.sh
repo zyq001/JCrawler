@@ -24,7 +24,7 @@ PAGETABLE="parser_page"
 #mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} ${DBNAME} -e "${select_sql}"
 
 JPSCOUNT=`jps | wc -l`
-while(($JPSCOUNT>2))
+while(($JPSCOUNT>3))
 do
   #let JPSCOUNT=JPSCOUNT-1
   let JPSCOUNT=`jps | wc -l`
