@@ -28,9 +28,6 @@ import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -143,28 +140,29 @@ static int conter = 1;
 //            crawler.addSeed(url);
 //        }
 
-//        crawler.addSeed("http://www.theguardian.com/money/2015/oct/31/previous-talk-talk-victims-awaiting-compensation");
+        crawler.addSeed("http://www.theguardian.com/sport/2015/dec/10/rory-mcilroy-laser-eye-surgery");
+//        crawler.addSeed("http://www.theguardian.com/commentisfree/2016/apr/12/indigenous-australia-should-look-to-china-the-global-beacon-of-poverty-reduction");
 
-        crawler.addSeed("http://www.theguardian.com/world");
-
-        if(BaseExtractor.isNormalTime()) {
-
-            crawler.addSeed("http://www.theguardian.com/uk/sport");
-            crawler.addSeed("http://www.theguardian.com/us/sport");
-            crawler.addSeed("http://www.theguardian.com/uk/culture");
-            crawler.addSeed("http://www.theguardian.com/us/culture");
-            crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
-            crawler.addSeed("http://www.theguardian.com/us/commentisfree");
-            crawler.addSeed("http://www.theguardian.com/uk/business");
-            crawler.addSeed("http://www.theguardian.com/uk/environment");
-            crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
-            crawler.addSeed("http://www.theguardian.com/us/business");
-            crawler.addSeed("http://www.theguardian.com/us/environment");
-//////
-            crawler.addSeed("http://www.theguardian.com/travel");
-            crawler.addSeed("http://www.theguardian.com/lifeandstyle");
-            crawler.addSeed("http://www.theguardian.com/politics");
-        }
+//        crawler.addSeed("http://www.theguardian.com/world");
+//
+//        if(BaseExtractor.isNormalTime()) {
+//
+//            crawler.addSeed("http://www.theguardian.com/uk/sport");
+//            crawler.addSeed("http://www.theguardian.com/us/sport");
+//            crawler.addSeed("http://www.theguardian.com/uk/culture");
+//            crawler.addSeed("http://www.theguardian.com/us/culture");
+//            crawler.addSeed("http://www.theguardian.com/uk/commentisfree");//opinion
+//            crawler.addSeed("http://www.theguardian.com/us/commentisfree");
+//            crawler.addSeed("http://www.theguardian.com/uk/business");
+//            crawler.addSeed("http://www.theguardian.com/uk/environment");
+//            crawler.addSeed("http://www.theguardian.com/uk/technology");//us == uk
+//            crawler.addSeed("http://www.theguardian.com/us/business");
+//            crawler.addSeed("http://www.theguardian.com/us/environment");
+////////
+//            crawler.addSeed("http://www.theguardian.com/travel");
+//            crawler.addSeed("http://www.theguardian.com/lifeandstyle");
+//            crawler.addSeed("http://www.theguardian.com/politics");
+//        }
 
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;

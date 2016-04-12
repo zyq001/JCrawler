@@ -2,7 +2,6 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
-import com.sleepycat.persist.impl.SimpleFormat;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.score.LeveDis;
 import com.youdao.dict.souplang.Context;
@@ -18,6 +17,7 @@ import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -33,6 +33,7 @@ public class BaseExtractor {
     String keywords;
     public static long MINSIZE = 384;
     public ParserPage p = new ParserPage();
+    private static String contentChatset = "utf-8";
     String url;
     Document doc;
     Element content;
@@ -52,10 +53,38 @@ public class BaseExtractor {
 
     public BaseExtractor(Page page) {
         url = page.getUrl();
-        doc = page.getDoc();
+
+
+        if(!getDoc(page)){
+            doc = page.getDoc();//瞎猜字符编码，有时候会猜错
+        }
         JsoupUtils.makeAbs(doc, url);
         p.setHost(getHost(url));
         p.setUrl(url);
+    }
+
+    public boolean getDoc(Page page) {
+
+        //获取reponse中的charset
+        byte[] contentByte = page.getContent();
+        String contentType = page.getResponse().getContentType();
+        if (contentType != null && contentType.toLowerCase().contains("charset")) {
+            String contentTypeLow = contentType.toLowerCase();
+            if (!contentTypeLow.contains("utf-8")) {//不是utf8 需要取出来
+                int index = contentTypeLow.indexOf("charset=");
+                if (index >= 0)
+                    contentChatset = contentTypeLow.substring(index + 8);
+            }
+            try {
+                String html = new String(contentByte, contentChatset);
+                if (doc == null) this.doc = Jsoup.parse(html, url);
+                page.setDoc(this.doc);
+                return true;
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
     public BaseExtractor(String url) {
