@@ -160,6 +160,10 @@ public class CNBCCrawler extends DeepCrawler {
             crawler.addSeed("http://www.cnbc.com/small-business/");
             crawler.addSeed("http://www.cnbc.com/food-and-beverage/");
             crawler.addSeed("http://www.cnbc.com/restaurants/");
+            crawler.addSeed("http://www.cnbc.com/media/");
+            crawler.addSeed("http://www.cnbc.com/health-care/");
+            crawler.addSeed("http://www.cnbc.com/life-and-health-insurance/");
+            crawler.addSeed("http://www.cnbc.com/health-care-tech/");
 
         }
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
