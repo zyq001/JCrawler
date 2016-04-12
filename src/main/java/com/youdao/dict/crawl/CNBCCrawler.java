@@ -28,10 +28,6 @@ import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -135,6 +131,7 @@ public class CNBCCrawler extends DeepCrawler {
         crawler.setThreads(3);
 
 
+//        crawler.addSeed("http://www.cnbc.com/food-and-beverage/");
 
         crawler.addSeed("http://www.cnbc.com/world/");
         crawler.addSeed("http://www.cnbc.com/us-news/");
@@ -161,6 +158,8 @@ public class CNBCCrawler extends DeepCrawler {
             crawler.addSeed("http://www.cnbc.com/the-weekly/");
             crawler.addSeed("http://www.cnbc.com/europe-news/");
             crawler.addSeed("http://www.cnbc.com/small-business/");
+            crawler.addSeed("http://www.cnbc.com/food-and-beverage/");
+            crawler.addSeed("http://www.cnbc.com/restaurants/");
 
         }
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill

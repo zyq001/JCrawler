@@ -20,6 +20,8 @@
                 </element>-->
         <element name="content" selector="div[class=story]">
         </element>
+        <element name="content" selector="div[class=content]">
+        </element>
         <!--<element name="content" selector="div[id=content]">-->
         <!--</element>-->
 

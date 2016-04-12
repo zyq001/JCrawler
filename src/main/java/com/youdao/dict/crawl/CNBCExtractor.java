@@ -51,10 +51,10 @@ public class CNBCExtractor extends BaseExtractor {
 //                content.select("div[class=authoring]").remove();
                 return true;
             }
-            log.info("*****init  failed，isn't an article***** url:" + url);
+            log.error("*****init  failed，isn't an article***** url:" + url);
             return false;
         } catch (Exception e) {
-            log.info("*****init  failed***** url:" + url);
+            log.error("*****init  failed***** url:" + url);
             return false;
         }
     }
@@ -71,7 +71,7 @@ public class CNBCExtractor extends BaseExtractor {
         }
         String title = elementTitle.attr("content");
         if (title == null || "".equals(title.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
+            log.error("*****extractorTitle  failed***** url:" + url);
             return false;
         }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
@@ -85,32 +85,32 @@ public class CNBCExtractor extends BaseExtractor {
 
     public boolean extractorType() {
         Element elementType = (Element) context.output.get("type");
-        if (elementType == null) {
+        if (elementType != null) {
             log.error("extract type null, skip");
-            return false;
-        }
+//            return false;
+//        }
 //        String type = elementType.select("h2").text();
 //        child(0).tagName();
-        String type = elementType.attr("content");
-        if (type == null || "".equals(type.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
-            return false;
-        }
-        if (type.contains("/")) {
-            type = type.substring(0, type.indexOf("/"));
-            type = type.replace("/", "");
-        }
+            String type = elementType.attr("content");
+            if (type == null || "".equals(type.trim())) {
+                log.error("*****extractorType  failed***** url:" + url);
+                return false;
+            }
+            if (type.contains("/")) {
+                type = type.substring(0, type.indexOf("/"));
+                type = type.replace("/", "");
+            }
 //        type = type
 
-        if(!TypeDictHelper.rightTheType(type)){
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("orgType", type);
-            String moreinfo = new Gson().toJson(map);
-            p.setMoreinfo(moreinfo);
+            if (!TypeDictHelper.rightTheType(type)) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("orgType", type);
+                String moreinfo = new Gson().toJson(map);
+                p.setMoreinfo(moreinfo);
+            }
+            type = TypeDictHelper.getType(type, type);
+            p.setType(type.trim());
         }
-        type = TypeDictHelper.getType(type, type);
-        p.setType(type.trim());
-
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null)
             return true;
@@ -122,6 +122,20 @@ public class CNBCExtractor extends BaseExtractor {
         }
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
         String[] keywords = label.split(", ");
+
+        p.setType(TypeDictHelper.getType(keywords[0], "News"));//第一个关键字最重要，依次来查询频道，默认news
+
+
+        for(String k: keywords){
+            if(TypeDictHelper.rightTheType(k)) {
+                p.setType(k.trim());
+                break;
+            }
+
+        }
+
+
+
         PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
 
             @Override
@@ -142,7 +156,7 @@ public class CNBCExtractor extends BaseExtractor {
             if(!pq.isEmpty()) sb.append(", ");
         }
         p.setLabel(sb.toString());
-        log.debug("*****extractorTitle  success*****");
+        log.debug("*****extractortype  success*****");
         return true;
     }
 
@@ -156,7 +170,7 @@ public class CNBCExtractor extends BaseExtractor {
         }
         String time = elementTime.attr("content");
         if (time == null || "".equals(time.trim())) {
-            log.info("*****extractorTime  failed***** url:" + url);
+            log.error("*****extractorTime  failed***** url:" + url);
             return false;
         }
 //2015-09-12 08:25
@@ -168,10 +182,10 @@ public class CNBCExtractor extends BaseExtractor {
             log.error("parse time exception, skip");
             return false;
         }
-        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
-            log.info("*****extractorTime  out of date*****");
-            return false;
-        }
+//        if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+//            log.error("*****extractorTime  out of date*****");
+//            return false;
+//        }
         p.setTime(new Timestamp(date.getTime() + 8 * 60 * 60 * 1000).toString());//utc 2 cst北京时间
         log.debug("*****extractorTime  success*****");
         return true;
@@ -202,6 +216,7 @@ public class CNBCExtractor extends BaseExtractor {
         if(sociallinks != null) sociallinks.remove();//去除社交网络分享栏目框
         Elements div = div2.select("div[class=item-list");
         if (div == null) {
+
             return false;
         }
         Elements a = div.select("li");
@@ -217,6 +232,7 @@ public class CNBCExtractor extends BaseExtractor {
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
         if (content == null || p == null) {
+            log.error("no img return false");
             return false;
         }
 
