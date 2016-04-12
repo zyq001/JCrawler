@@ -86,7 +86,7 @@ public class CNBCExtractor extends BaseExtractor {
     public boolean extractorType() {
         Element elementType = (Element) context.output.get("type");
         if (elementType != null) {
-            log.error("extract type null, skip");
+//            log.error("extract type null, skip");
 //            return false;
 //        }
 //        String type = elementType.select("h2").text();

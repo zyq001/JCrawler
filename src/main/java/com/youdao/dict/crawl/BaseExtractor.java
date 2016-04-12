@@ -212,6 +212,7 @@ public class BaseExtractor {
     public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
+            log.error("extractorContent failed return false");
             return false;
         }
         Elements hypLinks = content.select("a");

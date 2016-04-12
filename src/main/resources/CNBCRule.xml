@@ -18,9 +18,9 @@
             插入到数据库中时，会以Element元素源码的形式插入-->
         <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
                 </element>-->
-        <element name="content" selector="div[class=story]">
-        </element>
-        <element name="content" selector="div[class=content]">
+        <!--<element name="content" selector="div[class=story]">-->
+        <!--</element>-->
+        <element name="content" selector="div[id=article_body]">
         </element>
         <!--<element name="content" selector="div[id=content]">-->
         <!--</element>-->
