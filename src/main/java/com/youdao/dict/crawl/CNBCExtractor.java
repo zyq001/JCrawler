@@ -123,17 +123,18 @@ public class CNBCExtractor extends BaseExtractor {
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
         String[] keywords = label.split(", ");
 
-        p.setType(TypeDictHelper.getType(keywords[0], "News"));//第一个关键字最重要，依次来查询频道，默认news
+        if(p.getType().equals("")) {
+            p.setType(TypeDictHelper.getType(keywords[0], "News"));//第一个关键字最重要，依次来查询频道，默认news
 
 
-        for(String k: keywords){
-            if(TypeDictHelper.rightTheType(k)) {
-                p.setType(k.trim());
-                break;
+            for (String k : keywords) {
+                if (TypeDictHelper.rightTheType(k)) {
+                    p.setType(k.trim());
+                    break;
+                }
+
             }
-
         }
-
 
 
         PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
