@@ -131,37 +131,37 @@ public class CNBCCrawler extends DeepCrawler {
         crawler.setThreads(3);
 
 
-        crawler.addSeed("http://www.cnbc.com/2016/04/11/chick-fil-a-ditches-iceberg-lettuce-prefers-more-nutritional-options.html");
+//        crawler.addSeed("http://www.cnbc.com/2016/04/11/chick-fil-a-ditches-iceberg-lettuce-prefers-more-nutritional-options.html");
 
-//        crawler.addSeed("http://www.cnbc.com/world/");
-//        crawler.addSeed("http://www.cnbc.com/us-news/");
-//
-//        if(BaseExtractor.isNormalTime()) {
-//
-//            crawler.addSeed("http://www.cnbc.com/technology/");
-//            crawler.addSeed("http://www.cnbc.com/investing/");
-//            crawler.addSeed("http://www.cnbc.com/small-business-financing/");
-//
-//
-//            crawler.addSeed("http://www.cnbc.com/autos/");
-//            crawler.addSeed("http://www.cnbc.com/politics/");
-//            crawler.addSeed("http://www.cnbc.com/asia-news/");
-//            crawler.addSeed("http://www.cnbc.com/world-markets/");//us == uk
-//            crawler.addSeed("http://www.cnbc.com/finance/");
-//            crawler.addSeed("http://www.cnbc.com/wall-street/");
-//////
-//            crawler.addSeed("http://www.cnbc.com/mobile/");
-//            crawler.addSeed("http://www.cnbc.com/gaming/");
-//            crawler.addSeed("http://www.cnbc.com/wealth-in-asia/");
-//            crawler.addSeed("http://www.cnbc.com/tech-transformers/");
-//            crawler.addSeed("http://www.cnbc.com/economy/");
-//            crawler.addSeed("http://www.cnbc.com/the-weekly/");
-//            crawler.addSeed("http://www.cnbc.com/europe-news/");
-//            crawler.addSeed("http://www.cnbc.com/small-business/");
-//            crawler.addSeed("http://www.cnbc.com/food-and-beverage/");
-//            crawler.addSeed("http://www.cnbc.com/restaurants/");
+        crawler.addSeed("http://www.cnbc.com/world/");
+        crawler.addSeed("http://www.cnbc.com/us-news/");
 
-//        }
+        if(BaseExtractor.isNormalTime()) {
+
+            crawler.addSeed("http://www.cnbc.com/technology/");
+            crawler.addSeed("http://www.cnbc.com/investing/");
+            crawler.addSeed("http://www.cnbc.com/small-business-financing/");
+
+
+            crawler.addSeed("http://www.cnbc.com/autos/");
+            crawler.addSeed("http://www.cnbc.com/politics/");
+            crawler.addSeed("http://www.cnbc.com/asia-news/");
+            crawler.addSeed("http://www.cnbc.com/world-markets/");//us == uk
+            crawler.addSeed("http://www.cnbc.com/finance/");
+            crawler.addSeed("http://www.cnbc.com/wall-street/");
+////
+            crawler.addSeed("http://www.cnbc.com/mobile/");
+            crawler.addSeed("http://www.cnbc.com/gaming/");
+            crawler.addSeed("http://www.cnbc.com/wealth-in-asia/");
+            crawler.addSeed("http://www.cnbc.com/tech-transformers/");
+            crawler.addSeed("http://www.cnbc.com/economy/");
+            crawler.addSeed("http://www.cnbc.com/the-weekly/");
+            crawler.addSeed("http://www.cnbc.com/europe-news/");
+            crawler.addSeed("http://www.cnbc.com/small-business/");
+            crawler.addSeed("http://www.cnbc.com/food-and-beverage/");
+            crawler.addSeed("http://www.cnbc.com/restaurants/");
+
+        }
         Config.WAIT_THREAD_END_TIME = 1000*60*5;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
 //        Config.TIMEOUT_READ = 1000*30;
