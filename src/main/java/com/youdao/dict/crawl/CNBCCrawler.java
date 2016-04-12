@@ -131,7 +131,7 @@ public class CNBCCrawler extends DeepCrawler {
         crawler.setThreads(3);
 
 
-//        crawler.addSeed("http://www.cnbc.com/food-and-beverage/");
+        crawler.addSeed("http://www.cnbc.com/food-and-beverage/");
 
         crawler.addSeed("http://www.cnbc.com/world/");
         crawler.addSeed("http://www.cnbc.com/us-news/");
