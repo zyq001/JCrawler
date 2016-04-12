@@ -2,7 +2,6 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
-import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
@@ -84,6 +83,11 @@ public class TheguardianExtractor extends BaseExtractor {
 //        if (title.contains("-"))
 //            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
 //        else
+        title = title.trim();
+        if(title.matches(".*live!?")) {
+            log.error("liveeee, skipped url: " + url);
+            return false;
+        }
         p.setTitle(title.trim());
         log.debug("*****extractorTitle  success*****");
         return true;
