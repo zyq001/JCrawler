@@ -9,7 +9,6 @@ import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
@@ -164,18 +163,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 //            System.out.println(a);
         }
         content.select("img").wrap("<p></p>");
-        Elements videos = content.select(".media--small").select("iframe");
-        for(Element e: videos){
-            String videoUrl = e.attr("src");
-            String className = e.className();
-            Tag imgTag = Tag.valueOf("p");
-//                img.appendChild(imgTag);
-            Element newImg = new Element(imgTag, "");
-            newImg.attr("class", "iframe");
-            newImg.attr("src", videoUrl);
-            newImg.attr("style", "width:100%; heigh:100%");
-            e.appendChild(newImg);
-        }
+        HideVideo(".media--small");
 //        content.select("#comment").remove();
         removeComments(content);
 
@@ -199,6 +187,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
             log.info("too short < 512 skip " + contentHtml.length());
             return false;//太短
         }
+
         Document extractedContent = Jsoup.parse(contentHtml);
 //        for(String className: classNames){
         Elements videoClassNames = extractedContent.select(".iframe");
@@ -225,6 +214,8 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         log.debug("*****extractorContent  success*****");
         return true;
     }
+
+
 
     public boolean extractorTitle() {
         log.debug("*****extractorTitle*****");

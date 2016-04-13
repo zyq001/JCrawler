@@ -2,6 +2,7 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
+import com.sun.jna.platform.win32.Sspi;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.score.LeveDis;
 import com.youdao.dict.souplang.Context;
@@ -15,6 +16,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,13 +40,17 @@ public class BaseExtractor {
     public static long MINSIZE = 384;
     public ParserPage p = new ParserPage();
     private static String contentChatset = "utf-8";
+//    private String
     String url;
     Document doc;
     Element content;
     List<ParserPage> parserPages = new ArrayList<ParserPage>();
 
+    public String CUENTTIME = new Sspi.TimeStamp().toString();
+
     static Set<String> normalHour = new HashSet<String>();
-    static{
+
+    static {
         normalHour.add("06");
         normalHour.add("11");
         normalHour.add("15");
@@ -55,12 +65,57 @@ public class BaseExtractor {
         url = page.getUrl();
 
 
-        if(!getDoc(page)){
+        if (!getDoc(page)) {
             doc = page.getDoc();//瞎猜字符编码，有时候会猜错
         }
         JsoupUtils.makeAbs(doc, url);
         p.setHost(getHost(url));
         p.setUrl(url);
+    }
+
+    /**
+     * @param LazyLoad 是否加载js
+     *
+     * */
+    public BaseExtractor(Page page, boolean LazyLoad) {
+        url = page.getUrl();
+
+        boolean getDocSucc = LazyLoad?getJsLoadedDoc(page):getDoc(page);
+
+        if (!getDocSucc) {
+            doc = page.getDoc();//瞎猜字符编码，有时候会猜错
+        }
+        JsoupUtils.makeAbs(doc, url);
+        p.setHost(getHost(url));
+        p.setUrl(url);
+    }
+
+    public boolean getJsLoadedDoc(Page page){
+
+        Capabilities caps = new DesiredCapabilities();
+        ((DesiredCapabilities) caps).setJavascriptEnabled(true);
+//        ((DesiredCapabilities) caps).setCapability("takesScreenshot", true);
+        ((DesiredCapabilities) caps).setCapability(
+                PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
+                "D:\\Crawl\\phantomjs-2.1.1-windows\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe"
+        );
+        WebDriver   driver = new PhantomJSDriver(caps);
+
+//        WebDriver driver = new ChromeDriver();
+//        driver.setJavascriptEnabled(true);
+        driver.get(page.getUrl());
+
+        try {
+            Thread.sleep(5 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String html = driver.getPageSource();
+//        if (doc == null)
+        this.doc = Jsoup.parse(html, url);
+        page.setDoc(this.doc);
+        return true;
     }
 
     public boolean getDoc(Page page) {
@@ -99,7 +154,7 @@ public class BaseExtractor {
         p.setUrl(url);
     }
 
-    public static boolean isNormalTime(){
+    public static boolean isNormalTime() {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
         String hour = dateFormat.format(date);
@@ -176,7 +231,7 @@ public class BaseExtractor {
                 long id = uploader.deal(imageUrl);
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 int twidth = uploader.getWidth();
-                if(twidth >= 300)
+                if (twidth >= 300)
                     img.attr("style", "width:100%;");
                 img.attr("src", newUrl.toString());
                 if (mainImage == null) {
@@ -209,6 +264,21 @@ public class BaseExtractor {
     }
 
 
+    public void HideVideo(String videoSelector) {
+        Elements videos = content.select("videoSelector").select("iframe");
+        for(Element e: videos){
+            String videoUrl = e.attr("src");
+            String className = e.className();
+            Tag imgTag = Tag.valueOf("p");
+//                img.appendChild(imgTag);
+            Element newImg = new Element(imgTag, "");
+            newImg.attr("class", "iframe");
+            newImg.attr("src", videoUrl);
+            newImg.attr("style", "width:100%; heigh:100%");
+            e.appendChild(newImg);
+        }
+    }
+
     public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
@@ -216,7 +286,7 @@ public class BaseExtractor {
             return false;
         }
         Elements hypLinks = content.select("a");
-        for(Element a: hypLinks){
+        for (Element a : hypLinks) {
             a.unwrap();
 //            System.out.println(a);
         }
@@ -235,7 +305,7 @@ public class BaseExtractor {
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
 
-        if(contentHtml.length() < 384) return false;//太短
+        if (contentHtml.length() < 384) return false;//太短
 
         p.setContent(contentHtml);
         if (!paging && isPaging()) {
@@ -245,11 +315,11 @@ public class BaseExtractor {
         return true;
     }
 
-    public  void replaceFrame(){
+    public void replaceFrame() {
         Elements videos = content.select("iframe");
-        for(Element e: videos){
+        for (Element e : videos) {
             String videoUrl = e.attr("src");
-            if(GFWHelper.isBlocked(videoUrl))
+            if (GFWHelper.isBlocked(videoUrl))
                 continue;
             String className = e.className();
             Tag imgTag = Tag.valueOf("p");
@@ -258,16 +328,16 @@ public class BaseExtractor {
             newImg.attr("class", "iframe");
             newImg.attr("src", videoUrl);
             newImg.attr("style", "width:100%; heigh:100%");
-            newImg.attr("heigh","200");
+            newImg.attr("heigh", "200");
             e.appendChild(newImg);
         }
     }
 
-    public String resumeFrame(String orgContent){
+    public String resumeFrame(String orgContent) {
         Document extractedContent = Jsoup.parse(orgContent);
 //        for(String className: classNames){
         Elements videoClassNames = extractedContent.select(".iframe");
-        for(Element e: videoClassNames){
+        for (Element e : videoClassNames) {
             String videoUrl = e.attr("src");
             Tag imgTag = Tag.valueOf("iframe");
 //                img.appendChild(imgTag);
@@ -282,7 +352,7 @@ public class BaseExtractor {
     }
 
     public static void removeComments(Node node) {
-        for (int i = 0; i < node.childNodes().size();) {
+        for (int i = 0; i < node.childNodes().size(); ) {
             Node child = node.childNode(i);
             if (child.nodeName().equals("#comment"))
                 child.remove();
