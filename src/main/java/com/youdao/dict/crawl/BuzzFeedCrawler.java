@@ -205,29 +205,29 @@ public class BuzzFeedCrawler extends DeepCrawler {
         //http://www.buzzfeed.com/tech.xml
         //http://www.buzzfeed.com/tvandmovies.xml
 //
-//        crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
-//        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "Books");
-//        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "Food");
-//        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "Health");
-//        crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
-//        crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
-//        crawler.addRSSSeeds("http://www.buzzfeed.com/politics.xml", "Politics");
-//        crawler.addRSSSeeds("http://www.buzzfeed.com/sports.xml", "Sports");
-//        crawler.addRSSSeeds("http://www.buzzfeed.com/animals.xml", "Lifestyle");
-//        crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
-//        crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
+        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "Books");
+        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "Food");
+        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "Health");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/politics.xml", "Politics");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/sports.xml", "Sports");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/animals.xml", "Lifestyle");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
 
-//        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia");
-//        url2Type.put("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia", "Food");
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%buzzfeed.com%' and type = 'Food' ORDER BY id desc");
-//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
-//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-        for(int i = 0; i < urls.size(); i++){
-            String url = (String)urls.get(i).get("url");
-            crawler.addSeed(url);
-            url2Type.put(url, "Food");
-        }
+////        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia");
+////        url2Type.put("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia", "Food");
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%buzzfeed.com%' and type = 'Food' ORDER BY id desc");
+////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
+////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+//        for(int i = 0; i < urls.size(); i++){
+//            String url = (String)urls.get(i).get("url");
+//            crawler.addSeed(url);
+//            url2Type.put(url, "Food");
+//        }
 
 //        crawler.addSeed("http://www.gamezone.com/originals/theory-dark-souls-bloodborne-and-demon-s-souls-share-a-" +
 //                "timeline-jzqb");
