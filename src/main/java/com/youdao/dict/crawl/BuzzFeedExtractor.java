@@ -130,7 +130,7 @@ public class BuzzFeedExtractor extends BaseExtractor {
 //        type = TypeDictHelper.getType(type, type);
         String type = BuzzFeedCrawler.url2Type.get(url);
         if(type != null && !type.equals("")) {
-            p.setType("Game");
+            p.setType(type);
         }else{
             log.error("cant get type, false");
             return false;
