@@ -448,7 +448,14 @@ public class BuzzFeedExtractor extends BaseExtractor {
                 OImageUploader uploader = new OImageUploader();
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
+                long id = 0;
+                try {
+                    id = uploader.deal(imageUrl);
+                }catch (Exception e){
+                    img.attr("src", imageUrl);
+                    log.error("use org img url, continue");
+                    continue;
+                }
                 //                long id = 0;
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 int twidth = uploader.getWidth();
