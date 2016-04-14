@@ -236,8 +236,14 @@ public class BaseExtractor {
                 OImageUploader uploader = new OImageUploader();
                 if (!"".equals(host) && !"".equals(port))
                     uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
+                long id = 0;
+                try {
+                    id = uploader.deal(imageUrl);
+                }catch (Exception e){
+                    img.attr("src", imageUrl);
+                    log.error("use org img url, continue");
+                    continue;
+                }                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 int twidth = uploader.getWidth();
                 if (twidth >= 300)
                     img.attr("style", "width:100%;");

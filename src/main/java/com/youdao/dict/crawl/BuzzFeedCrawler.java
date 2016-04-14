@@ -108,9 +108,9 @@ public class BuzzFeedCrawler extends DeepCrawler {
             BaseExtractor extractor = new BuzzFeedExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
-//                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
+//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+//                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
+                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
 
                 if (updates == 1) {
                     System.out.println("parser_page插入成功");
@@ -207,7 +207,7 @@ public class BuzzFeedCrawler extends DeepCrawler {
 //
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
 //        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "Books");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "Food");
+//        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "Food");
 //        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "Health");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
@@ -217,8 +217,8 @@ public class BuzzFeedCrawler extends DeepCrawler {
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
 
-//        crawler.addSeed("https://www.buzzfeed.com/christinebyrne/the-ainsworth-buzzfeed-burger#.ywmJ5lwoaJ");
-//
+        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=.fcMA4MRwaA");
+        url2Type.put("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=.fcMA4MRwaA", "Food");
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%gamezone.com%'  ORDER BY id desc");
 ////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 ////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
