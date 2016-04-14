@@ -206,9 +206,9 @@ public class BuzzFeedCrawler extends DeepCrawler {
         //http://www.buzzfeed.com/tvandmovies.xml
 //
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
-//        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "");
-//        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "");
+//        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "Books");
+        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "Food");
+//        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "Health");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/politics.xml", "Politics");
