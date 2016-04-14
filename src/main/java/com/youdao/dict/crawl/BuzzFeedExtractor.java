@@ -257,14 +257,9 @@ public class BuzzFeedExtractor extends BaseExtractor {
 //        Elements navgs = content.select(".article-pagination");
 //        content.select(".article-pagination").remove();
 
-        Elements hypLinks = content.select("a");
-        for (Element a : hypLinks) {
-            if(a.text().toLowerCase().matches("(.*[^\\\\w])?(more|here)+(s|ment|\\\\'s|ies|es|ing|ship|ion|e)?([^\\\\w].*)?"))
+        HideSomeHypLink(content);
 
-                continue;
-            a.unwrap();
-//            System.out.println(a);
-        }
+        Elements hypLinks;
         hypLinks = content.select("noscript");
         for (Element a : hypLinks) {
             a.unwrap();
@@ -324,6 +319,9 @@ public class BuzzFeedExtractor extends BaseExtractor {
         log.debug("*****extractorContent  success*****");
         return true;
     }
+
+
+
     //dt,, 为了防止导航栏出现在正文，需要抽出来，
     public boolean isPaging(Elements navgs){
         if(navgs == null || navgs.size() < 1){
