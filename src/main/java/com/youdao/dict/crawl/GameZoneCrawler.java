@@ -27,9 +27,6 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
-import java.util.Map;
-
 //import org.joda.time.DateTime;
 
 //import org.joda.time.DateTime;
@@ -93,9 +90,9 @@ static int conter = 1;
             BaseExtractor extractor = new GameZoneExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-//                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
-                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
+//                int updates = jdbcTemplate.update("update parser_page set content = ? where url = ?", p.getContent(), p.getUrl());
 
                 if (updates == 1) {
                     System.out.println("parser_page插入成功");
@@ -141,29 +138,34 @@ static int conter = 1;
         GameZoneCrawler crawler = new GameZoneCrawler("data/gamezone");
         crawler.setThreads(3);
 //
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%gamezone.com%'  ORDER BY id desc");
-//        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
-//        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
-//        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-        for(int i = 0; i < urls.size(); i++){
-            String url = (String)urls.get(i).get("url");
-            crawler.addSeed(url);
-        }
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%gamezone.com%'  ORDER BY id desc");
+////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
+////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
+////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
+//        for(int i = 0; i < urls.size(); i++){
+//            String url = (String)urls.get(i).get("url");
+//            crawler.addSeed(url);
+//        }
 
 //        crawler.addSeed("http://www.gamezone.com/originals/theory-dark-souls-bloodborne-and-demon-s-souls-share-a-" +
 //                "timeline-jzqb");
-//        if(BaseExtractor.isNormalTime()) {
-//
-//            crawler.addSeed("http://www.gamezone.com/reviews");
-//            crawler.addSeed("http://www.theonion.com/section/sports/");
-//            crawler.addSeed("http://www.theonion.com/section/business");
-//            crawler.addSeed("http://www.theonion.com/section/entertainment/");
-//            crawler.addSeed("http://www.theonion.com/section/science-technology/");
-//            crawler.addSeed("http://www.theonion.com/section/after-birth");//opinion
-//        }
-//        crawler.addSeed("http://www.gamezone.com/");
-//        crawler.addSeed("http://www.gamezone.com/news");
-//        crawler.addSeed("http://www.gamezone.com/reviews");
+        if(BaseExtractor.isNormalTime()) {
+
+            crawler.addSeed("http://www.gamezone.com/reviews");
+            crawler.addSeed("http://www.gamezone.com/reviews//pc");
+            crawler.addSeed("http://www.gamezone.com/reviews//xbox-one");
+            crawler.addSeed("http://www.gamezone.com/previews");
+            crawler.addSeed("http://www.gamezone.com/news//pc");
+            crawler.addSeed("http://www.gamezone.com/news//xbox-one");
+            crawler.addSeed("http://www.gamezone.com/news//ps4");
+            crawler.addSeed("http://www.gamezone.com/news//wiiu");
+            crawler.addSeed("http://www.gamezone.com/news//ps3");
+            crawler.addSeed("http://www.gamezone.com/news//xbox-360");
+            crawler.addSeed("http://www.gamezone.com/news//mobile");
+            crawler.addSeed("http://www.gamezone.com/originals");
+        }
+        crawler.addSeed("http://www.gamezone.com/");
+        crawler.addSeed("http://www.gamezone.com/news");
 
 
 //        crawler.addSeed("http://www.theonion.com/article/pentagon-holds-gala-celebrate-25-years-bombing-ira-52213");
@@ -201,7 +203,7 @@ static int conter = 1;
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(1);
+        crawler.start(2);
     }
 
 }
