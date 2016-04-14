@@ -140,6 +140,7 @@ public class BaseExtractor {
                 e.printStackTrace();
             }
         }
+        log.error("getDoc(page) faile, false");
         return false;
     }
 
@@ -169,8 +170,10 @@ public class BaseExtractor {
     public boolean extractor() {
         if (init())
             return extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorDescription() && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel());
-        else
+        else {
+            log.info("init failed");
             return false;
+        }
     }
 
     public boolean init() {
@@ -215,6 +218,7 @@ public class BaseExtractor {
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
         if (content == null || p == null) {
+            log.error("content or p null, return false");
             return false;
         }
        /* if (host.equals(port)) return true;*/
@@ -309,7 +313,10 @@ public class BaseExtractor {
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
 
-        if (contentHtml.length() < 384) return false;//太短
+        if (contentHtml.length() < 384) {
+            log.error("content after extracted too short, false");
+            return false;//太短
+        }
 
         p.setContent(contentHtml);
         if (!paging && isPaging()) {
@@ -373,7 +380,7 @@ public class BaseExtractor {
     public boolean extractorTags(String... keywords) {
         log.debug("*****extractorTags*****");
         if (content == null) {
-            log.info("*****extractorTags  failed***** url:" + url);
+            log.error("*****extractorTags  failed***** url:" + url);
             return false;
         }
         try {
@@ -398,7 +405,7 @@ public class BaseExtractor {
             log.debug("*****extractorTags  success*****");
             return true;
         } catch (Exception e) {
-            log.info("*****extractorTags  failed***** url:" + url);
+            log.error("*****extractorTags  failed***** url:" + url);
             return false;
         }
     }

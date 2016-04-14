@@ -2,7 +2,6 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
-import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
@@ -42,7 +41,7 @@ public class CNNExtractor extends BaseExtractor {
             log.debug("*****init  success*****");
             return true;
         } catch (Exception e) {
-            log.info("*****init  failed***** url:" + url);
+            log.error("*****init  failed***** url:" + url);
             return false;
         }
     }
@@ -51,7 +50,7 @@ public class CNNExtractor extends BaseExtractor {
         log.debug("*****extractorTitle*****");
         String title = (String) context.output.get("title");
         if (title == null || "".equals(title.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
+            log.error("*****extractorTitle  failed***** url:" + url);
             return false;
         }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
@@ -72,7 +71,7 @@ public class CNNExtractor extends BaseExtractor {
         }
 
         if (type == null || "".equals(type.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
+            log.error("*****extractorTitle  failed***** url:" + url);
             return false;
         }
         if (type.contains("/")) {
@@ -103,17 +102,20 @@ public class CNNExtractor extends BaseExtractor {
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
-        if (elementTime == null)
+        if (elementTime == null) {
+            log.error("extract time null, return false");
             return false;
+        }
         String time = elementTime.attr("content");
         if (time == null || "".equals(time.trim())) {
-            log.info("*****extractorTime  failed***** url:" + url);
+            log.error("*****extractorTime  failed***** url:" + url);
             return false;
         }
         try {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
             Date date = format.parse(time);
             if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+                log.error("out of date, return false");
                 return false;
             }
             p.setTime(new Timestamp(date.getTime()).toString());
@@ -149,6 +151,7 @@ public class CNNExtractor extends BaseExtractor {
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
         if (content == null || p == null) {
+            log.error("content or p null, return false");
             return false;
         }
        /* if (host.equals(port)) return true;*/
