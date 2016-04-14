@@ -207,7 +207,7 @@ public class BuzzFeedCrawler extends DeepCrawler {
 //
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
 //        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "");
+//        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "");
 //        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
@@ -217,7 +217,7 @@ public class BuzzFeedCrawler extends DeepCrawler {
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
 
-//        crawler.addSeed("https://www.buzzfeed.com/alannabennett/made-from-internet-cats#.wtd5e2rgL5");
+        crawler.addSeed("https://www.buzzfeed.com/christinebyrne/the-ainsworth-buzzfeed-burger#.ywmJ5lwoaJ");
 //
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%gamezone.com%'  ORDER BY id desc");
 ////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");

@@ -47,10 +47,15 @@ public class BuzzFeedExtractor extends BaseExtractor {
             content = (Element) context.output.get("content");
 
 
-            if(doc.hasClass("quiz")){
+            Elements quiz = doc.select(".quiz");
+            if(quiz != null && quiz.size() > 0){
                 log.error("quiz, skipped, url: " + url);
                 return false;
             }
+//            if(doc.hasClass("quiz")){
+//                log.error("quiz, skipped, url: " + url);
+//                return false;
+//            }
 //            if(content != null){
 //                getJsLoadedDoc(_page);
 //                context = soupLang.extract(doc);
@@ -133,8 +138,8 @@ public class BuzzFeedExtractor extends BaseExtractor {
             p.setType(type);
         }else{
             log.error("cant get type, false");
-//            return false;
-            return true;
+            return false;
+//            return true;
         }
 
 //        Element elementLabel = (Element) context.output.get("label");
