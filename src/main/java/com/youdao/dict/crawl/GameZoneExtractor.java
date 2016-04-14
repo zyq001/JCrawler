@@ -1,6 +1,7 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
@@ -11,6 +12,7 @@ import org.pojava.datetime.DateTime;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
@@ -48,6 +50,7 @@ public class GameZoneExtractor extends BaseExtractor {
 
 
             //为了可以选中视频，清除多余tag
+            content.select(".author-bio").remove();
             content.select(".share-buttons").remove();
             content.select("hgroup").remove();
             content.select(".Adsense").remove();
@@ -217,8 +220,14 @@ public class GameZoneExtractor extends BaseExtractor {
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
             return false;
         }
+
+        Elements navgs = content.select(".article-pagination");
+        content.select(".article-pagination").remove();
+
         Elements hypLinks = content.select("a");
         for (Element a : hypLinks) {
+            if(a.hasClass("page") || a.hasClass("next"))
+                continue;
             a.unwrap();
 //            System.out.println(a);
         }
@@ -227,6 +236,12 @@ public class GameZoneExtractor extends BaseExtractor {
             a.unwrap();
 //            System.out.println(a);
         }
+
+//        if(paging){
+//            //删除作者信息
+//            content.select("author-bio").remove();
+//        }
+
 
         content.select(".meta-time").remove();
 
@@ -258,27 +273,103 @@ public class GameZoneExtractor extends BaseExtractor {
         contentHtml = resumeFrame(contentHtml);
 
         p.setContent(embed.html() + contentHtml);
-        if (!paging && isPaging()) {
-            mergePage(p);
+        if (!paging && isPaging(navgs)) {
+            mergePage(p,navgs);
         }
         log.debug("*****extractorContent  success*****");
         return true;
     }
+    //dt,, 为了防止导航栏出现在正文，需要抽出来，
+    public boolean isPaging(Elements navgs){
+        if(navgs == null){
+            return false;
+        }
+        Elements a = navgs.select("a");
+        if (a == null || a.size() < 0) {
+            return false;
+        }
+
+        for(Element ea: a){
+            if(ea.hasClass("next") && ea.hasClass("active")){
+                log.info("last page, url: " + url);
+                return false;
+            }
+        }
+        return true;
+    }
 
     public boolean isPaging() {
-        Elements div = doc.select("div[id=div_currpage]");
+        Elements div = doc.select(".article-pagination");
         if (div == null) {
             return false;
         }
         Elements a = div.select("a");
-        if (a == null || a.size() == 0) {
+        if (a == null || a.size() < 0) {
             return false;
         }
+
+        for(Element ea: a){
+            if(ea.hasClass("next") && ea.hasClass("active"));{
+                log.info("last page, url: " + url);
+                return false;
+            }
+        }
+
+//        Elements isActive = a.select(".active");
+//
+//        if (isActive != null && isActive.size() > 0) {
+//            log.info("last page, url: " + url);
+//            return false;
+//        }
+
 /*        if (url.equals(a.get(0).attr("href"))) {
             return false;
         }*/
         return true;
     }
+
+    public void mergePage(ParserPage p, Elements navgs) {
+        log.debug("*****mergePage*****");
+        Elements aa = navgs.select("a");
+
+        Element next = aa.select(".next").get(0);
+        String nextUrl = next.attr("href");
+        try {
+            nextUrl = new URL(new URL(url), nextUrl).toString();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        GameZoneExtractor extractor = new GameZoneExtractor(nextUrl);
+        extractor.init();
+        extractor.extractorAndUploadImg();
+        extractor.extractorContent(false);
+        p.setContent(p.getContent() + extractor.getParserPage().getContent());
+
+        log.info("*****mergePage end*****");
+    }
+
+    public void mergePage(ParserPage p) {
+        log.debug("*****mergePage*****");
+        Elements aa = doc.select(".article-pagination").select("a");
+
+        Element next = aa.select(".next").get(0);
+        String nextUrl = next.attr("href");
+        try {
+            nextUrl = new URL(new URL(url), nextUrl).toString();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        GameZoneExtractor extractor = new GameZoneExtractor(nextUrl);
+        extractor.init();
+        extractor.extractorAndUploadImg();
+        extractor.extractorContent(true);
+        p.setContent(p.getContent() + extractor.getParserPage().getContent());
+
+        log.info("*****mergePage end*****");
+    }
+
 
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
@@ -324,25 +415,25 @@ public class GameZoneExtractor extends BaseExtractor {
             }
         }
 //         if(mainImage == null) {
-        Element elementImg = (Element) context.output.get("mainimage");
-        if (elementImg != null) {
-            String tmpMainImage = elementImg.attr("content");
-            OImageUploader uploader = new OImageUploader();
-            if (!"".equals(host) && !"".equals(port))
-                uploader.setProxy(host, port);
-            long id = 0;
-            try {
-                id = uploader.deal(tmpMainImage);
-
-//                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                width = uploader.getWidth();
-                mainImage = newUrl.toString();
-            } catch (Exception e1) {
-//                        e1.printStackTrace();
-
-            }
-        }
+//        Element elementImg = (Element) context.output.get("mainimage");
+//        if (elementImg != null) {
+//            String tmpMainImage = elementImg.attr("content");
+//            OImageUploader uploader = new OImageUploader();
+//            if (!"".equals(host) && !"".equals(port))
+//                uploader.setProxy(host, port);
+//            long id = 0;
+//            try {
+//                id = uploader.deal(tmpMainImage);
+//
+////                long id = 0;
+//                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
+//                width = uploader.getWidth();
+//                mainImage = newUrl.toString();
+//            } catch (Exception e1) {
+////                        e1.printStackTrace();
+//
+//            }
+//        }
         p.setMainimage(mainImage);
         if (width == 0) {
             p.setStyle("no-image");
