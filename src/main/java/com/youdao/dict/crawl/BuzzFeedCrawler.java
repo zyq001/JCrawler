@@ -217,8 +217,8 @@ public class BuzzFeedCrawler extends DeepCrawler {
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
 //        crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
 
-        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=.fcMA4MRwaA");
-        url2Type.put("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=.fcMA4MRwaA", "Food");
+        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia");
+        url2Type.put("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia", "Food");
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%gamezone.com%'  ORDER BY id desc");
 ////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 ////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
