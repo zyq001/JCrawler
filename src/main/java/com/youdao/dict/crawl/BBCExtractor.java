@@ -38,7 +38,7 @@ public class BBCExtractor extends BaseExtractor {
             if(url.matches(".*bbc.com/(japan|urdu|vietnamese|persian|arabic|zhongwen|indone" +
             "|kyrgyz|portuguese|mundo|ukrainian|azeri|afrique|nepali|russian|swahili|bengali|hausa|gahuza|pashto|sinhala|tamil" +
                     "|uzbek|turkce|somali|gahuza|hindi|burmese).*")) {
-                log.debug("non-English article, skipped");
+                log.error("non-English article, skipped");
                 return false;
             }
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("BBCRule.xml"));
@@ -46,7 +46,7 @@ public class BBCExtractor extends BaseExtractor {
             content = (Element) context.output.get("content");
             Element article = (Element) context.output.get("isarticle");
             if(content == null) {
-                log.debug("extrate content failed, skipped");
+                log.error("extrate content failed, skipped");
                 return false;
             }
             AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
@@ -99,7 +99,7 @@ public class BBCExtractor extends BaseExtractor {
             log.error("*****init  failed，isn't an article***** url:" + url);
             return false;
         } catch (Exception e) {
-            log.info("*****init  failed***** url:" + url);
+            log.error("*****init  failed***** url:" + url);
             e.printStackTrace();
             return false;
         }
@@ -111,14 +111,14 @@ public class BBCExtractor extends BaseExtractor {
         Element elementTitle = (Element) context.output.get("title");
         String title;
         if (elementTitle == null){
-            log.info("extracte title failed skipped");
+            log.error("extracte title failed skipped");
             return false;
         }
         title = elementTitle.attr("content");
         if (title == null || "".equals(title.trim())) {
             title = elementTitle.text();
             if (title == null || "".equals(title.trim())) {
-                log.info("*****extractorTitle  failed***** url:" + url);
+                log.error("*****extractorTitle  failed***** url:" + url);
                 return false;
             }
         }
@@ -160,7 +160,7 @@ public class BBCExtractor extends BaseExtractor {
         }else {
             String type = elementType.attr("content");
             if (type == null || "".equals(type.trim())) {
-                log.info("*****extractorTitle  failed***** url:" + url);
+                log.error("*****extractorTitle  failed***** url:" + url);
                 return false;
             }
             if (type.contains("/")) {
@@ -239,8 +239,10 @@ public class BBCExtractor extends BaseExtractor {
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
-        if (elementTime == null)
+        if (elementTime == null) {
+            log.error("elementTime null, false");
             return false;
+        }
         elementTime = elementTime.select(".date").first();
         if (elementTime == null ) {
             elementTime = (Element) context.output.get("time");
@@ -254,11 +256,12 @@ public class BBCExtractor extends BaseExtractor {
             try {
                 date = format.parse(time.trim());
             } catch (ParseException e) {
+                log.error("parse time exception,false");
                 return false;
             }
             if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
 //            if (System.currentTimeMillis() - date.getTime() > (long)Integer.MAX_VALUE * 10) {
-                log.debug("*****extractorTime  out of date*****");
+                log.error("*****extractorTime  out of date*****");
                 return false;
             }
 
@@ -273,7 +276,7 @@ public class BBCExtractor extends BaseExtractor {
 
         long t = Long.valueOf(time);
         if (System.currentTimeMillis() - t * 1000 > 7 * 24 * 60 * 60 * 1000) {
-            log.info("*****extractorTime  out of date*****");
+            log.error("*****extractorTime  out of date*****");
             return false;
         }
         p.setTime(new Timestamp(t * 1000).toString());//-6 2 cst北京时间
@@ -303,6 +306,7 @@ public class BBCExtractor extends BaseExtractor {
     public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
+            log.error("content or p null, or no paging and too short, false");
             return false;
         }
         Elements hypLinks = content.select("a");
@@ -339,7 +343,10 @@ public class BBCExtractor extends BaseExtractor {
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
 
-        if(contentHtml.length() < 384) return false;//太短
+        if(contentHtml.length() < 384) {
+            log.error("content after extracted too short, false");
+            return false;//太短
+        }
 
         p.setContent(contentHtml);
         if (!paging && isPaging()) {
@@ -367,6 +374,7 @@ public class BBCExtractor extends BaseExtractor {
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
         if (content == null || p == null) {
+            log.error("upload image, content or p null, false");
             return false;
         }
        /* if (host.equals(port)) return true;*/
