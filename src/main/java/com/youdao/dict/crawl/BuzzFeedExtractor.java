@@ -251,7 +251,7 @@ public class BuzzFeedExtractor extends BaseExtractor {
 
         Elements hypLinks = content.select("a");
         for (Element a : hypLinks) {
-            if(a.text().matches("(.*[^\\\\w])?(more|here)+(s|ment|\\\\'s|ies|es|ing|ship|ion|e)?([^\\\\w].*)?"))
+            if(a.text().toLowerCase().matches("(.*[^\\\\w])?(more|here)+(s|ment|\\\\'s|ies|es|ing|ship|ion|e)?([^\\\\w].*)?"))
 
                 continue;
             a.unwrap();
