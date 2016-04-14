@@ -204,18 +204,18 @@ public class BuzzFeedCrawler extends DeepCrawler {
         //http://www.buzzfeed.com/politics.xml
         //http://www.buzzfeed.com/tech.xml
         //http://www.buzzfeed.com/tvandmovies.xml
-
-        crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "");
+//
+//        crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
+//        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "");
         crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/politics.xml", "Politics");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/sports.xml", "Sports");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/animals.xml", "Lifestyle");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
+//        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "");
+//        crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
+//        crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
+//        crawler.addRSSSeeds("http://www.buzzfeed.com/politics.xml", "Politics");
+//        crawler.addRSSSeeds("http://www.buzzfeed.com/sports.xml", "Sports");
+//        crawler.addRSSSeeds("http://www.buzzfeed.com/animals.xml", "Lifestyle");
+//        crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
+//        crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
 
 //        crawler.addSeed("https://www.buzzfeed.com/alannabennett/made-from-internet-cats#.wtd5e2rgL5");
 //
