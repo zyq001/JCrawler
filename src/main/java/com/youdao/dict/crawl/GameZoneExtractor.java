@@ -278,13 +278,18 @@ public class GameZoneExtractor extends BaseExtractor {
         p.setContent(embed.html() + contentHtml);
         if (!paging && isPaging(navgs)) {
             mergePage(p,navgs);
+        }else{//不需要merge
+            //把保留的作者信息加上
+            if(resoveEs != null){
+                p.setContent(p.getContent() + resoveEs.html());
+            }
         }
         log.debug("*****extractorContent  success*****");
         return true;
     }
     //dt,, 为了防止导航栏出现在正文，需要抽出来，
     public boolean isPaging(Elements navgs){
-        if(navgs == null){
+        if(navgs == null || navgs.size() < 1){
             return false;
         }
         Elements a = navgs.select("a");
@@ -295,10 +300,7 @@ public class GameZoneExtractor extends BaseExtractor {
         for(Element ea: a){
             if(ea.hasClass("next") && ea.hasClass("active")){
                 log.info("last page, url: " + url);
-                //把保留的作者信息加上
-                if(resoveEs != null){
-                    p.setContent(p.getContent() + resoveEs.html());
-                }
+
                 return false;
             }
         }
