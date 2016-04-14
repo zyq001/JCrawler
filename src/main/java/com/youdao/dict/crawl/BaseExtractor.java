@@ -10,6 +10,7 @@ import com.youdao.dict.util.GFWHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -144,7 +145,10 @@ public class BaseExtractor {
 
     public BaseExtractor(String url) {
         try {
-            this.doc = Jsoup.connect(url).get();
+            Connection conn = Jsoup.connect(url);
+            conn.timeout(1000 * 60 * 3);
+            this.doc = conn.get();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
