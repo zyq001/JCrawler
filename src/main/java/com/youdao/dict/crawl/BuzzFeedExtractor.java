@@ -1,49 +1,56 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
-//import org.joda.time.DateTime;
-import org.pojava.datetime.DateTime;
-
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.pojava.datetime.DateTime;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.sql.Timestamp;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
+//import org.joda.time.DateTime;
 
 /**
  * Created by liuhl on 15-8-17.
  */
 @CommonsLog
-public class GameZoneExtractor extends BaseExtractor {
+public class BuzzFeedExtractor extends BaseExtractor {
 
     public Page _page;
 
     public Elements resoveEs;
 
-    public GameZoneExtractor(Page page) {
+    public BuzzFeedExtractor(Page page) {
 //        super(page, true);
         super(page);
         this._page = page;
     }
 
-    public GameZoneExtractor(String url) {
+    public BuzzFeedExtractor(String url) {
         super(url);
     }
 
     public boolean init() {
         log.debug("*****init*****");
         try {
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("GameZoneRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("BuzzFeedRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
 
+            if(doc.hasClass("quiz")){
+                log.error("quiz, skipped, url: " + url);
+                return false;
+            }
 //            if(content != null){
 //                getJsLoadedDoc(_page);
 //                context = soupLang.extract(doc);
@@ -52,13 +59,13 @@ public class GameZoneExtractor extends BaseExtractor {
 
 
             //为了可以选中视频，清除多余tag
-            resoveEs = content.select(".author-bio");
-            content.select(".author-bio").remove();
-            content.select(".share-buttons").remove();
-            content.select("hgroup").remove();
-            content.select(".Adsense").remove();
-            content.select(".title-divider").remove();
-            content.select("div[id=disqus_thread]").remove();
+//            resoveEs = content.select(".author-bio");
+//            content.select(".author-bio").remove();
+//            content.select(".share-buttons").remove();
+//            content.select("hgroup").remove();
+//            content.select(".Adsense").remove();
+//            content.select(".title-divider").remove();
+//            content.select("div[id=disqus_thread]").remove();
 
 //            log.error("*****init  failed，isn't an article***** url:" + url);
             log.debug("init success");
@@ -77,11 +84,13 @@ public class GameZoneExtractor extends BaseExtractor {
         log.debug("*****extractorTitle*****");
 //        String title = context.output.get("title").toString();
         Element elementTitle = (Element) context.output.get("title");
-        if (elementTitle == null)
+        if (elementTitle == null) {
+            log.error("element time null, false");
             return false;
+        }
         String title = elementTitle.attr("content");
         if (title == null || "".equals(title.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
+            log.error("*****extractorTitle  failed***** url:" + url);
             return false;
         }
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
@@ -119,7 +128,13 @@ public class GameZoneExtractor extends BaseExtractor {
 //            p.setMoreinfo(moreinfo);
 //        }
 //        type = TypeDictHelper.getType(type, type);
-        p.setType("Game");
+        String type = BuzzFeedCrawler.url2Type.get(url);
+        if(type != null && !type.equals("")) {
+            p.setType("Game");
+        }else{
+            log.error("cant get type, false");
+            return false;
+        }
 
 //        Element elementLabel = (Element) context.output.get("label");
         Element elementLabel = (Element) context.output.get("label");
@@ -127,19 +142,19 @@ public class GameZoneExtractor extends BaseExtractor {
             log.error("no keywords, continue");
             return false;
         }
-        Elements elementLabels = elementLabel.select("a");
-        List<String> keywords = new ArrayList<String>(elementLabels.size());
-        for (Element tag : elementLabels) {
-            keywords.add(tag.text());
-        }
-//        String label = elementLabels.text();
+//        Elements elementLabels = elementLabel.select("a");
+//        List<String> keywords = new ArrayList<String>(elementLabels.size());
+//        for (Element tag : elementLabels) {
+//            keywords.add(tag.text());
+//        }
+        String label = elementLabel.attr("content");
 ////        String label = (String) context.output.get("label");
 //        if (label == null || "".equals(label.trim())) {
 //            log.error("*****extractorLabel  failed,continue***** url:" + url);
 //            return true;
 //        }
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
-//        String[] keywords = label.split(",");
+        String[] keywords = label.split(",");
         PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>() {
 
             @Override
@@ -165,13 +180,18 @@ public class GameZoneExtractor extends BaseExtractor {
 
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
+        SyndEntry entry = BuzzFeedCrawler.url2SyndEntry.get(url);
+        if(entry != null && entry.getPublishedDate() != null){
+            p.setTime(new Timestamp(entry.getPublishedDate().getTime()).toString());
+            return true;
+        }
         Element elementTime = (Element) context.output.get("time");
         if (elementTime == null) {
             log.error("get Time Null, use CUENTTIME");
             p.setTime(CUENTTIME);
             return true;
         }
-        elementTime.select("a").remove();
+//        elementTime.select("a").remove();
         String time = elementTime.text();
         if (time == null || "".equals(time.trim())) {
             log.error("get Time Null22, use CUENTTIME");
@@ -221,15 +241,18 @@ public class GameZoneExtractor extends BaseExtractor {
     public boolean extractorContent(boolean paging) {
         log.debug("*****extractorContent*****");
         if (content == null || p == null || (!paging && content.text().length() < MINSIZE)) {
+            log.error("extractorContent failed return false");
+
             return false;
         }
 
-        Elements navgs = content.select(".article-pagination");
-        content.select(".article-pagination").remove();
+//        Elements navgs = content.select(".article-pagination");
+//        content.select(".article-pagination").remove();
 
         Elements hypLinks = content.select("a");
         for (Element a : hypLinks) {
-            if(a.hasClass("page") || a.hasClass("next"))
+            if(a.text().matches("(.*[^\\\\w])?(more|here)+(s|ment|\\\\'s|ies|es|ing|ship|ion|e)?([^\\\\w].*)?"))
+
                 continue;
             a.unwrap();
 //            System.out.println(a);
@@ -255,6 +278,8 @@ public class GameZoneExtractor extends BaseExtractor {
 
         content.select(".embed").remove();
 
+        content.select(".reuseble-id").remove();
+        content.select(".print").remove();
 
         replaceFrame();
         removeComments(content);
@@ -271,13 +296,17 @@ public class GameZoneExtractor extends BaseExtractor {
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
 
-        if (contentHtml.length() < 384) return false;//太短
+        if (contentHtml.length() < 384){
+            log.error("content after extracted too short, false");
+
+            return false;//太短
+        }
 
         contentHtml = resumeFrame(contentHtml);
 
         p.setContent(embed.html() + contentHtml);
-        if (!paging && isPaging(navgs)) {
-            mergePage(p,navgs);
+        if (!paging && isPaging()) {
+            mergePage(p);
         }else{//不需要merge
             //把保留的作者信息加上
             if(resoveEs != null){
@@ -309,7 +338,7 @@ public class GameZoneExtractor extends BaseExtractor {
 
     public boolean isPaging() {
         Elements div = doc.select(".article-pagination");
-        if (div == null) {
+        if (div == null || div.size() < 1) {
             return false;
         }
         Elements a = div.select("a");
@@ -349,7 +378,7 @@ public class GameZoneExtractor extends BaseExtractor {
             e.printStackTrace();
         }
 
-        GameZoneExtractor extractor = new GameZoneExtractor(nextUrl);
+        BuzzFeedExtractor extractor = new BuzzFeedExtractor(nextUrl);
         extractor.init();
         extractor.extractorAndUploadImg();
         extractor.extractorContent(false);
@@ -370,7 +399,7 @@ public class GameZoneExtractor extends BaseExtractor {
             e.printStackTrace();
         }
 
-        GameZoneExtractor extractor = new GameZoneExtractor(nextUrl);
+        BuzzFeedExtractor extractor = new BuzzFeedExtractor(nextUrl);
         extractor.init();
         extractor.extractorAndUploadImg();
         extractor.extractorContent(true);
@@ -383,6 +412,8 @@ public class GameZoneExtractor extends BaseExtractor {
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
         if (content == null || p == null) {
+            log.error("upload image, content or p null, false");
+
             return false;
         }
        /* if (host.equals(port)) return true;*/
@@ -395,8 +426,11 @@ public class GameZoneExtractor extends BaseExtractor {
                 String imageUrl = img.attr("src");
                 //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
                 if ("".equals(imageUrl)) {
-                    img.remove();
-                    continue;
+                    imageUrl = img.attr("rel:bf_image_src");
+                    if("".equals(imageUrl)) {
+                        img.remove();
+                        continue;
+                    }
                 }
                 img.removeAttr("width");
                 img.removeAttr("WIDTH");
@@ -424,7 +458,6 @@ public class GameZoneExtractor extends BaseExtractor {
             }
         }
 //         if(mainImage == null) {
-
         Element elementImg = (Element) context.output.get("mainimage");
         if (elementImg != null) {
             String tmpMainImage = elementImg.attr("content");

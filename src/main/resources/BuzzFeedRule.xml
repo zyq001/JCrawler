@@ -1,0 +1,55 @@
+<docs>
+    <!--SoupLang是WebCollector 2.x中的一种爬虫脚本，以Jsoup内置的CSS SELECTOR为基础
+        程序会将SoupLang的脚本(xml)转换成语义树，所以不用担心配置文件会影响网页抽取的速度。  
+        SoupLang除了有Jsoup选择元素、元素属性的功能外，还可以做正则匹配、写数据库等操作-->
+
+    <!--一个doc对应一个网页,url表示网页的正则。
+        如果有多个doc的url，和网页的url匹配，程序会执行多次(所有对应的doc)。
+        所以尽量保证一个网页之能匹配到一个doc。
+
+        多个doc的设计，是为了爬虫统一管理配置设定的。很多爬虫要多多种不同类型的页面做抽取，抽取
+        的代码很难统一管理。利用SoupLang这种脚本，可以将所有的抽取业务写道一个
+
+    -->
+    <doc>
+
+        <!--抽取正文-->
+        <!--这里如果将name="content"放到element中，name的输出是一个jsoup的Element元素，
+            插入到数据库中时，会以Element元素源码的形式插入-->
+        <!--        <element name="content" selector="p[style=TEXT-ALIGN: left">
+                </element>-->
+        <element name="content" selector="div[data-print=body]">
+        </element>
+        <!--<element name="content" selector="div[itemprop=reviewBody]">-->
+        <!--</element>-->
+
+        <!--<element name="content" selector="div[itemprop=articleBody]">-->
+        <!--</element>-->
+        <!--<element name="content" selector=".content__main-column&#45;&#45;article">-->
+        <!--</element>-->
+
+        <!--<element name="content" selector="div[class=gs-container]">-->
+        <!--</element>-->
+
+        <element name="description" selector="meta[name=description]">
+        </element>
+        <element name="description" selector="meta[property=og:description]">
+        </element>
+        <!--<element name="isarticle" selector="meta[property=og:type]">-->
+        <!--</element>-->
+
+        <element name="time" selector=".buzz-datetime">
+        </element>
+        <element name="title" selector="meta[property=og:title]">
+        </element>
+        <element name="type" selector="meta[property=og:section]">
+        </element>
+        <element name="label" selector="meta[name=news_keywords]">
+        </element>
+        <element name="mainimage" selector="meta[property=og:image]">
+        </element>
+
+    </doc>
+
+
+</docs>
