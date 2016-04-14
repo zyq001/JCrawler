@@ -133,7 +133,8 @@ public class BuzzFeedExtractor extends BaseExtractor {
             p.setType(type);
         }else{
             log.error("cant get type, false");
-            return false;
+//            return false;
+            return true;
         }
 
 //        Element elementLabel = (Element) context.output.get("label");
@@ -423,10 +424,10 @@ public class BuzzFeedExtractor extends BaseExtractor {
         int width = 0;
         for (Element img : imgs) {
             try {
-                String imageUrl = img.attr("src");
+                String imageUrl = img.attr("rel:bf_image_src");
                 //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
                 if ("".equals(imageUrl)) {
-                    imageUrl = img.attr("rel:bf_image_src");
+                    imageUrl = img.attr("src");
                     if("".equals(imageUrl)) {
                         img.remove();
                         continue;
