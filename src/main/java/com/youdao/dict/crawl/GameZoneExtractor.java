@@ -24,6 +24,8 @@ public class GameZoneExtractor extends BaseExtractor {
 
     public Page _page;
 
+    public Elements resoveEs;
+
     public GameZoneExtractor(Page page) {
 //        super(page, true);
         super(page);
@@ -50,6 +52,7 @@ public class GameZoneExtractor extends BaseExtractor {
 
 
             //为了可以选中视频，清除多余tag
+            resoveEs = content.select(".author-bio");
             content.select(".author-bio").remove();
             content.select(".share-buttons").remove();
             content.select("hgroup").remove();
@@ -292,6 +295,10 @@ public class GameZoneExtractor extends BaseExtractor {
         for(Element ea: a){
             if(ea.hasClass("next") && ea.hasClass("active")){
                 log.info("last page, url: " + url);
+                //把保留的作者信息加上
+                if(resoveEs != null){
+                    p.setContent(p.getContent() + resoveEs.html());
+                }
                 return false;
             }
         }
