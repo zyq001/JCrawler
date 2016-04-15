@@ -108,7 +108,7 @@ public class BaseExtractor {
         ((DesiredCapabilities) caps).setCapability(
                 PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
 //                "D:\\Crawl\\phantomjs-2.1.1-windows\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe"
-                "/global/exec/zangyq/phantomjs-2.1.1-linux-x86_64/bin"
+                "/global/exec/zangyq/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"
         );
         WebDriver   driver = new PhantomJSDriver(caps);
 
