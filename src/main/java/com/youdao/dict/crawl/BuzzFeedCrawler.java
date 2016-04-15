@@ -216,6 +216,8 @@ public class BuzzFeedCrawler extends DeepCrawler {
         crawler.addRSSSeeds("http://www.buzzfeed.com/animals.xml", "Lifestyle");
         crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
         crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
+        crawler.addRSSSeeds("https://www.buzzfeed.com/category/culture.xml", "Culture");
+        crawler.addRSSSeeds("http://www.buzzfeed.com/category/science.xml", "Science");
 
 ////        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia");
 ////        url2Type.put("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia", "Food");

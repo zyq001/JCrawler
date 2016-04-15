@@ -274,6 +274,8 @@ public class BuzzFeedExtractor extends BaseExtractor {
 
         content.select(".meta-time").remove();
 
+        content.select(".instagram-media").remove();//彻底删除instagram吧
+
         Elements embed = content.select(".embed");
         Elements jses = embed.select("script");
         jses.attr("data-height", "100%");
