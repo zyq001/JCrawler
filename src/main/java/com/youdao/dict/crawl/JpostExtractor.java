@@ -40,8 +40,10 @@ public class JpostExtractor extends BaseExtractor {
 
 
 
-            String isarticle = context.output.get("isarticle").toString();
-            if(isarticle.contains("Article")){
+//            String isarticle = context.output.get("isarticle").toString();
+//            if(isarticle.contains("Article")){
+                Element article = (Element) context.output.get("isarticle");
+                if(article == null || article.toString().contains("rticle")){
                 content.select(".article-top-wrap").remove();
                 content.select(".social-share-buttons").remove();//
                 content.select(".sjXXfadScG").remove();
