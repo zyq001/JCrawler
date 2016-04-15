@@ -206,19 +206,24 @@ public class BuzzFeedCrawler extends DeepCrawler {
         //http://www.buzzfeed.com/tvandmovies.xml
 //
         crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "Books");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "Food");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "Health");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
         crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
         crawler.addRSSSeeds("http://www.buzzfeed.com/politics.xml", "Politics");
         crawler.addRSSSeeds("http://www.buzzfeed.com/sports.xml", "Sports");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/animals.xml", "Lifestyle");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
-        crawler.addRSSSeeds("https://www.buzzfeed.com/category/culture.xml", "Culture");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/category/science.xml", "Science");
 
+        if(BaseExtractor.isNormalTime()) {
+
+
+            crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "Books");
+            crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "Food");
+            crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "Health");
+            crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
+            crawler.addRSSSeeds("http://www.buzzfeed.com/animals.xml", "Lifestyle");
+            crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
+            crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
+            crawler.addRSSSeeds("https://www.buzzfeed.com/category/culture.xml", "Culture");
+            crawler.addRSSSeeds("http://www.buzzfeed.com/category/science.xml", "Science");
+
+        }
 ////        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia");
 ////        url2Type.put("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia", "Food");
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%buzzfeed.com%' and type = 'Food' ORDER BY id desc");
