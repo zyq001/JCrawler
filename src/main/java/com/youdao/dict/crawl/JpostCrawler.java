@@ -88,16 +88,17 @@ public class JpostCrawler extends DeepCrawler {
             BaseExtractor extractor = new JpostExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
-                if (updates == 1) {
-                    System.out.println("parser_page插入成功");
-                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
-
-                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
-                            id, extractor.doc.html());
-                    System.out.println("org_content插入成功");
-                }
+                System.out.println("************************succ");
+//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+//                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage(),p.getMoreinfo());
+//                if (updates == 1) {
+//                    System.out.println("parser_page插入成功");
+//                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+//
+//                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+//                            id, extractor.doc.html());
+//                    System.out.println("org_content插入成功");
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,7 +134,7 @@ public class JpostCrawler extends DeepCrawler {
 
 
         JpostCrawler crawler = new JpostCrawler("data/Jpost");
-        crawler.setThreads(5);
+        crawler.setThreads(2);
 //        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
 
         RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsIsraelNews.aspx","News");

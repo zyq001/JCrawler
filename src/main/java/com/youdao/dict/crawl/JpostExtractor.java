@@ -88,7 +88,9 @@ public class JpostExtractor extends BaseExtractor {
             return false;
         } catch (Exception e) {
             log.info("*****init  failed***** url:" + url);
-            e.printStackTrace();
+//            e.printStackTrace();
+            log.error(e);
+//            System.out.println(doc.select("div[id=article_text_rp]"));
             return false;
         }
     }

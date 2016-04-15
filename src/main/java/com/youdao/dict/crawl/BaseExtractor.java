@@ -126,7 +126,7 @@ public class BaseExtractor {
         }
 
         String html = driver.getPageSource();
-        driver.close();
+        driver.quit();
 //        if (doc == null)
         this.doc = Jsoup.parse(html, url);
         _page.setDoc(this.doc);
