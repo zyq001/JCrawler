@@ -103,7 +103,9 @@ public class BaseExtractor {
 
         Capabilities caps = new DesiredCapabilities();
         ((DesiredCapabilities) caps).setJavascriptEnabled(true);
-//        ((DesiredCapabilities) caps).setCapability(PhantomJSDriverService.);
+        ((DesiredCapabilities) caps).setCapability(PhantomJSDriverService.PHANTOMJS_PAGE_SETTINGS_PREFIX + "userAgent",
+                "Mozilla/5.0 (Linux; Android 4.1.1; Galaxy Nexus Build/JRO03C) AppleWebKit/535.19" +
+                        " (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19");
 //        ((DesiredCapabilities) caps).setCapability("takesScreenshot", true);
         ((DesiredCapabilities) caps).setCapability(
                 PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
@@ -181,7 +183,9 @@ public class BaseExtractor {
 
     public boolean extractor() {
         if (init())
-            return extractorTime() && extractorTitle() && extractorType() && extractorAndUploadImg() && extractorDescription() && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel());
+            return extractorTime() && extractorTitle() && extractorType()
+                    && extractorAndUploadImg() && extractorDescription()
+                    && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel());
         else {
             log.info("init failed");
             return false;
@@ -328,7 +332,8 @@ public class BaseExtractor {
         contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
         contentHtml = contentHtml.replaceAll("<(?!img|br|p[ >]|/p).*?>", "");//去除所有标签，只剩img,br,p
         contentHtml = contentHtml.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t /n
-//        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
+//        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");
+// 多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
 
         if (contentHtml.length() < 384) {
