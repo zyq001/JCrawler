@@ -22,6 +22,8 @@
         <!--</element>-->
         <element name="content" selector="div[class=article-inner-content-bg-inner]">
         </element>
+        <element name="content" selector="div[id=article_text_rp]">
+        </element>
 
         <element name="description" selector="meta[name=description]">
         </element>

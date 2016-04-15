@@ -2,6 +2,7 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.sun.jna.platform.win32.Sspi;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.score.LeveDis;
@@ -28,6 +29,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,6 +47,8 @@ public class BaseExtractor {
     String url;
     Document doc;
     Element content;
+    SyndEntry _rssEntry;
+    Page _page;
     List<ParserPage> parserPages = new ArrayList<ParserPage>();
 
     public String CUENTTIME = new Sspi.TimeStamp().toString();
@@ -68,7 +72,7 @@ public class BaseExtractor {
 
     public BaseExtractor(Page page) {
         url = page.getUrl();
-
+        this._page = page;
 
         if (!getDoc(page)) {
             doc = page.getDoc();//瞎猜字符编码，有时候会猜错
@@ -85,7 +89,7 @@ public class BaseExtractor {
     public BaseExtractor(Page page, boolean LazyLoad) {
         url = page.getUrl();
 
-        boolean getDocSucc = LazyLoad?getJsLoadedDoc(page):getDoc(page);
+        boolean getDocSucc = LazyLoad?getJsLoadedDoc():getDoc(page);
 
         if (!getDocSucc) {
             doc = page.getDoc();//瞎猜字符编码，有时候会猜错
@@ -95,10 +99,11 @@ public class BaseExtractor {
         p.setUrl(url);
     }
 
-    public boolean getJsLoadedDoc(Page page){
+    public boolean getJsLoadedDoc(){
 
         Capabilities caps = new DesiredCapabilities();
         ((DesiredCapabilities) caps).setJavascriptEnabled(true);
+//        ((DesiredCapabilities) caps).setCapability(PhantomJSDriverService.);
 //        ((DesiredCapabilities) caps).setCapability("takesScreenshot", true);
         ((DesiredCapabilities) caps).setCapability(
                 PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
@@ -108,7 +113,8 @@ public class BaseExtractor {
 
 //        WebDriver driver = new ChromeDriver();
 //        driver.setJavascriptEnabled(true);
-        driver.get(page.getUrl());
+        driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.MINUTES);
+        driver.get(_page.getUrl());
 
         try {
             Thread.sleep(5 * 1000);
@@ -117,9 +123,10 @@ public class BaseExtractor {
         }
 
         String html = driver.getPageSource();
+        driver.close();
 //        if (doc == null)
         this.doc = Jsoup.parse(html, url);
-        page.setDoc(this.doc);
+        _page.setDoc(this.doc);
         return true;
     }
 

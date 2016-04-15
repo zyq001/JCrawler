@@ -1,13 +1,14 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
-import com.google.gson.Gson;
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
-import com.youdao.dict.util.TypeDictHelper;
+import com.youdao.dict.util.RSSReaderHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -15,7 +16,9 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.PriorityQueue;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -38,12 +41,29 @@ public class JpostExtractor extends BaseExtractor {
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
 
+            _rssEntry = RSSReaderHelper.getSyndEntry(url);
+            if (_rssEntry == null) {
+                log.error("getRssEntry null, false, url: " + url);
+                return false;
+            }
 
+            if (content == null) {
+                getJsLoadedDoc();
+                context = soupLang.extract(doc);
+                content = (Element) context.output.get("content");
+            }
 
 //            String isarticle = context.output.get("isarticle").toString();
 //            if(isarticle.contains("Article")){
-                Element article = (Element) context.output.get("isarticle");
-                if(article == null || article.toString().contains("rticle")){
+            Element article = (Element) context.output.get("isarticle");
+            if (article == null || article.toString().contains("rticle")) {
+
+                content.select("div[id=RumbleAD_Bottom]").remove();
+                content.select("div[id=RumbleAD_Intext]").remove();
+                content.select("div[id=shareWidget_top]").remove();
+//                    content.select(".rumbletitle1").remove();
+                content.select(".trc_related_container ").remove();// 相关文章推荐
+
                 content.select(".article-top-wrap").remove();
                 content.select(".social-share-buttons").remove();//
                 content.select(".sjXXfadScG").remove();
@@ -74,52 +94,42 @@ public class JpostExtractor extends BaseExtractor {
     }
 
 
-
     public boolean extractorTitle() {
         log.debug("*****extractorTitle*****");
 //        String title = context.output.get("title").toString();
-        Element elementTitle = (Element) context.output.get("title");
-        if (elementTitle == null)
-            return false;
-        String title = elementTitle.attr("content");
-        if (title == null || "".equals(title.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
-            return false;
-        }
-        title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
-//        if (title.contains("-"))
-//            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
-//        else
-        p.setTitle(title.trim());
-        log.debug("*****extractorTitle  success*****");
+
+//        SyndEntry entry = RSSReaderHelper.getSyndEntry(url);
+//        if(entry != null && entry.getPublishedDate() != null){
+        p.setTitle(_rssEntry.getTitle());
         return true;
+//        }
+//
+//        Element elementTitle = (Element) context.output.get("title");
+//        if (elementTitle == null)
+//            return false;
+//        String title = elementTitle.attr("content");
+//        if (title == null || "".equals(title.trim())) {
+//            log.info("*****extractorTitle  failed***** url:" + url);
+//            return false;
+//        }
+//        title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
+////        if (title.contains("-"))
+////            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
+////        else
+//        p.setTitle(title.trim());
+//        log.debug("*****extractorTitle  success*****");
+//        return true;
     }
 
     public boolean extractorType() {
-        Element elementType = (Element) context.output.get("type");
-        if (elementType == null)
+        String type = RSSReaderHelper.getType(url);
+        if (type != null && !type.equals("")) {
+            p.setType(type);
+        } else {
+            log.error("cant get type, false");
             return false;
-//        String type = elementType.select("h2").text();
-//        child(0).tagName();
-        String type = elementType.text();//attr("content");
-        if (type == null || "".equals(type.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
-            return false;
+//            return true;
         }
-        if (type.contains("/")) {
-            type = type.substring(0, type.indexOf("/"));
-            type = type.replace("/", "");
-        }
-        type = type.replaceAll("&", "");
-        if(!TypeDictHelper.rightTheType(type)){
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("orgType", type);
-            String moreinfo = new Gson().toJson(map);
-            p.setMoreinfo(moreinfo);
-        }
-//        type = type
-        type = TypeDictHelper.getType(type, type);
-        p.setType(type.trim());
 
         Element elementLabel = (Element) context.output.get("label");
         if (elementLabel == null)
@@ -132,7 +142,7 @@ public class JpostExtractor extends BaseExtractor {
         }
 //        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
         String[] keywords = label.split(", ");
-        PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
+        PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>() {
 
             @Override
             public int compare(String o1, String o2) {
@@ -141,15 +151,15 @@ public class JpostExtractor extends BaseExtractor {
             }
         });
 
-        for(String keyword: keywords){
+        for (String keyword : keywords) {
             keyword = keyword.replaceAll(",", "");
             int wordCount = keyword.split(" ").length;
-            if(wordCount <= 3) pq.add(keyword);
+            if (wordCount <= 3) pq.add(keyword);
         }
         StringBuilder sb = new StringBuilder();
-        while(!pq.isEmpty()){
+        while (!pq.isEmpty()) {
             sb.append(pq.poll());
-            if(!pq.isEmpty()) sb.append(", ");
+            if (!pq.isEmpty()) sb.append(", ");
         }
         p.setLabel(sb.toString());
         log.debug("*****extractorTitle  success*****");
@@ -158,8 +168,15 @@ public class JpostExtractor extends BaseExtractor {
 
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
+
+        SyndEntry entry = RSSReaderHelper.getSyndEntry(url);
+        if (entry != null && entry.getPublishedDate() != null) {
+            p.setTime(new Timestamp(entry.getPublishedDate().getTime()).toString());
+            return true;
+        }
+
         Element elementTime = (Element) context.output.get("time");
-        if (elementTime == null){//business版head meta里没有时间
+        if (elementTime == null) {//business版head meta里没有时间
             log.error("can't extract Time, skip");
             return false;
 
@@ -188,16 +205,13 @@ public class JpostExtractor extends BaseExtractor {
 
     public boolean extractorDescription() {
         log.debug("*****extractor Desc*****");
-        Element elementTime = (Element) context.output.get("description");
-        if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract desc, continue");
-            return true;
-        }
-        String description = elementTime.attr("content");
-        if (description == null || "".equals(description.trim())) {
-            log.info("*****extractor Desc  failed***** url:" + url);
-            return true;
-        }
+//        Element elementTime = (Element) context.output.get("description");
+//        if (elementTime == null){//business版head meta里没有时间
+//            log.error("can't extract desc, continue");
+//            return true;
+//        }
+        String description = _rssEntry.getDescription().getValue();
+        description = Jsoup.parse(description).body().text();
 
         p.setDescription(description);
 
@@ -208,7 +222,7 @@ public class JpostExtractor extends BaseExtractor {
 //        Elements div2 = doc.select("div[id=\"content-main\"]");
         Elements div2 = content.select("div[id=content-main]");
         Elements sociallinks = div2.select("div[class=social-links]");
-        if(sociallinks != null) sociallinks.remove();//去除社交网络分享栏目框
+        if (sociallinks != null) sociallinks.remove();//去除社交网络分享栏目框
         Elements div = div2.select("div[class=item-list");
         if (div == null) {
             return false;
@@ -234,7 +248,7 @@ public class JpostExtractor extends BaseExtractor {
         content.select("div[id=block-views-article-title-block]").remove();
         //
         content.select("div[id=157_ArticleControl_divShareButton]").remove();
-        if(isPaging()) return true;
+        if (isPaging()) return true;
        /* if (host.equals(port)) return true;*/
 
         Elements imgs = content.select("img");
@@ -261,7 +275,7 @@ public class JpostExtractor extends BaseExtractor {
                 //                long id = 0;
                 URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 int twidth = uploader.getWidth();
-                if(twidth >= 300)
+                if (twidth >= 300)
                     img.attr("style", "width:100%;");
                 img.attr("src", newUrl.toString());
                 if (mainImage == null) {
@@ -273,7 +287,7 @@ public class JpostExtractor extends BaseExtractor {
             }
         }
         Element elementImg = (Element) context.output.get("mainimage");
-        if (elementImg != null){
+        if (elementImg != null) {
             String tmpMainImage = elementImg.attr("content");
             OImageUploader uploader = new OImageUploader();
             if (!"".equals(host) && !"".equals(port))

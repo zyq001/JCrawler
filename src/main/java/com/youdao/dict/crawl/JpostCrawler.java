@@ -26,6 +26,7 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
+import com.youdao.dict.util.RSSReaderHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -118,6 +119,7 @@ public class JpostCrawler extends DeepCrawler {
         return nextLinks;
     }
 
+
     public static void main(String[] args) throws Exception {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
@@ -131,14 +133,29 @@ public class JpostCrawler extends DeepCrawler {
 
 
         JpostCrawler crawler = new JpostCrawler("data/Jpost");
-        crawler.setThreads(10);
+        crawler.setThreads(5);
 //        crawler.addSeed("http://www.jpost.com/Business-and-Innovation/Sears-to-launch-online-commercial-operations-in-Israel-431751");
-        crawler.addSeed("http://www.jpost.com/");
-        if(BaseExtractor.isNormalTime()) {
 
-            crawler.addSeed("http://www.jpost.com/Business-and-Innovation");
-            crawler.addSeed("http://www.jpost.com/Middle-East");
-            crawler.addSeed("http://www.jpost.com/Opinion");
+        RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsIsraelNews.aspx","News");
+        RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsMiddleEastNews.aspx","News");
+
+//        crawler.addSeed("http://www.jpost.com/");
+        if(BaseExtractor.isNormalTime()) {
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsOpinion.aspx","Opinion");
+
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsPoliticsDiplomacy.aspx","Politics");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsSports.aspx","Sports");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsCulture.aspx","Culture");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsFamilyLife","Lifestyle");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsBusinessAndInnovation","Business");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsBusinessAndInnovationTech","Technology");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsBusinessAndInnovationEnvironment","Environment");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsFashion&Beauty","Lifestyle");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsFinance","Finance");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsFood&Drink","Food");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsGaming","Game");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsHealth&Fitness","Health");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsTravel","Travel");
         }
 //        crawler.addSeed("http://www.cnbc.com/technology/");
 //        crawler.addSeed("http://www.cnbc.com/investing/");

@@ -6,6 +6,7 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
+import com.youdao.dict.util.RSSReaderHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -25,14 +26,14 @@ import java.util.PriorityQueue;
 @CommonsLog
 public class BuzzFeedExtractor extends BaseExtractor {
 
-    public Page _page;
+//    public Page _page;
 
     public Elements resoveEs;
 
     public BuzzFeedExtractor(Page page) {
 //        super(page, true);
         super(page);
-        this._page = page;
+//        this._page = page;
     }
 
     public BuzzFeedExtractor(String url) {
@@ -135,7 +136,7 @@ public class BuzzFeedExtractor extends BaseExtractor {
 //            p.setMoreinfo(moreinfo);
 //        }
 //        type = TypeDictHelper.getType(type, type);
-        String type = BuzzFeedCrawler.url2Type.get(url);
+        String type = RSSReaderHelper.getType(url);
         if(type != null && !type.equals("")) {
             p.setType(type);
         }else{
@@ -188,7 +189,7 @@ public class BuzzFeedExtractor extends BaseExtractor {
 
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
-        SyndEntry entry = BuzzFeedCrawler.url2SyndEntry.get(url);
+        SyndEntry entry = RSSReaderHelper.getSyndEntry(url);
         if(entry != null && entry.getPublishedDate() != null){
             p.setTime(new Timestamp(entry.getPublishedDate().getTime()).toString());
             return true;

@@ -23,22 +23,10 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
-import com.rometools.rome.feed.synd.SyndEntry;
-import com.rometools.rome.feed.synd.SyndFeed;
-import com.rometools.rome.io.FeedException;
-import com.rometools.rome.io.SyndFeedInput;
-import com.rometools.rome.io.XmlReader;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.JDBCHelper;
+import com.youdao.dict.util.RSSReaderHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 //import org.joda.time.DateTime;
 
@@ -66,8 +54,7 @@ public class BuzzFeedCrawler extends DeepCrawler {
 
     JdbcTemplate jdbcTemplate = null;
 
-    public static Map<String, SyndEntry> url2SyndEntry = new ConcurrentHashMap<String, SyndEntry>();
-    public static Map<String, String> url2Type = new ConcurrentHashMap<String, String>();
+
 
     public BuzzFeedCrawler(String crawlPath) {
         super(crawlPath);
@@ -143,50 +130,40 @@ public class BuzzFeedCrawler extends DeepCrawler {
         return nextLinks;
     }
 
-    public void addRSSSeeds(String rssAddr, String type){
-
-        URL url = null;
-        try {
-            url = new URL(rssAddr);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        HttpURLConnection httpcon = null;
-        try {
-            httpcon = (HttpURLConnection)url.openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // Reading the feed
-        SyndFeedInput input = new SyndFeedInput();
-        SyndFeed feed = null;
-        try {
-            feed = input.build(new XmlReader(httpcon));
-        } catch (FeedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        List<SyndEntry> entries = feed.getEntries();
-        for(SyndEntry entry: entries){
-            url2SyndEntry.put(entry.getLink(),entry);
-            url2Type.put(entry.getLink(), type);
-
-            this.addSeed(entry.getLink());
-        }
-//        SyndFeed feed = feedFetcher.retrieveFeed(new URL("http://blogs.sun.com/roller/rss/pat"));
-        //http://www.buzzfeed.com/world.xml
-        //http://www.buzzfeed.com/music.xml
-        //http://www.buzzfeed.com/travel.xml
-        //http://www.buzzfeed.com/animals.xml lifestyle
-        //http://www.buzzfeed.com/sports.xml
-        //http://www.buzzfeed.com/politics.xml
-        //http://www.buzzfeed.com/tech.xml
-        //http://www.buzzfeed.com/tvandmovies.xml
-        //https://www.buzzfeed.com/health.xml
-        //https://www.buzzfeed.com/food.xml
-        //https://www.buzzfeed.com/books.xml
-    }
+//    public static Map<String, SyndEntry> url2SyndEntry = new ConcurrentHashMap<String, SyndEntry>();
+//    public static Map<String, String> url2Type = new ConcurrentHashMap<String, String>();
+//    public void addRSSSeeds(String rssAddr, String type){
+//
+//        URL url = null;
+//        try {
+//            url = new URL(rssAddr);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//        HttpURLConnection httpcon = null;
+//        try {
+//            httpcon = (HttpURLConnection)url.openConnection();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        // Reading the feed
+//        SyndFeedInput input = new SyndFeedInput();
+//        SyndFeed feed = null;
+//        try {
+//            feed = input.build(new XmlReader(httpcon));
+//        } catch (FeedException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        List<SyndEntry> entries = feed.getEntries();
+//        for(SyndEntry entry: entries){
+//            url2SyndEntry.put(entry.getLink(),entry);
+//            url2Type.put(entry.getLink(), type);
+//
+//            this.addSeed(entry.getLink());
+//        }
+//    }
 
     public static void main(String[] args) throws Exception {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
@@ -205,23 +182,24 @@ public class BuzzFeedCrawler extends DeepCrawler {
         //http://www.buzzfeed.com/tech.xml
         //http://www.buzzfeed.com/tvandmovies.xml
 //
-        crawler.addRSSSeeds("http://www.buzzfeed.com/world.xml", "World");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/tech.xml", "Technology");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/politics.xml", "Politics");
-        crawler.addRSSSeeds("http://www.buzzfeed.com/sports.xml", "Sports");
+//        RSSReaderHelper.addRSSSeeds(crawler,);
+        RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/world.xml", "World");
+        RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/tech.xml", "Technology");
+        RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/politics.xml", "Politics");
+        RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/sports.xml", "Sports");
 
         if(BaseExtractor.isNormalTime()) {
 
 
-            crawler.addRSSSeeds("https://www.buzzfeed.com/books.xml", "Books");
-            crawler.addRSSSeeds("https://www.buzzfeed.com/food.xml", "Food");
-            crawler.addRSSSeeds("https://www.buzzfeed.com/health.xml", "Health");
-            crawler.addRSSSeeds("http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
-            crawler.addRSSSeeds("http://www.buzzfeed.com/animals.xml", "Lifestyle");
-            crawler.addRSSSeeds("http://www.buzzfeed.com/travel.xml", "Travel");
-            crawler.addRSSSeeds("http://www.buzzfeed.com/music.xml", "Art");
-            crawler.addRSSSeeds("https://www.buzzfeed.com/category/culture.xml", "Culture");
-            crawler.addRSSSeeds("http://www.buzzfeed.com/category/science.xml", "Science");
+            RSSReaderHelper.addRSSSeeds(crawler,"https://www.buzzfeed.com/books.xml", "Books");
+            RSSReaderHelper.addRSSSeeds(crawler,"https://www.buzzfeed.com/food.xml", "Food");
+            RSSReaderHelper.addRSSSeeds(crawler,"https://www.buzzfeed.com/health.xml", "Health");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/tvandmovies.xml", "Entertainment");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/animals.xml", "Lifestyle");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/travel.xml", "Travel");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/music.xml", "Art");
+            RSSReaderHelper.addRSSSeeds(crawler,"https://www.buzzfeed.com/category/culture.xml", "Culture");
+            RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/category/science.xml", "Science");
 
         }
 ////        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia");
