@@ -55,9 +55,12 @@ public class RSSReaderHelper {
         try {
             feed = input.build(new XmlReader(httpcon));
         } catch (FeedException e) {
-            e.printStackTrace();
+            System.out.println(e + "feed: " + rssAddr);
+//            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println(e + "feed: " + rssAddr);
+
         }
 
         if(feed == null || feed.getEntries().size() < 1){

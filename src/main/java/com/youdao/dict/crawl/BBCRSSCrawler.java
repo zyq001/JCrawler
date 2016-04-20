@@ -167,25 +167,22 @@ static int conter = 1;
 //        crawler.addSeed("http://www.bbc.com/culture/story/20160112-what-i-learned-when-i-lived-as-david-bowie");
 
 
+        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/world/rss.xml", "World");
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/business/rss.xml", "Business");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_space.rss", "Science");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_world.rss", "World");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_us.rss", "Business");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_technology.rss", "Technology");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_entertainment.rss", "Entertainment");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_football.rss", "Sports");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_tennis.rss", "Sports");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_sport.rss", "Sports");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_latest.rss", "Business");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/cnn_health.rss", "Health");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/cnn_travel.rss", "Travel");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/cnn_allpolitics.rss", "Politics");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_news_economy.rss", "Economy");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_autos.rss", "Auto");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_lifestyle.rss", "Lifestyle");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_smbusiness.rss", "Business");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/cnnmoneymorningbuzz", "Business");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/politics/rss.xml", "Politics");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/uk/rss.xml", "World");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/technology/rss.xml", "Technology");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml", "News");
 
+        if(BaseExtractor.isNormalTime()) {
+
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/health/rss.xml", "Health");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml", "Entertainment");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/world/asia/rss.xml", "Asia Pacific");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/world/europe/rss.xml", "World");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml", "World");
+//            RSSReaderHelper.addRSSSeeds(crawler, "", "");
+        }
 //        crawler.addSeed("http://www.bbc.com/");
 //
 //        if(BaseExtractor.isNormalTime()) {
