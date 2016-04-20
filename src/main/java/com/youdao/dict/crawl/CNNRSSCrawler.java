@@ -138,6 +138,7 @@ public class CNNRSSCrawler extends DeepCrawler {
         RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_tennis.rss", "Sports");
         RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_sport.rss", "Sports");
 
+
         if(BaseExtractor.isNormalTime()) {
 
             RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_space.rss", "Science");

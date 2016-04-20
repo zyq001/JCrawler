@@ -31,6 +31,7 @@ public class CNNRSSExtractor extends BaseExtractor {
         super(url);
     }
 
+
     public boolean init() {
         log.debug("*****init*****");
         try {
