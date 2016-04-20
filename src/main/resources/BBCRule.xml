@@ -25,6 +25,8 @@
 
         <element name="content" selector=".body-content">
         </element>
+        <element name="content" selector=".map-body">
+        </element>
         <!--<element name="content" selector=".content__main-column&#45;&#45;article">-->
         <!--</element>-->
 

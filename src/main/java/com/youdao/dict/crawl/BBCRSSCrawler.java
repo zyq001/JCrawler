@@ -85,7 +85,7 @@ static int conter = 1;
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new BBCExtractor(page);
+            BaseExtractor extractor = new BBCRSSExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
                 int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -129,7 +129,7 @@ static int conter = 1;
           不同的爬虫请使用不同的crawlPath
         */
 
-        BBCRSSCrawler crawler = new BBCRSSCrawler("data/BBC");
+        BBCRSSCrawler crawler = new BBCRSSCrawler("data/BBCRss");
         crawler.setThreads(5);
 //
 //        int id = crawler.jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", "http://cgi.money.cnn.com/2015/10/06/technology/twitter-moments/index.html");
@@ -168,6 +168,23 @@ static int conter = 1;
 
 
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/business/rss.xml", "Business");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_space.rss", "Science");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_world.rss", "World");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_us.rss", "Business");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_technology.rss", "Technology");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_entertainment.rss", "Entertainment");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_football.rss", "Sports");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_tennis.rss", "Sports");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/edition_sport.rss", "Sports");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_latest.rss", "Business");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/cnn_health.rss", "Health");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/cnn_travel.rss", "Travel");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/cnn_allpolitics.rss", "Politics");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_news_economy.rss", "Economy");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_autos.rss", "Auto");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_lifestyle.rss", "Lifestyle");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/rss/money_smbusiness.rss", "Business");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://rss.cnn.com/cnnmoneymorningbuzz", "Business");
 
 //        crawler.addSeed("http://www.bbc.com/");
 //
@@ -218,7 +235,7 @@ static int conter = 1;
 //        crawler.setResumable(true);
         crawler.setResumable(false);
 
-        crawler.start(2);
+        crawler.start(1);
     }
 
 }

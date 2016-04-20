@@ -6,6 +6,7 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import lombok.extern.apachecommons.CommonsLog;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -19,6 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by zangyq on 2016/4/15.
  */
+@CommonsLog
 public class RSSReaderHelper {
     private static Map<String, SyndEntry> url2SyndEntry = new ConcurrentHashMap<String, SyndEntry>();
     private static Map<String, String> url2Type = new ConcurrentHashMap<String, String>();
@@ -57,6 +59,12 @@ public class RSSReaderHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if(feed == null || feed.getEntries().size() < 1){
+            log.info("get entries failed, feed: " + rssAddr);
+            return;
+        }
+
         List<SyndEntry> entries = feed.getEntries();
         for (SyndEntry entry : entries) {
             url2SyndEntry.put(entry.getLink(), entry);
