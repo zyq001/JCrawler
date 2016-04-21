@@ -187,7 +187,7 @@ public class BaseExtractor {
                     && extractorAndUploadImg() && extractorDescription()
                     && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel());
         else {
-            log.info("init failed");
+            log.error("init failed");
             return false;
         }
     }

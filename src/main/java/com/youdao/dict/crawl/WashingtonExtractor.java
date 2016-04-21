@@ -46,7 +46,7 @@ public class WashingtonExtractor extends BaseExtractor {
             log.debug("*****init  success*****");
             return true;
         } catch (Exception e) {
-            log.info("*****init  failed***** url:" + url);
+            log.error("*****init  failed***** url:" + url);
             return false;
         }
     }
@@ -56,7 +56,7 @@ public class WashingtonExtractor extends BaseExtractor {
 
         String title = (String) context.output.get("title");
         if (title == null || "".equals(title.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
+            log.error("*****extractorTitle  failed***** url:" + url);
             return false;
         }
         p.setTitle(title.trim());
@@ -70,7 +70,7 @@ public class WashingtonExtractor extends BaseExtractor {
         String type = url.substring(url.indexOf(".com/") + 5);
         type = type.substring(0, type.indexOf("/"));
         if (type == null || "".equals(type.trim())) {
-            log.info("*****extractorTitle  failed***** url:" + url);
+            log.error("*****extractorTitle  failed***** url:" + url);
             return false;
         }
         if (type.contains("/")) {
@@ -95,17 +95,20 @@ public class WashingtonExtractor extends BaseExtractor {
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
-        if (elementTime == null)
+        if (elementTime == null) {
+            log.error("element time null, false, url: " + url);
             return false;
+        }
         String time = elementTime.attr("content");
         if (time == null || "".equals(time.trim())) {
-            log.info("*****extractorTime  failed***** url:" + url);
+            log.error("*****extractorTime  failed***** url:" + url);
             return false;
         }
         try {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
             Date date = format.parse(time);
             if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
+                log.error("out of date, false, url: " + url);
                 return false;
             }
             p.setTime(new Timestamp(date.getTime()).toString());
@@ -121,7 +124,7 @@ public class WashingtonExtractor extends BaseExtractor {
         log.debug("*****extractor Desc*****");
         Element elementTime = (Element) context.output.get("description");
         if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract desc, continue");
+            log.info("can't extract desc, continue");
             return true;
         }
         String description = elementTime.attr("content");
