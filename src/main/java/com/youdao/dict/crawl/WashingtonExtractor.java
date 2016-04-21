@@ -2,7 +2,6 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
-import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.TypeDictHelper;
@@ -11,7 +10,6 @@ import org.jsoup.nodes.Element;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -41,7 +39,10 @@ public class WashingtonExtractor extends BaseExtractor {
             content.select(".external-game-embed").remove();
             content.select(".pinnochio").remove();
             content.select(".post-body-sig-line").remove();
-            content.select(".moat-trackable").remove();
+            content.select(".pb-f-page-newsletter-inLine").remove();
+            content.select(".pb-f-games-userPolls").remove();
+//            content.select(".moat-trackable").remove();external-game-embed
+
             log.debug("*****init  success*****");
             return true;
         } catch (Exception e) {
