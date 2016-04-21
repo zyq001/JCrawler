@@ -185,7 +185,8 @@ public class BaseExtractor {
         if (init())
             return extractorTime() && extractorTitle() && extractorType()
                     && extractorAndUploadImg() && extractorDescription()
-                    && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel());
+                    && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel())
+                    && contentWordCount();
         else {
             log.error("init failed");
             return false;
@@ -309,24 +310,39 @@ public class BaseExtractor {
         }
     }
 
-    public boolean contentWordCount(Element content){
+    public static int contentWordCount(Element content){
 
         if(content == null){
             log.error("content null while word count");
-            return  false;
+            return  0;
         }
         String text = content.text();
-        Pattern wordRegx = Pattern.compile("[a-zA-Z]");
+//        Pattern wordRegx = Pattern.compile("\\w");
+//        System.out.println(wordRegx.matcher(text).group());
+//        int count = wordRegx.matcher(text).groupCount();
+//        int count = text.split("[^a-zA-Z']+").length;
+        String[] t = text.split("[^a-zA-Z'’‘]+");
+        int count = t.length;
+//        p.setWordCount(count);
+//        System.out.println(count);
+        return count;
+    }
 
-        int count = wordRegx.matcher(text).groupCount();
-        System.out.println(count);
+    public boolean contentWordCount(){
+
+        int count = contentWordCount(p.getContent());
+        if(count < 10){
+            log.error("word count < 10, false, url: " + url);
+            return false;
+        }
+        p.setWordCount(count);
         return true;
     }
 
-    public boolean contentWordCount(String content){
+    public static int contentWordCount(String content){
         if(content == null || content.length() < 1){
             log.error("content null while word count");
-            return  false;
+            return  0;
         }
         Element contentE = Jsoup.parse(content);
 
@@ -392,7 +408,9 @@ public class BaseExtractor {
     }
 
     public static void main(String[] args){
-        String testContent = "I'm nnn, L :, word-count. word--count";
+        String testContent = "Lightweights Ivan Redkach (19-1-1, 15 KOs) and Luis Cruz (22-4-1, 16 KOs) " +
+                "fought to a split draw in a bout where both scored knockdowns Tuesday night at Sands " +
+                "Bethlehem Events Center in Bethlehem, PA. Here’s what ";
 
         new BaseExtractor().contentWordCount(testContent);
 //        new BaseExtractor().resumeFrame(testContent);

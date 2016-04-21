@@ -1,23 +1,17 @@
 package com.youdao.dict.crawl;
 
-import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.youdao.dict.bean.ParserPage;
-import com.youdao.dict.souplang.Parser;
 import com.youdao.dict.util.JDBCHelper;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.*;
@@ -27,10 +21,6 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
  * Created by zangyq on 2015/12/7.
@@ -230,8 +220,10 @@ public class DictBKWikiCrawler implements Job{
             if(width >= 300)
                 style = "large-image";
 
-            int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                    title, dictWikiType, "", "", style, host, urll, time, "", content, "1", mainImage);
+            int wordCount = BaseExtractor.contentWordCount(content);
+
+            int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, wordCount, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    title, dictWikiType, "", "", style, host, urll, time, "", content, wordCount, "1", mainImage);
             if (updates == 1) {
                 System.out.println("mysql插入成功");
             }else{

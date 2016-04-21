@@ -402,9 +402,14 @@ public class CollegeFashionCrawler implements Job{
 
                 if(doc.body().html().length() < 384) return false;//太短
 
+
+                int wordCount = BaseExtractor.contentWordCount(doc.body());
+
                 long bef = System.currentTimeMillis();
-                int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        title, type, label, "", style, host, url, time, description, doc.body().html(), "1", mainImage, moreinfo);
+                int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, wordCount, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        title, type, label, "", style, host, url, time, description, doc.body().html(), wordCount, "1", mainImage, moreinfo);
+                //add wordcount
+
                 long aft = System.currentTimeMillis();
 //                System.out.println("插入耗时（毫秒）：" + (aft - bef));
                 if (updates == 1) {

@@ -59,6 +59,10 @@ public class ParserPage implements IWritable, Serializable {
 
     @Getter
     @Setter
+    private int wordCount = 0;
+
+    @Getter
+    @Setter
     private String time = "";
 
     @Getter
