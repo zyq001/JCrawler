@@ -42,13 +42,13 @@ public class BBCRSSExtractor extends BaseExtractor {
             SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("BBCRule.xml"));
             context = soupLang.extract(doc);
             content = (Element) context.output.get("content");
-            Element article = (Element) context.output.get("isarticle");
+//            Element article = (Element) context.output.get("isarticle");
             if(content == null) {
                 log.error("extrate content failed, skipped");
                 return false;
             }
             AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
-            if(article == null || article.toString().contains("article") || url.contains("story")){
+//            if(article == null || article.toString().contains("article") || url.contains("story")){
                 for(Element svg: content.select("svg")){
                     if(svg != null) svg.remove();
                 }
@@ -93,9 +93,9 @@ public class BBCRSSExtractor extends BaseExtractor {
     //            if(isarticle.contains("article")){
                     log.debug("*****init  success*****");
                     return true;
-            }
-            log.error("*****init  failed，isn't an article***** url:" + url);
-            return false;
+//            }
+//            log.error("*****init  failed，isn't an article***** url:" + url);
+//            return false;
         } catch (Exception e) {
             log.error("*****init  failed***** url:" + url);
             e.printStackTrace();
