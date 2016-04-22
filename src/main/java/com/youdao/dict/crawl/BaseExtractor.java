@@ -335,6 +335,10 @@ public class BaseExtractor {
             log.error("word count < 10, false, url: " + url);
             return false;
         }
+        if (count < 30){
+            log.error("wordCount too small, false, url: " + url);
+            return false;
+        }
         p.setWordCount(count);
         return true;
     }
