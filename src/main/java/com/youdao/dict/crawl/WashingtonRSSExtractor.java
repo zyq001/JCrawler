@@ -1,10 +1,10 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
-import com.google.gson.Gson;
+import com.rometools.rome.feed.synd.SyndEntry;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
-import com.youdao.dict.util.TypeDictHelper;
+import com.youdao.dict.util.RSSReaderHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.nodes.Element;
 
@@ -12,8 +12,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -65,26 +63,14 @@ public class WashingtonRSSExtractor extends BaseExtractor {
     }
 
     public boolean extractorType() {
-        log.debug("*****extractorType*****");
-
-        String type = url.substring(url.indexOf(".com/") + 5);
-        type = type.substring(0, type.indexOf("/"));
-        if (type == null || "".equals(type.trim())) {
-            log.error("*****extractorTitle  failed***** url:" + url);
+        String type = RSSReaderHelper.getType(url);
+        if(type != null && !type.equals("")) {
+            p.setType(type);
+        }else{
+            log.error("cant get type, false");
             return false;
+//            return true;
         }
-        if (type.contains("/")) {
-            type = type.substring(0, type.indexOf("/"));
-            type = type.replace("/", "");
-        }
-        if(!TypeDictHelper.rightTheType(type)){
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("orgType", type);
-            String moreinfo = new Gson().toJson(map);
-            p.setMoreinfo(moreinfo);
-        }
-        type = TypeDictHelper.getType(type, type);
-        p.setType(type.trim());
 
         String label = (String) context.output.get("label");
         p.setLabel(label);
@@ -94,6 +80,14 @@ public class WashingtonRSSExtractor extends BaseExtractor {
 
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
+
+        log.debug("*****extractorTime*****");
+        SyndEntry entry = RSSReaderHelper.getSyndEntry(url);
+        if(entry != null && entry.getPublishedDate() != null){
+            p.setTime(new Timestamp(entry.getPublishedDate().getTime()).toString());
+            return true;
+        }
+
         Element elementTime = (Element) context.output.get("time");
         if (elementTime == null) {
             log.error("element time null, false, url: " + url);

@@ -134,12 +134,14 @@ public class WashingtonRSSCrawler extends DeepCrawler {
           不同的爬虫请使用不同的crawlPath
         */
         WashingtonRSSCrawler crawler = new WashingtonRSSCrawler("data/washingtonRss");
-        crawler.setThreads(2);
+        crawler.setThreads(3);
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_election-2012", "Politics");
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/politics", "Politics");
 
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/sports", "Sports");
-        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/world", "Sports");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/world", "World");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/business", "Business");
+        RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/entertainment", "Entertainment");
 
         if(BaseExtractor.isNormalTime()) {
 
@@ -173,32 +175,18 @@ public class WashingtonRSSCrawler extends DeepCrawler {
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_soccer-insider", "Sports");
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_terrapins-insider", "Sports");
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_wizards-insider", "Sports");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
-            RSSReaderHelper.addRSSSeeds(crawler, "", "");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_blogpost", "World");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_digger", "Business");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/national/energy-environment", "Business");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_on-leadership", "Business");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/blogs/rss_the-switch", "Business");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_wonkblog", "Business");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/lifestyle", "Lifestyle");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_soloish", "Lifestyle");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_reliable-source", "Lifestyle");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_comic-riffs", "Entertainment");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_going-out-gurus", "Entertainment");
+            RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_the-intersect", "Entertainment");
 
         }
 //        crawler.addSeed("https://www.washingtonpost.com/world/us-servicemen-become-french-knights/2015/08/24/c4654613
