@@ -131,13 +131,20 @@ static int conter = 1;
         TheguardianCrawler crawler = new TheguardianCrawler("data/Theguardian2");
         crawler.setThreads(5);
 //
-//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%theguardian.com%'  ORDER BY id desc");
+//        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id, content FROM parser_page where wordCount is NULL ORDER BY id desc;");
 ////        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 ////        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 ////        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
 //        for(int i = 0; i < urls.size(); i++){
 //            String url = (String)urls.get(i).get("url");
 //            crawler.addSeed(url);
+//        }
+
+//        for(Map<String, Object> idContent: urls){
+//            int id = (int) idContent.get("id");
+//            String content = (String) idContent.get("content");
+//            int count = BaseExtractor.contentWordCount(content);
+//            crawler.jdbcTemplate.update("update parser_page set wordCount = ? WHERE id = ?", count, id);
 //        }
 
 //        crawler.addSeed("http://www.theguardian.com/sport/2015/dec/10/rory-mcilroy-laser-eye-surgery");
