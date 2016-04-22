@@ -41,6 +41,7 @@ public class BaseExtractor {
     Context context;
     String keywords;
     public static long MINSIZE = 384;
+    public static long MINWORDCOUNT = 30;
     public ParserPage p = new ParserPage();
     private static String contentChatset = "utf-8";
 //    private String
@@ -331,11 +332,11 @@ public class BaseExtractor {
     public boolean contentWordCount(){
 
         int count = contentWordCount(p.getContent());
-        if(count < 10){
-            log.error("word count < 10, false, url: " + url);
-            return false;
-        }
-        if (count < 30){
+//        if(count < 10){
+//            log.error("word count < 10, false, url: " + url);
+//            return false;
+//        }
+        if (count < MINWORDCOUNT){
             log.error("wordCount too small, false, url: " + url);
             return false;
         }
