@@ -225,7 +225,12 @@ public class ChannelNewsAsiaExtractor extends BaseExtractor {
     public  static  void main(String[] args){
 
         String a = "ss&quot; &#34;  &yen;\t&#165; &pound;\t&#163; &Prime; &#8243;  &raquo;\t&#187;";
+        String b = "ss\" \"  ¥\t¥ £\t£ ″ ″  »\t»";
+        System.out.println(a.equals(b));
+        System.out.println(a.equals(StringEscapeUtils.unescapeHtml(a)));
         a = StringEscapeUtils.unescapeHtml(a);
         System.out.println(a);
+
+
     }
 }

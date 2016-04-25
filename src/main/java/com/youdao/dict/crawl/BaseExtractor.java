@@ -12,6 +12,7 @@ import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
+//import org.apache.xpath.operations.String;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -323,45 +324,39 @@ public class BaseExtractor {
 //        Pattern wordRegx = Pattern.compile("\\w");
 //        System.out.println(wordRegx.matcher(text).group());
 //        int count = wordRegx.matcher(text).groupCount();
-//        int count = text.split("[^a-zA-Z']+").length;
-        String[] t = text.split("[^a-zA-Z'’‘]+");
-        Set<String> wordSet = new HashSet<String>();
-        for(String word: t) wordSet.add(word);
-        int count = t.length;
-        int uniqueCount = wordSet.size();
-//        p.setWordCount(count);
-//        System.out.println(count);
+        int count = text.split("[^a-zA-Z']+").length;
+
         return count;
     }
 
-    public static String[] getWordArray(Element content){
+    public static String[] getWordArray(String content){
 
         if(content == null){
             log.error("content null while word count");
             return  new String[0];
         }
-        String text = content.text();
-//        Pattern wordRegx = Pattern.compile("\\w");
-//        System.out.println(wordRegx.matcher(text).group());
-//        int count = wordRegx.matcher(text).groupCount();
-//        int count = text.split("[^a-zA-Z']+").length;
 
-        String[] t = text.split("[^a-zA-Z'’‘]+");
+        String[] t = content.split("[^a-zA-Z'’‘]+");
         return t;
     }
 
     public boolean contentWordCount(){
 
-        int count = contentWordCount(p.getContent());
-//        if(count < 10){
-//            log.error("word count < 10, false, url: " + url);
-//            return false;
-//        }
-        if (count < MINWORDCOUNT){
+        String[] words = getWordArray(p.getContent());
+        int wordCount = words.length;
+        if (wordCount < MINWORDCOUNT){
             log.error("wordCount too small, false, url: " + url);
             return false;
         }
-        p.setWordCount(count);
+        p.setWordCount(words.length);
+
+        Set<String> uniqueSet = new HashSet<String>();
+        for(String word: words){
+            uniqueSet.add(word);
+        }
+
+        p.setUniqueWordCount(uniqueSet.size());
+
         return true;
     }
 

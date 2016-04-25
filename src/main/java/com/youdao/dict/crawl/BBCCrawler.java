@@ -87,8 +87,12 @@ static int conter = 1;
             BaseExtractor extractor = new BBCExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, wordCount, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getWordCount(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
+                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style" +
+                        ", host, url, time, description, content, wordCount, uniqueWordCount, version, mainimage" +
+                        ", moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle()
+                        , p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getWordCount()
+                        , p.getUniqueWordCount(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
 //                int updates = jdbcTemplate.update("update parser_page set content = ?, time = ? where url = ?", p.getContent(), p.getTime(), p.getUrl());
 
                 if (updates == 1) {

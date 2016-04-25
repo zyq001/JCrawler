@@ -25,9 +25,9 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.net.Proxy;
 import java.util.List;
 import java.util.Map;
 
@@ -121,14 +121,32 @@ public class ChannelNewsAsiaRECrawler extends DeepCrawler {
         ChannelNewsAsiaRECrawler crawler = new ChannelNewsAsiaRECrawler("data/cna");
         crawler.setThreads(10);
 
-        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT url,id FROM parser_page where host = 'www.channelnewsasia.com' AND style = 'large-image' AND type = 'Lifestyle' ORDER BY id desc");
+        int begin = 6754599;
+        while(begin > 0) {
+            List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,description FROM parser_page where id < " + begin + " and id > " + (begin - 50000) + " ORDER BY id desc");
+            for(int i = 0; i < urls.size(); i++){
+
+                String desc = (String)urls.get(i).get("description");
+                if(desc == null || desc.equals(""))
+                    continue;
+                int id = (int) urls.get(i).get("id");
+                String newDesc = StringEscapeUtils.unescapeHtml(desc);
+                if(!desc.equals(newDesc)){
+                    int updates = crawler.jdbcTemplate.update("update parser_page set description = ? where id = ?", newDesc, id);
+                    if (updates != 1) {
+                        System.out.println("mysql失败 id:" + id + " update: " + updates);
+                    }
+                }
+            }
+            begin -= 50000;
+        }
 //        crawler.addSeed("http://www.theguardian.com/environment/2015/oct/12/new-ipcc-chief-calls-for-fresh-focus-on-climate-solutions-not-problems");
 //        crawler.addSeed("http://www.theguardian.com/australia-news/2015/oct/10/pro-diversity-and-anti-mosque-protesters-in-standoff-in-bendigo-park");
 //        crawler.addSeed("http://www.todayonline.com/world/americas/peru-military-fails-act-narco-planes-fly-freely");
-        for(int i = 0; i < urls.size(); i++){
-            String url = (String)urls.get(i).get("url");
-            crawler.addSeed(url);
-        }
+//        for(int i = 0; i < urls.size(); i++){
+//            String url = (String)urls.get(i).get("url");
+//            crawler.addSeed(url);
+//        }
 
 //        crawler.addSeed("http://www.channelnewsasia.com/");
 //        crawler.addSeed("http://www.channelnewsasia.com/archives/lifestyle");
