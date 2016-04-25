@@ -2,12 +2,12 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
-import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -127,6 +127,7 @@ public class ChannelNewsAsiaExtractor extends BaseExtractor {
             return true;
         }
 
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;
@@ -206,6 +207,8 @@ public class ChannelNewsAsiaExtractor extends BaseExtractor {
 
         String contentHtml = content.html();
 
+        contentHtml = StringEscapeUtils.unescapeHtml(contentHtml);//替换转义字符
+
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
         contentHtml = contentHtml.replaceAll("(?i)(<STYLE)[\\s\\S]*?((</STYLE>)|(/>))", "");//去除style
@@ -217,5 +220,12 @@ public class ChannelNewsAsiaExtractor extends BaseExtractor {
         }
         log.debug("*****extractorContent  success*****");
         return true;
+    }
+
+    public  static  void main(String[] args){
+
+        String a = "ss&quot; &#34;  &yen;\t&#165; &pound;\t&#163; &Prime; &#8243;  &raquo;\t&#187;";
+        a = StringEscapeUtils.unescapeHtml(a);
+        System.out.println(a);
     }
 }

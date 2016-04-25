@@ -11,6 +11,7 @@ import com.youdao.dict.util.GFWHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -390,7 +391,7 @@ public class BaseExtractor {
 
         String contentHtml = content.html();
 
-        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#39;", "'");//替换转义字符
+        contentHtml = StringEscapeUtils.unescapeHtml(contentHtml);//替换转义字符
 
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
