@@ -213,6 +213,7 @@ public class GameZoneExtractor extends BaseExtractor {
             return true;
         }
 
+        description = description.replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#39;", "'");//替换转义字符
         p.setDescription(description);
 
         return true;

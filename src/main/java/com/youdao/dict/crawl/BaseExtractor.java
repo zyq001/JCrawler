@@ -50,6 +50,7 @@ public class BaseExtractor {
     Element content;
     SyndEntry _rssEntry;
     Page _page;
+    String[] wordArray = null;
     List<ParserPage> parserPages = new ArrayList<ParserPage>();
 
     public String CUENTTIME = new Sspi.TimeStamp().toString();
@@ -323,10 +324,29 @@ public class BaseExtractor {
 //        int count = wordRegx.matcher(text).groupCount();
 //        int count = text.split("[^a-zA-Z']+").length;
         String[] t = text.split("[^a-zA-Z'’‘]+");
+        Set<String> wordSet = new HashSet<String>();
+        for(String word: t) wordSet.add(word);
         int count = t.length;
+        int uniqueCount = wordSet.size();
 //        p.setWordCount(count);
 //        System.out.println(count);
         return count;
+    }
+
+    public static String[] getWordArray(Element content){
+
+        if(content == null){
+            log.error("content null while word count");
+            return  new String[0];
+        }
+        String text = content.text();
+//        Pattern wordRegx = Pattern.compile("\\w");
+//        System.out.println(wordRegx.matcher(text).group());
+//        int count = wordRegx.matcher(text).groupCount();
+//        int count = text.split("[^a-zA-Z']+").length;
+
+        String[] t = text.split("[^a-zA-Z'’‘]+");
+        return t;
     }
 
     public boolean contentWordCount(){
@@ -370,7 +390,7 @@ public class BaseExtractor {
 
         String contentHtml = content.html();
 
-        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
+        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#39;", "'");//替换转义字符
 
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
