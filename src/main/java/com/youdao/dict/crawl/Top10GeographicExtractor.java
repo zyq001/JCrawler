@@ -1,7 +1,6 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
-import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
@@ -9,15 +8,16 @@ import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
 import java.net.URL;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Random;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -143,7 +143,7 @@ public class Top10GeographicExtractor extends BaseExtractor {
 
         String contentHtml = content.html();
 
-        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
+        contentHtml = StringEscapeUtils.unescapeHtml(contentHtml);//替换转义字符
 
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
@@ -289,6 +289,7 @@ public class Top10GeographicExtractor extends BaseExtractor {
             return true;
         }
 
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;

@@ -8,6 +8,7 @@ import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -105,7 +106,7 @@ public class NewsCanadaExtractor extends BaseExtractor {
         }
         String contentHtml = content.html();
 
-        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
+        contentHtml = StringEscapeUtils.unescapeHtml(contentHtml);//替换转义字符
 
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
@@ -266,6 +267,7 @@ public class NewsCanadaExtractor extends BaseExtractor {
             return true;
         }
 
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;

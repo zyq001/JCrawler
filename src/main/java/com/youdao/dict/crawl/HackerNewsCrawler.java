@@ -28,6 +28,7 @@ import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -133,6 +134,8 @@ public class HackerNewsCrawler extends DeepCrawler {
                     ParserPage p = new ParserPage();
                     p.setUrl(url);
                     p.setHost(host);
+                    content = StringEscapeUtils.unescapeHtml(content);//替换转义字符
+
                     p.setContent(content);
                     p.setTitle(title);
                     p.setType("Technology");

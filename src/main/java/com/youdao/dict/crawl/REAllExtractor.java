@@ -3,12 +3,12 @@ package com.youdao.dict.crawl;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
-import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -147,7 +147,7 @@ public class REAllExtractor extends BaseExtractor {
         }
         String contentHtml = content.html();
 
-        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
+        contentHtml = StringEscapeUtils.unescapeHtml(contentHtml);//替换转义字符
 
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
@@ -310,6 +310,7 @@ public class REAllExtractor extends BaseExtractor {
             return true;
         }
 
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;

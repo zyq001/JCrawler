@@ -6,6 +6,7 @@ import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.RSSReaderHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 
 import java.sql.Timestamp;
@@ -127,6 +128,7 @@ public class WashingtonRSSExtractor extends BaseExtractor {
             return true;
         }
 
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;

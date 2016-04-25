@@ -8,6 +8,7 @@ import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import com.youdao.dict.util.RSSReaderHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -215,6 +216,7 @@ public class JpostExtractor extends BaseExtractor {
         String description = _rssEntry.getDescription().getValue();
         description = Jsoup.parse(description).body().text();
 
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;

@@ -242,6 +242,7 @@ public class DgiwireExtractor extends BaseExtractor {
             log.info("*****extractor Desc  failed***** url:" + url);
             return true;
         }
+        description = StringEscapeUtils.unescapeHtml(description);
 
         p.setDescription(description);
 

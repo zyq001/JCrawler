@@ -6,6 +6,7 @@ import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.*;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -170,7 +171,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
 
         String contentHtml = content.html();
 
-        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
+        contentHtml = StringEscapeUtils.unescapeHtml(contentHtml);//替换转义字符
 
 
         contentHtml = contentHtml.replaceAll("<!--.*?-->", "");//去除换行符制表符/r,/n,/t /n
@@ -206,6 +207,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
             e.unwrap();
         }
 //        }
+
 
         p.setContent(extractedContent.html());
         if (!paging && isPaging()) {
@@ -368,6 +370,7 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
             return true;
         }
 
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;

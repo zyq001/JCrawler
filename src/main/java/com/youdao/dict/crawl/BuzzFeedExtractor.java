@@ -312,6 +312,7 @@ public class BuzzFeedExtractor extends BaseExtractor {
 
         contentHtml = resumeFrame(contentHtml);
 
+
         p.setContent(embed.html() + contentHtml);
         if (!paging && isPaging()) {
             mergePage(p);

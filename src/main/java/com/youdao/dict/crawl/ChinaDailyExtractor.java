@@ -3,17 +3,19 @@ package com.youdao.dict.crawl;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
 import com.youdao.dict.bean.ParserPage;
-import com.youdao.dict.souplang.Context;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
-import org.jsoup.nodes.Document;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -122,6 +124,7 @@ public class ChinaDailyExtractor extends BaseExtractor {
             log.info("*****extractor Desc  failed***** url:" + url);
             return true;
         }
+        description = StringEscapeUtils.unescapeHtml(description);
 
         p.setDescription(description);
 

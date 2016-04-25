@@ -7,6 +7,7 @@ import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
 //import org.joda.time.DateTime;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.pojava.datetime.DateTime;
 
 import org.jsoup.nodes.Element;
@@ -213,7 +214,7 @@ public class GameZoneExtractor extends BaseExtractor {
             return true;
         }
 
-        description = description.replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&#39;", "'");//替换转义字符
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;
@@ -262,7 +263,7 @@ public class GameZoneExtractor extends BaseExtractor {
 
         String contentHtml = content.html();
 
-        contentHtml = contentHtml.replaceAll("&gt;", ">").replaceAll("&lt;", "<");//替换转义字符
+        contentHtml = StringEscapeUtils.unescapeHtml(contentHtml);//替换转义字符
 
         contentHtml = contentHtml.replaceAll("(?i)(<SCRIPT)[\\s\\S]*?((</SCRIPT>)|(/>))", "");//去除script
         contentHtml = contentHtml.replaceAll("(?i)(<NOSCRIPT)[\\s\\S]*?((</NOSCRIPT>)|(/>))", "");//去除NOSCRIPT
