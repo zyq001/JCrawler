@@ -174,6 +174,10 @@ public class ParserPage implements IWritable, Serializable {
         return p;
     }
 
+    public void insert(){
+
+    }
+
     public boolean valid(Map<String, String> map) {
         return map.get("title") != null && map.get("content") != null && map.get("mainimage") != null;
     }
