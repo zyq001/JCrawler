@@ -23,32 +23,17 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.io.*;
-import java.net.*;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
 
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
@@ -121,17 +106,19 @@ public class CNNBreakingCrawler extends DeepCrawler {
 
             BaseExtractor extractor = new CNNExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
-                ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),"Breaking News",p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
-                if (updates == 1) {
-                    System.out.println("parser_page插入成功");
-                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
-
-                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
-                            id, extractor.doc.html());
-                    System.out.println("org_content插入成功");
-                }
+                extractor.insertWith(jdbcTemplate);
+//
+//                ParserPage p = extractor.getParserPage();
+//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?)",
+//                        p.getTitle(),"Breaking News",p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getContent(),p.getVersion(),p.getMainimage());
+//                if (updates == 1) {
+//                    System.out.println("parser_page插入成功");
+//                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+//
+//                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+//                            id, extractor.doc.html());
+//                    System.out.println("org_content插入成功");
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();

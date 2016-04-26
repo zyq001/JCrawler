@@ -12,7 +12,6 @@ import com.youdao.dict.util.OImageConfig;
 import com.youdao.dict.util.OImageUploader;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
-//import org.apache.xpath.operations.String;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,6 +24,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -34,6 +34,8 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+//import org.apache.xpath.operations.String;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -46,6 +48,7 @@ public class BaseExtractor {
     public static long MINWORDCOUNT = 30;
     public ParserPage p = new ParserPage();
     private static String contentChatset = "utf-8";
+    public static String ADDITIONAL_TAGNAME = "div";
 //    private String
     String url;
     Document doc;
@@ -102,6 +105,8 @@ public class BaseExtractor {
         p.setHost(getHost(url));
         p.setUrl(url);
     }
+
+
 
     public boolean getJsLoadedDoc(){
 
@@ -185,12 +190,31 @@ public class BaseExtractor {
     }
 
 
+    public void insertWith(JdbcTemplate jdbcTemplate){
+        int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style" +
+                        ", host, url, time, description, content, wordCount, uniqueWordCount, version, mainimage" +
+                        ", moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle()
+                , p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getWordCount()
+                , p.getUniqueWordCount(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
+        if (updates == 1) {
+            System.out.println("parser_page插入成功");
+            int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+
+            updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+                    id, doc.html());
+            System.out.println("org_content插入成功");
+        } else {
+            System.out.println("失败插入mysql");
+        }
+    }
+
     public boolean extractor() {
         if (init())
             return extractorTime() && extractorTitle() && extractorType()
                     && extractorAndUploadImg() && extractorDescription()
                     && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel())
-                    && contentWordCount();
+                    && contentWordCount() && addAdditionalTag();
         else {
             log.error("init failed");
             return false;
@@ -261,10 +285,11 @@ public class BaseExtractor {
                 try {
                     id = uploader.deal(imageUrl);
                 }catch (Exception e){
-                    img.attr("src", imageUrl);
+//                    img.attr("src", imageUrl);
                     log.error("use org img url, continue");
                     continue;
-                }                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
+                }
+                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
                 int twidth = uploader.getWidth();
                 if (twidth >= 300)
                     img.attr("style", "width:100%;");
@@ -327,6 +352,16 @@ public class BaseExtractor {
         int count = text.split("[^a-zA-Z']+").length;
 
         return count;
+    }
+
+    public static int getUniqueCount(String content){
+        String[] words = getWordArray(content);
+
+        Set<String> uniqueSet = new HashSet<String>();
+        for(String word: words){
+            uniqueSet.add(word);
+        }
+        return uniqueSet.size();
     }
 
     public static String[] getWordArray(String content){
@@ -408,6 +443,29 @@ public class BaseExtractor {
         }
         log.debug("*****extractorContent  success*****");
         return true;
+    }
+
+    public boolean addAdditionalTag(){
+        String content = p.getContent();
+        content = addAdditionalTag(content);
+        p.setContent(content);
+        return true;
+
+    }
+    public static String addAdditionalTag(String content){
+        Document soupContent = Jsoup.parse(content);
+        return addAdditionalTag(soupContent.body());
+
+    }
+
+    public static String addAdditionalTag(Element content){
+//        Elements childrenNodes = content.childNodes();//textNodes();//children();
+        List<Node> childrenNodes = content.childNodes();//textNodes();//children();
+        for(Node node: childrenNodes){
+            node.wrap("<" + ADDITIONAL_TAGNAME +"></" + ADDITIONAL_TAGNAME +">");
+        }
+//        childrenNodes.wrap("&lt;" + ADDITIONAL_TAGNAME +"&gt;&lt;/" + ADDITIONAL_TAGNAME +"&gt;");
+        return content.html();
     }
 
     public void replaceFrame() {

@@ -211,6 +211,7 @@ public class DictBKWikiCrawler implements Job{
             }
 
             String content = sb.toString();
+            content = BaseExtractor.addAdditionalTag(content);
             String urll = wikipedia.get("share").getAsJsonObject().get("url").getAsString();
             String style = "no-image";
             String host = "www.wikipedia.org";
@@ -222,8 +223,12 @@ public class DictBKWikiCrawler implements Job{
 
             int wordCount = BaseExtractor.contentWordCount(content);
 
-            int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, wordCount, version, mainimage) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    title, dictWikiType, "", "", style, host, urll, time, "", content, wordCount, "1", mainImage);
+            int uniqueWordCount = BaseExtractor.getUniqueCount(content);
+
+            int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style" +
+                    ", host, url, time, description, content, wordCount, uniqueWordCount, version, mainimage) " +
+                    "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    title, dictWikiType, "", "", style, host, urll, time, "", content, wordCount, uniqueWordCount, "1", mainImage);
             if (updates == 1) {
                 System.out.println("mysql插入成功");
             }else{

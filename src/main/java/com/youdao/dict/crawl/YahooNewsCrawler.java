@@ -23,7 +23,6 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
-import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
 import lombok.extern.apachecommons.CommonsLog;
@@ -97,21 +96,23 @@ public class YahooNewsCrawler extends DeepCrawler {
         try {
             BaseExtractor extractor = new YahooNewsExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
-                ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description,  version, mainimage, fullPage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getVersion(),p.getMainimage(),1,p.getMoreinfo());
-//                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
-
-                if (updates == 1) {
-                    System.out.println("mysql插入成功");
-                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
-
-                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
-                            id, extractor.doc.html());
-                    System.out.println("org_content插入成功");
-                }else{
-                    System.out.println("mysql插入不成功，updates：" + updates);
-                }
+                extractor.insertWith(jdbcTemplate);
+//
+//                ParserPage p = extractor.getParserPage();
+//                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description,  version, mainimage, fullPage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+//                        p.getTitle(),p.getType(),p.getLabel(),p.getLevel(),p.getStyle(),p.getHost(),p.getUrl(),p.getTime(),p.getDescription(),p.getVersion(),p.getMainimage(),1,p.getMoreinfo());
+////                int updates = jdbcTemplate.update("update parser_page set content = ?, mainimage = ?, style = ? where url = ?", p.getContent(), p.getMainimage(), p.getStyle(), p.getUrl());
+//
+//                if (updates == 1) {
+//                    System.out.println("mysql插入成功");
+//                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+//
+//                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+//                            id, extractor.doc.html());
+//                    System.out.println("org_content插入成功");
+//                }else{
+//                    System.out.println("mysql插入不成功，updates：" + updates);
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();

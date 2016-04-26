@@ -16,6 +16,7 @@ import java.util.List;
 public class OImageConfig {
 
 
+    private String ARGS = "&w=600";
     private static final String URL_YODAO = ".youdao.com";  //oimage域名
 
     private static final String URL_CDN = ".ydstatic.com";  //cdn 域名
@@ -64,6 +65,8 @@ public class OImageConfig {
         String imageSrc = String.format("%s://%s/image?id=%d&product=%s",
                 randomUrl.getProtocol(), randomUrl.getHost().replaceAll(URL_YODAO, URL_CDN), imageId,
                 productName);
+
+//        imageSrc += ARGS;
 
         try {
             return new URL(imageSrc);

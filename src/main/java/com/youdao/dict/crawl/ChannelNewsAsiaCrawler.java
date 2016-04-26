@@ -27,8 +27,6 @@ import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.net.Proxy;
-
 /**
  * WebCollector 2.x版本的tutorial
  * 2.x版本特性：
@@ -86,17 +84,9 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
 
             BaseExtractor extractor = new ChannelNewsAsiaExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
-                ParserPage p = extractor.getParserPage();
-                int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, wordCount, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getWordCount(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
-                if (updates == 1) {
-                    System.out.println("parser_page插入成功");
-                    int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
-
-                    updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
-                            id, extractor.doc.html());
-                    System.out.println("org_content插入成功");
-                }
+//                ParserPage p = extractor.getParserPage();
+//                insert(extractor, p);
+                extractor.insertWith(jdbcTemplate);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,6 +106,19 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
          例如如果你的爬取任务只是爬取seed列表中的所有链接，这种情况应该return null
          */
         return nextLinks;
+    }
+
+    public void insert(BaseExtractor extractor, ParserPage p) {
+        int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, wordCount, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle(), p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getWordCount(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
+        if (updates == 1) {
+            System.out.println("parser_page插入成功");
+            int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+
+            updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+                    id, extractor.doc.html());
+            System.out.println("org_content插入成功");
+        }
     }
 
     public static void main(String[] args) throws Exception {
@@ -143,7 +146,7 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         AntiAntiSpiderHelper.defaultUserAgent(requester);
-        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+//        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
         //多代理随机

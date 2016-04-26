@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 import org.quartz.Job;
@@ -403,12 +404,17 @@ public class CollegeFashionCrawler implements Job{
 
                 if(doc.body().html().length() < 384) return false;//太短
 
+                List<Node> childrenNodes = doc.childNodes();//textNodes();//children();
+                for(Node node: childrenNodes){
+                    node.wrap("<" + BaseExtractor.ADDITIONAL_TAGNAME +"></" + BaseExtractor.ADDITIONAL_TAGNAME +">");
+                }
 
                 int wordCount = BaseExtractor.contentWordCount(doc.body());
+                int uniqueWordCount = BaseExtractor.getUniqueCount(doc.body().html());
 
                 long bef = System.currentTimeMillis();
-                int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, wordCount, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                        title, type, label, "", style, host, url, time, description, doc.body().html(), wordCount, "1", mainImage, moreinfo);
+                int updates = getJdbcTemplate().update("insert ignore into parser_page (title, type, label, level, style, host, url, time, description, content, wordCount, uniqueWordCount, version, mainimage, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        title, type, label, "", style, host, url, time, description, doc.body().html(), wordCount, uniqueWordCount, "1", mainImage, moreinfo);
                 //add wordcount
 
                 long aft = System.currentTimeMillis();
