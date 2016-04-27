@@ -10,7 +10,9 @@ import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.Configuration;
 import com.youdao.dict.util.JDBCHelper;
 import com.youdao.dict.util.RSSReaderHelper;
-import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -112,6 +114,13 @@ public class BaseCrawler extends DeepCrawler {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
           不同的爬虫请使用不同的crawlPath
         */
+
+        Document doc = Jsoup.parse("<p>dd</p><img></img>");
+        Element body = doc.body();
+        System.out.println(body.html());
+        System.out.println(body.outerHtml());
+
+
 
         BBCRSSCrawler crawler = new BBCRSSCrawler("data/BBCRss");
         crawler.setThreads(5);

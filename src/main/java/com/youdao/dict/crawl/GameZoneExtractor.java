@@ -277,7 +277,7 @@ public class GameZoneExtractor extends BaseExtractor {
 
         contentHtml = resumeFrame(contentHtml);
 
-        p.setContent(embed.html() + contentHtml);
+        p.setContent(embed.outerHtml() + contentHtml);
         if (!paging && isPaging(navgs)) {
             mergePage(p,navgs);
         }else{//不需要merge

@@ -122,7 +122,7 @@ public class ChannelNewsAsiaRECrawler extends DeepCrawler {
         ChannelNewsAsiaRECrawler crawler = new ChannelNewsAsiaRECrawler("data/cna");
         crawler.setThreads(10);
 
-        int begin = 6803139;
+        int begin = 6274645;
         while(begin > 0) {
             List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,content FROM parser_page where id < " + begin + " and id > " + (begin - 50000) + " ORDER BY id desc");
             for(int i = 0; i < urls.size(); i++){
@@ -134,14 +134,18 @@ public class ChannelNewsAsiaRECrawler extends DeepCrawler {
                 int id = (int) urls.get(i).get("id");
                 Document soupContent = Jsoup.parse(content);
                 int uniqueWordCount = BaseExtractor.getUniqueCount(soupContent);
-                content = BaseExtractor.addAdditionalTag(soupContent);
-
-//                if(!desc.equals(newDesc)){
-//                    int updates = crawler.jdbcTemplate.update("update parser_page set description = ? where id = ?", newDesc, id);
-//                    if (updates != 1) {
-//                        System.out.println("mysql失败 id:" + id + " update: " + updates);
-//                    }
-//                }
+                String newContent = BaseExtractor.addAdditionalTag(soupContent.body());
+                int updates = 0;
+                if(!content.equals(newContent)){
+                    try {
+                         updates = crawler.jdbcTemplate.update("update parser_page set content = ?, uniqueWordCount = ? where id = ?", newContent, uniqueWordCount, id);
+                    }catch (Exception e){
+                        System.out.println(e.toString() + "id : " + id);
+                    }
+                        if (updates != 1) {
+                        System.out.println("mysql失败 id:" + id + " update: " + updates);
+                    }
+                }
             }
             begin -= 50000;
         }

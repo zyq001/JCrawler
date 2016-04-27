@@ -485,7 +485,8 @@ public class BaseExtractor {
 //        Elements childrenNodes = content.childNodes();//textNodes();//children();
         List<Node> childrenNodes = content.childNodes();//textNodes();//children();
         for(Node node: childrenNodes){
-            node.wrap("<" + ADDITIONAL_TAGNAME +"></" + ADDITIONAL_TAGNAME +">");
+            if(!node.nodeName().equals("div"))
+                node.wrap("<" + ADDITIONAL_TAGNAME +"></" + ADDITIONAL_TAGNAME +">");
         }
 //        childrenNodes.wrap("&lt;" + ADDITIONAL_TAGNAME +"&gt;&lt;/" + ADDITIONAL_TAGNAME +"&gt;");
         return content.html();
