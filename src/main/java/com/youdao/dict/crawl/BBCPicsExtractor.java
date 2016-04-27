@@ -52,6 +52,7 @@ public class BBCPicsExtractor extends BaseExtractor {
 //                content = content.child(0).select(".content-body").first();
 
 
+            content.select(".off-screen").remove();//copyright
 
                 content.select(".gelicon").remove();
                 content.select(".icon-wrapper").remove();
