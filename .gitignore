@@ -4,3 +4,4 @@ target/
 data
 logs
 *.log
+src/main/resources/conf/remote.properties

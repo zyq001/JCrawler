@@ -1,21 +1,15 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
-import com.rometools.rome.feed.synd.SyndEntry;
 import com.youdao.dict.souplang.SoupLang;
-import com.youdao.dict.util.*;
+import com.youdao.dict.util.AntiAntiSpiderHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
-import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 import org.pojava.datetime.DateTime;
 
-import java.net.URL;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Random;
 
 /**
  * Created by liuhl on 15-8-17.
@@ -48,7 +42,7 @@ public class BBCPicsExtractor extends BaseExtractor {
                 log.error("extrate content failed, skipped");
                 return false;
             }
-            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
+//            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
 //            if(article == null || article.toString().contains("article") || url.contains("story")){
                 for(Element svg: content.select("svg")){
                     if(svg != null) svg.remove();
@@ -56,6 +50,9 @@ public class BBCPicsExtractor extends BaseExtractor {
 
                 AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(50));
 //                content = content.child(0).select(".content-body").first();
+
+
+
                 content.select(".gelicon").remove();
                 content.select(".icon-wrapper").remove();
                 content.select(".elastislide-wrapper").remove();
@@ -83,13 +80,15 @@ public class BBCPicsExtractor extends BaseExtractor {
                 content.select(".js-sport-tabs").remove();
                 content.select(".content__meta-container").remove();//作者与分享图标
                 content.select(".submeta").remove();
+                content.select(".mpu-ad").remove();
     //            content.select(".inline-share-facebook").remove();
     //            content.select(".inline-icon").remove();
 
                 content.removeClass("content__article-body from-content-api js-article__body");
                 content.removeClass("meta__social");
 
-
+            Elements uselessTag = content.select(":not(p,img,br,div)");
+            uselessTag.unwrap();
     //            String isarticle = context.output.get("isarticle").toString();
     //            if(isarticle.contains("article")){
                     log.debug("*****init  success*****");
@@ -131,125 +130,21 @@ public class BBCPicsExtractor extends BaseExtractor {
     }
 
     public boolean extractorType() {
-
-        String type = RSSReaderHelper.getType(url);
-        if(type != null && !type.equals("")) {
-            p.setType(type);
-        }else{
-            log.error("cant get type, false");
-            return false;
-//            return true;
-        }
-
-        Element elementLabel = (Element) context.output.get("label");
-        if (elementLabel == null) {
-            log.debug("no keywords continue, url:" + url);
-            return true;
-        }
-        String label = elementLabel.attr("content");
-//        String label = (String) context.output.get("label");
-        if (label == null || "".equals(label.trim())) {
-            log.info("*****extractorLabel  failed continue***** url:" + url);
-            return true;
-        }
-        label = label.replaceAll(" ", "");
-//        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
-        String[] keywords = label.split(",");
-        for(String k: keywords){
-            if(TypeDictHelper.rightTheType(k)) {
-                p.setType(k.trim());
-                break;
-            }
-
-        }
-        PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
-
-            @Override
-            public int compare(String o1, String o2) {
-                int length1 = o1.split(" ").length, length2 = o2.split(" ").length;
-                return length1 - length2;
-            }
-        });
-
-//        String typeFromLabel = keywords[0];
-//        typeFromLabel = TypeDictHelper.getType(typeFromLabel, type);
-////        if(TypeDictHelper.rightTheType(type))
-//        p.setType(typeFromLabel);
-
-        for(String keyword: keywords){
-            int wordCount = keyword.split(" ").length;
-            if(wordCount <= 3 && !pq.contains(keyword) && keyword.length() > 1) pq.add(keyword);
-        }
-        StringBuilder sb = new StringBuilder();
-        Set<String> antiMuti = new HashSet<String>();
-        while(!pq.isEmpty()){
-            String key = pq.poll();
-            if(!antiMuti.contains(key.toLowerCase())) {
-                antiMuti.add(key.toLowerCase());
-                sb.append(key);
-                if (!pq.isEmpty()) sb.append(',');
-            }
-        }
-        p.setLabel(sb.toString());
-        log.debug("*****extractorTitle  success*****");
+        p.setType("Gallery");
         return true;
     }
 
     public boolean extractorTime() {
-
-        log.debug("*****extractorTime*****");
-        SyndEntry entry = RSSReaderHelper.getSyndEntry(url);
-        if(entry != null && entry.getPublishedDate() != null){
-            p.setTime(new Timestamp(entry.getPublishedDate().getTime()).toString());
-            return true;
-        }
-
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
         if (elementTime == null) {
             log.error("elementTime null, false");
             return false;
         }
-        elementTime = elementTime.select(".date").first();
-        if (elementTime == null ) {
-            elementTime = (Element) context.output.get("time");
-            String time = elementTime.text();
-            String[] splitedDate = time.split(" ");
-            String day = splitedDate[0], mounth = splitedDate[1];
-            day = day.replaceAll(".", "d");
-            mounth = mounth.replaceAll(".", "M");
-            SimpleDateFormat format = new SimpleDateFormat(day + " " + mounth + " yyyy", Locale.US);
-            Date date;
-            try {
-                date = format.parse(time.trim());
-            } catch (ParseException e) {
-                log.error("parse time exception,false");
-                DateTime dt = new DateTime(time);
-                p.setTime(dt.toString());
-                log.debug("*****extractorTime  success*****");
-                return true;
-            }
-            if (System.currentTimeMillis() - date.getTime() > 7 * 24 * 60 * 60 * 1000) {
-//            if (System.currentTimeMillis() - date.getTime() > (long)Integer.MAX_VALUE * 10) {
-                log.error("*****extractorTime  out of date*****");
-                return false;
-            }
 
-            p.setTime(new Timestamp(date.getTime()).toString());
-            log.debug("*****extractorTime  success*****");
-
-            return true;
-        }
-
-        String time = elementTime.attr("data-seconds");
-//2015-09-12 08:25
-
-        long t = Long.valueOf(time);
-        if (System.currentTimeMillis() - t * 1000 > 7 * 24 * 60 * 60 * 1000) {
-            log.error("*****extractorTime  out of date*****");
-            return false;
-        }
-        p.setTime(new Timestamp(t * 1000).toString());//-6 2 cst北京时间
+        String time = elementTime.text();
+        DateTime dt = new DateTime(time);
+        p.setTime(dt.toString());
         log.debug("*****extractorTime  success*****");
         return true;
     }
@@ -296,11 +191,6 @@ public class BBCPicsExtractor extends BaseExtractor {
             if(text.contains("Subscribe to the")) a.remove();
 //            System.out.println(a);
         }
-//        hypLinks = content.select("noscript");
-//        for(Element a: hypLinks){
-//            a.unwrap();
-////            System.out.println(a);
-//        }
 
         String contentHtml = content.html();
 
@@ -336,128 +226,55 @@ public class BBCPicsExtractor extends BaseExtractor {
         if (a == null || a.size() == 0) {
             return false;
         }
-/*        if (url.equals(a.get(0).attr("href"))) {
-            return false;
-        }*/
         return true;
+    }
+
+    public void dealImg(Element img){
+        String imageUrl = img.attr("src");
+        //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
+        if ("".equals(imageUrl)) {
+            img.remove();
+            return;
+        }
+        img.removeAttr("width");
+        img.removeAttr("WIDTH");
+        img.removeAttr("height");
+        img.removeAttr("HEIGHT");
+        img.removeAttr("srcset");
+
+        img.attr("style", "width:100%;");
+//        if(imageUrl.contains("news/320/cpsprodpb")){
+            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
+//        }
+
+
     }
 
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
-        if (content == null || p == null) {
-            log.error("upload image, content or p null, false");
-            return false;
-        }
-       /* if (host.equals(port)) return true;*/
-
         Elements imgs = content.select("img");
         String mainImage = null;
         int width = 0;
         for (Element img : imgs) {
-            try {
-                String imageUrl = img.attr("src");
-                //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
-                if ("".equals(imageUrl)) {
-                    img.remove();
-                    continue;
-                }
-                img.removeAttr("width");
-                img.removeAttr("WIDTH");
-                img.removeAttr("height");
-                img.removeAttr("HEIGHT");
-                img.removeAttr("srcset");
-                //                img.removeAttr("srcset");
-//                img.attr("style", "width:100%;");
-                OImageUploader uploader = new OImageUploader();
-                if (!"".equals(host) && !"".equals(port))
-                    uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
-                //                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                int twidth = uploader.getWidth();
-                if(twidth >= 300)
-                    img.attr("style", "width:100%;");
-                img.attr("src", newUrl.toString());
-                if (mainImage == null) {
-                    width = uploader.getWidth();
-                    mainImage = newUrl.toString();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            dealImg(img);
+            if (mainImage == null) {
+                mainImage = img.attr("src");
             }
         }
 
         imgs = content.select(".inline-image");
         for (Element img : imgs) {
-            try {
-                String imageUrl = img.select("a").attr("href");
-                //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
-                if ("".equals(imageUrl)) {
-                    img.remove();
-                    continue;
-                }
-                Tag imgTag = Tag.valueOf("img");
-//                img.appendChild(imgTag);
-                Element newImg = new Element(imgTag, "");
-                img.before(newImg);
-                img.remove();
-                img = newImg;
-                //                img.removeAttr("srcset");
-//                img.attr("style", "width:100%;");
-                OImageUploader uploader = new OImageUploader();
-                if (!"".equals(host) && !"".equals(port))
-                    uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
-                //                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                int twidth = uploader.getWidth();
-                if(twidth >= 300)
-                    img.attr("style", "width:100%;");
-                img.attr("src", newUrl.toString());
-                if (mainImage == null) {
-                    width = uploader.getWidth();
-                    mainImage = newUrl.toString();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            dealImg(img);
+            if (mainImage == null) {
+                mainImage = img.attr("src");
             }
         }
 
         imgs = content.select(".image-and-copyright-container");
         for (Element img : imgs) {
-            try {
-                Element e = img.select(".js-delayed-image-load").first();
-                if(e == null) continue;
-                String imageUrl = img.select(".js-delayed-image-load").first().attr("data-src");
-                //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
-                if ("".equals(imageUrl)) {
-                    img.remove();
-                    continue;
-                }
-                Tag imgTag = Tag.valueOf("img");
-//                img.appendChild(imgTag);
-                Element newImg = new Element(imgTag, "");
-                img.before(newImg);
-                img.remove();
-                img = newImg;
-                //                img.removeAttr("srcset");
-//                img.attr("style", "width:100%;");
-                OImageUploader uploader = new OImageUploader();
-                if (!"".equals(host) && !"".equals(port))
-                    uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
-                //                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                int twidth = uploader.getWidth();
-                if(twidth >= 300)
-                    img.attr("style", "width:100%;");
-                img.attr("src", newUrl.toString());
-                if (mainImage == null) {
-                    width = uploader.getWidth();
-                    mainImage = newUrl.toString();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            dealImg(img);
+            if (mainImage == null) {
+                mainImage = img.attr("src");
             }
         }
 
@@ -465,46 +282,20 @@ public class BBCPicsExtractor extends BaseExtractor {
         Element elementImg = (Element) context.output.get("mainimage");
         if (elementImg != null){
             String tmpMainImage = elementImg.attr("content");
-            OImageUploader uploader = new OImageUploader();
-            if (!"".equals(host) && !"".equals(port))
-                uploader.setProxy(host, port);
-            long id = 0;
-            try {
-                id = uploader.deal(tmpMainImage);
-
-//                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                width = uploader.getWidth();
-                if(mainImage == null){
-                    //正文中无图片 将meta中图片加入到正文中
-                    Tag imgTag = Tag.valueOf("img");
-//                img.appendChild(imgTag);
-                    Element newImg = new Element(imgTag, "");
-                    newImg.attr("src", newUrl.toString());
-                    if(width >= 300)
-                        newImg.attr("style", "width:100%;");
-                    content.prependChild(newImg);
-                }
-                mainImage = newUrl.toString();
-
-            } catch (Exception e1) {
-//                        e1.printStackTrace();
-
+            if (mainImage == null) {
+                mainImage = tmpMainImage;
             }
         }
         p.setMainimage(mainImage);
-        if (width == 0) {
-            p.setStyle("no-image");
-        } else if (width >= 300) {
-            p.setStyle("large-image");
-        } else {
-            p.setStyle("no-image");
-        }
 
-//        } catch (Exception e) {
-//            p.setStyle("no-image");
-//        }
+        p.setStyle("no-image");
+
         return true;
 
+    }
+
+    public static void main(String[] args){
+        String url = "http://ichef.bbci.co.uk/news/320/cpsprodpb/174DA/production/_89305459_5a5e1a23-b856-4d52-a89d-995f6b35087b.jpg";
+        System.out.println(url.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));
     }
 }

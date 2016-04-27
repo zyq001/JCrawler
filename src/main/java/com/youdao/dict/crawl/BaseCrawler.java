@@ -43,10 +43,12 @@ public abstract class BaseCrawler extends DeepCrawler {
     Map<String, SyndEntry> url2SyndEntry = new ConcurrentHashMap<String, SyndEntry>();
     Map<String, String> url2Type = new ConcurrentHashMap<String, String>();
 
+    private String DEAULT_CONFIG_FILE_NAME = "conf/remote.properties";
 
     public BaseCrawler(String propertiesFileName, String crawlPath){
         super(crawlPath);
         conf = new Configuration(propertiesFileName, crawlPath);
+        init();//后续再考虑构造器之间的调用
     }
 
     public BaseCrawler(Configuration conf){
@@ -57,7 +59,8 @@ public abstract class BaseCrawler extends DeepCrawler {
 
     public BaseCrawler(String crawlPath) {
         super(crawlPath);
-
+        conf = new Configuration(DEAULT_CONFIG_FILE_NAME, crawlPath);
+        init();
     }
 
     public static boolean isNormalTime() {
@@ -65,6 +68,15 @@ public abstract class BaseCrawler extends DeepCrawler {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
         String hour = dateFormat.format(date);
         return BaseExtractor.normalHour.contains(hour);
+    }
+
+    public void PCAgentMode(){
+        HttpRequesterImpl requester = (HttpRequesterImpl) getHttpRequester();
+        AntiAntiSpiderHelper.PCUserAgent(requester);
+    }
+    public void MobileAgentMode(){
+        HttpRequesterImpl requester = (HttpRequesterImpl) getHttpRequester();
+        AntiAntiSpiderHelper.defaultUserAgent(requester);
     }
 
     private void init(){
@@ -76,8 +88,9 @@ public abstract class BaseCrawler extends DeepCrawler {
 //        Config.TIMEOUT_READ = 1000*30;
         Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一新任务启动时间>此时间就会认为hung
 
-        HttpRequesterImpl requester = (HttpRequesterImpl) getHttpRequester();
-        AntiAntiSpiderHelper.defaultUserAgent(requester);
+        MobileAgentMode();
+
+        setResumable(false);
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
          JDBCHelper.getJdbcTemplate("mysql1")来获取这个对象。
