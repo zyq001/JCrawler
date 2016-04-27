@@ -141,7 +141,7 @@ static int conter = 1;
 //        }
 
 //        crawler.addSeed("http://www.theguardian.com/money/2015/oct/31/previous-talk-talk-victims-awaiting-compensation");
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://www.theonion.com/section/politics/");
             crawler.addSeed("http://www.theonion.com/section/sports/");

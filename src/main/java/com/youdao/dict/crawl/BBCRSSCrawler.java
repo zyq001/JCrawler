@@ -175,7 +175,7 @@ static int conter = 1;
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/technology/rss.xml", "Technology");
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml", "News");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/health/rss.xml", "Health");
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml", "Entertainment");

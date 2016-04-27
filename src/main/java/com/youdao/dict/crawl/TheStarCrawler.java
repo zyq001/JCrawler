@@ -168,7 +168,7 @@ public class TheStarCrawler extends DeepCrawler {
 
         crawler.addSeed("http://www.thestar.com.my/");
         crawler.addSeed("http://www.thestar.com.my/news/latest/");
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
             crawler.addSeed("http://www.thestar.com.my/News");
             crawler.addSeed("http://www.thestar.com.my/Business/News/");
             crawler.addSeed("http://www.thestar.com.my/Sport/");

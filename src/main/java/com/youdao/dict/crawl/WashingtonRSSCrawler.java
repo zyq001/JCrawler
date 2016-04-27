@@ -144,7 +144,7 @@ public class WashingtonRSSCrawler extends DeepCrawler {
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/business", "Business");
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/entertainment", "Entertainment");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_powerpost", "Politics");
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.washingtonpost.com/rss/rss_fact-checker", "Politics");

@@ -153,7 +153,7 @@ static int conter = 1;
 
         crawler.addSeed("http://www.theguardian.com/world");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://www.theguardian.com/uk/sport");
             crawler.addSeed("http://www.theguardian.com/us/sport");

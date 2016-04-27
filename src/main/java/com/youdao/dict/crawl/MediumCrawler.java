@@ -146,7 +146,7 @@ public class MediumCrawler extends DeepCrawler {
         crawler.setThreads(3);
 
         crawler.addSeed("https://medium.com/");
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
             crawler.addSeed("https://medium.com/top-stories");
 //        crawler.addSeed("https://medium.com/top-100/january-2015");
             crawler.addSeed("https://medium.com/@MediumStaff/has-recommended");

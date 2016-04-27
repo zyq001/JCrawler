@@ -189,7 +189,7 @@ public class BuzzFeedCrawler extends DeepCrawler {
         RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/politics.xml", "Politics");
         RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/sports.xml", "Sports");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
 
             RSSReaderHelper.addRSSSeeds(crawler,"https://www.buzzfeed.com/books.xml", "Books");

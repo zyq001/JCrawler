@@ -133,7 +133,7 @@ public class CNNCrawler extends DeepCrawler {
 
         crawler.addSeed("http://us.cnn.com/world");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://us.cnn.com/middle-east");
             crawler.addSeed("http://us.cnn.com/europe");

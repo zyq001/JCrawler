@@ -6,23 +6,43 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.Config;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.io.FeedException;
+import com.rometools.rome.io.SyndFeedInput;
+import com.rometools.rome.io.XmlReader;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.Configuration;
 import com.youdao.dict.util.JDBCHelper;
 import com.youdao.dict.util.RSSReaderHelper;
+import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Created by zyq on 2016/4/27.
  */
-public class BaseCrawler extends DeepCrawler {
+@CommonsLog
+public abstract class BaseCrawler extends DeepCrawler {
 
     RegexRule regexRule = new RegexRule();
     Configuration conf;
     JdbcTemplate jdbcTemplate = null;
+    Map<String, SyndEntry> url2SyndEntry = new ConcurrentHashMap<String, SyndEntry>();
+    Map<String, String> url2Type = new ConcurrentHashMap<String, String>();
+
 
     public BaseCrawler(String propertiesFileName, String crawlPath){
         super(crawlPath);
@@ -35,9 +55,29 @@ public class BaseCrawler extends DeepCrawler {
         init();
     }
 
+    public BaseCrawler(String crawlPath) {
+        super(crawlPath);
+
+    }
+
+    public static boolean isNormalTime() {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
+        String hour = dateFormat.format(date);
+        return BaseExtractor.normalHour.contains(hour);
+    }
+
     private void init(){
 
         regexRule.addRule("-.*jpg.*");
+
+        Config.WAIT_THREAD_END_TIME = 1000*60*3;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
+//        Config.TIMEOUT_CONNECT = 1000*10;
+//        Config.TIMEOUT_READ = 1000*30;
+        Config.requestMaxInterval = 1000*60*20;//线程池可用最长等待时间，当前时间-上一新任务启动时间>此时间就会认为hung
+
+        HttpRequesterImpl requester = (HttpRequesterImpl) getHttpRequester();
+        AntiAntiSpiderHelper.defaultUserAgent(requester);
 
         /*创建一个JdbcTemplate对象,"mysql1"是用户自定义的名称，以后可以通过
          JDBCHelper.getJdbcTemplate("mysql1")来获取这个对象。
@@ -47,7 +87,6 @@ public class BaseCrawler extends DeepCrawler {
          一个JdbcTemplate对象(每个线程中通过JDBCHelper.getJdbcTemplate("名称")
          获取同一个JdbcTemplate对象)
          */
-
             try {
 //            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
 //                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
@@ -61,15 +100,53 @@ public class BaseCrawler extends DeepCrawler {
             }
     }
 
-    public BaseCrawler(String crawlPath) {
-        super(crawlPath);
+    public void addRSSSeeds(String rssAddr, String type) {
+        URL url = null;
+        try {
+            url = new URL(rssAddr);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        HttpURLConnection httpcon = null;
+        try {
+            httpcon = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Reading the feed
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed = null;
+        try {
+            feed = input.build(new XmlReader(httpcon));
+        } catch (FeedException e) {
+            System.out.println(e + "feed: " + rssAddr);
+//            e.printStackTrace();
+        } catch (IOException e) {
+//            e.printStackTrace();
+            System.out.println(e + "feed: " + rssAddr);
+
+        }
+
+        if(feed == null || feed.getEntries().size() < 1){
+            log.info("get entries failed, feed: " + rssAddr);
+            return;
+        }
+
+        List<SyndEntry> entries = feed.getEntries();
+        for (SyndEntry entry : entries) {
+            url2SyndEntry.put(entry.getLink(), entry);
+            url2Type.put(entry.getLink(), type);
+
+            addSeed(entry.getLink());
+        }
 
     }
+
     static int conter = 1;
     @Override
     public Links visitAndGetNextLinks(Page page) {
         try {
-            BaseExtractor extractor = new BBCRSSExtractor(page);
+            BaseExtractor extractor = getBbcrssExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
                 extractor.insertWith(jdbcTemplate);
 //
@@ -109,6 +186,8 @@ public class BaseCrawler extends DeepCrawler {
          */
         return nextLinks;
     }
+
+    public abstract BaseExtractor getBbcrssExtractor(Page page);
 
     public static void main(String[] args) throws Exception {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,
@@ -167,7 +246,7 @@ public class BaseCrawler extends DeepCrawler {
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/technology/rss.xml", "Technology");
         RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml", "News");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(isNormalTime()) {
 
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/health/rss.xml", "Health");
             RSSReaderHelper.addRSSSeeds(crawler, "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml", "Entertainment");

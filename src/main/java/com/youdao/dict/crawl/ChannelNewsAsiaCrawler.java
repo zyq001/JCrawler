@@ -129,7 +129,7 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
         crawler.setThreads(5);
         crawler.addSeed("http://www.channelnewsasia.com/");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://www.channelnewsasia.com/archives/lifestyle");
             crawler.addSeed("http://www.channelnewsasia.com/archives/health");

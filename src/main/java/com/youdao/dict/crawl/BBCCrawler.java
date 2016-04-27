@@ -173,7 +173,7 @@ static int conter = 1;
 
         crawler.addSeed("http://www.bbc.com/");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
             crawler.addSeed("http://www.bbc.com/autos/");
 
             crawler.addSeed("http://www.bbc.com/news/science_and_environment");

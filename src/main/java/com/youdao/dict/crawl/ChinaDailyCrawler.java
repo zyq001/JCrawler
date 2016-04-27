@@ -127,7 +127,7 @@ public class ChinaDailyCrawler extends DeepCrawler {
         crawler.addSeed("http://www.chinadaily.com.cn/");
         crawler.addSeed("http://www.chinadaily.com.cn/index.html");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://www.chinadaily.com.cn/china/governmentandpolicy.html");
             crawler.addSeed("http://www.chinadaily.com.cn/china/society.html");

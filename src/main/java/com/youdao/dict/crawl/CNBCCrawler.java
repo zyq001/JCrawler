@@ -137,7 +137,7 @@ public class CNBCCrawler extends DeepCrawler {
         crawler.addSeed("http://www.cnbc.com/world/");
         crawler.addSeed("http://www.cnbc.com/us-news/");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://www.cnbc.com/technology/");
             crawler.addSeed("http://www.cnbc.com/investing/");

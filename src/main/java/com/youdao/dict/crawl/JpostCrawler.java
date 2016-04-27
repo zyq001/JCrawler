@@ -142,7 +142,7 @@ public class JpostCrawler extends DeepCrawler {
         RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsMiddleEastNews.aspx","News");
 
 //        crawler.addSeed("http://www.jpost.com/");
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
             RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsOpinion.aspx","Opinion");
 
             RSSReaderHelper.addRSSSeeds(crawler,"http://www.jpost.com/Rss/RssFeedsPoliticsDiplomacy.aspx","Politics");

@@ -150,7 +150,7 @@ static int conter = 1;
 
 //        crawler.addSeed("http://www.gamezone.com/originals/theory-dark-souls-bloodborne-and-demon-s-souls-share-a-" +
 //                "timeline-jzqb");
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://www.gamezone.com/reviews");
             crawler.addSeed("http://www.gamezone.com/reviews//pc");

@@ -150,7 +150,7 @@ public class NewsNationalGeographicCrawler extends DeepCrawler {
         crawler.setThreads(2);
         crawler.addSeed("http://ngm.nationalgeographic.com/");
 
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://ngm.nationalgeographic.com/archives");
             crawler.addSeed("http://ngm.nationalgeographic.com/featurehub");

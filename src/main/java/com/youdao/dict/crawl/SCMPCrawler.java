@@ -137,7 +137,7 @@ public class SCMPCrawler extends DeepCrawler {
         crawler.addSeed("http://www.scmp.com/news");
         crawler.addSeed("http://www.scmp.com/news/hong-kong");
 //
-        if(BaseExtractor.isNormalTime()) {
+        if(BaseCrawler.isNormalTime()) {
 
             crawler.addSeed("http://www.scmp.com/business");
             crawler.addSeed("http://www.scmp.com/technology");

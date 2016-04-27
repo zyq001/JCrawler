@@ -182,13 +182,6 @@ public class BaseExtractor {
         p.setUrl(url);
     }
 
-    public static boolean isNormalTime() {
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH");
-        String hour = dateFormat.format(date);
-        return normalHour.contains(hour);
-    }
-
 
     public void insertWith(JdbcTemplate jdbcTemplate){
         int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style" +
