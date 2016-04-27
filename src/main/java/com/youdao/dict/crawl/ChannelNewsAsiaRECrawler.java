@@ -122,9 +122,10 @@ public class ChannelNewsAsiaRECrawler extends DeepCrawler {
         ChannelNewsAsiaRECrawler crawler = new ChannelNewsAsiaRECrawler("data/cna");
         crawler.setThreads(10);
 
-        int begin = 6274645;
+        int begin = 6803750;
         while(begin > 0) {
-            List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,content FROM parser_page where id < " + begin + " and id > " + (begin - 50000) + " ORDER BY id desc");
+            List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,content FROM parser_page" +
+                    " where id < " + begin + " and id > " + (begin - 50000) + " and uniqueWordCount = 0 and wordCount != 0 ORDER BY id desc");
             for(int i = 0; i < urls.size(); i++){
 
                 String content = (String)urls.get(i).get("content");
