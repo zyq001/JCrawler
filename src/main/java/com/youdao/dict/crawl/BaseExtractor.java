@@ -364,8 +364,31 @@ public class BaseExtractor {
         return uniqueSet.size();
     }
 
+    public static int getUniqueCount(Element content){
+        String[] words = getWordArray(content);
+
+        Set<String> uniqueSet = new HashSet<String>();
+        for(String word: words){
+            uniqueSet.add(word);
+        }
+        return uniqueSet.size();
+    }
+
     public static String[] getWordArray(String content){
 
+        Document soupContent = Jsoup.parse(content);
+        content = soupContent.body().text();
+        if(content == null){
+            log.error("content null while word count");
+            return  new String[0];
+        }
+
+        String[] t = content.split("[^a-zA-Z'’‘]+");
+        return t;
+    }
+
+    public static String[] getWordArray(Element contentE){
+        String content = contentE.text();
         if(content == null){
             log.error("content null while word count");
             return  new String[0];

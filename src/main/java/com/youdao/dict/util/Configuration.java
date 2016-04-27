@@ -14,14 +14,18 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Configuration {
 
     public static String CRAWL_PATH = "crawPath";
-    public static String MYSQL_URL = "mysqlUrl";
-    public static String MYSQL_USER = "mysqlUser";
-    public static String MYSQL_PASSWORD = "mysqlPassword";
+    public static String MYSQL_URL = "jdbcUrl";
+    public static String MYSQL_USER = "jdbcUser";
+    public static String MYSQL_PASSWORD = "jdbcPasswd";
     private Map<String, String> map = new ConcurrentHashMap<String, String>();
 
     public Configuration(String propertiesFileName, String crawlPath){
         map.put(CRAWL_PATH, crawlPath);
         loadProperties(propertiesFileName);
+    }
+
+    public Configuration(){
+        loadProperties("conf/database.properties");
     }
 
     public Configuration(String propertiesFileName){

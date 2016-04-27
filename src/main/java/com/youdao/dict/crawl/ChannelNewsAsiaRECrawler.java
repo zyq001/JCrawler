@@ -25,7 +25,8 @@ import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.JDBCHelper;
-import org.apache.commons.lang.StringEscapeUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
@@ -121,22 +122,26 @@ public class ChannelNewsAsiaRECrawler extends DeepCrawler {
         ChannelNewsAsiaRECrawler crawler = new ChannelNewsAsiaRECrawler("data/cna");
         crawler.setThreads(10);
 
-        int begin = 6754599;
+        int begin = 6803139;
         while(begin > 0) {
-            List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,description FROM parser_page where id < " + begin + " and id > " + (begin - 50000) + " ORDER BY id desc");
+            List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT id,content FROM parser_page where id < " + begin + " and id > " + (begin - 50000) + " ORDER BY id desc");
             for(int i = 0; i < urls.size(); i++){
 
-                String desc = (String)urls.get(i).get("description");
-                if(desc == null || desc.equals(""))
+                String content = (String)urls.get(i).get("content");
+                if(content == null || content.equals(""))
                     continue;
+
                 int id = (int) urls.get(i).get("id");
-                String newDesc = StringEscapeUtils.unescapeHtml(desc);
-                if(!desc.equals(newDesc)){
-                    int updates = crawler.jdbcTemplate.update("update parser_page set description = ? where id = ?", newDesc, id);
-                    if (updates != 1) {
-                        System.out.println("mysql失败 id:" + id + " update: " + updates);
-                    }
-                }
+                Document soupContent = Jsoup.parse(content);
+                int uniqueWordCount = BaseExtractor.getUniqueCount(soupContent);
+                content = BaseExtractor.addAdditionalTag(soupContent);
+
+//                if(!desc.equals(newDesc)){
+//                    int updates = crawler.jdbcTemplate.update("update parser_page set description = ? where id = ?", newDesc, id);
+//                    if (updates != 1) {
+//                        System.out.println("mysql失败 id:" + id + " update: " + updates);
+//                    }
+//                }
             }
             begin -= 50000;
         }
