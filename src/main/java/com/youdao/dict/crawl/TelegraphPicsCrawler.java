@@ -31,13 +31,7 @@ public class TelegraphPicsCrawler extends BaseCrawler {
 
     @Override
     public BaseExtractor getBbcrssExtractor(Page page) {
-        return new CNNPicsExtractor(page);
-    }
-
-    @Override
-    public boolean isMatches(String seed) {
-        return seed.matches(".*index\\.html");
-//        return true;
+        return new TelegraphPicsExtractor(page);
     }
 
 //    public void
@@ -69,7 +63,7 @@ public class TelegraphPicsCrawler extends BaseCrawler {
 
     public static void main(String[]  args) throws Exception {
 //        System.out.println("http://edition.cnn.com/specials/impact-your-world.indexrhtml".matches(".*index\\.html"));
-        TelegraphPicsCrawler crawler = new TelegraphPicsCrawler("data/CNNPics");
+        TelegraphPicsCrawler crawler = new TelegraphPicsCrawler("data/TelPics");
         crawler.setThreads(5);
         crawler.PCAgentMode();
 //        crawler.regexRule.addRule(".*index\\.html");
