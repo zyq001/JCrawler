@@ -2,6 +2,9 @@ package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
 import com.youdao.dict.util.TypeDictHelper;
@@ -11,6 +14,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pojava.datetime.DateTime;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -43,6 +47,21 @@ public class TelegraphPicsExtractor extends BaseExtractor {
                 content.select(".d-body-copy").remove();
 
                 content = content.select(".gallery__content").first();
+                for(Element img: content.select("img")){
+                    String json = img.attr("data-frz-src-array");
+                    JsonArray srcs = null;
+                    if(!json.equals("")){
+                        srcs = new JsonParser().parse(json).getAsJsonArray();
+                    }
+                    if(srcs.size() < 1){
+                        log.error("img srcs < 1, continue, ");
+                        continue;
+                    }
+                    JsonObject largest = srcs.get(srcs.size() - 1).getAsJsonObject();
+                    String imgSrc = largest.get("src").getAsString();
+                    imgSrc = new URL(new URL(url), imgSrc).toString();
+                    img.attr("src", imgSrc);
+                }
 //                content.select(":not(.d-photo)").remove();
 //                content = content.select(".d-photo");
             }else{
@@ -229,7 +248,7 @@ public class TelegraphPicsExtractor extends BaseExtractor {
 
         img.attr("style", "width:100%;");
 //        if(imageUrl.contains("news/320/cpsprodpb")){
-            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
+//            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
 //        }
 
 
