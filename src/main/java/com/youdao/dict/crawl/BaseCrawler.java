@@ -37,6 +37,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @CommonsLog
 public abstract class BaseCrawler extends DeepCrawler {
 
+    static int timeoutMillis = 180 * 1000;
     RegexRule regexRule = new RegexRule();
     Configuration conf;
     JdbcTemplate jdbcTemplate = null;
@@ -81,7 +82,7 @@ public abstract class BaseCrawler extends DeepCrawler {
 
     private void init(){
 
-        regexRule.addRule("-.*jpg.*");
+//        regexRule.addRule("-.*jpg.*");
 
         Config.WAIT_THREAD_END_TIME = 1000*60*3;//等待队列超时后，等待线程自动结束的时间，之后就强制kill
 //        Config.TIMEOUT_CONNECT = 1000*10;
@@ -201,6 +202,28 @@ public abstract class BaseCrawler extends DeepCrawler {
     }
 
     public abstract BaseExtractor getBbcrssExtractor(Page page);
+
+    public void addIndexSeed(String url){
+        Document doc = null;//parse("<p>dd</p><img></img>");
+        try {
+            doc = Jsoup.parse(new URL(url), timeoutMillis);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Element body = doc.body();
+//        Elements groups = body.select("article");
+        for(Element e: body.select("a")){
+            String seed = e.attr("abs:href");
+            if(isMatches(seed))
+                addSeed(seed);
+        }
+    }
+
+    public boolean isMatches(String seed){
+        return regexRule.satisfy(seed);
+    }
 
     public static void main(String[] args) throws Exception {
         /*构造函数中的string,是爬虫的crawlPath，爬虫的爬取信息都存在crawlPath文件夹中,

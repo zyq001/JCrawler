@@ -29,7 +29,7 @@
         <element name="mainimage" selector="meta[name=og:image]">
         </element>
 
-        <element name="content" selector="div[id=storytext]">
+        <element name="content" selector="#gallery">
         </element>
         <element name="content" selector="section[id=body-text]">
         </element>

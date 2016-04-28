@@ -1,158 +1,128 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import com.google.gson.Gson;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
+import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pojava.datetime.DateTime;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
  * Created by liuhl on 15-8-17.
  */
 @CommonsLog
-public class BBCPicsExtractor extends BaseExtractor {
+public class WashingPhosExtractor extends BaseExtractor {
 
-    public BBCPicsExtractor(Page page) {
+    private Elements galleryContent;
+    public WashingPhosExtractor(Page page) {
         super(page);
     }
 
-    public BBCPicsExtractor(String url) {
+    public WashingPhosExtractor(String url) {
         super(url);
     }
 
     public boolean init() {
         log.debug("*****init*****");
+        MINSIZE = 32;
         try {
-            if(url.matches(".*bbc.com/(japan|urdu|vietnamese|persian|arabic|zhongwen|indone" +
-            "|kyrgyz|portuguese|mundo|ukrainian|azeri|afrique|nepali|russian|swahili|bengali|hausa|gahuza|pashto|sinhala|tamil" +
-                    "|uzbek|turkce|somali|gahuza|hindi|burmese).*")) {
-                log.error("non-English article, skipped");
-                return false;
-            }
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("BBCRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("WashingtonPostRule.xml"));
             context = soupLang.extract(doc);
-
-            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(30));
-
             content = doc.body();
+            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(30));
+            if(content.getAllElements().hasClass("wp-volt-gal-photos")){
 
-            if(content.getAllElements().hasClass("gallery-images__list")){
+//                content.select(".share-container").remove();
+//                content.select(".d-body-copy").remove();
 
+                content = content.select(".wp-volt-gal-photos").first();
+                content.select(".wp-volt-gal-promo").remove();
 
-                content = content.select(".gallery-images__list").first();
+                for(Element li: content.select(".wp-volt-gal-slide")){
+                    String imgSrc = li.attr("data-image");
+                    if(imgSrc.equals("") ){
+                        log.info("no img continue");
+                        continue;
+                    }
+                    Element img = li.appendElement("img");
+                    img.attr("src", imgSrc);
+
+                    String desc = li.attr("data-caption");
+                    Element descP = li.appendElement("p");
+                    descP.text(desc);//new p tag; no delete org div,has no effect
+                }
+
 //                content.select(":not(.d-photo)").remove();
 //                content = content.select(".d-photo");
             }else{
                 log.error("no phtoto, skipped url:" + url);
                 return false;
             }
-//            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
-//            if(article == null || article.toString().contains("article") || url.contains("story")){
-                for(Element svg: content.select("svg")){
-                    if(svg != null) svg.remove();
-                }
-
-//                content = content.child(0).select(".content-body").first();
-
-
-            content.select(".off-screen").remove();//copyright
-
-                content.select(".gelicon").remove();
-                content.select(".icon-wrapper").remove();
-                content.select(".elastislide-wrapper").remove();
-                content.select("blockquote").remove();
-                content.select(".inline-horizontal-partner-module").remove();//广告
-                content.select(".story-footer").remove();
-                content.select(".component").remove();
-                content.select(".component--default").remove();
-                content.select(".story-body__link").remove();//READ MORE
-                content.select(".story-body__crosshead").remove();
-//                content.select(".media-landscape").remove();
-                content.select(".story-body__unordered-list").remove();//magazine 推荐文章
-
-
-                content.select(".content-meta").remove();//fenxiang
-//                content.select(".small-thing").remove();//同上 一般一起出现
-                content.select(".icon").remove();//每篇文章最后都有的洋葱图标
-                content.select(".on-overlay").remove();//CLOSE button
-                content.select(".below-article-tools").remove();//文章下面分享图标
-
-
-                content.select(".rounded-icon").remove();//分享图标
-                content.select(".inline-icon").remove();//分享图标
-                content.select(".inline-share-facebook").remove();//分享图标
-                content.select(".js-sport-tabs").remove();
-                content.select(".content__meta-container").remove();//作者与分享图标
-                content.select(".submeta").remove();
-                content.select(".mpu-ad").remove();
-    //            content.select(".inline-share-facebook").remove();
-    //            content.select(".inline-icon").remove();
-
-                content.removeClass("content__article-body from-content-api js-article__body");
-                content.removeClass("meta__social");
-
-            Elements uselessTag = content.select(":not(p,img,br,div)");
-            uselessTag.unwrap();
-
-
-
-
-    //            String isarticle = context.output.get("isarticle").toString();
-    //            if(isarticle.contains("article")){
-                    log.debug("*****init  success*****");
-                    return true;
-//            }
-//            log.error("*****init  failed，isn't an article***** url:" + url);
-//            return false;
+            log.debug("*****init  success*****");
+            return true;
         } catch (Exception e) {
             log.error("*****init  failed***** url:" + url);
-            e.printStackTrace();
             return false;
         }
     }
 
     public boolean extractorTitle() {
         log.debug("*****extractorTitle*****");
-//        String title = context.output.get("title").toString();
-        Element elementTitle = (Element) context.output.get("title");
-        String title;
-        if (elementTitle == null){
-            log.error("extracte title failed skipped");
+
+        String title = (String) context.output.get("title");
+        if (title == null || "".equals(title.trim())) {
+            log.error("*****extractorTitle  failed***** url:" + url);
             return false;
         }
-        title = elementTitle.attr("content");
-        if (title == null || "".equals(title.trim())) {
-            title = elementTitle.text();
-            if (title == null || "".equals(title.trim())) {
-                log.error("*****extractorTitle  failed***** url:" + url);
-                return false;
-            }
-        }
-        title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
-//        if (title.contains("-"))
-//            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
-//        else
         p.setTitle(title.trim());
         log.debug("*****extractorTitle  success*****");
         return true;
     }
 
     public boolean extractorType() {
-        p.setType("Gallery");
+        log.debug("*****extractorType*****");
+
+        String type = url.substring(url.indexOf(".com/") + 5);
+        type = type.substring(0, type.indexOf("/"));
+        if (type == null || "".equals(type.trim())) {
+            log.error("*****extractorTitle  failed***** url:" + url);
+            return false;
+        }
+        if (type.contains("/")) {
+            type = type.substring(0, type.indexOf("/"));
+            type = type.replace("/", "");
+        }
+        if(!TypeDictHelper.rightTheType(type)){
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("orgType", type);
+            String moreinfo = new Gson().toJson(map);
+            p.setMoreinfo(moreinfo);
+        }
+        type = TypeDictHelper.getType(type, type);
+        p.setType(type.trim());
+
+        String label = (String) context.output.get("label");
+        p.setLabel(label);
+        log.debug("*****extractorTitle  success*****");
         return true;
     }
 
     public boolean extractorTime() {
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
-        if (elementTime == null) {
-            log.error("elementTime null, false");
-            return false;
+        if (elementTime == null || elementTime.text().equals("")) {
+
+            log.info("elementTime null, useCurrentTime");
+            p.setTime(CUENTTIME);
+            return true;
         }
 
         String time = elementTime.text();
@@ -160,14 +130,14 @@ public class BBCPicsExtractor extends BaseExtractor {
         p.setTime(dt.toString());
         log.debug("*****extractorTime  success*****");
         return true;
-    }
 
+    }
 
     public boolean extractorDescription() {
         log.debug("*****extractor Desc*****");
         Element elementTime = (Element) context.output.get("description");
         if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract desc, continue");
+            log.info("can't extract desc, continue");
             return true;
         }
         String description = elementTime.attr("content");
@@ -175,8 +145,8 @@ public class BBCPicsExtractor extends BaseExtractor {
             log.info("*****extractor Desc  failed***** url:" + url);
             return true;
         }
-        description = StringEscapeUtils.unescapeHtml(description);
 
+        description = StringEscapeUtils.unescapeHtml(description);
         p.setDescription(description);
 
         return true;
@@ -217,8 +187,8 @@ public class BBCPicsExtractor extends BaseExtractor {
 //        contentHtml = contentHtml.replaceAll("(\\n[\\s]*?)+", "\n");//多个换行符 保留一个----意义不大，本来也显示不出来，还是加<p>达到换行效果
 
 
-        if(contentHtml.length() < 384) {
-            log.error("content after extracted too short, false");
+        if(contentHtml.length() < 64) {
+            log.error("content after extracted too short, false, url: " + url);
             return false;//太短
         }
 
@@ -245,6 +215,9 @@ public class BBCPicsExtractor extends BaseExtractor {
     public void dealImg(Element img){
         String imageUrl = img.attr("src");
         //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
+        if(img.hasAttr("data-src-large")){
+            imageUrl = img.attr("data-src-large");
+        }
         if ("".equals(imageUrl)) {
             img.remove();
             return;
@@ -257,7 +230,7 @@ public class BBCPicsExtractor extends BaseExtractor {
 
         img.attr("style", "width:100%;");
 //        if(imageUrl.contains("news/320/cpsprodpb")){
-            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
+//            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
 //        }
 
 
