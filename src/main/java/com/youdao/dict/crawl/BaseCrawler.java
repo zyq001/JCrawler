@@ -19,6 +19,7 @@ import lombok.extern.apachecommons.CommonsLog;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
@@ -213,12 +214,16 @@ public abstract class BaseCrawler extends DeepCrawler {
             e.printStackTrace();
         }
         Element body = doc.body();
-//        Elements groups = body.select("article");
-        for(Element e: body.select("a")){
+        Elements groups = getGroups(body);
+        for(Element e: groups.select("a")){
             String seed = e.attr("abs:href");
             if(isMatches(seed))
                 addSeed(seed);
         }
+    }
+
+    public Elements getGroups(Element body) {
+        return body.select("a");
     }
 
     public boolean isMatches(String seed){

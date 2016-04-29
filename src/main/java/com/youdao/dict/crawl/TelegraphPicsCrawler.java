@@ -51,7 +51,10 @@ public class TelegraphPicsCrawler extends BaseCrawler {
             body = body.select("main").first();
         }
 
-        Elements groups = body.select("article");
+        Elements groups = body.select(".list-of-entities__item--gallery");
+//        if(body.getAllElements().hasClass("list-of-entities__item--gallery")){
+//            groups = body.select(".list-of-entities__item--gallery");
+//        }
         for(Element article: groups) {
             for (Element e : article.select("a")) {
                 String seed = e.attr("abs:href");
@@ -91,6 +94,19 @@ public class TelegraphPicsCrawler extends BaseCrawler {
 //        crawler.addSeed("http://edition.cnn.com/interactive/2016/04/world/nepal-one-year-later/");
         crawler.addIndexSeed("http://www.telegraph.co.uk/news/pictures/");
         crawler.addIndexSeed("http://www.telegraph.co.uk");
+        crawler.addIndexSeed("http://www.telegraph.co.uk/sport/");
+        crawler.addIndexSeed("http://www.telegraph.co.uk/business/");
+        crawler.addIndexSeed("http://www.telegraph.co.uk/travel/");
+        crawler.addIndexSeed("http://www.telegraph.co.uk/travel/galleries/");
+        crawler.addIndexSeed("http://www.telegraph.co.uk/news/entertainment/");
+        crawler.addIndexSeed("http://www.telegraph.co.uk/science/");
+
+//        for(int i = 1; i< 10; i++){
+//            crawler.addIndexSeed("http://www.telegraph.co.uk/news/pictures/loadmore" + i);
+//        }
+
+
+
 //        crawler.addIndexSeed("http://www.cnn.com/travel");
 //        crawler.addIndexSeed("http://edition.cnn.com/specials/photos");
 //        crawler.addIndexSeed("http://www.cnn.com/specials/travel/best-of-travel");

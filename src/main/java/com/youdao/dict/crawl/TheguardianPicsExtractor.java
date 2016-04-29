@@ -1,137 +1,75 @@
 package com.youdao.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
+import com.google.gson.Gson;
 import com.youdao.dict.souplang.SoupLang;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
+import com.youdao.dict.util.TypeDictHelper;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pojava.datetime.DateTime;
 
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by liuhl on 15-8-17.
  */
 @CommonsLog
-public class BBCPicsExtractor extends BaseExtractor {
+public class TheguardianPicsExtractor extends BaseExtractor {
 
-    public BBCPicsExtractor(Page page) {
+    private Elements galleryContent;
+    public TheguardianPicsExtractor(Page page) {
         super(page);
     }
 
-    public BBCPicsExtractor(String url) {
+    public TheguardianPicsExtractor(String url) {
         super(url);
     }
 
     public boolean init() {
         log.debug("*****init*****");
         try {
-            if(url.matches(".*bbc.com/(japan|urdu|vietnamese|persian|arabic|zhongwen|indone" +
-            "|kyrgyz|portuguese|mundo|ukrainian|azeri|afrique|nepali|russian|swahili|bengali|hausa|gahuza|pashto|sinhala|tamil" +
-                    "|uzbek|turkce|somali|gahuza|hindi|burmese).*")) {
-                log.error("non-English article, skipped");
-                return false;
-            }
-            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("BBCRule.xml"));
+            SoupLang soupLang = new SoupLang(SoupLang.class.getClassLoader().getResourceAsStream("TheguardianRule.xml"));
             context = soupLang.extract(doc);
-
-            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(30));
-
             content = doc.body();
+            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(30));
+            if(content.getAllElements().hasClass("gallery2")){
 
-            if(content.getAllElements().hasClass("gallery-images__list")){
+                content.select(".share-container").remove();
+                content.select(".d-body-copy").remove();
+                content.select(".block-share").remove();
+                content.select(".block-share--gallery-mobile").remove();
+                content.select("button").remove();
 
-
-                content = content.select(".gallery-images__list").first();
+                content = content.select(".gallery2").first();
 //                content.select(":not(.d-photo)").remove();
 //                content = content.select(".d-photo");
-            }else if(content.getAllElements().hasClass("inline-image")){
-                Element newContent = doc.createElement("div");
-                newContent.insertChildren(0, content.select(".inline-image"));
+            }else if(content.getAllElements().hasClass("gv-rows")){
+                content.select(".cloned").remove();
+                content.select(".el__storyelement__title").remove();
+                content.select(".js__gallery-showhide").remove();
+                content.select(".share-container").remove();
+                content.select(".d-body-copy").remove();
+                content.select(".block-share").remove();
+                content.select(".block-share--gallery-mobile").remove();
+                content.select("button").remove();
+                content.select(".lead-text").remove();
 
-                content = newContent;
-                for(Element aItem: content.select("a")){
-                    String imgSrc = aItem.attr("abs:href");
-
-                    Element img = content.appendElement("img");
-                    img.attr("src", imgSrc);
-
-
-                    String desc = aItem.attr("data-caption");
-                    Element descP = content.appendElement("p");
-                    descP.text(desc);
-                    aItem.remove();
-                }
-
-//                content.select(":not(.d-photo)").remove();
-//                content = content.select(".d-photo");
+                content = content.select(".gv-rows").first();
+//                content.select(":not(.js-owl-carousel)").remove();
             }else{
                 log.error("no phtoto, skipped url:" + url);
                 return false;
             }
-//            AntiAntiSpiderHelper.crawlinterval(new Random().nextInt(10));
-//            if(article == null || article.toString().contains("article") || url.contains("story")){
-                for(Element svg: content.select("svg")){
-                    if(svg != null) svg.remove();
-                }
+            content.select("#share-modal-img-1").remove();
+            content.select(".share-modal").remove();
 
-//                content = content.child(0).select(".content-body").first();
-
-
-//            content.select(".off-screen").remove();//copyright
-//
-//                content.select(".gelicon").remove();
-//                content.select(".icon-wrapper").remove();
-//                content.select(".elastislide-wrapper").remove();
-//                content.select("blockquote").remove();
-//                content.select(".inline-horizontal-partner-module").remove();//广告
-//                content.select(".story-footer").remove();
-//                content.select(".component").remove();
-//                content.select(".component--default").remove();
-//                content.select(".story-body__link").remove();//READ MORE
-//                content.select(".story-body__crosshead").remove();
-////                content.select(".media-landscape").remove();
-//                content.select(".story-body__unordered-list").remove();//magazine 推荐文章
-//
-//
-//                content.select(".content-meta").remove();//fenxiang
-////                content.select(".small-thing").remove();//同上 一般一起出现
-//                content.select(".icon").remove();//每篇文章最后都有的洋葱图标
-//                content.select(".on-overlay").remove();//CLOSE button
-//                content.select(".below-article-tools").remove();//文章下面分享图标
-//
-//
-//                content.select(".rounded-icon").remove();//分享图标
-//                content.select(".inline-icon").remove();//分享图标
-//                content.select(".inline-share-facebook").remove();//分享图标
-//                content.select(".js-sport-tabs").remove();
-//                content.select(".content__meta-container").remove();//作者与分享图标
-//                content.select(".submeta").remove();
-//                content.select(".mpu-ad").remove();
-//    //            content.select(".inline-share-facebook").remove();
-//    //            content.select(".inline-icon").remove();
-//
-////                content.removeClass("content__article-body from-content-api js-article__body");
-//                content.removeClass("meta__social");
-//
-//            Elements uselessTag = content.select(":not(p,img,br,div)");
-//            uselessTag.unwrap();
-
-
-
-
-    //            String isarticle = context.output.get("isarticle").toString();
-    //            if(isarticle.contains("article")){
-                    log.debug("*****init  success*****");
-                    return true;
-//            }
-//            log.error("*****init  failed，isn't an article***** url:" + url);
-//            return false;
+            log.debug("*****init  success*****");
+            return true;
         } catch (Exception e) {
             log.error("*****init  failed***** url:" + url);
-            e.printStackTrace();
             return false;
         }
     }
@@ -140,19 +78,13 @@ public class BBCPicsExtractor extends BaseExtractor {
         log.debug("*****extractorTitle*****");
 //        String title = context.output.get("title").toString();
         Element elementTitle = (Element) context.output.get("title");
-        String title;
-        if (elementTitle == null){
-            log.error("extracte title failed skipped");
-            return false;
+        String title = elementTitle.attr("content");
+        if (title == null){
+            log.info("extracte title failed continue");
+            p.setTitle(doc.title());
+            return true;
         }
-        title = elementTitle.attr("content");
-        if (title == null || "".equals(title.trim())) {
-            title = elementTitle.text();
-            if (title == null || "".equals(title.trim())) {
-                log.error("*****extractorTitle  failed***** url:" + url);
-                return false;
-            }
-        }
+
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
 //        if (title.contains("-"))
 //            p.setTitle(title.substring(0, title.lastIndexOf("-")).trim());
@@ -163,7 +95,60 @@ public class BBCPicsExtractor extends BaseExtractor {
     }
 
     public boolean extractorType() {
-        p.setType("Gallery");
+        Element elementType = (Element) context.output.get("type");
+        if (elementType == null)
+            return false;
+        String type = elementType.attr("content");
+        if (type == null || "".equals(type.trim())) {
+            log.info("*****extractorTitle  failed***** url:" + url);
+            return false;
+        }
+        if (type.contains("/")) {
+            type = type.substring(0, type.indexOf("/"));
+            type = type.replace("/", "");
+        }
+//        type = type
+
+        if(!TypeDictHelper.rightTheType(type)){
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("orgType", type);
+            String moreinfo = new Gson().toJson(map);
+            p.setMoreinfo(moreinfo);
+        }
+        type = TypeDictHelper.getType(type, type);
+        p.setType(type.trim());
+
+        Element elementLabel = (Element) context.output.get("label");
+        if (elementLabel == null)
+            return false;
+        String label = elementLabel.attr("content");
+//        String label = (String) context.output.get("label");
+        if (label == null || "".equals(label.trim())) {
+            log.info("*****extractorLabel  failed***** url:" + url);
+            return false;
+        }
+//        label = label.contains("China")?"China":label.contains("news")? "World": label;//news belong to World
+        String[] keywords = label.split(",");
+        PriorityQueue<String> pq = new PriorityQueue<String>(10, new Comparator<String>(){
+
+            @Override
+            public int compare(String o1, String o2) {
+                int length1 = o1.split(" ").length, length2 = o2.split(" ").length;
+                return length1 - length2;
+            }
+        });
+
+        for(String keyword: keywords){
+            int wordCount = keyword.split(" ").length;
+            if(wordCount <= 3) pq.add(keyword);
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!pq.isEmpty()){
+            sb.append(pq.poll());
+            if(!pq.isEmpty()) sb.append(',');
+        }
+        p.setLabel(sb.toString());
+        log.debug("*****extractorTitle  success*****");
         return true;
     }
 
@@ -171,11 +156,14 @@ public class BBCPicsExtractor extends BaseExtractor {
         log.debug("*****extractorTime*****");
         Element elementTime = (Element) context.output.get("time");
         if (elementTime == null) {
-            log.error("elementTime null, false");
-            return false;
+            log.error("elementTime null, use CURRENT url:" + url);
+            return true;
         }
-
-        String time = elementTime.text();
+        String time = elementTime.attr("content");
+        if (time == null || "".equals(time.trim())) {
+            log.info("*****extractorTime  failed, use CURRENT***** url:" + url);
+            return true;
+        }
         DateTime dt = new DateTime(time);
         p.setTime(dt.toString());
         log.debug("*****extractorTime  success*****");
@@ -187,7 +175,7 @@ public class BBCPicsExtractor extends BaseExtractor {
         log.debug("*****extractor Desc*****");
         Element elementTime = (Element) context.output.get("description");
         if (elementTime == null){//business版head meta里没有时间
-            log.error("can't extract desc, continue");
+            log.info("can't extract desc, continue");
             return true;
         }
         String description = elementTime.attr("content");
@@ -238,7 +226,7 @@ public class BBCPicsExtractor extends BaseExtractor {
 
 
         if(contentHtml.length() < 384) {
-            log.error("content after extracted too short, false");
+            log.error("content after extracted too short, false, url: " + url);
             return false;//太短
         }
 
@@ -265,6 +253,9 @@ public class BBCPicsExtractor extends BaseExtractor {
     public void dealImg(Element img){
         String imageUrl = img.attr("src");
         //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
+        if(img.hasAttr("data-src-large")){
+            imageUrl = img.attr("data-src-large");
+        }
         if ("".equals(imageUrl)) {
             img.remove();
             return;
@@ -273,11 +264,15 @@ public class BBCPicsExtractor extends BaseExtractor {
         img.removeAttr("WIDTH");
         img.removeAttr("height");
         img.removeAttr("HEIGHT");
-        img.removeAttr("srcset");
+        String srcSet = img.attr("srcset");
+        if(!srcSet.equals("") && srcSet.split(" ").length > 0){
+            imageUrl = srcSet.split(" ")[0];
+            img.attr("src", imageUrl);
+        }
 
         img.attr("style", "width:100%;");
 //        if(imageUrl.contains("news/320/cpsprodpb")){
-            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
+//            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
 //        }
 
 

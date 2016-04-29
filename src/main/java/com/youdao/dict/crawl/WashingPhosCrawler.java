@@ -79,7 +79,7 @@ public class WashingPhosCrawler extends BaseCrawler {
     static int counter = 0;
     public static void main(String[] args) throws Exception {
 //        System.out.println("http://edition.cnn.com/specials/impact-your-world.indexrhtml".matches(".*index\\.html"));
-        WashingPhosCrawler crawler = new WashingPhosCrawler("data/CNNPics");
+        WashingPhosCrawler crawler = new WashingPhosCrawler("data/WashingPics");
         crawler.setThreads(5);
         crawler.PCAgentMode();
 //        crawler.regexRule.addRule("+.*html");

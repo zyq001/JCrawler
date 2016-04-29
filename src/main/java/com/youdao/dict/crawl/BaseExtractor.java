@@ -3,7 +3,6 @@ package com.youdao.dict.crawl;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
 import com.rometools.rome.feed.synd.SyndEntry;
-import com.sun.jna.platform.win32.Sspi;
 import com.youdao.dict.bean.ParserPage;
 import com.youdao.dict.score.LeveDis;
 import com.youdao.dict.souplang.Context;
@@ -29,7 +28,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -58,7 +57,7 @@ public class BaseExtractor {
     String[] wordArray = null;
     List<ParserPage> parserPages = new ArrayList<ParserPage>();
 
-    public String CUENTTIME = new Sspi.TimeStamp().toString();
+    public static String CUENTTIME = new Timestamp(System.currentTimeMillis()).toString();
 
     static Set<String> normalHour = new HashSet<String>();
 
@@ -504,6 +503,7 @@ public class BaseExtractor {
     }
 
     public static void main(String[] args){
+        System.out.println(CUENTTIME);
         String testContent = "Lightweights Ivan Redkach (19-1-1, 15 KOs) and Luis Cruz (22-4-1, 16 KOs) " +
                 "fought to a split draw in a bout where both scored knockdowns Tuesday night at Sands " +
                 "Bethlehem Events Center in Bethlehem, PA. Here’s what ";

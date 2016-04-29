@@ -5,6 +5,7 @@ import com.youdao.dict.util.Configuration;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.net.URL;
 
@@ -38,6 +39,25 @@ public class BBCPicsCrawler extends BaseCrawler {
         return true;
     }
 
+    @Override
+    public Elements getGroups(Element body) {
+
+        Elements hyLinks = body.select("a");
+        Element res = body.appendElement("div");
+        for(int i = 0; i < hyLinks.size(); i++){
+            Element link = hyLinks.get(i);
+            if(link.getAllElements().hasClass("icon-wrapper-image") ){
+//                link.remove();//从dom树种remove
+//                hyLinks.remove(i);//从hylinks结果集中remove
+//            }else {
+                res.appendChild(link);
+//                continue;
+            }
+        }
+
+        return res.children();
+    }
+
     public static void main(String[]  args) throws Exception {
 
         BBCPicsCrawler crawler = new BBCPicsCrawler("data/BBCPics");
@@ -67,6 +87,8 @@ public class BBCPicsCrawler extends BaseCrawler {
         crawler.addIndexSeed("http://www.bbc.com/news/science_and_environment");
         crawler.addIndexSeed("http://www.bbc.com/news/entertainment_and_arts");
         crawler.addIndexSeed("http://www.bbc.com/travel");
+        crawler.addIndexSeed("http://www.bbc.com/culture/");
+        crawler.addIndexSeed("http://www.bbc.com/autos/");
 //        crawler.addIndexSeed("");
 
 //        crawler.addSeed("http://www.bbc.com/news/magazine-36074328");
