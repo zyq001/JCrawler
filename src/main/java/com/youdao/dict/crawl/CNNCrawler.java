@@ -23,6 +23,7 @@ import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.net.HttpRequesterImpl;
 import cn.edu.hfut.dmic.webcollector.util.RegexRule;
 import com.youdao.dict.util.AntiAntiSpiderHelper;
+import com.youdao.dict.util.Configuration;
 import com.youdao.dict.util.JDBCHelper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -69,14 +70,11 @@ public class CNNCrawler extends DeepCrawler {
          */
 
         try {
-/*
+
+            Configuration conf = new Configuration();
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-                    "root", "tiger", 5, 30);
-*/
-            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
-                    "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
+                    conf.get(Configuration.MYSQL_URL),
+                    conf.get(Configuration.MYSQL_USER), conf.get(Configuration.MYSQL_PASSWORD), 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");

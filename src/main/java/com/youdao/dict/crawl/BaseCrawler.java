@@ -103,9 +103,7 @@ public abstract class BaseCrawler extends DeepCrawler {
          获取同一个JdbcTemplate对象)
          */
             try {
-//            jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-//                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
-//                    "root", "", 5, 30);
+
                 jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                         conf.get(Configuration.MYSQL_URL),
                         conf.get(Configuration.MYSQL_USER), conf.get(Configuration.MYSQL_PASSWORD), 5, 30);
