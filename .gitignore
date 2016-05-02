@@ -7,3 +7,5 @@ logs
 src/main/resources/conf/remote.properties
 src/main/resources/conf/database.properties
 src/main/resources/conf/database.properties.online
+src/main/java/com/dict/util/OImageConfig.java
+src/main/java/com/dict/util/OImageUploader.java
