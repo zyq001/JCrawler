@@ -147,7 +147,7 @@ public class CNNExtractor extends BaseExtractor {
         return true;
     }
 //    public boolean extractorAndUploadImg() {
-//        return extractorAndUploadImg("proxy.corp.youdao.com", "7890");
+//        return extractorAndUploadImg(" ", "7890");
 //    }
 
     public boolean extractorAndUploadImg(String host, String port) {

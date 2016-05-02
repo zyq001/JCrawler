@@ -144,7 +144,7 @@ public class ChannelNewsAsiaCrawler extends DeepCrawler {
         //requester是负责发送http请求的插件，可以通过requester中的方法来指定http/socks代理
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         AntiAntiSpiderHelper.defaultUserAgent(requester);
-//        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+//        requester.setProxy("
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
         /*
         //多代理随机

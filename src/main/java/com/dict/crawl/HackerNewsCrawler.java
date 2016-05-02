@@ -82,7 +82,7 @@ public class HackerNewsCrawler extends DeepCrawler {
 //                    "jdbc:mysql://localhost/readease?useUnicode=true&characterEncoding=utf8",
 //                    "root", "", 5, 30);
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+                    "jdbc:mysql://pxc-mysql.inner. /readease?useUnicode=true&characterEncoding=utf8",
                     "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
@@ -208,7 +208,7 @@ public class HackerNewsCrawler extends DeepCrawler {
         config.setTimeoutForConnect(60000);
         config.setTimeoutForRead(60000);
         //单代理 Mozilla/5.0 (X11; Linux i686; rv:34.0) Gecko/20100101 Firefox/34.0
-        requester.setProxy("proxy.corp.youdao.com", 3456, Proxy.Type.SOCKS);
+        requester.setProxy("
         /*
 
         //多代理随机

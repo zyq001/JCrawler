@@ -10,3 +10,4 @@ src/main/resources/conf/database.properties.online
 src/main/java/com/dict/util/OImageConfig.java
 src/main/java/com/dict/util/OImageUploader.java
 bin
+DictBKWikiCrawler.java

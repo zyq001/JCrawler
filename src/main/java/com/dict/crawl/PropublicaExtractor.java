@@ -83,7 +83,7 @@ public class PropublicaExtractor extends BaseExtractor {
                 content.select(".published").remove();//日期
                 content.select(".external-link").remove();//continue to read
                 content.select(".more-from-issue").remove();//
-//                content.select("http://yiduserver.youdao.com/dc.s?id=3260469")
+//                content.select("http://yiduserver. /dc.s?id=3260469")
 //                content.select(".shareaholic-canvas").remove();//分享图标
 //                content.select(".wpptopdfenh").remove();//pdf版下载
 //                content.select(".entry-html-box").remove();//html版

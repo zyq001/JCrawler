@@ -70,11 +70,11 @@ public class CollegeFashionCrawler implements Job{
 //    public static String trendsJson = "MDoxMDA6YzVlYmFlYWEzMGYyZjY2NTc1ZmQ3Y2Q3ZTMwYTgyZDg%3D";//size = 100
     public static String trendsJson = "MDoxMDpjNWViYWVhYTMwZjJmNjY1NzVmZDdjZDdlMzBhODJkOA%3D";//size = 10
 
-    public static String js_baike_words = "http://xue.youdao.com/special/js_baike_words_v2";
+    public static String js_baike_words = "http://xue. /special/js_baike_words_v2";
 
     public static String urlTail = "eng";
 
-    public static  String exmpDetailUrl = "http://dict.youdao.com/search?le=eng&q=bk:apple&keyfrom=dataserver&doctype=json&jsonversion=2";
+    public static  String exmpDetailUrl = "http://dict. /search?le=eng&q=bk:apple&keyfrom=dataserver&doctype=json&jsonversion=2";
 
 //    public static String dictWikiType = "Wiki";
 
@@ -114,7 +114,7 @@ public class CollegeFashionCrawler implements Job{
                     "root", "tiger", 5, 30);
 */
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
-                    "jdbc:mysql://pxc-mysql.inner.youdao.com/readease?useUnicode=true&characterEncoding=utf8",
+                    "jdbc:mysql://pxc-mysql.inner. /readease?useUnicode=true&characterEncoding=utf8",
                     "eadonline4nb", "new1ife4Th1sAugust", 5, 30);
         } catch (Exception ex) {
             jdbcTemplate = null;
