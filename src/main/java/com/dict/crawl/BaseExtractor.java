@@ -502,6 +502,20 @@ public class BaseExtractor {
         }
     }
 
+    public boolean extracteAvgLength(){
+        Properties props = new Properties();
+        props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");    // 七种Annotators
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);    // 依次处理
+
+        String text = "This is a test.";               // 输入文本
+
+        Annotation document = new Annotation(text);    // 利用text创建一个空的Annotation
+        pipeline.annotate(document);                   // 对text执行所有的Annotators（七种）
+
+        // 下面的sentences 中包含了所有分析结果，遍历即可获知结果。
+        List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+    }
+
     public static void main(String[] args){
         System.out.println(CUENTTIME);
         String testContent = "Lightweights Ivan Redkach (19-1-1, 15 KOs) and Luis Cruz (22-4-1, 16 KOs) " +

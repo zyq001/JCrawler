@@ -5,3 +5,5 @@ data
 logs
 *.log
 src/main/resources/conf/remote.properties
+src/main/resources/conf/database.properties
+src/main/resources/conf/database.properties.online
