@@ -1,6 +1,6 @@
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
-import com.youdao.dict.souplang.Context;
-import com.youdao.dict.souplang.SoupLang;
+import com.dict.souplang.Context;
+import com.dict.souplang.SoupLang;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
