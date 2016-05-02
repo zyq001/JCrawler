@@ -11,3 +11,4 @@ src/main/java/com/dict/util/OImageConfig.java
 src/main/java/com/dict/util/OImageUploader.java
 bin/checkDone.sh
 DictBKWikiCrawler.java
+lib
