@@ -329,11 +329,7 @@ public abstract class BaseCrawler extends DeepCrawler {
         HttpRequesterImpl requester = (HttpRequesterImpl) crawler.getHttpRequester();
         AntiAntiSpiderHelper.defaultUserAgent(requester);
 
-        //多代理随机
-        RandomProxyGenerator proxyGenerator=new RandomProxyGenerator();
-        proxyGenerator.addProxy("127.0.0.1",8080,Proxy.Type.SOCKS);
-        requester.setProxyGenerator(proxyGenerator);
-        */
+
 
         /*设置是否断点爬取*/
 //        crawler.setResumable(true);

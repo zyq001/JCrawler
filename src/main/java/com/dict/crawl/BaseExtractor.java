@@ -9,6 +9,11 @@ import com.dict.util.OImageUploader;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.dict.score.LeveDis;
 import com.dict.util.OImageConfig;
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.CoreMap;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.Connection;
@@ -507,13 +512,39 @@ public class BaseExtractor {
         props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");    // 七种Annotators
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);    // 依次处理
 
-        String text = "This is a test.";               // 输入文本
+//        String text = "This is a test.";               // 输入文本
 
-        Annotation document = new Annotation(text);    // 利用text创建一个空的Annotation
+        Annotation document = new Annotation(p.getContent());    // 利用text创建一个空的Annotation
         pipeline.annotate(document);                   // 对text执行所有的Annotators（七种）
 
         // 下面的sentences 中包含了所有分析结果，遍历即可获知结果。
-        List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+        double avgSentLength = 0.0;
+        int  totleSentLength = 0;
+        Set<String> uniqueWord = new HashSet<String>();
+        for(CoreMap coreMap: sentences){
+            List<CoreLabel> tokens = coreMap.get(CoreAnnotations.TokensAnnotation.class);
+            for(CoreLabel cl: tokens){
+                uniqueWord.add(cl.get(CoreAnnotations.TextAnnotation.class));
+            }
+            int sentLength = tokens.size();
+            totleSentLength += sentLength;
+        }
+        avgSentLength = 1.0 * totleSentLength / sentences.size();
+
+        int totleCharCount = 0;
+        double avgWordLenth = 0.0;
+        for(String word: uniqueWord){
+            totleCharCount += word.length();
+        }
+        avgWordLenth = (1.0 * totleCharCount) / uniqueWord.size();
+
+        p.setAvgSentLength(avgSentLength);
+        p.setWordCount(totleSentLength);
+        p.setUniqueWordCount(uniqueWord.size());
+        p.setAvgWordLength(avgWordLenth);
+
+        return true;
     }
 
     public static void main(String[] args){

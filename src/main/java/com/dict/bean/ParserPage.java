@@ -90,10 +90,11 @@ public class ParserPage implements IWritable, Serializable {
     private String moreinfo = "";
     @Getter
     @Setter
-    private String avgWordLength = "";
+    private Double avgWordLength = 0.0;
+
     @Getter
     @Setter
-    private String avgSentLength = "";
+    private Double avgSentLength = 0.0;
 
     public void setTitle(String title) {
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t
