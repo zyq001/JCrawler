@@ -161,7 +161,7 @@ public abstract class BaseCrawler extends DeepCrawler {
         try {
             BaseExtractor extractor = getBbcrssExtractor(page);
             if (extractor.extractor() && jdbcTemplate != null) {
-                ex
+                extractor.p.setPage_type(1);
                 extractor.insertWith(jdbcTemplate);
 //
 //                ParserPage p = extractor.getParserPage();

@@ -83,7 +83,7 @@ public class ParserPage implements IWritable, Serializable {
 
     @Getter
     @Setter
-    private int fullPage = 0;
+    private int page_type = 0;
 
     @Getter
     @Setter
