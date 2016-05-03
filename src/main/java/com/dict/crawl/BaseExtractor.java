@@ -189,18 +189,19 @@ public class BaseExtractor {
 
     public void insertWith(JdbcTemplate jdbcTemplate){
         int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style" +
-                        ", host, url, time, description, content, wordCount, uniqueWordCount, version, mainimage" +
-                        ", moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        ", host, url, time, description, content, wordCount, uniqueWordCount, avgWordLength" +
+                ", avgSentLength, version, mainimage, page_type, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle()
                 , p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getWordCount()
-                , p.getUniqueWordCount(), p.getVersion(), p.getMainimage(), p.getMoreinfo());
+                , p.getUniqueWordCount(), p.getAvgWordLength(), p.getAvgSentLength(),
+                p.getVersion(), p.getMainimage(), p.getPage_type(), p.getMoreinfo());
         if (updates == 1) {
             System.out.println("parser_page插入成功");
-            int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
-
-            updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
-                    id, doc.html());
-            System.out.println("org_content插入成功");
+//            int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
+//
+//            updates = jdbcTemplate.update("insert ignore into org_content (id, content) values (?,?)",
+//                    id, doc.html());
+//            System.out.println("org_content插入成功");
         } else {
             System.out.println("失败插入mysql");
         }
