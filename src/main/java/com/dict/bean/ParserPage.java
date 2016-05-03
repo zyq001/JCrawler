@@ -3,7 +3,7 @@ package com.dict.bean;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import odis.serialize.IWritable;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.DataInput;
@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by liuhl on 15-7-31.
  */
 @ToString
-public class ParserPage implements IWritable, Serializable {
+public class ParserPage implements  Serializable {
 
     @Getter
     @Setter
@@ -103,58 +103,7 @@ public class ParserPage implements IWritable, Serializable {
         this.title = title;
     }
 
-    @Override
-    public void writeFields(DataOutput out) throws IOException {
-        out.writeLong(id);
-        out.writeUTF(title);
-        out.writeUTF(type);
-        out.writeUTF(label);
-        out.writeUTF(level);
-        out.writeUTF(style);
-        out.writeUTF(host);
-        out.writeUTF(url);
-        out.writeUTF(content);
-        out.writeUTF(time);
-        out.writeUTF(version);
-        out.writeUTF(mainimage);
-        out.writeInt(endtime);
-    }
 
-    @Override
-    public void readFields(DataInput in) throws IOException {
-        id = in.readLong();
-        title = in.readUTF();
-        type = in.readUTF();
-        label = in.readUTF();
-        level = in.readUTF();
-        style = in.readUTF();
-        host = in.readUTF();
-        url = in.readUTF();
-        content = in.readUTF();
-        time = in.readUTF();
-        version = in.readUTF();
-        mainimage = in.readUTF();
-        endtime = in.readInt();
-    }
-
-    @Override
-    public IWritable copyFields(IWritable value) {
-        ParserPage p = (ParserPage) value;
-        this.id = p.getId();
-        this.title = p.getTitle();
-        this.type = p.getType();
-        this.label = p.getLabel();
-        this.level = p.getLevel();
-        this.style = p.getStyle();
-        this.host = p.getHost();
-        this.url = p.getUrl();
-        this.content = p.getContent();
-        this.time = p.getTime();
-        this.version = p.getVersion();
-        this.mainimage = p.getMainimage();
-        this.endtime = p.getEndtime();
-        return this;
-    }
 
     public static ParserPage getFromMap(Map<String, String> map) {
         ParserPage p = new ParserPage();

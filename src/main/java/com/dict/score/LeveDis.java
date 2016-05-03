@@ -1,6 +1,6 @@
 package com.dict.score;
 
-import toolbox.misc.LogFormatter;
+//import toolbox.misc.LogFormatter;
 
 import java.io.*;
 import java.util.*;
@@ -11,8 +11,6 @@ import java.util.logging.Logger;
  */
 public class LeveDis {
 
-    public static final Logger LOG =
-            LogFormatter.getLogger(LeveDis.class);
 
     public static final String HS_FILE = "vocPath/highschool.txt";
 
@@ -134,13 +132,13 @@ public class LeveDis {
                 || !loadVoc1(IELTS_FILE, ielts)
                 || !loadVoc(TEM4_FILE, tem4Voc)
                 || !loadVoc(TEM8_FILE, tem8Voc)) {
-            LOG.warning("[LevelWordDiscriminator] some loadVoc error...");
+//            LOG.warning("[LevelWordDiscriminator] some loadVoc error...");
         }
     }
 
     private boolean loadVoc(String path, HashSet<String> voc) {
         if (path == null || voc == null) {
-            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
+//            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
             return false;
         }
 
@@ -167,7 +165,7 @@ public class LeveDis {
             is.close();
         } catch (Exception e) {
             e.printStackTrace();
-            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
+//            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
             return false;
         }
 
@@ -176,7 +174,7 @@ public class LeveDis {
 
     private boolean loadVoc1(String path, HashSet<String> voc) {
         if (path == null || voc == null) {
-            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
+//            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
             return false;
         }
 
@@ -209,7 +207,7 @@ public class LeveDis {
             is.close();
         } catch (Exception e) {
             e.printStackTrace();
-            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
+//            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
             return false;
         }
 
