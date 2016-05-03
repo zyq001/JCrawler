@@ -2,17 +2,14 @@ package com.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.dict.souplang.SoupLang;
-import com.dict.util.OImageUploader;
-import com.rometools.rome.feed.synd.SyndEntry;
-import com.dict.util.OImageConfig;
 import com.dict.util.RSSReaderHelper;
+import com.rometools.rome.feed.synd.SyndEntry;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.pojava.datetime.DateTime;
 
-import java.net.URL;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -166,21 +163,6 @@ public class CNNRSSExtractor extends BaseExtractor {
                 img.removeAttr("WIDTH");
                 img.removeAttr("height");
                 img.removeAttr("HEIGHT");
-//                img.attr("style", "width:100%;");
-                OImageUploader uploader = new OImageUploader();
-                if (!"".equals(host) && !"".equals(port))
-                    uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
-//                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                int twidth = uploader.getWidth();
-                if(twidth >= 300)
-                    img.attr("style", "width:100%;");
-                img.attr("src", newUrl.toString());
-                if (mainImage == null) {
-                    width = uploader.getWidth();
-                    mainImage = newUrl.toString();
-                }
             }
 
             p.setMainimage(mainImage);

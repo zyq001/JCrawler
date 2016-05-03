@@ -68,7 +68,7 @@ public class BBCRSSCrawler extends DeepCrawler {
 
         try {
 
-            Configuration conf = new Configuration();
+            Configuration conf = new Configuration("conf/remote.properties");
             jdbcTemplate = JDBCHelper.createMysqlTemplate("mysql1",
                     conf.get(Configuration.MYSQL_URL),
                     conf.get(Configuration.MYSQL_USER), conf.get(Configuration.MYSQL_PASSWORD), 5, 30);

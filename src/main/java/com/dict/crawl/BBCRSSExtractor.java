@@ -2,7 +2,9 @@ package com.dict.crawl;
 
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import com.dict.souplang.SoupLang;
-import com.dict.util.*;
+import com.dict.util.AntiAntiSpiderHelper;
+import com.dict.util.RSSReaderHelper;
+import com.dict.util.TypeDictHelper;
 import com.rometools.rome.feed.synd.SyndEntry;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
@@ -11,7 +13,6 @@ import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 import org.pojava.datetime.DateTime;
 
-import java.net.URL;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -366,22 +367,6 @@ public class BBCRSSExtractor extends BaseExtractor {
                 img.removeAttr("height");
                 img.removeAttr("HEIGHT");
                 img.removeAttr("srcset");
-                //                img.removeAttr("srcset");
-//                img.attr("style", "width:100%;");
-                OImageUploader uploader = new OImageUploader();
-                if (!"".equals(host) && !"".equals(port))
-                    uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
-                //                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                int twidth = uploader.getWidth();
-                if(twidth >= 300)
-                    img.attr("style", "width:100%;");
-                img.attr("src", newUrl.toString());
-                if (mainImage == null) {
-                    width = uploader.getWidth();
-                    mainImage = newUrl.toString();
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -402,22 +387,6 @@ public class BBCRSSExtractor extends BaseExtractor {
                 img.before(newImg);
                 img.remove();
                 img = newImg;
-                //                img.removeAttr("srcset");
-//                img.attr("style", "width:100%;");
-                OImageUploader uploader = new OImageUploader();
-                if (!"".equals(host) && !"".equals(port))
-                    uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
-                //                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                int twidth = uploader.getWidth();
-                if(twidth >= 300)
-                    img.attr("style", "width:100%;");
-                img.attr("src", newUrl.toString());
-                if (mainImage == null) {
-                    width = uploader.getWidth();
-                    mainImage = newUrl.toString();
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -440,22 +409,6 @@ public class BBCRSSExtractor extends BaseExtractor {
                 img.before(newImg);
                 img.remove();
                 img = newImg;
-                //                img.removeAttr("srcset");
-//                img.attr("style", "width:100%;");
-                OImageUploader uploader = new OImageUploader();
-                if (!"".equals(host) && !"".equals(port))
-                    uploader.setProxy(host, port);
-                long id = uploader.deal(imageUrl);
-                //                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                int twidth = uploader.getWidth();
-                if(twidth >= 300)
-                    img.attr("style", "width:100%;");
-                img.attr("src", newUrl.toString());
-                if (mainImage == null) {
-                    width = uploader.getWidth();
-                    mainImage = newUrl.toString();
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -464,33 +417,33 @@ public class BBCRSSExtractor extends BaseExtractor {
 //         if(mainImage == null) {
         Element elementImg = (Element) context.output.get("mainimage");
         if (elementImg != null){
-            String tmpMainImage = elementImg.attr("content");
-            OImageUploader uploader = new OImageUploader();
-            if (!"".equals(host) && !"".equals(port))
-                uploader.setProxy(host, port);
-            long id = 0;
-            try {
-                id = uploader.deal(tmpMainImage);
-
-//                long id = 0;
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                width = uploader.getWidth();
-                if(mainImage == null){
-                    //正文中无图片 将meta中图片加入到正文中
-                    Tag imgTag = Tag.valueOf("img");
-//                img.appendChild(imgTag);
-                    Element newImg = new Element(imgTag, "");
-                    newImg.attr("src", newUrl.toString());
-                    if(width >= 300)
-                        newImg.attr("style", "width:100%;");
-                    content.prependChild(newImg);
-                }
-                mainImage = newUrl.toString();
-
-            } catch (Exception e1) {
-//                        e1.printStackTrace();
-
-            }
+//            String tmpMainImage = elementImg.attr("content");
+//            OImageUploader uploader = new OImageUploader();
+//            if (!"".equals(host) && !"".equals(port))
+//                uploader.setProxy(host, port);
+//            long id = 0;
+//            try {
+//                id = uploader.deal(tmpMainImage);
+//
+////                long id = 0;
+//                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
+//                width = uploader.getWidth();
+//                if(mainImage == null){
+//                    //正文中无图片 将meta中图片加入到正文中
+//                    Tag imgTag = Tag.valueOf("img");
+////                img.appendChild(imgTag);
+//                    Element newImg = new Element(imgTag, "");
+//                    newImg.attr("src", newUrl.toString());
+//                    if(width >= 300)
+//                        newImg.attr("style", "width:100%;");
+//                    content.prependChild(newImg);
+//                }
+//                mainImage = newUrl.toString();
+//
+//            } catch (Exception e1) {
+////                        e1.printStackTrace();
+//
+//            }
         }
         p.setMainimage(mainImage);
         if (width == 0) {

@@ -2,8 +2,9 @@
 import cn.edu.hfut.dmic.webcollector.crawler.BreadthCrawler;
 import cn.edu.hfut.dmic.webcollector.model.Links;
 import cn.edu.hfut.dmic.webcollector.model.Page;
-import java.util.regex.Pattern;
 import org.jsoup.nodes.Document;
+
+import java.util.regex.Pattern;
 
 /**
  * Crawl news from yahoo news

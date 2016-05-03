@@ -3,12 +3,10 @@ package com.dict.crawl;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.util.JsoupUtils;
 import com.dict.bean.ParserPage;
+import com.dict.score.LeveDis;
 import com.dict.souplang.Context;
 import com.dict.util.GFWHelper;
-import com.dict.util.OImageUploader;
 import com.rometools.rome.feed.synd.SyndEntry;
-import com.dict.score.LeveDis;
-import com.dict.util.OImageConfig;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -32,12 +30,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+//import com.dict.util.OImageUploader;
+//import com.dict.util.OImageConfig;
 
 //import org.apache.xpath.operations.String;
 
@@ -211,7 +211,7 @@ public class BaseExtractor {
             return extractorTime() && extractorTitle() && extractorType()
                     && extractorAndUploadImg() && extractorDescription()
                     && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel())
-                    && contentWordCount() && addAdditionalTag();
+                    && extracteAvgLength() && addAdditionalTag();
         else {
             log.error("init failed");
             return false;
@@ -275,26 +275,26 @@ public class BaseExtractor {
                 img.removeAttr("height");
                 img.removeAttr("HEIGHT");
 //                img.attr("style", "width:100%;");
-                OImageUploader uploader = new OImageUploader();
-                if (!"".equals(host) && !"".equals(port))
-                    uploader.setProxy(host, port);
-                long id = 0;
-                try {
-                    id = uploader.deal(imageUrl);
-                }catch (Exception e){
-//                    img.attr("src", imageUrl);
-                    log.error("use org img url, continue");
-                    continue;
-                }
-                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-                int twidth = uploader.getWidth();
-                if (twidth >= 300)
-                    img.attr("style", "width:100%;");
-                img.attr("src", newUrl.toString());
-                if (mainImage == null) {
-                    width = uploader.getWidth();
-                    mainImage = newUrl.toString();
-                }
+//                OImageUploader uploader = new OImageUploader();
+//                if (!"".equals(host) && !"".equals(port))
+//                    uploader.setProxy(host, port);
+//                long id = 0;
+//                try {
+//                    id = uploader.deal(imageUrl);
+//                }catch (Exception e){
+////                    img.attr("src", imageUrl);
+//                    log.error("use org img url, continue");
+//                    continue;
+//                }
+//                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
+//                int twidth = uploader.getWidth();
+//                if (twidth >= 300)
+//                    img.attr("style", "width:100%;");
+//                img.attr("src", newUrl.toString());
+//                if (mainImage == null) {
+//                    width = uploader.getWidth();
+//                    mainImage = newUrl.toString();
+//                }
             }
 
 
