@@ -25,7 +25,7 @@ public class Configuration {
     }
 
     public Configuration(){
-        loadProperties("conf/database.properties");
+        loadProperties("conf/remote.properties");
     }
 
     public Configuration(String propertiesFileName){

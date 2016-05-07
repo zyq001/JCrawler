@@ -9,8 +9,11 @@ import com.dict.util.GFWHelper;
 import com.rometools.rome.feed.synd.SyndEntry;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.simple.Sentence;
+import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import edu.stanford.nlp.util.CoreMap;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang.StringEscapeUtils;
@@ -28,7 +31,9 @@ import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.*;
@@ -188,9 +193,13 @@ public class BaseExtractor {
 
 
     public void insertWith(JdbcTemplate jdbcTemplate){
+        insertWith(jdbcTemplate, p);
+    }
+
+    public static void insertWith(JdbcTemplate jdbcTemplate, ParserPage p){
         int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style" +
                         ", host, url, time, description, content, wordCount, uniqueWordCount, avgWordLength" +
-                ", avgSentLength, version, mainimage, page_type, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        ", avgSentLength, version, mainimage, page_type, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle()
                 , p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getWordCount()
                 , p.getUniqueWordCount(), p.getAvgWordLength(), p.getAvgSentLength(),
@@ -212,7 +221,7 @@ public class BaseExtractor {
             return extractorTime() && extractorTitle() && extractorType()
                     && extractorAndUploadImg() && extractorDescription()
                     && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel())
-                    && extracteAvgLength() && addAdditionalTag();
+                    && extracteAvgLength(p) && addAdditionalTag();
         else {
             log.error("init failed");
             return false;
@@ -508,9 +517,25 @@ public class BaseExtractor {
         }
     }
 
-    public boolean extracteAvgLength(){
+    public static boolean extracteAvgLength(ParserPage p ){
+
+//        String model = "models/chinese.tagger";
+//        String content = "你们 是 祖国 美丽 盛开 的 花朵";
+//        MaxentTagger tagger = new MaxentTagger(model);
+//        List<List<HasWord>> sentences = MaxentTagger.tokenizeText(new BufferedReader(new StringReader(content)));
+//        for (List<? extends HasWord> sentence : sentences) {
+//            List<edu.stanford.nlp.ling.TaggedWord> tSentence = tagger.tagSentence(sentence);
+////            for(Tagg)
+//            System.out.println(tSentence);
+//        }
+
+
         Properties props = new Properties();
-        props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");    // 七种Annotators
+//        props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");    // 七种Annotators
+        props.put("annotators", "tokenize, ssplit, pos");
+        props.put("pos.model", "models/english-left3words-distsim.tagger");
+//        props.put("pos.model", "models/english-left3words-distsim.tagger.props");
+//        props.put("model", "models/english-left3words-distsim.tagger");
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);    // 依次处理
 
 //        String text = "This is a test.";               // 输入文本
@@ -549,14 +574,26 @@ public class BaseExtractor {
     }
 
     public static void main(String[] args){
-        System.out.println(CUENTTIME);
-        String testContent = "Lightweights Ivan Redkach (19-1-1, 15 KOs) and Luis Cruz (22-4-1, 16 KOs) " +
-                "fought to a split draw in a bout where both scored knockdowns Tuesday night at Sands " +
-                "Bethlehem Events Center in Bethlehem, PA. Here’s what ";
-
-        new BaseExtractor().contentWordCount(testContent);
+//        System.out.println(CUENTTIME);
+//        String testContent = "Lightweights Ivan Redkach (19-1-1, 15 KOs) and Luis Cruz (22-4-1, 16 KOs) " +
+//                "fought to a split draw in a bout where both scored knockdowns Tuesday night at Sands " +
+//                "Bethlehem Events Center in Bethlehem, PA. Here’s what ";
+//
+//        new BaseExtractor().contentWordCount(testContent);
 //        new BaseExtractor().resumeFrame(testContent);
+
+        edu.stanford.nlp.simple.Document doc = new edu.stanford.nlp.simple.Document("add your text here! It can contain multiple sentences.");
+        for (Sentence sent : doc.sentences()) {  // Will iterate over two sentences
+            // We're only asking for words -- no need to load any models yet
+            System.out.println("The second word of the sentence '" + sent + "' is " + sent.word(1));
+            // When we ask for the lemma, it will load and run the part of speech tagger
+            System.out.println("The third lemma of the sentence '" + sent + "' is " + sent.lemma(2));
+            // When we ask for the parse, it will load and run the parser
+            System.out.println("The parse of the sentence '" + sent + "' is " + sent.parse());
+            // ...
+        }
     }
+
 
     public void HideSomeHypLink(Element _content) {
         Elements hypLinks = _content.select("a");
