@@ -1,5 +1,5 @@
 #!/bin/sh
-source /home/zangyq/.bash_profile
+source ~/.bash_profile
 
 DATE=$(date +%Y%m%d%H%M)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
@@ -13,7 +13,7 @@ start(){
 	else
 		echo "Starting $1 ..."
 		cd $DIR
-		nohup mvn exec:java -Dexec.mainClass="com.youdao.dict.crawl.${1}Crawler" -Dexec.cleanupDaemonThreads=false -e > ${LOG_DIR}/$1.$DATE.log 2>&1 &
+		nohup mvn exec:java -Dexec.mainClass="com.dict.crawl.${1}Crawler" -Dexec.cleanupDaemonThreads=false -e > ${LOG_DIR}/$1.$DATE.log 2>&1 &
 
 		if [ $? -ne 0 ]
 		then
