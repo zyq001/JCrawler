@@ -67,9 +67,12 @@ public class CleanUtil {
 
             BaseExtractor.extracteAvgLength(p);
             int updates = jdbcTemplate.update("update parser_page_tran set content = ?, wordCount = ?, uniqueWordCount = ?" +
-                            ", avgWordLength = ?, avgSentLength = ? where id = ?",
+                            ", avgWordLength = ?, avgSentLength = ?, highschoolpts = ?, cet4pts = ?, cet6pts = ?, kaoypts = ?, " +
+                    "toflepts = ?, ieltspts = ?, grepts =?  where id = ?",
                      p.getContent(), p.getWordCount()
                     , p.getUniqueWordCount(), p.getAvgWordLength(), p.getAvgSentLength(),
+                    p.getHighschoolpts(), p.getCet4pts(), p.getCet6pts(), p.getKaoypts(), p.getToflepts(), p.getIeltspts()
+                    , p.getGrepts(),
                     id);
 
             if (updates == 1) {

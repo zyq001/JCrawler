@@ -18,6 +18,8 @@ public class LeveDis {
 
     public static final String CET6_FILE = "vocPath/cet6.txt";
 
+    public static final String KAOY_FILE = "vocPath/graduated.txt";
+
     public static final String TEM4_FILE = "vocPath/toefl.txt";
 
     public static final String TEM8_FILE = "vocPath/gre.txt";
@@ -33,6 +35,8 @@ public class LeveDis {
     private HashSet<String> cet4Voc = new HashSet<String>();
 
     private HashSet<String> cet6Voc = new HashSet<String>();
+
+    private HashSet<String> kaoyVoc = new HashSet<String>();
 
     private HashSet<String> tem4Voc = new HashSet<String>();
 
@@ -54,7 +58,7 @@ public class LeveDis {
         }
 
         String[] ss = text.split(" ");
-        int total = 0, hs = 0, cet4 = 0, cet6 = 0, tem4 = 0, tem8 = 0, iets = 0;
+        int total = 0, hs = 0, cet4 = 0, cet6 = 0, kaoy = 0, tem4 = 0, tem8 = 0, iets = 0;
         for (String s : ss) {
             if (hsVoc.contains(s)) {
                 hs++;
@@ -68,6 +72,8 @@ public class LeveDis {
                 tem4++;
             } else if (tem8Voc.contains(s)) {
                 tem8++;
+            } else if (kaoyVoc.contains(s)) {
+                kaoy++;
             } else {
                 continue;
             }
@@ -82,6 +88,58 @@ public class LeveDis {
         rate.add(1.0 * hs / total);
         rate.add(1.0 * cet4 / total);
         rate.add(1.0 * cet6 / total);
+        rate.add(1.0 * kaoy / total);
+        rate.add(1.0 * iets / total);
+        rate.add(1.0 * tem4 / total);
+        rate.add(1.0 * tem8 / total);
+        //    rate.add(1.0 * hs );
+        //  rate.add(1.0 * cet4 );
+        // rate.add(1.0 * cet6 );
+        // rate.add(1.0 * iets );
+        // rate.add(1.0 * tem4 );
+        // rate.add(1.0 * tem8 );
+        // rate.add(1.0 * total );
+
+        return rate;
+    }
+
+    public List<Double> compLevel(Set<String> uniqueWord) {
+        if (uniqueWord == null) {
+            return null;
+        }
+
+//        String[] ss = text.split(" ");
+        int total = 0, hs = 0, cet4 = 0, cet6 = 0, kaoy = 0, tem4 = 0, tem8 = 0, iets = 0;
+        for (String s : uniqueWord) {
+            if (hsVoc.contains(s)) {
+                hs++;
+            } else if (cet4Voc.contains(s)) {
+                cet4++;
+            } else if (cet6Voc.contains(s)) {
+                cet6++;
+            } else if (ielts.contains(s)) {
+                iets++;
+            } else if (tem4Voc.contains(s)) {
+                tem4++;
+            } else if (tem8Voc.contains(s)) {
+                tem8++;
+            } else if (kaoyVoc.contains(s)) {
+                kaoy++;
+            } else {
+                continue;
+            }
+                total++;
+            }
+        List<Double> rate = new ArrayList<Double>();
+        if (total <= 0) {
+            return null;
+        } else if (total >= 2 && total < 10) {
+            total = 10;
+        }
+        rate.add(1.0 * hs / total);
+        rate.add(1.0 * cet4 / total);
+        rate.add(1.0 * cet6 / total);
+        rate.add(1.0 * kaoy / total);
         rate.add(1.0 * iets / total);
         rate.add(1.0 * tem4 / total);
         rate.add(1.0 * tem8 / total);
@@ -129,11 +187,48 @@ public class LeveDis {
         if (!loadVoc(HS_FILE, hsVoc)
                 || !loadVoc(CET4_FILE, cet4Voc)
                 || !loadVoc(CET6_FILE, cet6Voc)
+                || !loadVoc0(KAOY_FILE, kaoyVoc)
                 || !loadVoc1(IELTS_FILE, ielts)
                 || !loadVoc(TEM4_FILE, tem4Voc)
                 || !loadVoc(TEM8_FILE, tem8Voc)) {
 //            LOG.warning("[LevelWordDiscriminator] some loadVoc error...");
         }
+    }
+
+    private boolean loadVoc0(String path, HashSet<String> voc) {
+        if (path == null || voc == null) {
+//            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
+            return false;
+        }
+
+        try {
+            InputStream is = LeveDis.class.getClassLoader().getResourceAsStream(path);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                line = line.trim().toLowerCase();
+                if (line.length() <= 3) {
+                    continue;
+                }
+//                int pos = line.indexOf(" ");
+//                if (pos < 0) {
+//                    continue;
+//                }
+//                String word = line.substring(0, pos);
+                if (isEng(line)) {
+                    voc.add(line);
+                }
+            }
+            br.close();
+            is.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+//            LOG.warning("[LevelWordDiscriminator] loadVoc error...");
+            return false;
+        }
+
+        return true;
     }
 
     private boolean loadVoc(String path, HashSet<String> voc) {

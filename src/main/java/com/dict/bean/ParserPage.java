@@ -95,6 +95,27 @@ public class ParserPage implements  Serializable {
     @Getter
     @Setter
     private Double avgSentLength = 0.0;
+    @Getter
+    @Setter
+    private Double highschoolpts = 0.0;
+    @Getter
+    @Setter
+    private Double cet4pts = 0.0;
+    @Getter
+    @Setter
+    private Double cet6pts = 0.0;
+    @Getter
+    @Setter
+    private Double kaoypts = 0.0;
+    @Getter
+    @Setter
+    private Double toflepts = 0.0;
+    @Getter
+    @Setter
+    private Double ieltspts = 0.0;
+    @Getter
+    @Setter
+    private Double grepts = 0.0;
 
     public void setTitle(String title) {
         title = title.replaceAll("\\\\s*|\\t|\\r|\\n", "");//去除换行符制表符/r,/n,/t

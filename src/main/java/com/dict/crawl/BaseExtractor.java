@@ -564,6 +564,15 @@ public class BaseExtractor {
             totleCharCount += word.length();
         }
         avgWordLenth = (1.0 * totleCharCount) / uniqueWord.size();
+        LeveDis leveDis = LeveDis.getInstance("");
+        List<Double> list = leveDis.compLevel(uniqueWord);
+        p.setHighschoolpts(list.get(0));
+        p.setCet4pts(list.get(1));
+        p.setCet6pts(list.get(2));
+        p.setKaoypts(list.get(3));
+        p.setIeltspts(list.get(4));
+        p.setToflepts(list.get(5));
+        p.setGrepts(list.get(6));
 
         p.setAvgSentLength(avgSentLength);
         p.setWordCount(totleSentLength);
