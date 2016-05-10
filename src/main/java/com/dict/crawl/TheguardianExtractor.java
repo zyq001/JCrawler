@@ -212,51 +212,51 @@ public class TheguardianExtractor extends BaseExtractor {
         return true;
     }
 
-    public boolean extractorAndUploadImg(String host, String port) {
-        log.debug("*****extractorAndUploadImg*****");
-        if (content == null || p == null) {
-            return false;
-        }
-       /* if (host.equals(port)) return true;*/
-
-        Elements imgs = content.select("img");
-        String mainImage = null;
-        int width = 0;
-        for (Element img : imgs) {
-            try {
-                String imageUrl = img.attr("src");
-                //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
-                if ("".equals(imageUrl)) {
-                    img.remove();
-                    continue;
-                }
-                img.removeAttr("width");
-                img.removeAttr("WIDTH");
-                img.removeAttr("height");
-                img.removeAttr("HEIGHT");
-                img.removeAttr("srcset");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-//         if(mainImage == null) {
-        Element elementImg = (Element) context.output.get("mainimage");
-        if (elementImg != null){
-            String tmpMainImage = elementImg.attr("content");
-        }
-        p.setMainimage(mainImage);
-        if (width == 0) {
-            p.setStyle("no-image");
-        } else if (width >= 300) {
-            p.setStyle("large-image");
-        } else {
-            p.setStyle("no-image");
-        }
-
-//        } catch (Exception e) {
+//    public boolean extractorAndUploadImg(String host, String port) {
+//        log.debug("*****extractorAndUploadImg*****");
+//        if (content == null || p == null) {
+//            return false;
+//        }
+//       /* if (host.equals(port)) return true;*/
+//
+//        Elements imgs = content.select("img");
+//        String mainImage = null;
+//        int width = 0;
+//        for (Element img : imgs) {
+//            try {
+//                String imageUrl = img.attr("src");
+//                //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
+//                if ("".equals(imageUrl)) {
+//                    img.remove();
+//                    continue;
+//                }
+//                img.removeAttr("width");
+//                img.removeAttr("WIDTH");
+//                img.removeAttr("height");
+//                img.removeAttr("HEIGHT");
+//                img.removeAttr("srcset");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+////         if(mainImage == null) {
+//        Element elementImg = (Element) context.output.get("mainimage");
+//        if (elementImg != null){
+//            String tmpMainImage = elementImg.attr("content");
+//        }
+//        p.setMainimage(mainImage);
+//        if (width == 0) {
+//            p.setStyle("no-image");
+//        } else if (width >= 300) {
+//            p.setStyle("large-image");
+//        } else {
 //            p.setStyle("no-image");
 //        }
-        return true;
-
-    }
+//
+////        } catch (Exception e) {
+////            p.setStyle("no-image");
+////        }
+//        return true;
+//
+//    }
 }

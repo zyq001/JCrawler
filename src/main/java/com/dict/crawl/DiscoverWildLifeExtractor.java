@@ -230,24 +230,7 @@ public class DiscoverWildLifeExtractor extends BaseExtractor {
     }
 
     public void dealImg(Element img){
-        String imageUrl = img.attr("src");
-        //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
-        if(img.hasAttr("data-src-large")){
-            imageUrl = img.attr("data-src-large");
-        }
-        if ("".equals(imageUrl)) {
-            img.remove();
-            return;
-        }
-        img.removeAttr("width");
-        img.removeAttr("WIDTH");
-        img.removeAttr("height");
-        img.removeAttr("HEIGHT");
-        img.removeAttr("srcset");
-
-        img.attr("style", "width:100%;");
-//        if(imageUrl.contains("news/320/cpsprodpb")){
-            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
+        super.dealImg(img);
 //        }
 
 

@@ -309,50 +309,50 @@ public class NationalGeoPicsExtractor extends BaseExtractor {
 
 
     }
-
-    public boolean extractorAndUploadImg(String host, String port) {
-        log.debug("*****extractorAndUploadImg*****");
-        Elements imgs = content.select("img");
-        String mainImage = null;
-        int width = 0;
-        for (Element img : imgs) {
-            dealImg(img);
-            if (mainImage == null) {
-                mainImage = img.attr("src");
-            }
-        }
-
-        imgs = content.select(".inline-image");
-        for (Element img : imgs) {
-            dealImg(img);
-            if (mainImage == null) {
-                mainImage = img.attr("src");
-            }
-        }
-
-        imgs = content.select(".image-and-copyright-container");
-        for (Element img : imgs) {
-            dealImg(img);
-            if (mainImage == null) {
-                mainImage = img.attr("src");
-            }
-        }
-
-//         if(mainImage == null) {
-        Element elementImg = (Element) context.output.get("mainimage");
-        if (elementImg != null){
-            String tmpMainImage = elementImg.attr("content");
-            if (mainImage == null) {
-                mainImage = tmpMainImage;
-            }
-        }
-        p.setMainimage(mainImage);
-
-        p.setStyle("no-image");
-
-        return true;
-
-    }
+//
+//    public boolean extractorAndUploadImg(String host, String port) {
+//        log.debug("*****extractorAndUploadImg*****");
+//        Elements imgs = content.select("img");
+//        String mainImage = null;
+//        int width = 0;
+//        for (Element img : imgs) {
+//            dealImg(img);
+//            if (mainImage == null) {
+//                mainImage = img.attr("src");
+//            }
+//        }
+//
+//        imgs = content.select(".inline-image");
+//        for (Element img : imgs) {
+//            dealImg(img);
+//            if (mainImage == null) {
+//                mainImage = img.attr("src");
+//            }
+//        }
+//
+//        imgs = content.select(".image-and-copyright-container");
+//        for (Element img : imgs) {
+//            dealImg(img);
+//            if (mainImage == null) {
+//                mainImage = img.attr("src");
+//            }
+//        }
+//
+////         if(mainImage == null) {
+//        Element elementImg = (Element) context.output.get("mainimage");
+//        if (elementImg != null){
+//            String tmpMainImage = elementImg.attr("content");
+//            if (mainImage == null) {
+//                mainImage = tmpMainImage;
+//            }
+//        }
+//        p.setMainimage(mainImage);
+//
+//        p.setStyle("no-image");
+//
+//        return true;
+//
+//    }
 
     public static void main(String[] args){
         String url = "http://ichef.bbci.co.uk/news/320/cpsprodpb/174DA/production/_89305459_5a5e1a23-b856-4d52-a89d-995f6b35087b.jpg";

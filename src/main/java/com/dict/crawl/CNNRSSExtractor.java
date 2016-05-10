@@ -142,43 +142,5 @@ public class CNNRSSExtractor extends BaseExtractor {
 //        return extractorAndUploadImg(" ", "7890");
 //    }
 
-    public boolean extractorAndUploadImg(String host, String port) {
-        log.debug("*****extractorAndUploadImg*****");
-        if (content == null || p == null) {
-            log.error("content or p null, return false");
-            return false;
-        }
-       /* if (host.equals(port)) return true;*/
-        try {
-            Elements imgs = content.select("img");
-            String mainImage = null;
-            int width = 0;
-            for (Element img : imgs) {
-                String imageUrl = img.attr("src");
-                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
-                    img.remove();
-                    continue;
-                }
-                img.removeAttr("width");
-                img.removeAttr("WIDTH");
-                img.removeAttr("height");
-                img.removeAttr("HEIGHT");
-            }
-
-            p.setMainimage(mainImage);
-            if (width == 0) {
-                p.setStyle("no-image");
-            } else if (width > 300) {
-                p.setStyle("large-image");
-            } else {
-                p.setStyle("no-image");
-            }
-
-        } catch (Exception e) {
-            p.setStyle("no-image");
-        }
-        return true;
-
-    }
 
 }

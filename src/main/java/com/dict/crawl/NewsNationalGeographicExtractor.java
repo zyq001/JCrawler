@@ -395,98 +395,98 @@ public class NewsNationalGeographicExtractor extends BaseExtractor {
         }*/
         return true;
     }
-
-    public boolean extractorAndUploadImg(String host, String port) {
-        log.debug("*****extractorAndUploadImg*****");
-        if (content == null || p == null) {
-            return false;
-        }
-
-        //文章题目重复出现，去除之
-//        content.select("div[id=block-onix-highlight-onix-highlight-article-header]").remove();
-//        content.select("div[id=block-views-article-title-block]").remove();
-//        //
-//        content.select("div[id=157_ArticleControl_divShareButton]").remove();
-//        if(isPaging()) return true;
-       /* if (host.equals(port)) return true;*/
-
-
-        Elements imgs = content.select(".delayed-image-load--photogallery-modal");
-        if(imgs == null || imgs.size() < 1) {
-            imgs = content.select(".delayed-image-load");
-            if (imgs == null || imgs.size() < 1) {
-//                imgs = content.select("img");
-//            "data-platform-component" -> ""data-platform-component" -> "PictureFill""
-                imgs = content.select("div[data-platform-component=PictureFill]");
-                if (imgs == null || imgs.size() < 1)
-                    imgs = content.select("img");
-            }
-        }
-        String mainImage = null;
-        int width = 0;
-        for (Element img : imgs) {
-            try {
-                String imageUrl = img.attr("data-src");
-                //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
-                if ("".equals(imageUrl)) {
-                    imageUrl = img.attr("src");
-                    if ("".equals(imageUrl)) {
-                        imageUrl = img.attr("data-srcset");
-                        if ("".equals(imageUrl)) {
-                            imageUrl = img.attr("data-platform-src");
-                            if ("".equals(imageUrl)) {
-                                img.remove();
-                                continue;
-                            }
-                        }
-                    }
-                }
-                if(!img.tagName().equals("img")) {
-                    Tag imgTag = Tag.valueOf("img");
-//                img.appendChild(imgTag);
-                    Element newImg = new Element(imgTag, "");
-                    img.appendChild(newImg);
-                    img = newImg;
-                    int idx = imageUrl.indexOf("width");
-                    if(idx > 0){
-                        imageUrl = imageUrl.substring(0, idx - 2);
-                    }else{
-                        imageUrl.substring(0, imageUrl.indexOf("jpg") + 3);
-                    }
-                    imageUrl = imageUrl.replace("jpg", "adapt.1190.1.jpg");
-                }
-
-                if(imageUrl.startsWith("/")){
-                    imageUrl = "http://" + p.getHost()+imageUrl;
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        Element elementImg = (Element) context.output.get("mainimage");
-        if (elementImg != null){
-            String tmpMainImage = elementImg.attr("content");
-        }
-//        p.setMainimage(mainImage);
-        if (width == 0) {
-            p.setStyle("no-image");
-        } else if (width >= 300) {
-
-            p.setMainimage(mainImage);
-            p.setStyle("large-image");
-
-        } else {
-            p.setStyle("no-image");
-        }
-
-//        } catch (Exception e) {
+//
+//    public boolean extractorAndUploadImg(String host, String port) {
+//        log.debug("*****extractorAndUploadImg*****");
+//        if (content == null || p == null) {
+//            return false;
+//        }
+//
+//        //文章题目重复出现，去除之
+////        content.select("div[id=block-onix-highlight-onix-highlight-article-header]").remove();
+////        content.select("div[id=block-views-article-title-block]").remove();
+////        //
+////        content.select("div[id=157_ArticleControl_divShareButton]").remove();
+////        if(isPaging()) return true;
+//       /* if (host.equals(port)) return true;*/
+//
+//
+//        Elements imgs = content.select(".delayed-image-load--photogallery-modal");
+//        if(imgs == null || imgs.size() < 1) {
+//            imgs = content.select(".delayed-image-load");
+//            if (imgs == null || imgs.size() < 1) {
+////                imgs = content.select("img");
+////            "data-platform-component" -> ""data-platform-component" -> "PictureFill""
+//                imgs = content.select("div[data-platform-component=PictureFill]");
+//                if (imgs == null || imgs.size() < 1)
+//                    imgs = content.select("img");
+//            }
+//        }
+//        String mainImage = null;
+//        int width = 0;
+//        for (Element img : imgs) {
+//            try {
+//                String imageUrl = img.attr("data-src");
+//                //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
+//                if ("".equals(imageUrl)) {
+//                    imageUrl = img.attr("src");
+//                    if ("".equals(imageUrl)) {
+//                        imageUrl = img.attr("data-srcset");
+//                        if ("".equals(imageUrl)) {
+//                            imageUrl = img.attr("data-platform-src");
+//                            if ("".equals(imageUrl)) {
+//                                img.remove();
+//                                continue;
+//                            }
+//                        }
+//                    }
+//                }
+//                if(!img.tagName().equals("img")) {
+//                    Tag imgTag = Tag.valueOf("img");
+////                img.appendChild(imgTag);
+//                    Element newImg = new Element(imgTag, "");
+//                    img.appendChild(newImg);
+//                    img = newImg;
+//                    int idx = imageUrl.indexOf("width");
+//                    if(idx > 0){
+//                        imageUrl = imageUrl.substring(0, idx - 2);
+//                    }else{
+//                        imageUrl.substring(0, imageUrl.indexOf("jpg") + 3);
+//                    }
+//                    imageUrl = imageUrl.replace("jpg", "adapt.1190.1.jpg");
+//                }
+//
+//                if(imageUrl.startsWith("/")){
+//                    imageUrl = "http://" + p.getHost()+imageUrl;
+//                }
+//
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        Element elementImg = (Element) context.output.get("mainimage");
+//        if (elementImg != null){
+//            String tmpMainImage = elementImg.attr("content");
+//        }
+////        p.setMainimage(mainImage);
+//        if (width == 0) {
+//            p.setStyle("no-image");
+//        } else if (width >= 300) {
+//
+//            p.setMainimage(mainImage);
+//            p.setStyle("large-image");
+//
+//        } else {
 //            p.setStyle("no-image");
 //        }
-        return true;
-
-    }
+//
+////        } catch (Exception e) {
+////            p.setStyle("no-image");
+////        }
+//        return true;
+//
+//    }
 
     public void mergePage(ParserPage p) {
         log.debug("*****mergePage*****");

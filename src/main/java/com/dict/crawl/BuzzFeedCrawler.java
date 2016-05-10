@@ -186,7 +186,7 @@ public class BuzzFeedCrawler extends DeepCrawler {
         RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/politics.xml", "Politics");
         RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/sports.xml", "Sports");
 
-        if(BaseCrawler.isNormalTime()) {
+//        if(BaseCrawler.isNormalTime()) {
 
 
             RSSReaderHelper.addRSSSeeds(crawler,"https://www.buzzfeed.com/books.xml", "Books");
@@ -199,7 +199,7 @@ public class BuzzFeedCrawler extends DeepCrawler {
             RSSReaderHelper.addRSSSeeds(crawler,"https://www.buzzfeed.com/category/culture.xml", "Culture");
             RSSReaderHelper.addRSSSeeds(crawler,"http://www.buzzfeed.com/category/science.xml", "Science");
 
-        }
+//        }
 ////        crawler.addSeed("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia");
 ////        url2Type.put("https://www.buzzfeed.com/laurenpaul/dessert-for-folks-who-appreciate-a-satisfying-cru?utm_term=4ldqpia", "Food");
 //        List<Map<String, Object>> urls = crawler.jdbcTemplate.queryForList("SELECT * FROM parser_page WHERE host like '%buzzfeed.com%' and type = 'Food' ORDER BY id desc");

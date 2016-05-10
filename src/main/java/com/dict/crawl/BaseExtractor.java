@@ -199,11 +199,14 @@ public class BaseExtractor {
     public static void insertWith(JdbcTemplate jdbcTemplate, ParserPage p){
         int updates = jdbcTemplate.update("insert ignore into parser_page (title, type, label, level, style" +
                         ", host, url, time, description, content, wordCount, uniqueWordCount, avgWordLength" +
-                        ", avgSentLength, version, mainimage, page_type, moreinfo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        ", avgSentLength, version, mainimage, page_type, moreinfo, highschoolpts, cet4pts, cet6pts, kaoypts, " +
+                        "toflepts, ieltspts, grepts) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 p.getTitle(), p.getType(), p.getLabel(), p.getLevel(), p.getStyle()
                 , p.getHost(), p.getUrl(), p.getTime(), p.getDescription(), p.getContent(), p.getWordCount()
                 , p.getUniqueWordCount(), p.getAvgWordLength(), p.getAvgSentLength(),
-                p.getVersion(), p.getMainimage(), p.getPage_type(), p.getMoreinfo());
+                p.getVersion(), p.getMainimage(), p.getPage_type(), p.getMoreinfo(), p.getHighschoolpts(),
+                p.getCet4pts(), p.getCet6pts(), p.getKaoypts(), p.getToflepts(), p.getIeltspts()
+                , p.getGrepts());
         if (updates == 1) {
             System.out.println("parser_page插入成功");
 //            int id = jdbcTemplate.queryForInt("SELECT id FROM parser_page WHERE url = ?", p.getUrl());
@@ -267,58 +270,70 @@ public class BaseExtractor {
         return extractorAndUploadImg("", "");
     }
 
+    public void dealImg(Element img){
+        String imageUrl = img.attr("src");
+        //                if ("".equals(imageUrl) || !"".equals(img.attr("data-src-small")) || !"".equals(img.attr("itemprop"))) {
+        if(img.hasAttr("data-src-large")){
+            imageUrl = img.attr("data-src-large");
+        }
+        if ("".equals(imageUrl)) {
+            img.remove();
+            return;
+        }
+        img.removeAttr("width");
+        img.removeAttr("WIDTH");
+        img.removeAttr("height");
+        img.removeAttr("HEIGHT");
+        img.removeAttr("srcset");
+
+        img.attr("style", "width:100%;");
+//        if(imageUrl.contains("news/320/cpsprodpb")){
+            img.attr("src", imageUrl.replaceFirst("news/.*/cpsprodpb", "news/904/cpsprodpb"));//小图换大图
+//        }
+
+
+    }
+
     public boolean extractorAndUploadImg(String host, String port) {
         log.debug("*****extractorAndUploadImg*****");
-        if (content == null || p == null) {
-            log.error("content or p null, return false");
-            return false;
-        }
-       /* if (host.equals(port)) return true;*/
+        Elements imgs = content.select("img");
         String mainImage = null;
         int width = 0;
-        try {
-            Elements imgs = content.select("img");
-            for (Element img : imgs) {
-                String imageUrl = img.attr("src");
-                img.removeAttr("width");
-                img.removeAttr("WIDTH");
-                img.removeAttr("height");
-                img.removeAttr("HEIGHT");
-//                img.attr("style", "width:100%;");
-//                OImageUploader uploader = new OImageUploader();
-//                if (!"".equals(host) && !"".equals(port))
-//                    uploader.setProxy(host, port);
-//                long id = 0;
-//                try {
-//                    id = uploader.deal(imageUrl);
-//                }catch (Exception e){
-////                    img.attr("src", imageUrl);
-//                    log.error("use org img url, continue");
-//                    continue;
-//                }
-//                URL newUrl = new OImageConfig().getImageSrc(id, "dict-consult");
-//                int twidth = uploader.getWidth();
-//                if (twidth >= 300)
-//                    img.attr("style", "width:100%;");
-//                img.attr("src", newUrl.toString());
-//                if (mainImage == null) {
-//                    width = uploader.getWidth();
-//                    mainImage = newUrl.toString();
-//                }
+        for (Element img : imgs) {
+            dealImg(img);
+            if (mainImage == null) {
+                mainImage = img.attr("src");
             }
+        }
 
+        imgs = content.select(".inline-image");
+        for (Element img : imgs) {
+            dealImg(img);
+            if (mainImage == null) {
+                mainImage = img.attr("src");
+            }
+        }
 
-        } catch (Exception e) {
-            p.setStyle("no-image");
+        imgs = content.select(".image-and-copyright-container");
+        for (Element img : imgs) {
+            dealImg(img);
+            if (mainImage == null) {
+                mainImage = img.attr("src");
+            }
+        }
+
+//         if(mainImage == null) {
+        Element elementImg = (Element) context.output.get("mainimage");
+        if (elementImg != null){
+            String tmpMainImage = elementImg.attr("content");
+            if (mainImage == null) {
+                mainImage = tmpMainImage;
+            }
         }
         p.setMainimage(mainImage);
-        if (width == 0) {
-            p.setStyle("no-image");
-        } else if (width > 300) {
-            p.setStyle("large-image");
-        } else {
-            p.setStyle("no-image");
-        }
+
+        p.setStyle("no-image");
+
         return true;
     }
 
