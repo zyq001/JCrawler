@@ -56,7 +56,7 @@ public class CleanUtil {
             System.out.println("mysql未开启或JDBCHelper.createMysqlTemplate中参数配置不正确!");
         }
 
-        List<Map<String, Object>> urls = jdbcTemplate.queryForList("SELECT id, content, avgWordLength FROM parser_page_tran ORDER BY id desc");
+        List<Map<String, Object>> urls = jdbcTemplate.queryForList("SELECT id, content, avgWordLength FROM parser_page where cet4pts is null ORDER BY id desc");
         for(int i = 0; i < urls.size(); i++){
             String id = String.valueOf(urls.get(i).get("id"));
             String content = (String)urls.get(i).get("content");
@@ -66,7 +66,7 @@ public class CleanUtil {
             p.setContent(content);
 
             BaseExtractor.extracteAvgLength(p);
-            int updates = jdbcTemplate.update("update parser_page_tran set content = ?, wordCount = ?, uniqueWordCount = ?" +
+            int updates = jdbcTemplate.update("update parser_page set content = ?, wordCount = ?, uniqueWordCount = ?" +
                             ", avgWordLength = ?, avgSentLength = ?, highschoolpts = ?, cet4pts = ?, cet6pts = ?, kaoypts = ?, " +
                     "toflepts = ?, ieltspts = ?, grepts =?  where id = ?",
                      p.getContent(), p.getWordCount()
