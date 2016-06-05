@@ -219,12 +219,30 @@ public class BaseExtractor {
         }
     }
 
+    public boolean checkDesc(){
+        String desc = p.getDescription();
+        if(desc != null && desc.length() > 0){
+            return true;
+        }
+        String contentStr = content.text();
+        String [] contentArray = contentStr.split(".");
+        int maxLength = 300;
+        StringBuilder sb = new StringBuilder();
+        int index = 0;
+        while(sb.length() < maxLength && index < contentArray.length){
+            sb.append(contentArray[index]);
+        }
+        p.setDescription(sb.toString());
+        return true;
+    }
+
+
     public boolean extractor() {
         if (init())
             return extractorTime() && extractorTitle() && extractorType()
                     && extractorAndUploadImg() && extractorDescription()
                     && extractorContent() && extractorKeywords() && extractorTags(keywords, p.getLabel())
-                    && extracteAvgLength(p) && addAdditionalTag();
+                    && extracteAvgLength(p) && addAdditionalTag() && checkDesc();
         else {
             log.error("init failed");
             return false;
@@ -555,7 +573,9 @@ public class BaseExtractor {
 
 //        String text = "This is a test.";               // 输入文本
 
-        Annotation document = new Annotation(p.getContent());    // 利用text创建一个空的Annotation
+        String contentStr = Jsoup.parse(p.getContent()).text();
+
+        Annotation document = new Annotation(contentStr);    // 利用text创建一个空的Annotation
         pipeline.annotate(document);                   // 对text执行所有的Annotators（七种）
 
         // 下面的sentences 中包含了所有分析结果，遍历即可获知结果。
